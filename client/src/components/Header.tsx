@@ -21,7 +21,9 @@ const Header: React.FC<HeaderProps> = ({ className = "" }) => {
 
   return (
     <header className={`Header ${className}`}>
-      <img src="/headerlogo.png" alt="Logo" className="logo" />
+      <Link to="/" className="logo-link" aria-label="Home">
+        <img src="/headerlogo.png" alt="Logo" className="logo" />
+      </Link>
 
       <div className="menu-icon">
         <button
@@ -72,6 +74,10 @@ const Header: React.FC<HeaderProps> = ({ className = "" }) => {
           )}
         </button>
       </div>
+
+      
+
+      {isMenu && <div className="drawer-overlay" onClick={handleMenuClose} />}
 
       <nav
         ref={navRef}
