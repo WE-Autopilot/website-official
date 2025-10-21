@@ -47,31 +47,30 @@ function Join() {
       <div className="team-info">
         <h2 className="team-info-heading">{t("join.teams")}</h2>
         <hr className="team-info-header-line-break"></hr>
-        <div className="team-box" id="red-team-box" ref={redTeamRef}>
-          <h2 className="team-heading">{t("team.red.title")}</h2>
+        <div className="team-box" id="perception-team-box" ref={redTeamRef}>
+          <h2 className="team-heading">{t("team.perception.title")}</h2>
           <hr className="team-header-line-break"></hr>
           <div>
-            <p className="team-body">{t("team.red.description")}</p>
+            <p className="team-body">{t("team.perception.description")}</p>
           </div>
         </div>
-        <div className="team-box" id="black-team-box" ref={blackTeamRef}>
-          <h2 className="team-heading">{t("team.black.title")}</h2>
+        <div className="team-box" id="mapping-team-box" ref={blackTeamRef}>
+          <h2 className="team-heading">{t("team.m&p.title")}</h2>
           <hr className="team-header-line-break"></hr>
           <div>
-            <p className="team-body">{t("team.black.description")}</p>
+            <p className="team-body">{t("team.m&p.description")}</p>
           </div>
         </div>
-        <div className="team-box" id="cv-team-box" ref={cvTeamRef}>
-          <h2 className="team-heading">{t("team.cv.title")}</h2>
+        <div className="team-box" id="planning-team-box" ref={cvTeamRef}>
+          <h2 className="team-heading">{t("team.p&c.title")}</h2>
           <hr className="team-header-line-break"></hr>
           <div>
-            <p className="team-body">{t("team.cv.description")}</p>
+            <p className="team-body">{t("team.p&c.description")}</p>
           </div>
         </div>
       </div>
-      
 
-        {/* <div className="cv-team-container" ref={cvContainerRef}>
+      {/* <div className="cv-team-container" ref={cvContainerRef}>
           <div className="team-lead-card">
             <div className="team-lead-image">
               {TygoImage ? (

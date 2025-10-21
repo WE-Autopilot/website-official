@@ -91,18 +91,18 @@ h2 {
   margin-left: 0;
 }
 
-#red-team-box {
-  background-color: #c39a9a;
+#perception-team-box {
+  background-color: #6da2f8;
   transition-delay: 0.1s;
 }
 
-#black-team-box {
+#mapping-team-box {
   background-color: #8d8d8d;
   transition-delay: 0.3s;
 }
 
-#cv-team-box {
-  background-color: #8f9fc9f2;
+#planning-team-box {
+  background-color: #74ab74;
   transition-delay: 0.5s;
 }
 
@@ -469,7 +469,7 @@ select {
 }
 
 .team-lead-name {
-  color: #DCA621;
+  color: #dcd021;
   font-size: 1.5rem;
   margin-bottom: 0.5rem;
   text-align: center;

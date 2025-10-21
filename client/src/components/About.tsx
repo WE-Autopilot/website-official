@@ -9,38 +9,39 @@ import Member5 from "../assets/Member5.webp";
 import Danya from "../assets/Danya.webp";
 import Tygo from "../assets/Tygo.jpg";
 import Obaid from "../assets/Obaid.jpg";
-import RedTeamLead from "../assets/RedTeamLead.jpg";
 import BlackTeamLead from "../assets/Ian.jpg";
 import { useEffect, memo } from "react";
 
 // TeamMember component for better performance
-const TeamMember = memo(({ member, isTeamLead }: {member: any; isTeamLead: boolean}) => {
-  return (
-    <div
-      className={`member-card ${isTeamLead ? "cv-lead" : ""}`}
-      key={member.id}
-    >
-      <div className="member-image">
-        {member.image ? (
-          <img
-            src={member.image}
-            alt={member.name}
-            loading="lazy"
-            decoding="async"
-            width="150"
-            height="150"
-          />
-        ) : (
-          <div className="placeholder-image" aria-label={member.name}>
-            {member.placeholderInitials || member.name.charAt(0)}
-          </div>
-        )}
+const TeamMember = memo(
+  ({ member, isTeamLead }: { member: any; isTeamLead: boolean }) => {
+    return (
+      <div
+        className={`member-card ${isTeamLead ? "cv-lead" : ""}`}
+        key={member.id}
+      >
+        <div className="member-image">
+          {member.image ? (
+            <img
+              src={member.image}
+              alt={member.name}
+              loading="lazy"
+              decoding="async"
+              width="150"
+              height="150"
+            />
+          ) : (
+            <div className="placeholder-image" aria-label={member.name}>
+              {member.placeholderInitials || member.name.charAt(0)}
+            </div>
+          )}
+        </div>
+        <h3 className="name">{member.name}</h3>
+        <p className="role">{member.role}</p>
       </div>
-      <h3 className="name">{member.name}</h3>
-      <p className="role">{member.role}</p>
-    </div>
-  );
-});
+    );
+  }
+);
 
 TeamMember.displayName = "TeamMember";
 
@@ -65,63 +66,63 @@ function About() {
     {
       id: 2,
       name: "Aly Ashour",
-      role: "Co-Founder, VP Finance",
+      role: "Co-Founder, P&C Lead",
       image: Member3,
       level: LEADERSHIP_LEVELS.CO_FOUNDER,
     },
     {
       id: 3,
       name: "Hamza Elkababji",
-      role: "Co-Founder, VP Comms",
+      role: "Co-Founder",
       image: Member4,
       level: LEADERSHIP_LEVELS.CO_FOUNDER,
     },
+    // {
+    //   id: 4,
+    //   name: "Zain Syed",
+    //   role: "VP Tech",
+    //   image: Member5,
+    //   level: LEADERSHIP_LEVELS.VP,
+    // },
     {
       id: 4,
-      name: "Zain Syed",
-      role: "VP Tech",
-      image: Member5,
-      level: LEADERSHIP_LEVELS.VP,
-    },
-    {
-      id: 5,
       name: "Ethan Greene",
       role: "VP Marketing",
       image: Member2,
       level: LEADERSHIP_LEVELS.VP,
     },
     {
-      id: 6,
+      id: 5,
       name: "Danya Abbas",
-      role: "VP Events",
+      role: "VP Comms",
       image: Danya,
       level: LEADERSHIP_LEVELS.VP,
     },
     {
-      id: 7,
+      id: 6,
       name: "Tygo Crawley",
-      role: "Team Lead - Computer Vision Project",
+      role: "Perception Lead",
       image: Tygo,
+      level: LEADERSHIP_LEVELS.TEAM_LEAD,
+    },
+    {
+      id: 7,
+      name: "Zain Syed",
+      role: "Mapping & Localization Lead",
+      image: Member5,
       level: LEADERSHIP_LEVELS.TEAM_LEAD,
     },
     {
       id: 8,
       name: "Obaid Mohiuddin",
-      role: "Computer Vision Lead",
+      role: "P&C Lead",
       image: Obaid,
       level: LEADERSHIP_LEVELS.TEAM_LEAD,
     },
     {
       id: 9,
-      name: "Benjamin Namayandeh",
-      role: "Autonomy Black Team Lead",
-      image: RedTeamLead,
-      level: LEADERSHIP_LEVELS.TEAM_LEAD_SECONDARY,
-    },
-    {
-      id: 10,
-      name: "Ian",
-      role: "Autonomy Red Team Lead",
+      name: "Kierstin Griffith",
+      role: "Web Lead",
       image: BlackTeamLead,
       level: LEADERSHIP_LEVELS.TEAM_LEAD_SECONDARY,
     },

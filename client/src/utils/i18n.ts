@@ -25,17 +25,17 @@ const resources = {
         "Submit your application through our online form to join one of our teams. We're looking for motivated students with a passion for autonomous technology.",
 
       // Team descriptions
-      "team.red.title": "Red Team",
-      "team.red.description":
-        "The Red Team focuses on hardware and vehicle systems. Members work on mechanical design, electrical systems, sensor integration, and physical vehicle development. This team is ideal for those interested in robotics, hardware design, electrical engineering, and systems integration.",
+      "team.perception.title": "Perception Team",
+      "team.perception.description":
+        "The perception team works with machine learning and computer vision models to help the car detect and interpret its environment (lanes, stop signs, obstacles).",
 
-      "team.black.title": "Black Team",
-      "team.black.description":
-        "The Black Team leads software architecture and algorithms development. Members work on path planning, decision making, control systems, and simulation. This team is perfect for those passionate about software engineering, algorithms, machine learning, and system architecture.",
+      "team.m&p.title": "M&P Team",
+      "team.m&p.description":
+        "Mapping and Localization (M&P) Team implements SLAM (Simultaneous Localization and Mapping) so the car can accurately track its position on the track.",
 
-      "team.cv.title": "CV Team",
-      "team.cv.description":
-        "The Computer Vision (CV) Team develops perception systems for autonomous navigation. Members work on object detection, lane identification, environmental mapping, and sensor fusion. This team is ideal for those interested in computer vision, deep learning, and AI applications.",
+      "team.p&c.title": "P&C Team",
+      "team.p&c.description":
+        "Planning and Control (P&C) Team designs decision tree logic and other control algorithms that allow the car to plan safe trajectories and execute smooth driving.",
 
       // Application form
       "application.title": "Join WE Autopilot",
