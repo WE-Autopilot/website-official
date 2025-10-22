@@ -123,7 +123,7 @@ function About() {
       id: 9,
       name: "Kierstin Griffith",
       role: "Web Lead",
-      image: BlackTeamLead,
+      image: BlackTeamLead, // Need to add a photo of Kierstin Griffith
       level: LEADERSHIP_LEVELS.TEAM_LEAD_SECONDARY,
     },
   ];
