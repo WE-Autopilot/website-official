@@ -37,7 +37,7 @@ const TeamMember = memo(
           )}
         </div>
         <h3 className="name">{member.name}</h3>
-        <p className="role">{member.role}</p>
+        {!isTeamLead && member.role && <p className="role">{member.role}</p>}
       </div>
     );
   }
@@ -46,90 +46,133 @@ const TeamMember = memo(
 TeamMember.displayName = "TeamMember";
 
 function About() {
-  // Define team structure with leadership levels
+  // Define leadership levels used for the executive rows
   const LEADERSHIP_LEVELS = {
     PRESIDENT: "president",
     CO_FOUNDER: "co-founder",
     VP: "vp",
-    TEAM_LEAD: "team-lead",
-    TEAM_LEAD_SECONDARY: "team-lead-secondary",
   };
 
-  const teamMembers = [
+  // Executives (President / Co-founders / VPs)
+  const execs = [
     {
-      id: 1,
+      id: "exec-1",
       name: "Ali Elgalad",
-      role: "Co-Founder, President",
+      role: "President (Co-Founder)",
       image: Member1,
       level: LEADERSHIP_LEVELS.PRESIDENT,
     },
     {
-      id: 2,
+      id: "exec-2",
       name: "Aly Ashour",
-      role: "Co-Founder, P&C Lead",
+      role: "Co-Founder",
       image: Member3,
       level: LEADERSHIP_LEVELS.CO_FOUNDER,
     },
     {
-      id: 3,
+      id: "exec-3",
       name: "Hamza Elkababji",
       role: "Co-Founder",
       image: Member4,
       level: LEADERSHIP_LEVELS.CO_FOUNDER,
     },
-    // {
-    //   id: 4,
-    //   name: "Zain Syed",
-    //   role: "VP Tech",
-    //   image: Member5,
-    //   level: LEADERSHIP_LEVELS.VP,
-    // },
     {
-      id: 4,
+      id: "exec-4",
       name: "Ethan Greene",
-      role: "VP Marketing",
+      role: "VP Finance",
       image: Member2,
       level: LEADERSHIP_LEVELS.VP,
     },
     {
-      id: 5,
+      id: "exec-5",
       name: "Danya Abbas",
       role: "VP Comms",
       image: Danya,
       level: LEADERSHIP_LEVELS.VP,
     },
     {
-      id: 6,
-      name: "Tygo Crawley",
-      role: "Perception Lead",
-      image: Tygo,
-      level: LEADERSHIP_LEVELS.TEAM_LEAD,
+      id: "exec-6",
+      name: "Dev",
+      role: "VP Education",
+      // no image provided yet
+      placeholderInitials: "D",
+      level: LEADERSHIP_LEVELS.VP,
+    },
+  ];
+
+  // Teams and their leads (supports multiple leads per team)
+  const teams = [
+    {
+      id: "perception",
+      title: "Perception",
+      leads: [
+        {
+          id: "lead-tygo",
+          name: "Tygo Crawley",
+          role: "Perception Lead",
+          image: Tygo,
+        },
+        {
+          id: "lead-ian",
+          name: "Ian Patrick Tan",
+          role: "Perception Lead",
+          image: BlackTeamLead,
+        },
+      ],
     },
     {
-      id: 7,
-      name: "Zain Syed",
-      role: "Mapping & Localization Lead",
-      image: Member5,
-      level: LEADERSHIP_LEVELS.TEAM_LEAD,
+      id: "mapping",
+      title: "Mapping & Localization",
+      leads: [
+        {
+          id: "lead-zain",
+          name: "Zain Syed",
+          role: "Mapping & Localization Lead",
+          image: Member5,
+        },
+        {
+          id: "lead-ben",
+          name: "Benjamin Namayandeh",
+          role: "Mapping & Localization Lead",
+          // no image provided yet
+          placeholderInitials: "B",
+        },
+      ],
     },
     {
-      id: 8,
-      name: "Obaid Mohiuddin",
-      role: "P&C Lead",
-      image: Obaid,
-      level: LEADERSHIP_LEVELS.TEAM_LEAD,
+      id: "planning",
+      title: "Planning & Control",
+      leads: [
+        {
+          id: "lead-aly",
+          name: "Aly Ashour",
+          role: "Planning & Control Lead",
+          image: Member3,
+        },
+        {
+          id: "lead-obaid",
+          name: "Obaid Mohiuddin",
+          role: "Planning & Control Lead",
+          image: Obaid,
+        },
+      ],
     },
     {
-      id: 9,
-      name: "Kierstin Griffith",
-      role: "Web Lead",
-      image: BlackTeamLead, // Need to add a photo of Kierstin Griffith
-      level: LEADERSHIP_LEVELS.TEAM_LEAD_SECONDARY,
+      id: "web",
+      title: "Web",
+      leads: [
+        {
+          id: "lead-kierstin",
+          name: "Kierstin Griffith",
+          role: "Web Lead",
+          // no image provided yet
+          placeholderInitials: "K",
+        },
+      ],
     },
   ];
 
   // teamSection is managed by intersection observer
-
   useEffect(() => {
     const observerOptions = {
       threshold: 0.2,
@@ -163,31 +206,8 @@ function About() {
       </div>
 
       <div className="about-content">
-        <div className="cards-container">
-          {/* Card 1 */}
-          {/* <div className="card">
-            <h2>Our Start</h2>
-            <p>
-              Welcome to the offical Western Engineering AutoPilot Website! We
-              are a group of driven engineers and developers, looking to change
-              the world with our Autonomy Software, one road at a time. Feel
-              free to explore everything, from our current endeavors, to futre
-              aspirations.
-            </p>
-          </div> */}
+        <div className="cards-container">{/* reserved for future cards */}</div>
 
-          {/* Card 2 */}
-          {/* <div className="card">
-            <h2>Why WEAP?</h2>
-            <p>
-              Welcome to the offical Western Engineering AutoPilot Website! We
-              are a group of driven engineers and developers, looking to change
-              the world with our Autonomy Software, one road at a time. Feel
-              free to explore everything, from our current endeavors, to futre
-              aspirations.
-            </p>
-          </div> */}
-        </div>
         <div className="Members-container">
           <div className="about-title">
             <h1>Meet Our Team</h1>
@@ -196,10 +216,8 @@ function About() {
           <div className="team-tree">
             {/* Top level - President */}
             <div className="tree-level level-1">
-              {teamMembers
-                .filter(
-                  (member) => member.level === LEADERSHIP_LEVELS.PRESIDENT
-                )
+              {execs
+                .filter((m) => m.level === LEADERSHIP_LEVELS.PRESIDENT)
                 .map((member) => (
                   <TeamMember
                     key={member.id}
@@ -211,10 +229,8 @@ function About() {
 
             {/* Second level - Co-Founders */}
             <div className="tree-level level-2">
-              {teamMembers
-                .filter(
-                  (member) => member.level === LEADERSHIP_LEVELS.CO_FOUNDER
-                )
+              {execs
+                .filter((m) => m.level === LEADERSHIP_LEVELS.CO_FOUNDER)
                 .map((member) => (
                   <TeamMember
                     key={member.id}
@@ -224,10 +240,10 @@ function About() {
                 ))}
             </div>
 
-            {/* Third level - VPs only */}
+            {/* Third level - VPs */}
             <div className="tree-level level-3">
-              {teamMembers
-                .filter((member) => member.level === LEADERSHIP_LEVELS.VP)
+              {execs
+                .filter((m) => m.level === LEADERSHIP_LEVELS.VP)
                 .map((member) => (
                   <TeamMember
                     key={member.id}
@@ -237,35 +253,33 @@ function About() {
                 ))}
             </div>
 
-            {/* Fourth level - Team Leads */}
-            <div className="tree-level level-4">
-              {teamMembers
-                .filter(
-                  (member) => member.level === LEADERSHIP_LEVELS.TEAM_LEAD
-                )
-                .map((member) => (
-                  <TeamMember
-                    key={member.id}
-                    member={member}
-                    isTeamLead={true}
-                  />
-                ))}
-            </div>
-
-            {/* Fifth level - Secondary Team Leads */}
-            <div className="tree-level level-5">
-              {teamMembers
-                .filter(
-                  (member) =>
-                    member.level === LEADERSHIP_LEVELS.TEAM_LEAD_SECONDARY
-                )
-                .map((member) => (
-                  <TeamMember
-                    key={member.id}
-                    member={member}
-                    isTeamLead={false}
-                  />
-                ))}
+            {/* Team leads grouped by team (supports multiple leads per team) */}
+            <div className="team-leads">
+              {teams.map((team) => (
+                <div key={team.id} className="team-section">
+                  <h2
+                    style={{
+                      textAlign: "center",
+                      marginBottom: "1rem",
+                      color: "#e1e1e1",
+                    }}
+                  >
+                    {`${team.title} leads`}
+                  </h2>
+                  <div
+                    className="tree-level level-4"
+                    aria-label={`${team.title} Leads`}
+                  >
+                    {team.leads.map((lead: any) => (
+                      <TeamMember
+                        key={lead.id}
+                        member={lead}
+                        isTeamLead={true}
+                      />
+                    ))}
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </div>
