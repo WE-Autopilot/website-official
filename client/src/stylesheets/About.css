@@ -152,6 +152,9 @@ h2{
   margin-top: 2rem;
 }
 
+.team-tree .tree-level:last-child::after{
+  display: none;
+}
 /* Tree level styling */
 .tree-level {
   display: flex;
@@ -159,9 +162,6 @@ h2{
   gap: 3rem;
   width: 100%;
   position: relative;
-
-  /* ensure connectors align by anchoring children to the top */
-  align-items: flex-start;
 }
 
 /* Add visual tree connections */
@@ -250,15 +250,12 @@ h2{
   flex-direction: column;
   align-items: center;
   width: 250px;
-
-  /* give all cards a consistent height so connectors remain aligned */
-  min-height: 280px;
 }
 
 .member-card .role{
   color: #e1e1e1;
   font-size: 1.1rem;
-  margin: 0.5rem 0 0; /* smaller bottom margin */
+  margin-bottom: 2rem;
 }
 
 .member-card .name{
@@ -370,7 +367,6 @@ h2{
   /* Adjust member card width on mobile */
   .member-card {
     width: 200px;
-    min-height: 220px;
   }
   
   .member-image {

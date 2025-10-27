@@ -264,7 +264,7 @@ function About() {
                       color: "#e1e1e1",
                     }}
                   >
-                    {`${team.title} leads`}
+                    {`${team.title} Leads`}
                   </h2>
                   <div
                     className="tree-level level-4"
