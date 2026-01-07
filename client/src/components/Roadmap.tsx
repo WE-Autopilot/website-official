@@ -127,16 +127,16 @@ const Roadmap: React.FC = () => {
   // Calculate path along the race track curve
   // Creating a zigzag/snake pattern like a real race circuit
   const trackPositions = [
-    { x: 15, y: 15 },   // 1 - Start top left
-    { x: 35, y: 15 },   // 2 - Top row
-    { x: 55, y: 15 },   // 3 - Top row
-    { x: 75, y: 15 },   // 4 - Top right corner
-    { x: 75, y: 45 },   // 5 - Right turn down
-    { x: 55, y: 45 },   // 6 - Middle row (right to left)
-    { x: 35, y: 45 },   // 7 - Middle row
-    { x: 15, y: 45 },   // 8 - Left turn
-    { x: 15, y: 75 },   // 9 - Bottom left
-    { x: 35, y: 75 },   // 10 - Bottom row (left to right)
+    { x: 20, y: 15 },   // 1 - Start top left
+    { x: 40, y: 15 },   // 2 - Top row
+    { x: 60, y: 15 },   // 3 - Top row
+    { x: 80, y: 15 },   // 4 - Top right corner
+    { x: 80, y: 45 },   // 5 - Right turn down
+    { x: 60, y: 45 },   // 6 - Middle row (right to left)
+    { x: 40, y: 45 },   // 7 - Middle row
+    { x: 20, y: 45 },   // 8 - Left turn
+    { x: 20, y: 75 },   // 9 - Bottom left
+    { x: 40, y: 75 },   // 10 - Bottom row (left to right)
   ];
 
   // SVG path - simple zigzag connecting each node
