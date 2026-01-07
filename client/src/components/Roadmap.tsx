@@ -272,7 +272,8 @@ const Roadmap: React.FC = () => {
                 className="node-wrapper"
                 style={{ 
                   left: `${trackPositions[index].x}%`,
-                  top: `${trackPositions[index].y}%`
+                  top: `${trackPositions[index].y}%`,
+                  zIndex: expandedId === item.id ? 10 : 5
                 }}
               >
                 {/* Tooltip on hover */}

@@ -292,6 +292,8 @@
   max-width: 350px;
   box-shadow: 0 8px 32px rgba(106, 3, 123, 0.4);
   position: relative;
+  /* Make sure the expanded content is above other elements */
+  z-index: 40;
 }
 
 .expanded-content h3 {
