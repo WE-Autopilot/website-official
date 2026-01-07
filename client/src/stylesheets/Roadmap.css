@@ -26,58 +26,45 @@
 
 .roadmap-track {
   position: relative;
-  height: 200px;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  max-height: 600px;
 }
 
-/* Road line styling */
-.road-line {
-  position: absolute;
-  top: 50%;
-  left: 0;
-  right: 0;
-  height: 8px;
-  background: #2a4a7a;
-  border-radius: 4px;
-  transform: translateY(-50%);
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-}
-
-/* Dashed road markings */
-.road-line::before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 0;
-  right: 0;
-  height: 2px;
-  background: repeating-linear-gradient(
-    90deg,
-    #FFDE38 0px,
-    #FFDE38 20px,
-    transparent 20px,
-    transparent 40px
-  );
-  transform: translateY(-50%);
-}
-
-.road-progress {
+/* SVG Race Track */
+.track-svg {
+  width: 100%;
+  height: 100%;
   position: absolute;
   top: 0;
   left: 0;
-  height: 100%;
-  background: linear-gradient(90deg, #FFDE38, #6A037B);
-  border-radius: 4px;
-  transition: width 0.5s ease-out;
+}
+
+.track-outer {
+  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.4));
+}
+
+.track-base {
+  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.3));
+}
+
+.track-progress {
+  transition: stroke-dashoffset 1s ease-out;
+  filter: drop-shadow(0 0 8px rgba(255, 222, 56, 0.6));
+}
+
+.track-center-line {
+  opacity: 0.6;
 }
 
 /* Car indicator */
 .car-indicator {
   position: absolute;
-  top: 50%;
-  transform: translate(-50%, -100%);
   z-index: 10;
+  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
   animation: carBounce 2s ease-in-out infinite;
   filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+  pointer-events: none;
 }
 
 .car-svg {
@@ -91,10 +78,10 @@
 
 @keyframes carBounce {
   0%, 100% {
-    transform: translate(-50%, -100%) translateY(0);
+    transform: translate(-50%, -50%) translateY(0) rotate(var(--car-rotation, 0deg)) scaleY(var(--car-scale-y, 1));
   }
   50% {
-    transform: translate(-50%, -100%) translateY(-5px);
+    transform: translate(-50%, -50%) translateY(-8px) rotate(var(--car-rotation, 0deg)) scaleY(var(--car-scale-y, 1));
   }
 }
 
@@ -116,11 +103,12 @@
   left: 0;
   right: 0;
   bottom: 0;
+  width: 100%;
+  height: 100%;
 }
 
 .node-wrapper {
   position: absolute;
-  top: 50%;
   transform: translate(-50%, -50%);
   display: flex;
   flex-direction: column;
@@ -198,7 +186,7 @@
 /* Node labels */
 .node-label {
   position: absolute;
-  top: 60px;
+  top: 50px;
   white-space: nowrap;
   font-family: 'Jura', sans-serif;
   font-weight: 600;
@@ -207,7 +195,8 @@
   text-align: center;
   padding: 4px 8px;
   border-radius: 4px;
-  background: rgba(16, 40, 84, 0.8);
+  background: rgba(16, 40, 84, 0.9);
+  pointer-events: none;
 }
 
 .node-label.node-completed {
@@ -403,92 +392,40 @@
 /* Responsive styles */
 @media only screen and (max-width: 900px) {
   .roadmap-track {
-    height: auto;
-    min-height: 600px;
-  }
-
-  .road-line {
-    top: 0;
-    bottom: 0;
-    left: 50%;
-    right: auto;
-    width: 8px;
-    height: auto;
-    transform: translateX(-50%);
-  }
-
-  .road-line::before {
-    top: 0;
-    bottom: 0;
-    left: 50%;
-    right: auto;
-    width: 2px;
-    height: auto;
-    background: repeating-linear-gradient(
-      180deg,
-      #FFDE38 0px,
-      #FFDE38 20px,
-      transparent 20px,
-      transparent 40px
-    );
-    transform: translateX(-50%);
-  }
-
-  .road-progress {
-    width: 100% !important;
-    height: calc((var(--progress, 0.5) * 100%));
-  }
-
-  .car-indicator {
-    left: 50% !important;
-    top: calc((var(--progress, 0.5) * 100%));
-    transform: translate(-50%, -50%) rotate(90deg);
-  }
-
-  .nodes-container {
-    display: flex;
-    flex-direction: column;
-    gap: 100px;
-    padding: 40px 0;
-  }
-
-  .node-wrapper {
-    position: relative;
-    left: 50% !important;
-    top: auto !important;
-    transform: translateX(-50%);
+    aspect-ratio: 4 / 3;
+    max-height: 80vh; /* Allow it to be taller but not exceed viewport significantly */
   }
 
   .node-label {
-    position: relative;
-    top: auto;
-    margin-top: 12px;
+    font-size: 12px;
+    padding: 3px 6px;
+    top: 45px;
   }
 
-  .node-tooltip {
-    left: calc(100% + 20px);
-    bottom: auto;
-    top: 50%;
-    transform: translateY(-50%);
+  .node-dot {
+    width: 35px;
+    height: 35px;
   }
 
-  .node-tooltip::after {
-    top: 50%;
-    left: -8px;
-    right: auto;
-    transform: translateY(-50%) rotate(-90deg);
+  .expanded-content {
+    min-width: 240px;
+    max-width: 280px;
   }
 
-  .node-expanded {
-    left: calc(100% + 20px);
-    top: 50%;
-    transform: translateY(-50%);
+  .car-svg {
+    width: 50px;
+    height: 25px;
   }
 }
 
 @media only screen and (max-width: 600px) {
   .roadmap-title {
     font-size: 32px;
+  }
+
+  .roadmap-track {
+    aspect-ratio: 1 / 1;
+    max-height: 400px;
   }
 
   .expanded-content {
@@ -499,5 +436,22 @@
 
   .node-tooltip {
     min-width: 150px;
+    max-width: 200px;
+  }
+
+  .node-label {
+    font-size: 11px;
+    top: 40px;
+  }
+
+  .node-dot {
+    width: 30px;
+    height: 30px;
+    border-width: 3px;
+  }
+
+  .car-svg {
+    width: 40px;
+    height: 20px;
   }
 }

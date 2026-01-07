@@ -31,10 +31,27 @@ const roadmapData: RoadmapItem[] = [
   },
   {
     id: 3,
-    title: "Prototype Development",
-    summary: "Building our first autonomous platform",
+    title: "Sponsor Acquisition",
+    summary: "Securing funding and partnerships",
     description:
-      "Currently developing our first prototype vehicle with LiDAR, camera systems, and custom control software. Integrating ROS2 for real-time processing.",
+      "Building relationships with industry partners and securing sponsorships to fund our autonomous vehicle development. Establishing collaborations with tech companies.",
+    status: "completed",
+    links: [{ label: "Our Sponsors", url: "/sponsors" }],
+  },
+  {
+    id: 4,
+    title: "Hardware Integration",
+    summary: "Integrating sensors and systems",
+    description:
+      "Assembling LiDAR units, camera arrays, and embedded systems. Creating the physical architecture for autonomous decision-making and control.",
+    status: "completed",
+  },
+  {
+    id: 5,
+    title: "Software Development",
+    summary: "Building autonomous algorithms",
+    description:
+      "Developing perception, planning, and control software. Implementing machine learning models for object detection and path planning using ROS2.",
     status: "in-progress",
     links: [
       { label: "Join Development", url: "/join" },
@@ -42,15 +59,39 @@ const roadmapData: RoadmapItem[] = [
     ],
   },
   {
-    id: 4,
-    title: "Testing & Validation",
-    summary: "Rigorous testing protocols",
+    id: 6,
+    title: "Prototype Testing",
+    summary: "Closed-course testing phase",
     description:
-      "Comprehensive testing phase including simulation, closed-course testing, and safety validation. Iterating on designs based on real-world performance data.",
+      "Conducting rigorous testing in controlled environments. Validating sensor accuracy, system reliability, and safety protocols.",
     status: "upcoming",
   },
   {
-    id: 5,
+    id: 7,
+    title: "Algorithm Optimization",
+    summary: "Enhancing AI decision-making",
+    description:
+      "Fine-tuning machine learning models and path planning algorithms for optimal performance in real-world scenarios.",
+    status: "upcoming",
+  },
+  {
+    id: 8,
+    title: "Integration Testing",
+    summary: "Full system validation",
+    description:
+      "Testing all subsystems working together. Ensuring seamless communication between perception, planning, and control modules.",
+    status: "upcoming",
+  },
+  {
+    id: 9,
+    title: "Safety Certification",
+    summary: "Meeting competition standards",
+    description:
+      "Completing safety checks and certifications required for competition participation. Ensuring all systems meet regulatory requirements.",
+    status: "upcoming",
+  },
+  {
+    id: 10,
     title: "Competition Ready",
     summary: "Enter autonomous vehicle competitions",
     description:
@@ -83,58 +124,145 @@ const Roadmap: React.FC = () => {
     }
   };
 
+  // Calculate path along the race track curve
+  // Creating a zigzag/snake pattern like a real race circuit
+  const trackPositions = [
+    { x: 15, y: 15 },   // 1 - Start top left
+    { x: 35, y: 15 },   // 2 - Top row
+    { x: 55, y: 15 },   // 3 - Top row
+    { x: 75, y: 15 },   // 4 - Top right corner
+    { x: 75, y: 45 },   // 5 - Right turn down
+    { x: 55, y: 45 },   // 6 - Middle row (right to left)
+    { x: 35, y: 45 },   // 7 - Middle row
+    { x: 15, y: 45 },   // 8 - Left turn
+    { x: 15, y: 75 },   // 9 - Bottom left
+    { x: 35, y: 75 },   // 10 - Bottom row (left to right)
+  ];
+
+  // SVG path - simple zigzag connecting each node
+  const trackPath = `
+    M ${trackPositions[0].x} ${trackPositions[0].y}
+    L ${trackPositions[1].x} ${trackPositions[1].y}
+    L ${trackPositions[2].x} ${trackPositions[2].y}
+    L ${trackPositions[3].x} ${trackPositions[3].y}
+    A 15 15 0 0 1 ${trackPositions[4].x} ${trackPositions[4].y}
+    L ${trackPositions[5].x} ${trackPositions[5].y}
+    L ${trackPositions[6].x} ${trackPositions[6].y}
+    L ${trackPositions[7].x} ${trackPositions[7].y}
+    A 15 15 0 0 0 ${trackPositions[8].x} ${trackPositions[8].y}
+    L ${trackPositions[9].x} ${trackPositions[9].y}
+  `;
+
+  // Calculate rotation angle for the car based on position
+  const getCarRotation = (index: number) => {
+    const rotations = [0, 0, 0, 0, 180, 180, 180, 180, 0, 0];
+    return rotations[index] || 0;
+  };
+
   return (
     <section className="Roadmap" id="Roadmap">
       <h2 className="roadmap-title">Our Roadmap</h2>
       <div className="roadmap-container">
         <div className="roadmap-track">
-          {/* Road line */}
-          <div className="road-line">
-            <div
-              className="road-progress"
+          {/* SVG Race Track */}
+          <svg className="track-svg" viewBox="0 0 100 100" preserveAspectRatio="none">
+            {/* Track background (outer edge) */}
+            <path
+              d={trackPath}
+              fill="none"
+              stroke="#1a2a4a"
+              strokeWidth="10"
+              strokeLinecap="round"
+              className="track-outer"
+            />
+            
+            {/* Track base */}
+            <path
+              d={trackPath}
+              fill="none"
+              stroke="#2a4a7a"
+              strokeWidth="7"
+              strokeLinecap="round"
+              className="track-base"
+            />
+            
+            {/* Dashed center line */}
+            <path
+              d={trackPath}
+              fill="none"
+              stroke="#FFDE38"
+              strokeWidth="0.5"
+              strokeLinecap="round"
+              strokeDasharray="3 3"
+              className="track-center-line"
+            />
+            
+            {/* Progress path */}
+            <path
+              d={trackPath}
+              fill="none"
+              stroke="url(#progressGradient)"
+              strokeWidth="7"
+              strokeLinecap="round"
+              className="track-progress"
               style={{
-                width: `${((currentStageIndex + 0.5) / roadmapData.length) * 100}%`,
+                strokeDasharray: "1000",
+                strokeDashoffset: `${1000 - (currentStageIndex / (roadmapData.length - 1)) * 1000}`,
               }}
             />
-          </div>
+            
+            <defs>
+              <linearGradient id="progressGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stopColor="#FFDE38" />
+                <stop offset="100%" stopColor="#6A037B" />
+              </linearGradient>
+            </defs>
+          </svg>
 
           {/* Car indicator */}
-          <div
-            className="car-indicator"
-            style={{
-              left: `${((currentStageIndex + 0.5) / roadmapData.length) * 100}%`,
-            }}
-          >
-            <svg
-              viewBox="0 0 64 32"
-              className="car-svg"
-              xmlns="http://www.w3.org/2000/svg"
+          {currentStageIndex >= 0 && (
+            <div
+              className="car-indicator"
+              style={{
+                left: `${trackPositions[currentStageIndex].x}%`,
+                top: `${trackPositions[currentStageIndex].y}%`,
+                // @ts-ignore - CSS custom properties are valid in style but not typed by default
+                "--car-rotation": `${getCarRotation(currentStageIndex)}deg`,
+                // @ts-ignore
+                "--car-scale-y": Math.abs(getCarRotation(currentStageIndex)) === 180 ? "-1" : "1",
+              }}
             >
-              {/* Car body */}
-              <path
-                d="M10 20 L14 10 L28 8 L42 8 L50 14 L54 20 L54 24 L10 24 Z"
-                fill="#FFDE38"
-                stroke="#6A037B"
-                strokeWidth="1.5"
-              />
-              {/* Windshield */}
-              <path
-                d="M28 10 L26 18 L40 18 L44 14 L42 10 Z"
-                fill="#102854"
-                opacity="0.7"
-              />
-              {/* Wheels */}
-              <circle cx="20" cy="24" r="5" fill="#333" />
-              <circle cx="20" cy="24" r="2.5" fill="#666" />
-              <circle cx="44" cy="24" r="5" fill="#333" />
-              <circle cx="44" cy="24" r="2.5" fill="#666" />
-              {/* Headlight */}
-              <rect x="52" y="16" width="3" height="4" rx="1" fill="#FFE561" />
-              {/* Sensor dome (autonomous car touch) */}
-              <ellipse cx="32" cy="6" rx="6" ry="3" fill="#6A037B" />
-              <circle cx="32" cy="5" r="1.5" fill="#00ff88" className="sensor-light" />
-            </svg>
-          </div>
+              <svg
+                viewBox="0 0 64 32"
+                className="car-svg"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                {/* Car body */}
+                <path
+                  d="M10 20 L14 10 L28 8 L42 8 L50 14 L54 20 L54 24 L10 24 Z"
+                  fill="#FFDE38"
+                  stroke="#6A037B"
+                  strokeWidth="1.5"
+                />
+                {/* Windshield */}
+                <path
+                  d="M28 10 L26 18 L40 18 L44 14 L42 10 Z"
+                  fill="#102854"
+                  opacity="0.7"
+                />
+                {/* Wheels */}
+                <circle cx="20" cy="24" r="5" fill="#333" />
+                <circle cx="20" cy="24" r="2.5" fill="#666" />
+                <circle cx="44" cy="24" r="5" fill="#333" />
+                <circle cx="44" cy="24" r="2.5" fill="#666" />
+                {/* Headlight */}
+                <rect x="52" y="16" width="3" height="4" rx="1" fill="#FFE561" />
+                {/* Sensor dome (autonomous car touch) */}
+                <ellipse cx="32" cy="6" rx="6" ry="3" fill="#6A037B" />
+                <circle cx="32" cy="5" r="1.5" fill="#00ff88" className="sensor-light" />
+              </svg>
+            </div>
+          )}
 
           {/* Nodes */}
           <div className="nodes-container">
@@ -142,7 +270,10 @@ const Roadmap: React.FC = () => {
               <div
                 key={item.id}
                 className="node-wrapper"
-                style={{ left: `${((index + 0.5) / roadmapData.length) * 100}%` }}
+                style={{ 
+                  left: `${trackPositions[index].x}%`,
+                  top: `${trackPositions[index].y}%`
+                }}
               >
                 {/* Tooltip on hover */}
                 {hoveredId === item.id && expandedId !== item.id && (
