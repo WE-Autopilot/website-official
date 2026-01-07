@@ -104,6 +104,11 @@ const roadmapData: RoadmapItem[] = [
 const Roadmap: React.FC = () => {
   const [expandedId, setExpandedId] = useState<number | null>(null);
   const [hoveredId, setHoveredId] = useState<number | null>(null);
+  
+  // Refs for animation
+  const pathRef = React.useRef<SVGPathElement>(null);
+  const carRef = React.useRef<HTMLDivElement>(null);
+  const animationRef = React.useRef<number>();
 
   const currentStageIndex = roadmapData.findIndex(
     (item) => item.status === "in-progress"
@@ -153,11 +158,92 @@ const Roadmap: React.FC = () => {
     L ${trackPositions[9].x} ${trackPositions[9].y}
   `;
 
-  // Calculate rotation angle for the car based on position
-  const getCarRotation = (index: number) => {
-    const rotations = [0, 0, 0, 0, 180, 180, 180, 180, 0, 0];
-    return rotations[index] || 0;
-  };
+  // Animate car along the path
+  React.useEffect(() => {
+    if (!pathRef.current || !carRef.current) return;
+
+    const path = pathRef.current;
+    const car = carRef.current;
+    
+    // Accurate distances for the specific track path geometry
+    // 0->1, 1->2, 2->3 are 20 units (Horizontal)
+    // 3->4 is semi-circle arc (Radius 15) -> 15 * PI
+    // 4->5, 5->6, 6->7 are 20 units
+    // 7->8 is semi-circle arc (Radius 15) -> 15 * PI
+    // 8->9 is 20 units
+    const segmentLengths = [
+      0,                  // Node 0 (Start)
+      20,                 // 0->1
+      20,                 // 1->2
+      20,                 // 2->3
+      15 * Math.PI,       // 3->4 (Curve)
+      20,                 // 4->5
+      20,                 // 5->6
+      20,                 // 6->7
+      15 * Math.PI,       // 7->8 (Curve)
+      20                  // 8->9
+    ];
+
+    // Calculate exact target length based on nodes passed
+    let targetLength = 0;
+    for (let i = 1; i <= currentStageIndex; i++) {
+      if (i < segmentLengths.length) {
+        targetLength += segmentLengths[i];
+      }
+    }
+    
+    // Animation settings
+    const duration = 2500; // ms
+    const startTime = performance.now();
+
+    const animate = (currentTime: number) => {
+      const elapsed = currentTime - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      
+      // Easing function (easeOutCubic)
+      const easeProgress = 1 - Math.pow(1 - progress, 3);
+      
+      const currentLen = targetLength * easeProgress;
+      const point = path.getPointAtLength(currentLen);
+      
+      // Calculate rotation
+      // Look slightly behind to determine tangent
+      // Use a small delta for precision
+      const delta = 0.5; 
+      const prevPoint = path.getPointAtLength(Math.max(0, currentLen - delta));
+      
+      const angleRad = Math.atan2(point.y - prevPoint.y, point.x - prevPoint.x);
+      let angleDeg = angleRad * (180 / Math.PI);
+      
+      // Normalize angle to 0-360
+      if (angleDeg < 0) angleDeg += 360;
+      
+      // Determining if we need to flip the car vertically (scaleY -1)
+      // Car sprite faces right by default.
+      // If moving left (angles around 180), we need to flip it.
+      const isFacingLeft = angleDeg > 90 && angleDeg < 270;
+      const scaleY = isFacingLeft ? -1 : 1;
+
+      // Apply styles
+      car.style.left = `${point.x}%`;
+      car.style.top = `${point.y}%`;
+      car.style.setProperty('--car-rotation', `${angleDeg}deg`);
+      car.style.setProperty('--car-scale-y', `${scaleY}`);
+
+      if (progress < 1) {
+        animationRef.current = requestAnimationFrame(animate);
+      }
+    };
+
+    animationRef.current = requestAnimationFrame(animate);
+
+    return () => {
+      if (animationRef.current) {
+        cancelAnimationFrame(animationRef.current);
+      }
+    };
+  }, [currentStageIndex, trackPath]); 
+
 
   return (
     <section className="Roadmap" id="Roadmap">
@@ -188,6 +274,7 @@ const Roadmap: React.FC = () => {
             
             {/* Dashed center line */}
             <path
+              ref={pathRef}
               d={trackPath}
               fill="none"
               stroke="#FFDE38"
@@ -222,15 +309,9 @@ const Roadmap: React.FC = () => {
           {/* Car indicator */}
           {currentStageIndex >= 0 && (
             <div
+              ref={carRef}
               className="car-indicator"
-              style={{
-                left: `${trackPositions[currentStageIndex].x}%`,
-                top: `${trackPositions[currentStageIndex].y}%`,
-                // @ts-ignore - CSS custom properties are valid in style but not typed by default
-                "--car-rotation": `${getCarRotation(currentStageIndex)}deg`,
-                // @ts-ignore
-                "--car-scale-y": Math.abs(getCarRotation(currentStageIndex)) === 180 ? "-1" : "1",
-              }}
+              // Base styles are in CSS, position logic is handled by JS animation
             >
               <svg
                 viewBox="0 0 64 32"

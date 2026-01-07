@@ -61,7 +61,7 @@
 .car-indicator {
   position: absolute;
   z-index: 10;
-  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  /* Removed transition to allow JS-driven animation */
   animation: carBounce 2s ease-in-out infinite;
   filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
   pointer-events: none;
