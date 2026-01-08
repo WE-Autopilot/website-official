@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import "../stylesheets/Roadmap.css";
 
 interface RoadmapItem {
@@ -104,11 +104,13 @@ const roadmapData: RoadmapItem[] = [
 const Roadmap: React.FC = () => {
   const [expandedId, setExpandedId] = useState<number | null>(null);
   const [hoveredId, setHoveredId] = useState<number | null>(null);
+  const [shouldAnimate, setShouldAnimate] = useState(false);
   
   // Refs for animation
   const pathRef = React.useRef<SVGPathElement>(null);
   const carRef = React.useRef<HTMLDivElement>(null);
   const animationRef = React.useRef<number>();
+  const roadmapRef = React.useRef<HTMLElement>(null);
 
   const currentStageIndex = roadmapData.findIndex(
     (item) => item.status === "in-progress"
@@ -131,7 +133,7 @@ const Roadmap: React.FC = () => {
 
   // Calculate path along the race track curve
   // Creating a zigzag/snake pattern like a real race circuit
-  const trackPositions = [
+  const trackPositions = useMemo(() => [
     { x: 20, y: 15 },   // 1 - Start top left
     { x: 40, y: 15 },   // 2 - Top row
     { x: 60, y: 15 },   // 3 - Top row
@@ -142,10 +144,10 @@ const Roadmap: React.FC = () => {
     { x: 20, y: 45 },   // 8 - Left turn
     { x: 20, y: 75 },   // 9 - Bottom left
     { x: 40, y: 75 },   // 10 - Bottom row (left to right)
-  ];
+  ], []);
 
   // SVG path - simple zigzag connecting each node
-  const trackPath = `
+  const trackPath = useMemo(() => `
     M ${trackPositions[0].x} ${trackPositions[0].y}
     L ${trackPositions[1].x} ${trackPositions[1].y}
     L ${trackPositions[2].x} ${trackPositions[2].y}
@@ -156,11 +158,38 @@ const Roadmap: React.FC = () => {
     L ${trackPositions[7].x} ${trackPositions[7].y}
     A 15 15 0 0 0 ${trackPositions[8].x} ${trackPositions[8].y}
     L ${trackPositions[9].x} ${trackPositions[9].y}
-  `;
+  `, [trackPositions]);
+
+  // IntersectionObserver to trigger animation on scroll
+  React.useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && !shouldAnimate) {
+            setShouldAnimate(true);
+          }
+        });
+      },
+      {
+        threshold: 0.2, // Trigger when 20% of the roadmap is visible
+        rootMargin: '0px'
+      }
+    );
+
+    if (roadmapRef.current) {
+      observer.observe(roadmapRef.current);
+    }
+
+    return () => {
+      if (roadmapRef.current) {
+        observer.unobserve(roadmapRef.current);
+      }
+    };
+  }, [shouldAnimate]);
 
   // Animate car along the path
   React.useEffect(() => {
-    if (!pathRef.current || !carRef.current) return;
+    if (!pathRef.current || !carRef.current || !shouldAnimate) return;
 
     const path = pathRef.current;
     const car = carRef.current;
@@ -186,15 +215,19 @@ const Roadmap: React.FC = () => {
 
     // Calculate exact target length based on nodes passed
     let targetLength = 0;
-    for (let i = 1; i <= currentStageIndex; i++) {
-      if (i < segmentLengths.length) {
-        targetLength += segmentLengths[i];
-      }
+    for (let i = 1; i <= currentStageIndex && i < segmentLengths.length; i++) {
+      targetLength += segmentLengths[i];
+    }
+    
+    // If at the starting position, still show a small animation to the first node
+    if (currentStageIndex === 0 && segmentLengths.length > 1) {
+      targetLength = segmentLengths[1];
     }
     
     // Animation settings
-    const duration = 2500; // ms
+    const duration = 4000; // ms
     const startTime = performance.now();
+    const pathLength = path.getTotalLength();
 
     const animate = (currentTime: number) => {
       const elapsed = currentTime - startTime;
@@ -203,13 +236,13 @@ const Roadmap: React.FC = () => {
       // Easing function (easeOutCubic)
       const easeProgress = 1 - Math.pow(1 - progress, 3);
       
-      const currentLen = targetLength * easeProgress;
+      const currentLen = Math.min(targetLength * easeProgress, pathLength);
       const point = path.getPointAtLength(currentLen);
       
       // Calculate rotation
       // Look slightly behind to determine tangent
-      // Use a small delta for precision
-      const delta = 0.5; 
+      // Use adaptive delta based on current position
+      const delta = Math.min(2, Math.max(0.1, currentLen * 0.01));
       const prevPoint = path.getPointAtLength(Math.max(0, currentLen - delta));
       
       const angleRad = Math.atan2(point.y - prevPoint.y, point.x - prevPoint.x);
@@ -242,11 +275,11 @@ const Roadmap: React.FC = () => {
         cancelAnimationFrame(animationRef.current);
       }
     };
-  }, [currentStageIndex, trackPath]); 
+  }, [currentStageIndex, shouldAnimate]); 
 
 
   return (
-    <section className="Roadmap" id="Roadmap">
+    <section className="Roadmap" id="Roadmap" ref={roadmapRef}>
       <h2 className="roadmap-title">Our Roadmap</h2>
       <div className="roadmap-container">
         <div className="roadmap-track">
@@ -311,7 +344,13 @@ const Roadmap: React.FC = () => {
             <div
               ref={carRef}
               className="car-indicator"
-              // Base styles are in CSS, position logic is handled by JS animation
+              // Initial position at start line (Node 1) to avoid FOUC (Flash of Unstyled Content)
+              style={{
+                left: `${trackPositions[0].x}%`,
+                top: `${trackPositions[0].y}%`,
+                ['--car-rotation' as string]: "0deg",
+                ['--car-scale-y' as string]: "1"
+              } as React.CSSProperties}
             >
               <svg
                 viewBox="0 0 64 32"
