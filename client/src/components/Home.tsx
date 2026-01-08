@@ -19,6 +19,21 @@ function Home() {
           </div>
         </div>
       </div>
+      <div className="TeamPhoto">
+        <img src="/WEAP_Photo.png" alt="WEAP Team Photo 2024" />
+      </div>
+      <div className="Buttons">
+        <div className="RoadmapButton">
+          <a href="#Roadmap">
+            <span>Explore Our RoadMap</span>
+          </a>
+        </div>
+        <div className="TeamsButtons">
+          <a href="/BuildTeams">
+            <span>Meet the Teams</span>
+          </a>
+        </div>
+      </div>
 
       <Roadmap />
 
