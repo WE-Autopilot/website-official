@@ -319,6 +319,77 @@
     background-color: #102854;
 }
 
+/* ABOUT US SECTION */
+.About-Us {
+    font-family: 'Jura', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 60px 20px;
+    background: linear-gradient(180deg, #6A037B 0%, #102854 100%);
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.About-Us h2 {
+    font-weight: 700;
+    font-size: 48px;
+    margin-bottom: 30px;
+    color: #FFDE38;
+    letter-spacing: 0.1em;
+}
+
+.About-Us p {
+    font-weight: 300;
+    font-size: 18px;
+    line-height: 1.8;
+    color: #f8f5ff;
+    max-width: 800px;
+    margin: 0 auto 40px auto;
+}
+
+.About-Us .See-More-Button {
+    margin-top: 10px;
+    background: linear-gradient(135deg, #FFDE38 0%, #FFE561 100%);
+}
+
+.About-Us .See-More-Button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0px 6px 12px 0px rgba(255, 222, 56, 0.5);
+}
+
+.About-Us .See-More-Button a {
+    text-decoration: none;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.About-Us .See-More-Button span {
+    font-family: 'Jura', sans-serif;
+    font-weight: 600;
+    font-size: 15px;
+    letter-spacing: 0.05em;
+    color: #102854;
+}
+.See-More-Button {
+    width: 200px;
+    height: 50px;
+    background: linear-gradient(118.41deg, #102854 35.65%, #925fbb 100%);
+    backdrop-filter: blur(4px);
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    cursor: pointer;
+}
+
 .RoadmapButton,
 .TeamsButtons {
     width: 250px;
@@ -509,6 +580,21 @@
     .RoadmapButton span,
     .TeamsButtons span {
         font-size: 13px;
+    }
+
+    .About-Us {
+        padding: 40px 15px;
+    }
+
+    .About-Us h2 {
+        font-size: 32px;
+        margin-bottom: 20px;
+    }
+
+    .About-Us p {
+        font-size: 16px;
+        line-height: 1.6;
+        margin-bottom: 30px;
     }
 
     .polycard1,
