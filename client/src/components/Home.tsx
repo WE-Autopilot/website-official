@@ -1,6 +1,6 @@
 import "../stylesheets/Home.css";
 import Roadmap from "./Roadmap";
-
+import Teams from "./Teams";
 
 function Home() {
   return (
@@ -54,6 +54,7 @@ function Home() {
       </div>
 
       <Roadmap />
+      <Teams />
 
       {/* <section className="join-section">
         <div className="ready-to-join">
