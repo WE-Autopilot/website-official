@@ -18,22 +18,22 @@ const resources = {
 
       // Join page
       "join.why": "Why Join?",
-      "join.teams": "The Teams",
+      "join.teams": "Our Rosters",
       "join.ready": "Ready to Apply?",
       "join.apply": "Apply Now",
       "join.readyDescription":
         "Submit your application through our online form to join one of our teams. We're looking for motivated students with a passion for autonomous technology.",
 
       // Team descriptions
-      "team.perception.title": "Perception Team",
+      "team.perception.title": "Perception",
       "team.perception.description":
         "The perception team works with machine learning and computer vision models to help the car detect and interpret its environment (lanes, stop signs, obstacles).",
 
-      "team.m&p.title": "M&P Team",
+      "team.m&p.title": "Mapping and Localization",
       "team.m&p.description":
         "Mapping and Localization (M&P) Team implements SLAM (Simultaneous Localization and Mapping) so the car can accurately track its position on the track.",
 
-      "team.p&c.title": "P&C Team",
+      "team.p&c.title": "Planning and Control",
       "team.p&c.description":
         "Planning and Control (P&C) Team designs decision tree logic and other control algorithms that allow the car to plan safe trajectories and execute smooth driving.",
 

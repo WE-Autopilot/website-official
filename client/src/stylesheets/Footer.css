@@ -20,7 +20,7 @@
 #gradient-canvas {
   width: 100%;
   height: 100%;
-  --gradient-color-1: #d49b27;
+  --gradient-color-1: #870976;
   --gradient-color-2: #6b047b;
   --gradient-color-3: #a45c4b;
   --gradient-color-4: #923f59;
@@ -28,22 +28,24 @@
 
 #FooterLeft {
   width: 33%;
+  position: relative; /* keep it in normal flow while logo is positioned absolutely */
 }
 
 #FooterLogo {
-  padding-left: 11.5%;
-  padding-top: 9%;
-  margin-bottom: -17px;
+  position: absolute;
+  left: 16px;
+  bottom: 12px;
+  width: 195px;
+  height: auto;
+  padding: 0;
+  margin: 0;
+  z-index: 2; /* above the animated background */
+  display: block;
+  pointer-events: auto;
 }
 
-#Address {
-  padding-left: 9%;
-  padding-bottom: 30px;
-  font-size: 24px;
-  font-weight: 400;
-  color: #6b047b;
-  line-height: 120%;
-}
+/* Keep the footer layout as-is but make the logo itself absolutely positioned
+   so only the autopilot logo sticks to the bottom-left without affecting flow */
 
 #Socials {
   width: 33%;
@@ -56,7 +58,7 @@
   font-family: "Jura", serif;
   color: #6b047b;
   padding-top: 40px;
-  background: linear-gradient(to right, #6b047b, #d49b27);
+  background: linear-gradient(to right, #8b099f, #ffad09);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -113,10 +115,14 @@
 
   #FooterLeft {
     width: 100%;
+    text-align: center;
   }
 
   #FooterLogo {
-    padding-left: 0;
+    position: relative;
+    left: auto;
+    bottom: auto;
+    margin: 0 auto;
   }
 
   #Address {
