@@ -18,6 +18,18 @@
     transform: translateY(-20px);
   }
 }
+
+@keyframes popUp {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.15);
+  }
+  100% {
+    transform: scale(1.1);
+  }
+}
 .Header {
   width: 100%;
   display: flex;
@@ -74,6 +86,10 @@
 .links li {
   margin-right: 2em;
   position: relative;
+}
+
+.links li:last-child {
+  margin-left: auto;
 }
 
 /* Add special styling for application link to make sure it's clickable */
@@ -135,6 +151,10 @@
 
 .logo-link {
   order: 2;
+}
+
+.logo-link:hover .logo {
+  animation: popUp 0.7s ease-out;
 }
 
 .fimenu svg line {

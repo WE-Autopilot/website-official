@@ -80,23 +80,18 @@ const Header: React.FC<HeaderProps> = ({ className = "" }) => {
       <nav ref={navRef} className={`nav ${isMenu ? "open" : ""}`}>
         <ul className="links">
           <li>
-            <Link to="/" onClick={handleMenuClose}>
-              Home
-            </Link>
-          </li>
-          <li>
             <Link className="nav-link" to="/about" onClick={handleMenuClose}>
               About
             </Link>
           </li>
           <li>
-            <Link to="/sponsors" onClick={handleMenuClose}>
-              Sponsors
+            <Link to="/join" onClick={handleMenuClose}>
+              Rosters
             </Link>
           </li>
           <li>
-            <Link to="/join" onClick={handleMenuClose}>
-              Rosters
+            <Link to="/sponsors" onClick={handleMenuClose}>
+              Sponsor Us
             </Link>
           </li>
           {/* <li>
