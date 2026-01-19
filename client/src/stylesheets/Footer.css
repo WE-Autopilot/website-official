@@ -20,10 +20,10 @@
 #gradient-canvas {
   width: 100%;
   height: 100%;
-  --gradient-color-1: #870976;
+  --gradient-color-1: #590987;
   --gradient-color-2: #6b047b;
-  --gradient-color-3: #a45c4b;
-  --gradient-color-4: #923f59;
+  --gradient-color-3: #a895a6;
+  --gradient-color-4: #941fca;
 }
 
 #FooterLeft {

@@ -1,4 +1,4 @@
-import "../stylesheets/About.css";
+import "../stylesheets/Team.css";
 import ComponentSvg from "../assets/Component.svg";
 import OneSvg from "../assets/1.svg";
 import Member1 from "../assets/Member1.webp";
@@ -45,7 +45,7 @@ const TeamMember = memo(
 
 TeamMember.displayName = "TeamMember";
 
-function About() {
+function Team() {
   // Define leadership levels used for the executive rows
   const LEADERSHIP_LEVELS = {
     PRESIDENT: "president",
@@ -199,17 +199,17 @@ function About() {
   }, []);
 
   return (
-    <div className="about-container">
+    <div className="team-container">
       <div className="background-decoration">
         <img src={ComponentSvg} alt="" className="bg-svg component-svg" />
         <img src={OneSvg} alt="" className="bg-svg one-svg" />
       </div>
 
-      <div className="about-content">
+      <div className="team-content">
         <div className="cards-container">{/* reserved for future cards */}</div>
 
         <div className="Members-container">
-          <div className="about-title">
+          <div className="team-title">
             <h1>Meet Our Team</h1>
           </div>
 
@@ -289,4 +289,4 @@ function About() {
 }
 
 // Export as memoized component for performance
-export default memo(About);
+export default memo(Team);
