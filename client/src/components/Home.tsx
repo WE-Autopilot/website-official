@@ -1,9 +1,6 @@
 import "../stylesheets/Home.css";
 import Roadmap from "./Roadmap";
-<<<<<<< HEAD
-=======
 import Teams from "./Teams";
->>>>>>> feat/RoadMap
 
 function Home() {
   return (

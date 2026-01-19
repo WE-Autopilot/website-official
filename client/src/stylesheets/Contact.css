@@ -1,7 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Jura:wght@300;700&display=swap');
+
+.contact-page {
+  width: 100%;
+  min-height: 100vh;
+  background: linear-gradient(180deg, #6A037B 0%, #102854 100%);
+  padding: 40px 20px;
+}
 .application-container {
-  max-width: 1200px;
-  margin: 40px auto;
-  padding: 20px;
+  max-width: 976px;
+  margin: 0 auto;
+  padding: 24px;
   background-color: #213862;
   border-radius: 8px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
@@ -9,10 +17,11 @@
 }
 
 .application-container h2 {
+  font-family: 'Jura', sans-serif;
   text-align: center;
   margin-bottom: 30px;
   font-size: 2.2rem;
-  color: #fff;
+  color: #FFDE38;
 }
 
 .form-section {
@@ -24,6 +33,7 @@
 }
 
 .form-section h3 {
+  font-family: 'Jura', sans-serif;
   margin-top: 0;
   margin-bottom: 20px;
   color: #f5f5f5;

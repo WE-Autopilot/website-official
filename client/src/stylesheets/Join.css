@@ -1,10 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Jura:wght@300;700&display=swap');
 .join-container {
   min-height: 100vh;
   color: white;
   display: flex;
   align-items: center;
   flex-direction: column;
-  background-color: #213862;
+  background: linear-gradient(180deg, #6A037B 0%, #102854 100%);
+  padding: 40px 20px;
 }
 
 p {
@@ -16,25 +18,20 @@ h2 {
 }
 
 .join-info {
-  padding-bottom: 3vh;
-  background-color: #102854;
-  padding-top: 8vh;
-  padding-bottom: 6vh;
-  padding-left: 15vw;
-  padding-right: 15vw;
+  width: 100%;
+  max-width: 976px;
+  margin: 0 auto 40px auto;
 }
 
 .join-info-box {
   background: linear-gradient(0deg, #925fbbb8, #925fbbb8), url(/JoinImage.jpg);
   background-position: center;
-  background-size: 100%;
+  background-size: cover;
   background-repeat: no-repeat;
   border-radius: 15px;
-  width: 70vw;
-  padding-top: 0.5vh;
-  padding-bottom: 4vh;
-  padding-left: 2vw;
-  padding-right: 2vw;
+  width: 100%;
+  max-width: 976px;
+  padding: 24px;
   text-align: center;
   opacity: 0;
   transform: translateX(-20px);
@@ -53,18 +50,19 @@ h2 {
 }
 
 .team-info {
+  width: 100%;
+  max-width: 976px;
+  margin: 0 auto;
   text-align: center;
 }
 
 .team-box {
   text-align: left;
   border-radius: 15px;
-  width: 60vw;
-  padding-top: 2vh;
-  padding-bottom: 4vh;
-  padding-left: 2vw;
-  padding-right: 2vw;
-  margin-bottom: 4vh;
+  width: 100%;
+  max-width: 976px;
+  padding: 24px;
+  margin: 20px auto;
   opacity: 0;
   transition: opacity 0.8s ease, transform 0.6s ease;
 }
@@ -210,9 +208,10 @@ h2 {
 .join-cta-container {
   background: rgba(123, 74, 163, 0.8);
   border-radius: 15px;
-  width: 60vw;
+  width: 100%;
+  max-width: 976px;
   padding: 40px;
-  margin: 30px 0 60px 0;
+  margin: 30px auto 60px auto;
   text-align: center;
   box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
   opacity: 0;
@@ -348,13 +347,9 @@ h2 {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 10vh;
-  padding-bottom: 5vh;
-  padding-left: 29vw;
-  padding-right: 29vw;
+  padding: 40px 20px;
   background:
     url(/Globe.png) no-repeat right;
-    
 }
 
 .form-grid{
