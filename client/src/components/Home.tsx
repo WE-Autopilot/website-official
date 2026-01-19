@@ -1,5 +1,9 @@
 import "../stylesheets/Home.css";
 import Roadmap from "./Roadmap";
+<<<<<<< HEAD
+=======
+import Teams from "./Teams";
+>>>>>>> feat/RoadMap
 
 function Home() {
   return (
@@ -55,6 +59,7 @@ function Home() {
       </div>
 
       <Roadmap />
+      <Teams />
 
       {/* <section className="join-section">
         <div className="ready-to-join">
