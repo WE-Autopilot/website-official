@@ -20,10 +20,10 @@
 #gradient-canvas {
   width: 100%;
   height: 100%;
-  --gradient-color-1: #590987;
-  --gradient-color-2: #6b047b;
-  --gradient-color-3: #a895a6;
-  --gradient-color-4: #941fca;
+  --gradient-color-1: #53035f;
+  --gradient-color-2: #750985;
+  --gradient-color-3: #831194;
+  --gradient-color-4: #c79dcd;
 }
 
 #FooterLeft {
@@ -53,12 +53,12 @@
 }
 
 #SocialTitle {
-  font-size: 24px;
-  font-weight: 700;
+  font-size: 25px;
+  font-weight: 950;
   font-family: "Jura", serif;
   color: #6b047b;
   padding-top: 40px;
-  background: linear-gradient(to right, #8b099f, #ffad09);
+  background: linear-gradient(to right, #000000, #4f4a4a);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
