@@ -13,91 +13,64 @@ interface RoadmapItem {
 const roadmapData: RoadmapItem[] = [
   {
     id: 1,
-    title: "Team Formation",
+    title: "Club Formation & Chartering",
     summary: "Assembled our founding team",
     description:
-      "Recruited passionate engineering students across multiple disciplines including software, electrical, and mechanical engineering. Established club structure and leadership roles.",
+      "WEAP was officially ratified in 2024 and established as Western University’s first software-engineering-focused autonomous systems club. The founding AGM formalized the club’s mission to develop real-world autonomous vehicle applications through hands-on engineering.",
     status: "completed",
     links: [{ label: "Meet the Team", url: "/about" }],
   },
   {
     id: 2,
-    title: "Research Phase",
-    summary: "Deep dive into AV technology",
+    title: "MNIST Workshop",
+    summary: "First technical Workshop on ML basics",
     description:
-      "Conducted extensive research on autonomous vehicle systems, sensor fusion, computer vision, and path planning algorithms. Partnered with faculty advisors for guidance.",
+      "WEAP hosted its first technical workshop introducing core machine learning and computer vision concepts through hands-on development of an image classifier using the MNIST dataset, a standard benchmark of handwritten digits (0–9) used to evaluate image recognition models.",
     status: "completed",
-    links: [{ label: "Our Research", url: "/about#research" }],
+    links: [{ label: "See Workshop", url: "/about#research" }],
   },
   {
     id: 3,
-    title: "Sponsor Acquisition",
-    summary: "Securing funding and partnerships",
+    title: "Autonomous Driving Simulation Competition",
+    summary: "First autonomous driving challenge",
     description:
-      "Building relationships with industry partners and securing sponsorships to fund our autonomous vehicle development. Establishing collaborations with tech companies.",
+      "Teams (Red vs Black) developed and evaluated autonomous driving software in a constrained simulation environment using the F1Tenth Gym, focusing on perception abstraction, path planning, and control under real-time constraints",
     status: "completed",
     links: [{ label: "Our Sponsors", url: "/sponsors" }],
   },
   {
     id: 4,
-    title: "Hardware Integration",
-    summary: "Integrating sensors and systems",
+    title: "Physical RC Car Competition",
+    summary: "First physical autonomous vehicle challenge",
     description:
-      "Assembling LiDAR units, camera arrays, and embedded systems. Creating the physical architecture for autonomous decision-making and control.",
+      "Software developed in simulation (previous competition) was transferred to physical RC cars, where teams implemented real-time perception, sensor fusion, and autonomous control on actual hardware.",
     status: "completed",
+    links: [{ label: "Event Highlights", url: "/about#events" }],
   },
   {
     id: 5,
-    title: "Software Development",
-    summary: "Building autonomous algorithms",
+    title: "Autonomous Golf Cart (Simulation Phase)",
+    summary: "Developing software for full-scale autonomous vehicle",
     description:
-      "Developing perception, planning, and control software. Implementing machine learning models for object detection and path planning using ROS2.",
+      "Technical teams adapt our current autonomy software for RC to a simulated golf cart, introducing higher speeds, and more complex planning and control challenges.",
     status: "in-progress",
-    links: [
-      { label: "Join Development", url: "/join" },
-      { label: "GitHub", url: "https://github.com" },
-    ],
+    
   },
   {
     id: 6,
-    title: "Prototype Testing",
-    summary: "Closed-course testing phase",
+    title: "Autonomous Golf Cart (Physical Testing)",
+    summary: "Real-world vehicle testing",
     description:
-      "Conducting rigorous testing in controlled environments. Validating sensor accuracy, system reliability, and safety protocols.",
+      "The golf cart autonomy system is brought out of simulation and onto a physical vehicle where the out club focuses on safety, reliability, and real-world sensor integration",
     status: "upcoming",
   },
   {
     id: 7,
-    title: "Algorithm Optimization",
-    summary: "Enhancing AI decision-making",
+    title: "Stage 4 Autonomous Vehicle",
+    summary: "Advanced autonomy features",
     description:
-      "Fine-tuning machine learning models and path planning algorithms for optimal performance in real-world scenarios.",
+      "The long-term objective of WEAP is to develop a Stage 4 autonomous vehicle capable of independent navigation, lane changes, parking, and traffic signal response without human intervention under defined operating conditions.",
     status: "upcoming",
-  },
-  {
-    id: 8,
-    title: "Integration Testing",
-    summary: "Full system validation",
-    description:
-      "Testing all subsystems working together. Ensuring seamless communication between perception, planning, and control modules.",
-    status: "upcoming",
-  },
-  {
-    id: 9,
-    title: "Safety Certification",
-    summary: "Meeting competition standards",
-    description:
-      "Completing safety checks and certifications required for competition participation. Ensuring all systems meet regulatory requirements.",
-    status: "upcoming",
-  },
-  {
-    id: 10,
-    title: "Competition Ready",
-    summary: "Enter autonomous vehicle competitions",
-    description:
-      "Prepare and compete in national autonomous vehicle competitions. Showcase our innovations and represent Western Engineering on the national stage.",
-    status: "upcoming",
-    links: [{ label: "Competitions", url: "/competition" }],
   },
 ];
 
@@ -133,31 +106,26 @@ const Roadmap: React.FC = () => {
 
   // Calculate path along the race track curve
   // Creating a zigzag/snake pattern like a real race circuit
+  // 7 positions for 7 milestones - positioned inward to prevent curve clipping
   const trackPositions = useMemo(() => [
-    { x: 20, y: 15 },   // 1 - Start top left
-    { x: 40, y: 15 },   // 2 - Top row
-    { x: 60, y: 15 },   // 3 - Top row
-    { x: 80, y: 15 },   // 4 - Top right corner
-    { x: 80, y: 45 },   // 5 - Right turn down
-    { x: 60, y: 45 },   // 6 - Middle row (right to left)
-    { x: 40, y: 45 },   // 7 - Middle row
-    { x: 20, y: 45 },   // 8 - Left turn
-    { x: 20, y: 75 },   // 9 - Bottom left
-    { x: 40, y: 75 },   // 10 - Bottom row (left to right)
+    { x: 20, y: 22 },   // 1 - Club Formation (top left)
+    { x: 50, y: 22 },   // 2 - MNIST Workshop (top center)
+    { x: 80, y: 22 },   // 3 - Simulation Competition (top right)
+    { x: 80, y: 52 },   // 4 - Physical RC Car (right middle)
+    { x: 50, y: 52 },   // 5 - Golf Cart Simulation (center) - IN PROGRESS
+    { x: 20, y: 52 },   // 6 - Golf Cart Physical (left middle)
+    { x: 20, y: 82 },   // 7 - Stage 4 Autonomous (bottom left)
   ], []);
 
-  // SVG path - simple zigzag connecting each node
+  // SVG path - zigzag connecting 7 nodes with curves at turns
   const trackPath = useMemo(() => `
     M ${trackPositions[0].x} ${trackPositions[0].y}
     L ${trackPositions[1].x} ${trackPositions[1].y}
     L ${trackPositions[2].x} ${trackPositions[2].y}
-    L ${trackPositions[3].x} ${trackPositions[3].y}
-    A 15 15 0 0 1 ${trackPositions[4].x} ${trackPositions[4].y}
+    A 15 15 0 0 1 ${trackPositions[3].x} ${trackPositions[3].y}
+    L ${trackPositions[4].x} ${trackPositions[4].y}
     L ${trackPositions[5].x} ${trackPositions[5].y}
-    L ${trackPositions[6].x} ${trackPositions[6].y}
-    L ${trackPositions[7].x} ${trackPositions[7].y}
-    A 15 15 0 0 0 ${trackPositions[8].x} ${trackPositions[8].y}
-    L ${trackPositions[9].x} ${trackPositions[9].y}
+    A 15 15 0 0 0 ${trackPositions[6].x} ${trackPositions[6].y}
   `, [trackPositions]);
 
   // IntersectionObserver to trigger animation on scroll
@@ -194,23 +162,20 @@ const Roadmap: React.FC = () => {
     const path = pathRef.current;
     const car = carRef.current;
     
-    // Accurate distances for the specific track path geometry
-    // 0->1, 1->2, 2->3 are 20 units (Horizontal)
-    // 3->4 is semi-circle arc (Radius 15) -> 15 * PI
-    // 4->5, 5->6, 6->7 are 20 units
-    // 7->8 is semi-circle arc (Radius 15) -> 15 * PI
-    // 8->9 is 20 units
+    // Accurate distances for the 7-node track path geometry
+    // 0->1, 1->2 are 30 units (Horizontal)
+    // 2->3 is quarter-circle arc (Radius 15) -> 15 * PI/2
+    // 3->4, 4->5 are 30 units (Horizontal)
+    // 5->6 is quarter-circle arc (Radius 15) -> 15 * PI/2
     const segmentLengths = [
       0,                  // Node 0 (Start)
-      20,                 // 0->1
-      20,                 // 1->2
-      20,                 // 2->3
-      15 * Math.PI,       // 3->4 (Curve)
-      20,                 // 4->5
-      20,                 // 5->6
-      20,                 // 6->7
-      15 * Math.PI,       // 7->8 (Curve)
-      20                  // 8->9
+      30,                 // 0->1
+      30,                 // 1->2
+      30,                 //  2->3
+      30 * Math.PI / 2,   // 3->4 (Curve down)
+      30,                 // 4->5
+      30,                 // 5->6
+      30 * Math.PI / 2,   // 6->7 (Curve down)
     ];
 
     // Calculate exact target length based on nodes passed
