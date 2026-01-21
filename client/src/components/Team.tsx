@@ -1,15 +1,17 @@
 import "../stylesheets/Team.css";
 import ComponentSvg from "../assets/Component.svg";
 import OneSvg from "../assets/1.svg";
-import Member1 from "../assets/Member1.webp";
-import Member2 from "../assets/Member2.webp";
-import Member3 from "../assets/Member3.webp";
-import Member4 from "../assets/Member4.webp";
-import Member5 from "../assets/Member5.webp";
+import Member1 from "../assets/Ali.webp";
+import Member2 from "../assets/Ethan.webp";
+import Member3 from "../assets/Aly.webp";
+import Member4 from "../assets/Kierstin.webp";
+import Member5 from "../assets/Zain.webp";
 import Danya from "../assets/Danya.webp";
-import Tygo from "../assets/Tygo.jpg";
-import Obaid from "../assets/Obaid.jpg";
-import BlackTeamLead from "../assets/Ian.jpg";
+import Tygo from "../assets/Tygo.webp";
+import Obaid from "../assets/Obaid.webp";
+import Ben from "../assets/Benjamin.webp";
+import Dev from "../assets/Dev.webp";
+import BlackTeamLead from "../assets/Ian.webp";
 import { useEffect, memo } from "react";
 
 // TeamMember component for better performance
@@ -40,7 +42,7 @@ const TeamMember = memo(
         {!isTeamLead && member.role && <p className="role">{member.role}</p>}
       </div>
     );
-  }
+  },
 );
 
 TeamMember.displayName = "TeamMember";
@@ -49,7 +51,6 @@ function Team() {
   // Define leadership levels used for the executive rows
   const LEADERSHIP_LEVELS = {
     PRESIDENT: "president",
-    CO_FOUNDER: "co-founder",
     VP: "vp",
   };
 
@@ -58,23 +59,9 @@ function Team() {
     {
       id: "exec-1",
       name: "Ali Elgalad",
-      role: "President (Co-Founder)",
+      role: "President",
       image: Member1,
       level: LEADERSHIP_LEVELS.PRESIDENT,
-    },
-    {
-      id: "exec-2",
-      name: "Aly Ashour",
-      role: "Co-Founder",
-      image: Member3,
-      level: LEADERSHIP_LEVELS.CO_FOUNDER,
-    },
-    {
-      id: "exec-3",
-      name: "Hamza Elkababji",
-      role: "Co-Founder",
-      image: Member4,
-      level: LEADERSHIP_LEVELS.CO_FOUNDER,
     },
     {
       id: "exec-4",
@@ -94,8 +81,7 @@ function Team() {
       id: "exec-6",
       name: "Dev",
       role: "VP Education",
-      // no image provided yet
-      placeholderInitials: "D",
+      image: Dev,
       level: LEADERSHIP_LEVELS.VP,
     },
   ];
@@ -134,8 +120,7 @@ function Team() {
           id: "lead-ben",
           name: "Benjamin Namayandeh",
           role: "Mapping & Localization Lead",
-          // no image provided yet
-          placeholderInitials: "B",
+          image: Ben,
         },
       ],
     },
@@ -165,8 +150,7 @@ function Team() {
           id: "lead-kierstin",
           name: "Kierstin Griffith",
           role: "Web Lead",
-          // no image provided yet
-          placeholderInitials: "K",
+          image: Member4,
         },
       ],
     },
