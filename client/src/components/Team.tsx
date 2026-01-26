@@ -212,7 +212,7 @@ function Team() {
             </div>
 
             {/* Second level - Co-Founders */}
-            <div className="tree-level level-2">
+            {/* <div className="tree-level level-2">
               {execs
                 .filter((m) => m.level === LEADERSHIP_LEVELS.CO_FOUNDER)
                 .map((member) => (
@@ -222,7 +222,7 @@ function Team() {
                     isTeamLead={false}
                   />
                 ))}
-            </div>
+            </div> */}
 
             {/* Third level - VPs */}
             <div className="tree-level level-3">
