@@ -5,6 +5,7 @@ import Header from "./components/Header";
 import Home from "./components/Home";
 import Team from "./components/Team";
 import Sponsors from "./components/Sponsors";
+import Gallery from "./components/Gallery";
 import Footer from "./components/Footer";
 import "./App.css";
 
@@ -24,6 +25,7 @@ const App: React.FC = () => {
             <Route path="/join" element={<Join />} />
             <Route path="/Team" element={<Team />} />
             <Route path="/sponsors" element={<Sponsors />} />
+            <Route path="/gallery" element={<Gallery />} />
             {/* <Route path="/competition" element={<Competition />} /> */}
             <Route path="/" element={<Home />} />
           </Routes>
