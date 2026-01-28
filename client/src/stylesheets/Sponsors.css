@@ -1,28 +1,32 @@
+/* Page Container */
 .Sponsors {
-  background: rgba(213, 208, 208, 0.6);
+  background: rgba(255, 255, 255, 0.6);
   width: 100%;
   text-align: center;
-  margin-top: 10%;
-  padding-bottom: 5%;
-  margin-bottom: 10%;
-  box-shadow: 0px 4px 2.3px 4px rgba(0, 0, 0, 0.25),
-    0px 4px 4px 5px rgba(0, 0, 0, 0.25) inset;
+  padding: 60px 20px;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
 }
 
+/* Page Title */
 .heading {
-  font-weight: 400;
+  font-weight: 700;
   font-size: 48px;
-  line-height: 58.09px;
-  font-size: 48px;
-  font-weight: bold;
+  margin-bottom: 40px;
   background: linear-gradient(to right, #6b047b, #d49b27);
   -webkit-background-clip: text;
-  background-clip: text;
   -webkit-text-fill-color: transparent;
-  display: inline-block;
+  text-align: center;
+}
+
+/* Current Sponsors Section */
+.current-sponsors, .section {
+  width: 100%;
+  max-width: 1000px;
+  text-align: center;
+  margin: 0 auto 70px auto;
 }
 
 .logos {
@@ -48,4 +52,47 @@
   max-width: 591px;
   min-width: 200px;
   height: auto;
+}
+
+/* Section Headers */
+.section {
+  width: 100%;
+  max-width: 800px;
+  margin-bottom: 60px;
+}
+
+.section-title {
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  background: linear-gradient(to right, #6b047b, #d49b27);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Bullet List */
+.bullet-list {
+  list-style-type: disc;
+  padding-left: 40px;
+  line-height: 1.6;
+  font-size: 18px;
+  text-align: left;
+  margin: 0 auto;
+  max-width: 800px;
+}
+
+/* Contact Box */
+.contact-box {
+  margin-top: 20px;
+  padding: 20px;
+  border-left: 4px solid #6b047b;
+  background: rgba(107, 4, 123, 0.06);
+  border-radius: 8px;
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+.contact-text {
+  font-size: 18px;
+  margin-bottom: 20px;
 }
