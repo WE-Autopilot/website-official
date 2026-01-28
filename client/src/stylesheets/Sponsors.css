@@ -1,13 +1,31 @@
 /* Page Container */
 .Sponsors {
-  background: rgba(255, 255, 255, 0.6);
-  width: 100%;
-  text-align: center;
-  padding: 60px 20px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  position: relative;
+  background-color: #163060;
+  overflow: hidden;
+}
+
+/* Diagonal Striped Overlay */
+.Sponsors::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  background-image: repeating-linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.035),
+    rgba(255, 255, 255, 0.035) 1px,
+    transparent 1px,
+    transparent 14px
+  );
+
+  pointer-events: none;
+  z-index: 0;
+}
+
+.Sponsors > * {
+  position: relative;
+  z-index: 1;
 }
 
 /* Page Title */
@@ -15,9 +33,7 @@
   font-weight: 700;
   font-size: 48px;
   margin-bottom: 40px;
-  background: linear-gradient(to right, #6b047b, #d49b27);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: #ffffff;
   text-align: center;
 }
 
@@ -65,9 +81,7 @@
   font-size: 32px;
   font-weight: 700;
   margin-bottom: 20px;
-  background: linear-gradient(to right, #6b047b, #d49b27);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: #ffffff;
 }
 
 /* Bullet List */
@@ -79,20 +93,32 @@
   text-align: left;
   margin: 0 auto;
   max-width: 800px;
+  color: #ffffff;
 }
 
 /* Contact Box */
 .contact-box {
   margin-top: 20px;
   padding: 20px;
-  border-left: 4px solid #6b047b;
-  background: rgba(107, 4, 123, 0.06);
+  border-left: 4px solid #ffffff;
+  background: rgba(255, 255, 255, 0.08);
   border-radius: 8px;
   font-size: 18px;
   line-height: 1.6;
+  color: #ffffff;
 }
 
 .contact-text {
   font-size: 18px;
   margin-bottom: 20px;
+  color: #ffffff;
+}
+
+.logos {
+   margin-top: 20px;
+  padding: 20px;
+  border-left: 4px solid #ffffff;
+  background: rgba(255, 255, 255, 0.40);
+  border-radius: 8px;
+  color: #ffffff;
 }
