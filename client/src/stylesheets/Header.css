@@ -25,6 +25,7 @@
   justify-content: space-between;
   position: relative;
   
+  
   /* height: auto; */
 }
 
@@ -44,6 +45,10 @@
   position: relative;
   display: inline-block; 
   text-decoration: none;
+  color: #ffffff;
+  font-weight: 600;
+  font-family: 'Jura', sans-serif;
+  font-size: 1.2rem;
   z-index: 2; /* Ensure links are clickable */
 }
 
@@ -157,7 +162,7 @@
     background: white;
     padding: 0;
     transition: left 0.3s ease;
-    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.3);
     z-index: 999;
   }
   .menu-icon {
@@ -173,7 +178,7 @@
     top: 0px;
     left: 0;
     width: 180px;
-    background: rgba(255, 255, 255);
+    background: rgb(0, 0, 0);
     padding-top: 5px;
   }
   .drawer-overlay {
