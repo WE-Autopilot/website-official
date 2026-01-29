@@ -21,7 +21,7 @@ function Home() {
       </div>
 
       <div className="TeamPhoto">
-        <img src="/WEAP_Photo.png" alt="WEAP Team Photo 2024" />
+        <img src="/TeamPhoto2.webp" alt="WEAP Team Photo 2024" />
       </div>
 
       <div className="Buttons">
