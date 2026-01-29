@@ -7,6 +7,7 @@ import Team from "./components/Team";
 import Sponsors from "./components/Sponsors";
 import Gallery from "./components/Gallery";
 import Footer from "./components/Footer";
+import UnderConstruction from "./components/UnderConstruction";
 import "./App.css";
 
 /**
@@ -28,6 +29,7 @@ const App: React.FC = () => {
             <Route path="/gallery" element={<Gallery />} />
             {/* <Route path="/competition" element={<Competition />} /> */}
             <Route path="/" element={<Home />} />
+            <Route path="*" element={<UnderConstruction />} />
           </Routes>
         </main>
 

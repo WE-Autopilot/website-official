@@ -49,7 +49,7 @@ function Home() {
         </p>
 
         <button className="See-More-Button">
-          <a href="/AboutUs">
+          <a href="*">
             <span>Learn More</span>
           </a>
         </button>
