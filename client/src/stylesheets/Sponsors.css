@@ -1,67 +1,124 @@
-@import url('https://fonts.googleapis.com/css2?family=Jura:wght@300;700&display=swap');
-
+/* Page Container */
 .Sponsors {
-  width: 100%;
-  text-align: center;
-  padding: 60px 20px;
-  background: linear-gradient(180deg, #6A037B 0%, #102854 100%);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  position: relative;
+  background-color: #163060;
+  overflow: hidden;
 }
 
-.sponsors-container {
-  width: 100%;
-  max-width: 976px;
-  margin: 0 auto;
+/* Diagonal Striped Overlay */
+.Sponsors::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  background-image: repeating-linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.035),
+    rgba(255, 255, 255, 0.035) 1px,
+    transparent 1px,
+    transparent 14px
+  );
+
+  pointer-events: none;
+  z-index: 0;
 }
 
+.Sponsors > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Page Title */
 .heading {
-  font-family: 'Jura', sans-serif;
   font-weight: 700;
   font-size: 48px;
-  line-height: 1.2;
-  color: #FFDE38;
-  letter-spacing: 0.1em;
-  margin-bottom: 30px;
+  margin-bottom: 40px;
+  color: #ffffff;
+  text-align: center;
+}
+
+/* Current Sponsors Section */
+.current-sponsors, .section {
+  width: 100%;
+  max-width: 1000px;
+  text-align: center;
+  margin: 0 auto 70px auto;
 }
 
 .logos {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 40px;
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-items: center;
 }
 
 .sponsor {
   position: relative;
+  margin: 20px 0;
 }
 
 .roboshop-logo {
-  width: 100%;
+  width: 50%;
   max-width: 866px;
+  min-width: 300px;
   height: auto;
-  border-radius: 12px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3), 0 0 40px rgba(255, 222, 56, 0.15);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .digikey-logo {
-  width: 100%;
+  width: 40%;
   max-width: 591px;
+  min-width: 200px;
   height: auto;
-  border-radius: 12px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3), 0 0 40px rgba(234, 0, 255, 0.2);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.sponsor img:hover {
-  transform: scale(1.02);
+/* Section Headers */
+.section {
+  width: 100%;
+  max-width: 800px;
+  margin-bottom: 60px;
 }
 
-@media only screen and (min-width: 768px) {
-  .logos {
-    grid-template-columns: repeat(2, 1fr);
-  }
+.section-title {
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: #ffffff;
+}
+
+/* Bullet List */
+.bullet-list {
+  list-style-type: disc;
+  padding-left: 40px;
+  line-height: 1.6;
+  font-size: 18px;
+  text-align: left;
+  margin: 0 auto;
+  max-width: 800px;
+  color: #ffffff;
+}
+
+/* Contact Box */
+.contact-box {
+  margin-top: 20px;
+  padding: 20px;
+  border-left: 4px solid #ffffff;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  font-size: 18px;
+  line-height: 1.6;
+  color: #ffffff;
+}
+
+.contact-text {
+  font-size: 18px;
+  margin-bottom: 20px;
+  color: #ffffff;
+}
+
+.logos {
+   margin-top: 20px;
+  padding: 20px;
+  border-left: 4px solid #ffffff;
+  background: rgba(255, 255, 255, 0.40);
+  border-radius: 8px;
+  color: #ffffff;
 }
