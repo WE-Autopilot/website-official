@@ -49,7 +49,7 @@ const Header: React.FC<HeaderProps> = ({ className = "" }) => {
               <path
                 className="line1"
                 fill="none"
-                stroke="#242424"
+                stroke="#ffffff"
                 strokeWidth="3"
                 d="M3,3 L21,21 M3,21 L21,3"
               ></path>
@@ -57,7 +57,7 @@ const Header: React.FC<HeaderProps> = ({ className = "" }) => {
           ) : (
             <svg
               className={`menu-icon menuRotate ${isMenu ? "active" : ""}`}
-              stroke="#242424"
+              stroke="#ffffff"
               fill="none"
               strokeWidth={2}
               viewBox="0 0 24 24"

@@ -1,5 +1,6 @@
 import "../stylesheets/Home.css";
-
+import Roadmap from "./Roadmap";
+import Teams from "./Teams";
 
 function Home() {
   return (
@@ -19,93 +20,41 @@ function Home() {
         </div>
       </div>
 
-      <div className="home-container">
-        <section className="intro-section">
-          <div className="intro-content">
-            <div className="title">What is WE AutoPilot?</div>
-            <div className="divider"></div>
-            <p className="description">
-              Welcome to the official Western Engineering AutoPilot Website! We are a group of driven engineers and developers, looking to change the world with our Autonomy Software, one road at a time. Feel free to explore everything, from our current endeavors to future aspirations.
-            </p>
-            <div className="intro-overlay"></div>
-          </div>
-        </section>
-
-        <section className="mission-section">
-          <div className="polycard1">
-            <div className="mission-shape">
-
-              <div className="box_parent">
-                <div className="leftpoly">
-                  <div className="mission-content">
-                    <h2 className="left-mission-header">Our Mission</h2>
-                    <p className="left-mission-p">To establish Western Engineering as a
-                        centre for autonomous vehicle
-                        innovation led by students. By
-                        creating an environment which cultivates the skill, creative thinking,
-                        and engineering brilliance of our
-                        members, we hope to represent our
-                        university on a national and
-                        worldwide scale and ultimately
-                        influence the direction of
-                        autonomous systems.
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              <div className="box_parent">
-                <div className="rightpoly">
-                  <div className="color-overlay"></div>
-                </div>
-                <svg className="flt_svg" xmlns="http://www.w3.org/2000/svg">
-                    <defs>
-                        <filter id="flt_tag">
-                            <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />    
-                            <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 19 -9" result="flt_tag" />
-                            <feComposite in="SourceGraphic" in2="flt_tag" operator="atop"/>
-                        </filter>
-                    </defs>
-                </svg>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section className="commitments-section">
-          <div className="polycard2">
-            <div className="commitments-shape">
-
-              <div className="box_parent">
-                <div className="leftpoly2">
-                </div>
-              </div>
-
-              <div className="box_parent">
-                <div className="rightpoly2">
-                    <div className="commitments-content">
-                      <h2>Our Commitments</h2>
-                      <p>We’re here for our members, sponsors, and partners at every stage of our mission; 
-                        delivering learning opportunities for members, visibility and access to industry-honed talent for sponsors, 
-                        and leading-edge technology for partners.
-                      </p>
-                    </div>
-                </div>
-                <svg className="flt_svg" xmlns="http://www.w3.org/2000/svg">
-                    <defs>
-                        <filter id="flt_tag">
-                            <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />    
-                            <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 19 -9" result="flt_tag" />
-                            <feComposite in="SourceGraphic" in2="flt_tag" operator="atop"/>
-                        </filter>
-                    </defs>
-                </svg>
-              </div>
-            </div>
-          </div>
-        </section>
-
+      <div className="TeamPhoto">
+        <img src="/TeamPhoto2.webp" alt="WEAP Team Photo 2024" />
       </div>
+
+      
+      <div className="Buttons">
+        <div className="RoadmapButton">
+          <a href="#Roadmap">
+            <span>Explore Our RoadMap</span>
+          </a>
+        </div>
+        <div className="TeamsButtons">
+          <a href="/BuildTeams">
+            <span>Meet the Teams</span>
+          </a>
+        </div>
+      </div>
+
+      <div className="About-Us">
+        <h2>About Us</h2>
+        <p>
+          The Western Enineering Autopilot Club (WEAP) enpowers students to develop real-world autonomous vehicles.
+          Our mission is to foster creative, driven enineers through hands-on experience, research, and innovation in autonomous mobility.
+          We bridge the gap between students and leading companies, cultivating a community of curious and collaboratuve problem-solvers.
+        </p>
+        
+        <button className="See-More-Button">
+          <a href="/AboutUs">
+            <span>Learn More</span>
+          </a>
+        </button>
+      </div>
+
+      <Roadmap />
+      <Teams />
 
       {/* <section className="join-section">
         <div className="ready-to-join">
