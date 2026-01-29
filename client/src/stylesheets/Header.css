@@ -18,18 +18,6 @@
     transform: translateY(-20px);
   }
 }
-
-@keyframes popUp {
-  0% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.15);
-  }
-  100% {
-    transform: scale(1.1);
-  }
-}
 .Header {
   width: 100%;
   display: flex;
@@ -154,10 +142,6 @@
   order: 2;
 }
 
-.logo-link:hover .logo {
-  animation: popUp 0.7s ease-out;
-}
-
 .fimenu svg line {
   transition: all 400ms ease;
   stroke-dasharray: 40 121;
@@ -175,7 +159,7 @@
     left: -100%;
     height: 100vh;
     width: 100px;
-    background: rgb(108, 104, 104);
+    background: white;
     padding: 0;
     transition: left 0.3s ease;
     box-shadow: 2px 0 10px rgba(0, 0, 0, 0.3);
