@@ -1,8 +1,10 @@
+import { useNavigate } from "react-router-dom";
 import "../stylesheets/Home.css";
 import Roadmap from "./Roadmap";
 import Teams from "./Teams";
 
 function Home() {
+  const navigate = useNavigate();
   return (
     <>
       <div className="logo-card">
@@ -48,10 +50,12 @@ function Home() {
           collaboratuve problem-solvers.
         </p>
 
-        <button className="See-More-Button">
-          <a href="/UnderConstruction">
-            <span>Learn More</span>
-          </a>
+        <button 
+          className="See-More-Button"
+          type="button"
+          onClick={() => navigate('/UnderConstruction')}
+        >
+          <span>Learn More</span>
         </button>
       </div>
 
