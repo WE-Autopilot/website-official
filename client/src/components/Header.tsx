@@ -12,7 +12,7 @@ const Header: React.FC<HeaderProps> = ({ className = "" }) => {
   const navRef = useRef<HTMLElement>(null);
 
   const handleMenuClose = () => {
-      setMenu(false);
+    setMenu(false);
   };
 
   onClickOutside(navRef, () => {
@@ -75,33 +75,23 @@ const Header: React.FC<HeaderProps> = ({ className = "" }) => {
         </button>
       </div>
 
-      
-
       {isMenu && <div className="drawer-overlay" onClick={handleMenuClose} />}
 
-      <nav
-        ref={navRef}
-        className={`nav ${isMenu ? "open" : ""}`}
-      >
+      <nav ref={navRef} className={`nav ${isMenu ? "open" : ""}`}>
         <ul className="links">
           <li>
-            <Link to="/" onClick={handleMenuClose}>
-              Home
-            </Link>
-          </li>
-          <li>
-            <Link className="nav-link" to="/about" onClick={handleMenuClose}>
-              About
-            </Link>
-          </li>
-          <li>
-            <Link to="/sponsors" onClick={handleMenuClose}>
-              Sponsors
+            <Link className="nav-link" to="/team" onClick={handleMenuClose}>
+              Our Team
             </Link>
           </li>
           <li>
             <Link to="/join" onClick={handleMenuClose}>
-              Teams
+              Rosters
+            </Link>
+          </li>
+          <li>
+            <Link to="/sponsors" onClick={handleMenuClose}>
+              Sponsor Us
             </Link>
           </li>
           {/* <li>
