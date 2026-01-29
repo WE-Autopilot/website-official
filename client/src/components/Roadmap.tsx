@@ -18,7 +18,7 @@ const roadmapData: RoadmapItem[] = [
     description:
       "WEAP was officially ratified in 2024 and established as Western University’s first software-engineering-focused autonomous systems club. The founding AGM formalized the club’s mission to develop real-world autonomous vehicle applications through hands-on engineering.",
     status: "completed",
-    links: [{ label: "Meet the Team", url: "/about" }],
+    links: [{ label: "Meet the Team", url: "/Team" }],
   },
   {
     id: 2,
@@ -27,7 +27,7 @@ const roadmapData: RoadmapItem[] = [
     description:
       "WEAP hosted its first technical workshop introducing core machine learning and computer vision concepts through hands-on development of an image classifier using the MNIST dataset, a standard benchmark of handwritten digits (0–9) used to evaluate image recognition models.",
     status: "completed",
-    links: [{ label: "See Workshop", url: "/about#research" }],
+    links: [{ label: "See Workshop", url: "/UnderConstruction" }],
   },
   {
     id: 3,
@@ -45,7 +45,7 @@ const roadmapData: RoadmapItem[] = [
     description:
       "Software developed in simulation (previous competition) was transferred to physical RC cars, where teams implemented real-time perception, sensor fusion, and autonomous control on actual hardware.",
     status: "completed",
-    links: [{ label: "Event Highlights", url: "/about#events" }],
+    links: [{ label: "Event Highlights", url: "/UnderConstruction" }],
   },
   {
     id: 5,
