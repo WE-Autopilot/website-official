@@ -3,16 +3,13 @@ import "../stylesheets/Footer.css";
 import { Gradient } from "../assets/Gradient";
 
 const Footer: React.FC = () => {
-
-    useEffect(() => {
-      const gradient = new Gradient();
-      gradient.initGradient("#gradient-canvas");
-    }, []);
+  useEffect(() => {
+    const gradient = new Gradient();
+    gradient.initGradient("#gradient-canvas");
+  }, []);
 
   return (
     <>
-
-
       <footer className="Footer">
         <div id="animated-bg">
           <canvas id="gradient-canvas"></canvas>
@@ -26,11 +23,6 @@ const Footer: React.FC = () => {
             height="auto"
             alt="WEAP Logo"
           />
-          <p id="Address">
-            1151 Richmond St,
-            <br />
-            London, ON N6A 3K7
-          </p>
         </div>
         <div id="Socials">
           <p id="SocialTitle">Socials</p>
