@@ -29,7 +29,7 @@ const App: React.FC = () => {
             <Route path="/gallery" element={<Gallery />} />
             {/* <Route path="/competition" element={<Competition />} /> */}
             <Route path="/" element={<Home />} />
-            <Route path="*" element={<UnderConstruction />} />
+            <Route path="/UnderConstruction" element={<UnderConstruction />} />
           </Routes>
         </main>
 

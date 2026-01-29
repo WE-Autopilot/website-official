@@ -94,10 +94,10 @@ const Header: React.FC<HeaderProps> = ({ className = "" }) => {
               Teams
             </Link>
           </li>
-          <li> 
+          {/* <li> 
             <Link className="nav-link" to="/gallery" onClick={handleMenuClose}>
             Gallery</Link> 
-            </li>
+            </li> */}
           <li>
             <Link to="/sponsors" onClick={handleMenuClose}>
               Sponsor Us
