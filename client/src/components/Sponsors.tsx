@@ -27,11 +27,11 @@ const Sponsors: React.FC = () => {
         <div className="Sponsors">
 
             {/* Current Sponsors Section - TBD */}
-            <section className="current-sponsors">
+            <section className="current-sponsors sponsor-animate delay-1">
 
             <h1 className="heading">Our Sponsors</h1>
 
-             <div className = "logos">
+             <div className = "logos sponsor-animate delay-2">
 
                 <div className = "sponsor">
                     <img src = "/sponsors.svg/ROBOSHOP_V2 1.svg" alt = "RobotShop Logo" className = "roboshop-logo"/>
@@ -46,7 +46,7 @@ const Sponsors: React.FC = () => {
             </section>
 
             {/* Why Sponsor Us Section */}
-            <section className="section">
+            <section className="section sponsor-animate delay-3">
                 <h2 className="section-title">Why Sponsor Us?</h2>
 
                 <ul className="bullet-list">
@@ -58,7 +58,7 @@ const Sponsors: React.FC = () => {
             </section>
 
             {/* Become a Sponsor */}
-            <section className="section">
+            <section className="section sponsor-animate delay-4">
                 <h2 className="section-title">Become a Sponsor</h2>
 
                 <p className="contact-text">
