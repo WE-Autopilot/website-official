@@ -89,6 +89,10 @@ const Header: React.FC<HeaderProps> = ({ className = "" }) => {
               Rosters
             </Link>
           </li>
+          <li> 
+            <Link className="nav-link" to="/gallery" onClick={handleMenuClose}>
+            Gallery</Link> 
+            </li>
           <li>
             <Link to="/sponsors" onClick={handleMenuClose}>
               Sponsor Us
