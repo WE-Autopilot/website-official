@@ -2,24 +2,24 @@ import { useLayoutEffect } from "react";
 import { useLocation } from "react-router-dom";
 
 export default function ScrollToTop() {
-  const location = useLocation();
+  const { hash, key } = useLocation();
 
   useLayoutEffect(() => {
-    const scrollToTop = () => {
+    const scroll = () => {
+      if (hash) {
+        const el = document.querySelector(hash);
+        if (el) {
+          el.scrollIntoView({ behavior: "auto", block: "start" });
+          return;
+        }
+      }
       window.scrollTo(0, 0);
-      document.documentElement.scrollTop = 0;
-      document.body.scrollTop = 0;
     };
 
-    // Immediate
-    scrollToTop();
-
-    // After layout
-    requestAnimationFrame(scrollToTop);
-
-    // After browser restore attempt (this is the key)
-    setTimeout(scrollToTop, 0);
-  }, [location.key]); // <-- IMPORTANT: key, not pathname
+    scroll();
+    requestAnimationFrame(scroll);
+    setTimeout(scroll, 0);
+  }, [key, hash]);
 
   return null;
 }

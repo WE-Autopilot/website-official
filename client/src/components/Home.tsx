@@ -28,9 +28,9 @@ function Home() {
 
       <div className="Buttons">
         <div className="RoadmapButton">
-          <a href="#Roadmap">
+          <Link to="/#Roadmap">
             <span>Explore Our RoadMap</span>
-          </a>
+          </Link>
         </div>
         <div className="TeamsButtons">
           <Link to="/Team">
@@ -59,7 +59,9 @@ function Home() {
         </button>
       </div>
 
+    <section id="Roadmap">
       <Roadmap />
+    </section>
       <Teams />
 
       {/* <section className="join-section">
