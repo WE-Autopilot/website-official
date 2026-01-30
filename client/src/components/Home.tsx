@@ -28,9 +28,17 @@ function Home() {
 
       <div className="Buttons">
         <div className="RoadmapButton">
-          <Link to="/#Roadmap">
+          <button
+            type="button"
+            onClick={() =>
+              document.getElementById("Roadmap")?.scrollIntoView({
+                behavior: "smooth",
+                block: "start",
+              })
+            }
+          >
             <span>Explore Our RoadMap</span>
-          </Link>
+          </button>
         </div>
         <div className="TeamsButtons">
           <Link to="/Team">
