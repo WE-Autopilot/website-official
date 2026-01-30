@@ -11,6 +11,10 @@ import UnderConstruction from "./components/UnderConstruction";
 import "./App.css";
 import ScrollToTop from "./components/ScrollToTop";
 
+if ("scrollRestoration" in window.history) {
+  window.history.scrollRestoration = "manual";
+}
+
 /**
  * Main App component
  * @returns The main application component
@@ -19,7 +23,7 @@ const App: React.FC = () => {
   return (
     <Router>
       <ScrollToTop />
-      
+
       <div className="app">
         <Header />
 
