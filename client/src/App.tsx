@@ -9,6 +9,7 @@ import Gallery from "./components/Gallery";
 import Footer from "./components/Footer";
 import UnderConstruction from "./components/UnderConstruction";
 import "./App.css";
+import ScrollToTop from "./components/ScrollToTop";
 
 /**
  * Main App component
@@ -17,6 +18,8 @@ import "./App.css";
 const App: React.FC = () => {
   return (
     <Router>
+      <ScrollToTop />
+      
       <div className="app">
         <Header />
 
