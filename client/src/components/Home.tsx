@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "../stylesheets/Home.css";
 import Roadmap from "./Roadmap";
 import Teams from "./Teams";
@@ -33,9 +33,9 @@ function Home() {
           </a>
         </div>
         <div className="TeamsButtons">
-          <a href="/Team">
+          <Link to="/Team">
             <span>Meet the Teams</span>
-          </a>
+          </Link>
         </div>
       </div>
 
