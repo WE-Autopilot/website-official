@@ -79,7 +79,7 @@ function Team() {
     },
     {
       id: "exec-6",
-      name: "Dev",
+      name: "Dev Chaudhari",
       role: "VP Education",
       image: Dev,
       level: LEADERSHIP_LEVELS.VP,

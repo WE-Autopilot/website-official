@@ -61,7 +61,7 @@ const roadmapData: RoadmapItem[] = [
     title: "Autonomous Golf Cart (Physical Testing)",
     summary: "Real-world vehicle testing",
     description:
-      "The golf cart autonomy system is brought out of simulation and onto a physical vehicle where the out club focuses on safety, reliability, and real-world sensor integration",
+      "The golf cart autonomy system is brought out of simulation and onto a physical vehicle where the club focuses on safety, reliability, and real-world sensor integration",
     status: "upcoming",
   },
   {
