@@ -10,6 +10,8 @@ import Footer from "./components/Footer";
 import UnderConstruction from "./components/UnderConstruction";
 import "./App.css";
 
+import { Analytics } from "@vercel/analytics/react"
+
 /**
  * Main App component
  * @returns The main application component
@@ -34,6 +36,8 @@ const App: React.FC = () => {
         </main>
 
         <Footer />
+
+        <Analytics />
       </div>
     </Router>
   );
