@@ -4,19 +4,19 @@ import { Gradient } from "../assets/Gradient";
 
 const Footer: React.FC = () => {
 
-    useEffect(() => {
-      const gradient = new Gradient();
-      gradient.initGradient("#gradient-canvas");
-    }, []);
+    // useEffect(() => {
+    //   const gradient = new Gradient();
+    //   gradient.initGradient("#gradient-canvas");
+    // }, []);
 
   return (
     <>
 
 
       <footer className="Footer">
-        <div id="animated-bg">
+        {/* <div id="animated-bg">
           <canvas id="gradient-canvas"></canvas>
-        </div>
+        </div> */}
 
         <div id="FooterLeft">
           <img
@@ -75,6 +75,20 @@ const Footer: React.FC = () => {
                 width="40"
                 height="40"
                 alt="LinkedIn"
+              />
+            </a>
+            <a
+              href="https://github.com/WE-Autopilot"
+              id="GitHub"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="GitHub"
+            >
+              <img
+                src="/socials/github.svg"
+                width="40"
+                height="40"
+                alt="GitHub"
               />
             </a>
             <a
