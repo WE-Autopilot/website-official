@@ -134,7 +134,7 @@ interface PersonalInfoSectionProps {
   trackFormInteraction: (
     formName: string,
     fieldName: string,
-    action: string
+    action: string,
   ) => void;
 }
 
@@ -293,7 +293,7 @@ interface TeamSelectionSectionProps {
   trackFormInteraction: (
     formName: string,
     fieldName: string,
-    action: string
+    action: string,
   ) => void;
 }
 
@@ -366,7 +366,7 @@ interface ResumeUploadSectionProps {
   trackFormInteraction: (
     formName: string,
     fieldName: string,
-    action: string
+    action: string,
   ) => void;
 }
 
@@ -438,7 +438,7 @@ const ResumeUploadSection: FC<ResumeUploadSectionProps> = ({
                 trackFormInteraction(
                   "Application Form",
                   "resume",
-                  "file_removed"
+                  "file_removed",
                 );
               }}
               aria-label={t("application.removeFile")}
@@ -575,7 +575,7 @@ const Contact: FC = (): ReactElement => {
     const debouncedSave = debounce(() => {
       if (
         Object.keys(formValues).some(
-          (key) => formValues[key as keyof ApplicationFormData]
+          (key) => formValues[key as keyof ApplicationFormData],
         )
       ) {
         saveFormData(FORM_ID, formValues);
@@ -585,7 +585,7 @@ const Contact: FC = (): ReactElement => {
     // Only autosave if there are actual values
     if (
       Object.keys(formValues).some(
-        (key) => formValues[key as keyof ApplicationFormData]
+        (key) => formValues[key as keyof ApplicationFormData],
       )
     ) {
       debouncedSave();
@@ -595,7 +595,7 @@ const Contact: FC = (): ReactElement => {
       // Save one last time when component unmounts
       if (
         Object.keys(formValues).some(
-          (key) => formValues[key as keyof ApplicationFormData]
+          (key) => formValues[key as keyof ApplicationFormData],
         )
       ) {
         saveFormData(FORM_ID, formValues);
@@ -672,7 +672,7 @@ const Contact: FC = (): ReactElement => {
         "Form",
         "submit_success",
         "Application Form",
-        Math.round(completionTime)
+        Math.round(completionTime),
       );
 
       // 5. Reset form state
@@ -731,71 +731,73 @@ const Contact: FC = (): ReactElement => {
   };
 
   return (
-    <div className="application-container">
-      <h2>{t("application.title")}</h2>
+    <section className="contact-page">
+      <div className="application-container">
+        <h2>{t("application.title")}</h2>
 
-      {/* Saved form data notification */}
-      {hasSavedData && (
-        <SavedDataNotice
-          onRestore={loadSavedData}
-          onDiscard={discardSavedData}
-          t={t}
-        />
-      )}
+        {/* Saved form data notification */}
+        {hasSavedData && (
+          <SavedDataNotice
+            onRestore={loadSavedData}
+            onDiscard={discardSavedData}
+            t={t}
+          />
+        )}
 
-      {/* Status messages */}
-      <StatusMessage status={submitStatus} t={t} />
+        {/* Status messages */}
+        <StatusMessage status={submitStatus} t={t} />
 
-      {/* Hidden status announcer for screen readers */}
-      <div role="status" aria-live="polite" className="sr-only">
-        {submitStatus === "success" && t("success.message")}
-        {submitStatus === "error" && t("error.message")}
+        {/* Hidden status announcer for screen readers */}
+        <div role="status" aria-live="polite" className="sr-only">
+          {submitStatus === "success" && t("success.message")}
+          {submitStatus === "error" && t("error.message")}
+        </div>
+
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          className="application-form"
+          noValidate
+          aria-label="Application Form"
+        >
+          {/* Personal information section */}
+          <PersonalInfoSection
+            register={register}
+            errors={errors}
+            t={t}
+            trackFormInteraction={trackFormInteraction}
+          />
+
+          {/* Team selection section */}
+          <TeamSelectionSection
+            register={register}
+            errors={errors}
+            watch={watch}
+            t={t}
+            teams={teams}
+            handleTeamKeyDown={handleTeamKeyDown}
+            trackFormInteraction={trackFormInteraction}
+          />
+
+          {/* Resume upload section */}
+          <ResumeUploadSection
+            register={register}
+            errors={errors}
+            t={t}
+            uploadMethod={uploadMethod}
+            setUploadMethod={setUploadMethod}
+            selectedFile={selectedFile}
+            setSelectedFile={setSelectedFile}
+            fileInputRef={fileInputRef}
+            isSubmitting={isSubmitting}
+            handleFileChange={handleFileChange}
+            trackFormInteraction={trackFormInteraction}
+          />
+
+          {/* Form actions */}
+          <FormActions isSubmitting={isSubmitting} t={t} />
+        </form>
       </div>
-
-      <form
-        onSubmit={handleSubmit(onSubmit)}
-        className="application-form"
-        noValidate
-        aria-label="Application Form"
-      >
-        {/* Personal information section */}
-        <PersonalInfoSection
-          register={register}
-          errors={errors}
-          t={t}
-          trackFormInteraction={trackFormInteraction}
-        />
-
-        {/* Team selection section */}
-        <TeamSelectionSection
-          register={register}
-          errors={errors}
-          watch={watch}
-          t={t}
-          teams={teams}
-          handleTeamKeyDown={handleTeamKeyDown}
-          trackFormInteraction={trackFormInteraction}
-        />
-
-        {/* Resume upload section */}
-        <ResumeUploadSection
-          register={register}
-          errors={errors}
-          t={t}
-          uploadMethod={uploadMethod}
-          setUploadMethod={setUploadMethod}
-          selectedFile={selectedFile}
-          setSelectedFile={setSelectedFile}
-          fileInputRef={fileInputRef}
-          isSubmitting={isSubmitting}
-          handleFileChange={handleFileChange}
-          trackFormInteraction={trackFormInteraction}
-        />
-
-        {/* Form actions */}
-        <FormActions isSubmitting={isSubmitting} t={t} />
-      </form>
-    </div>
+    </section>
   );
 };
 
