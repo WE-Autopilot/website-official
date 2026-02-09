@@ -12,6 +12,8 @@
 
 #FooterLeft {
   width: 33%;
+  position: relative; /* keep it in normal flow while logo is positioned absolutely */
+  z-index: 1;
 }
 
 #FooterLogo {
@@ -28,22 +30,41 @@
   color: #9e8206;
   line-height: 120%;
 }
+  position: absolute;
+  left: 16px;
+  bottom: 12px;
+  width: 195px;
+  height: auto;
+  padding: 0;
+  margin: 0;
+  z-index: 2; /* above the animated background */
+  display: block;
+  pointer-events: auto;
+}
+
+/* Keep the footer layout as-is but make the logo itself absolutely positioned
+   so only the autopilot logo sticks to the bottom-left without affecting flow */
 
 #Socials {
   width: 33%;
   text-align: center;
+  position: relative;
+  z-index: 1;
 }
 
 #SocialTitle {
-  font-size: 24px;
-  font-weight: 700;
+  font-size: 25px;
+  font-weight: 950;
   font-family: "Jura", serif;
   padding-top: 10px;
   background: linear-gradient(to right, #9004a5, #d49b27);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
+
   display: inline-block;
+  position: relative; 
+  z-index: 1;
 }
 
 #SocialImages {
@@ -94,10 +115,14 @@
 
   #FooterLeft {
     width: 100%;
+    text-align: center;
   }
 
   #FooterLogo {
-    padding-left: 0;
+    position: relative;
+    left: auto;
+    bottom: auto;
+    margin: 0 auto;
   }
 
   #Address {

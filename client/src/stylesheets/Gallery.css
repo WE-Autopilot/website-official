@@ -1,0 +1,12 @@
+.Work-in-progress{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+    
+}
+.gallery-container {
+    padding: 20px;
+    text-align: center;
+    background-color: rgb(77, 29, 121, 0.8);
+}

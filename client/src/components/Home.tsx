@@ -24,7 +24,6 @@ function Home() {
         <img src="/TeamPhoto2.webp" alt="WEAP Team Photo 2024" />
       </div>
 
-      
       <div className="Buttons">
         <div className="RoadmapButton">
           <a href="#Roadmap">
@@ -32,8 +31,8 @@ function Home() {
           </a>
         </div>
         <div className="TeamsButtons">
-          <a href="/BuildTeams">
-            <span>Meet the Teams</span>
+          <a href="/Team">
+            <span>Meet the Team</span>
           </a>
         </div>
       </div>
@@ -41,13 +40,16 @@ function Home() {
       <div className="About-Us">
         <h2>About Us</h2>
         <p>
-          The Western Enineering Autopilot Club (WEAP) enpowers students to develop real-world autonomous vehicles.
-          Our mission is to foster creative, driven enineers through hands-on experience, research, and innovation in autonomous mobility.
-          We bridge the gap between students and leading companies, cultivating a community of curious and collaboratuve problem-solvers.
+          The Western Engineering Autopilot Club (WEAP) enpowers students to
+          develop real-world autonomous vehicles. Our mission is to foster
+          creative, driven engineers through hands-on experience, research, and
+          innovation in autonomous mobility. We bridge the gap between students
+          and leading companies, cultivating a community of curious and
+          collaborative problem-solvers.
         </p>
-        
+
         <button className="See-More-Button">
-          <a href="/AboutUs">
+          <a href="/UnderConstruction">
             <span>Learn More</span>
           </a>
         </button>

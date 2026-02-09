@@ -24,3 +24,5 @@ dist-ssr
 *.sw?
 
 .vercel
+.DS_Store
+**/.DS_Store
