@@ -3,18 +3,11 @@ import "../stylesheets/Footer.css";
 import { Gradient } from "../assets/Gradient";
 
 const Footer: React.FC = () => {
-<<<<<<< footer
 
     // useEffect(() => {
     //   const gradient = new Gradient();
     //   gradient.initGradient("#gradient-canvas");
     // }, []);
-=======
-  useEffect(() => {
-    const gradient = new Gradient();
-    gradient.initGradient("#gradient-canvas");
-  }, []);
->>>>>>> main
 
   return (
     <>
