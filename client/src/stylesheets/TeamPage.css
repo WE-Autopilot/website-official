@@ -1,0 +1,92 @@
+.team-page {
+    background: linear-gradient(180deg, #560d81 0%, #000000 100%);
+  min-height: 80vh;
+  display: flex;
+  justify-content: center;
+  padding: 4rem 2rem;
+}
+
+.team-page-content {
+  max-width: 800px;
+  width: 100%;
+}
+
+.team-page-title {
+  font-family: 'Jura', sans-serif;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 0.5rem;
+}
+
+.team-page-divider {
+  border: none;
+  height: 3px;
+  background: linear-gradient(to right, #1b489c, #9708e4);
+  margin-bottom: 2rem;
+  width: 120px;
+}
+
+.team-page-description {
+  font-family: 'Jura', sans-serif;
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #d0d0d0;
+  margin-bottom: 2.5rem;
+}
+
+.team-page-highlights {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 2rem;
+}
+
+.team-page-subtitle {
+  font-family: 'Jura', sans-serif;
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 1rem;
+}
+
+.team-page-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.team-page-list li {
+  font-family: 'Jura', sans-serif;
+  font-size: 1rem;
+  color: #c0c0c0;
+  padding: 0.6rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  position: relative;
+  padding-left: 1.2rem;
+}
+
+.team-page-list li:last-child {
+  border-bottom: none;
+}
+
+.team-page-list li::before {
+  content: "▸";
+  position: absolute;
+  left: 0;
+  color: #9708e4;
+}
+
+@media only screen and (max-width: 768px) {
+  .team-page {
+    padding: 2rem 1rem;
+  }
+
+  .team-page-title {
+    font-size: 1.8rem;
+  }
+
+  .team-page-highlights {
+    padding: 1.5rem;
+  }
+}
