@@ -1,5 +1,6 @@
+/* ── Base ── */
 .team-page {
-    background: linear-gradient(180deg, #560d81 0%, #000000 100%);
+  background: linear-gradient(180deg, #560d81 0%, #000000 100%);
   min-height: 80vh;
   display: flex;
   justify-content: center;
@@ -7,13 +8,18 @@
 }
 
 .team-page-content {
-  max-width: 800px;
+  max-width: 900px;
   width: 100%;
+}
+
+/* ── Hero ── */
+.team-page-hero {
+  margin-bottom: 3rem;
 }
 
 .team-page-title {
   font-family: 'Jura', sans-serif;
-  font-size: 2.5rem;
+  font-size: 2.8rem;
   font-weight: 700;
   color: #ffffff;
   margin-bottom: 0.5rem;
@@ -23,70 +29,296 @@
   border: none;
   height: 3px;
   background: linear-gradient(to right, #1b489c, #9708e4);
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
   width: 120px;
 }
 
 .team-page-description {
   font-family: 'Jura', sans-serif;
-  font-size: 1.1rem;
+  font-size: 1.15rem;
   line-height: 1.8;
   color: #d0d0d0;
-  margin-bottom: 2.5rem;
 }
 
-.team-page-highlights {
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 12px;
-  padding: 2rem;
+/* ── Sections ── */
+.team-page-section {
+  margin-bottom: 3rem;
 }
 
 .team-page-subtitle {
   font-family: 'Jura', sans-serif;
-  font-size: 1.4rem;
+  font-size: 1.5rem;
   font-weight: 600;
   color: #ffffff;
-  margin-bottom: 1rem;
+  margin-bottom: 1.25rem;
+  position: relative;
+  padding-bottom: 0.5rem;
 }
 
-.team-page-list {
-  list-style: none;
-  padding: 0;
+.team-page-subtitle::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 40px;
+  height: 2px;
+  background: #9708e4;
+}
+
+/* ── Team Leads ── */
+.team-leads-grid {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.team-lead-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 1.5rem 2rem;
+  transition: border-color 0.3s ease, transform 0.3s ease;
+}
+
+.team-lead-card:hover {
+  border-color: rgba(151, 8, 228, 0.4);
+  transform: translateY(-3px);
+}
+
+.team-lead-avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 3px solid rgba(151, 8, 228, 0.5);
+  flex-shrink: 0;
+  box-shadow: 0 0 12px rgba(151, 8, 228, 0.25);
+}
+
+.team-lead-avatar-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.team-lead-name {
+  font-family: 'Jura', sans-serif;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #ffffff;
+  text-align: center;
+}
+
+/* ── Focus Areas (card grid) ── */
+.focus-areas-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1.25rem;
+}
+
+.focus-card {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 1.5rem;
+  transition: border-color 0.3s ease, transform 0.3s ease;
+  position: relative;
+}
+
+.focus-card:hover {
+  border-color: rgba(151, 8, 228, 0.4);
+  transform: translateY(-3px);
+}
+
+.focus-card-number {
+  font-family: 'Jura', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #9708e4;
+  opacity: 0.6;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.focus-card-title {
+  font-family: 'Jura', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0 0 0.5rem 0;
+}
+
+.focus-card-desc {
+  font-family: 'Jura', sans-serif;
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: #b0b0b0;
   margin: 0;
 }
 
-.team-page-list li {
-  font-family: 'Jura', sans-serif;
-  font-size: 1rem;
-  color: #c0c0c0;
-  padding: 0.6rem 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+/* ── Milestones Timeline ── */
+.milestones-timeline {
   position: relative;
-  padding-left: 1.2rem;
+  padding-left: 2rem;
 }
 
-.team-page-list li:last-child {
-  border-bottom: none;
-}
-
-.team-page-list li::before {
-  content: "▸";
+.milestones-timeline::before {
+  content: "";
   position: absolute;
-  left: 0;
+  top: 0;
+  left: 7px;
+  bottom: 0;
+  width: 2px;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.milestone-item {
+  position: relative;
+  padding-bottom: 1.5rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.milestone-item:last-child {
+  padding-bottom: 0;
+}
+
+.milestone-dot {
+  position: absolute;
+  left: -2rem;
+  top: 4px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 2px solid;
+  background: #000;
+  flex-shrink: 0;
+  z-index: 1;
+}
+
+.milestone-completed .milestone-dot {
+  border-color: #22c55e;
+  background: rgba(34, 197, 94, 0.2);
+  box-shadow: 0 0 8px rgba(34, 197, 94, 0.3);
+}
+
+.milestone-in-progress .milestone-dot {
+  border-color: #f59e0b;
+  background: rgba(245, 158, 11, 0.2);
+  box-shadow: 0 0 8px rgba(245, 158, 11, 0.3);
+}
+
+.milestone-planned .milestone-dot {
+  border-color: #6b7280;
+  background: rgba(107, 114, 128, 0.15);
+}
+
+.milestone-content {
+  padding-top: 0;
+}
+
+.milestone-badge {
+  display: inline-block;
+  font-family: 'Jura', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 3px 10px;
+  border-radius: 20px;
+  margin-bottom: 0.35rem;
+}
+
+.badge-completed {
+  background: rgba(34, 197, 94, 0.15);
+  color: #22c55e;
+  border: 1px solid rgba(34, 197, 94, 0.3);
+}
+
+.badge-in-progress {
+  background: rgba(245, 158, 11, 0.15);
+  color: #f59e0b;
+  border: 1px solid rgba(245, 158, 11, 0.3);
+}
+
+.badge-planned {
+  background: rgba(107, 114, 128, 0.15);
+  color: #9ca3af;
+  border: 1px solid rgba(107, 114, 128, 0.3);
+}
+
+.milestone-text {
+  font-family: 'Jura', sans-serif;
+  font-size: 0.95rem;
+  color: #d0d0d0;
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* ── Technologies ── */
+.tech-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 1rem;
+}
+
+.tech-card {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  transition: border-color 0.3s ease;
+}
+
+.tech-card:hover {
+  border-color: rgba(27, 72, 156, 0.5);
+}
+
+.tech-label {
+  font-family: 'Jura', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
   color: #9708e4;
 }
 
+.tech-desc {
+  font-family: 'Jura', sans-serif;
+  font-size: 0.92rem;
+  color: #c0c0c0;
+  line-height: 1.5;
+}
+
+/* ── Responsive ── */
 @media only screen and (max-width: 768px) {
   .team-page {
     padding: 2rem 1rem;
   }
 
   .team-page-title {
-    font-size: 1.8rem;
+    font-size: 2rem;
   }
 
-  .team-page-highlights {
-    padding: 1.5rem;
+  .focus-areas-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .tech-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .team-leads-grid {
+    flex-direction: column;
   }
 }
