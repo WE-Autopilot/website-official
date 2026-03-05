@@ -20,6 +20,10 @@ a:hover {
 }
 
 body, html {
+  /* Hide Scroll Bar */
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+
   height: auto;
   margin: 0;
   overflow-x: hidden;
@@ -78,3 +82,4 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
