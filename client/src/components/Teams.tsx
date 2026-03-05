@@ -19,6 +19,12 @@ const teamsData = [
     summary: "Builds the systems that allow our vehicles to perceive and interpret their surroundings.",
     description: "The Perception Team develops the algorithms and systems that enable our vehicles to detect, classify, and understand objects and events in their environment. They work with sensors such as cameras, LiDAR, and radar to create a comprehensive perception system.",
     link: "/UnderConstruction"
+  },
+  {
+    name: "Build",
+    summary: "Constructs the physical vehicles and ensures they are ready for testing and competition.",
+    description: "The Build Team is responsible for constructing the physical autonomous vehicles. They work on the mechanical design, fabrication, and assembly of the vehicles, ensuring that they meet the specifications and are ready for testing and competition.",
+    link: "/UnderConstruction"
   }
 ];
 
