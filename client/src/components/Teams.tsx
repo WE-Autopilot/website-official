@@ -6,25 +6,25 @@ const teamsData = [
     name: "Mapping and Localization",
     summary: "Develops the systems that allow our vehicles to understand and navigate their environment.",
     description: "The Mapping and Localization Team is responsible for creating accurate maps and ensuring that our autonomous vehicles can determine their position within those maps. They work with various sensors and algorithms to achieve precise localization in diverse environments.",
-    link: "/UnderConstruction"
+    link: "/teams/localization"
   },
   {
     name: "Planning and Control",
     summary: "Designs the algorithms that enable our vehicles to make decisions and control their movements.",
     description: "The Planning and Control Team develops the algorithms that allow our vehicles to plan routes, make decisions, and control their movements safely and efficiently. They work on path planning, motion control, and decision-making systems.",
-    link: "/UnderConstruction"
+    link: "/teams/planning-and-control"
   },
   {
     name: "Perception",
     summary: "Builds the systems that allow our vehicles to perceive and interpret their surroundings.",
     description: "The Perception Team develops the algorithms and systems that enable our vehicles to detect, classify, and understand objects and events in their environment. They work with sensors such as cameras, LiDAR, and radar to create a comprehensive perception system.",
-    link: "/UnderConstruction"
+    link: "/teams/perception"
   },
   {
     name: "Build",
     summary: "Constructs the physical vehicles and ensures they are ready for testing and competition.",
     description: "The Build Team is responsible for constructing the physical autonomous vehicles. They work on the mechanical design, fabrication, and assembly of the vehicles, ensuring that they meet the specifications and are ready for testing and competition.",
-    link: "/UnderConstruction"
+    link: "/teams/build"
   }
 ];
 
