@@ -69,28 +69,37 @@
 
 /* TEAM PHOTO STYLING */
 
-.TeamPhoto {
+.TeamPhoto{
+    overflow: hidden;
+    width: 100%;
+}
+.carousel-container{
     display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    padding: 60px 20px;
-    box-sizing: border-box;
-    background: linear-gradient(180deg, #000000 0%, #8b2eb5 100%);
+    width: max-content;
+    animation: scroll 40s linear infinite;
 }
 
-.TeamPhoto img {
-    width: 100%;
-    max-width: 976px;
+
+.carousel-container.paused {
+    animation-play-state: paused;
+}
+
+@keyframes scroll {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+.carousel-container img{
+    flex-shrink: 0;
+    width: 400px;
     height: auto;
-    border-radius: 15px;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3), 0 0 40px rgba(255, 222, 56, 0.2);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.TeamPhoto img:hover {
-    transform: scale(1.02);
-    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4), 0 0 60px rgba(255, 222, 56, 0.3);
+    border-radius: 12px;
+    object-fit: cover;
+    margin-right: 1rem;
 }
 
 /* POLYCARD STYLING */
