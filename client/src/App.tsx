@@ -8,6 +8,7 @@ import Sponsors from "./components/Sponsors";
 import Gallery from "./components/Gallery";
 import Footer from "./components/Footer";
 import UnderConstruction from "./components/UnderConstruction";
+import TeamPage from "./components/TeamPage";
 import "./App.css";
 
 import { Analytics } from "@vercel/analytics/react"
@@ -31,6 +32,7 @@ const App: React.FC = () => {
             <Route path="/gallery" element={<Gallery />} />
             {/* <Route path="/competition" element={<Competition />} /> */}
             <Route path="/" element={<Home />} />
+            <Route path="/teams/:teamSlug" element={<TeamPage />} />
             <Route path="/UnderConstruction" element={<UnderConstruction />} />
           </Routes>
         </main>

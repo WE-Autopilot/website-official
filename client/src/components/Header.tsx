@@ -7,8 +7,16 @@ interface HeaderProps {
   className?: string;
 }
 
+const teamLinks = [
+  { label: "Planning and Control", path: "/teams/planning-and-control" },
+  { label: "Perception", path: "/teams/perception" },
+  { label: "Localization", path: "/teams/localization" },
+  { label: "Build", path: "/teams/build" },
+];
+
 const Header: React.FC<HeaderProps> = ({ className = "" }) => {
   const [isMenu, setMenu] = useState<boolean>(false);
+  const [isTeamsOpen, setTeamsOpen] = useState<boolean>(false);
   const navRef = useRef<HTMLElement>(null);
 
   const handleMenuClose = () => {
@@ -89,10 +97,37 @@ const Header: React.FC<HeaderProps> = ({ className = "" }) => {
               Our Team
             </Link>
           </li>
-          <li>
-            <Link to="/join" onClick={handleMenuClose}>
+          <li
+            className="dropdown"
+            onMouseEnter={() => setTeamsOpen(true)}
+            onMouseLeave={() => setTeamsOpen(false)}
+          >
+            <button
+              className="nav-link dropdown-toggle"
+              onClick={() => setTeamsOpen((prev) => !prev)}
+              aria-expanded={isTeamsOpen}
+              aria-haspopup="true"
+            >
               Teams
-            </Link>
+            </button>
+            {isTeamsOpen && (
+              <ul className="dropdown-menu">
+                {teamLinks.map((team) => (
+                  <li key={team.path}>
+                    <Link
+                      className="dropdown-item"
+                      to={team.path}
+                      onClick={() => {
+                        setTeamsOpen(false);
+                        handleMenuClose();
+                      }}
+                    >
+                      {team.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            )}
           </li>
           {/* <li> 
             <Link className="nav-link" to="/gallery" onClick={handleMenuClose}>
