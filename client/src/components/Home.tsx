@@ -1,8 +1,13 @@
 import "../stylesheets/Home.css";
 import Roadmap from "./Roadmap";
 import Teams from "./Teams";
+import React from "react";
+
+
+
 
 function Home() {
+  const [isPaused, setIsPaused] = React.useState(false);
   return (
     <>
       <div className="logo-card">
@@ -20,8 +25,24 @@ function Home() {
         </div>
       </div>
 
-      <div className="TeamPhoto">
-        <img src="/TeamPhoto2.webp" alt="WEAP Team Photo 2024" />
+      <div className="TeamPhoto" onMouseEnter={() => setIsPaused(true)} onMouseLeave={() => setIsPaused(false)}>
+        <div className={`carousel-container ${isPaused ? 'paused' : ""}`}>
+          <img src="/FirstEverAGM.jpeg" alt="First Ever AGM Meeting" />
+          <img src="/LastYearsExecs.png" alt="Last Year's Executives" />
+          <img src="/TeamPhoto1.webp" alt="Team Photo" />
+          <img src="/MINSTWorkshop.JPG" alt="MINST Workshop" />
+          <img src="/RCCars.jpeg" alt="RC Cars" />
+          <img src="/ThisYearsExecs.JPG" alt="This Year's Executives" />
+          <img src="/ThisYearsAGM.JPG" alt="This Year's AGM Meeting" />
+
+          <img src="/FirstEverAGM.jpeg" alt="First Ever AGM Meeting" />
+          <img src="/LastYearsExecs.png" alt="Last Year's Executives" />
+          <img src="/TeamPhoto1.webp" alt="Team Photo" />
+          <img src="/MINSTWorkshop.JPG" alt="MINST Workshop" />
+          <img src="/RCCars.jpeg" alt="RC Cars" />
+          <img src="/ThisYearsExecs.JPG" alt="This Year's Executives" />
+          <img src="/ThisYearsAGM.JPG" alt="This Year's AGM Meeting" />
+        </div>
       </div>
 
       <div className="Buttons">
