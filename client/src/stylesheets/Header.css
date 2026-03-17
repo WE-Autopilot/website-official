@@ -167,6 +167,102 @@
 .line1 {
   transition: all 400ms ease;
 }
+/* ── Dropdown (Teams) ── */
+.dropdown {
+  position: relative;
+}
+
+.dropdown-toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #ffffff;
+  font-weight: 600;
+  font-family: 'Jura', sans-serif;
+  font-size: 1.2rem;
+  padding: 0;
+  position: relative;
+  display: inline-block;
+  z-index: 2;
+}
+
+/* Underline effect matching other nav links */
+.dropdown-toggle::before,
+.dropdown-toggle::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(to right, #1b489c, #9708e4);
+  bottom: -5px;
+  left: 0;
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 0.4s ease-out;
+}
+
+.dropdown:hover .dropdown-toggle::before,
+.dropdown:hover .dropdown-toggle::after,
+.dropdown-toggle:focus-visible::before,
+.dropdown-toggle:focus-visible::after {
+  transform: scaleX(1);
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  list-style: none;
+  margin: 0;
+  padding: 18px 0 8px; /* extra top padding bridges the hover gap */
+  background: rgba(0, 0, 0, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  min-width: 240px;
+  z-index: 100;
+  animation: dropdownFadeIn 0.25s ease;
+}
+
+@keyframes dropdownFadeIn {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+.dropdown-item {
+  display: block;
+  padding: 10px 20px;
+  color: #ffffff;
+  text-decoration: none;
+  font-family: 'Jura', sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  white-space: nowrap;
+  transition: background 0.2s ease;
+}
+
+.dropdown-item:hover,
+.dropdown-item:focus-visible {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* Remove default link underline effect on dropdown items */
+.dropdown-menu li a::before,
+.dropdown-menu li a::after {
+  display: none;
+}
+
+/* Prevent the dropdown li itself from interfering with hover */
+.dropdown-menu li {
+  margin-right: 0;
+}
+
 @media only screen and (max-width: 1366px) {
   .nav {
     display: none;
@@ -193,7 +289,7 @@
     display: flex;
     top: 0px;
     left: 0;
-    width: 180px;
+    width: 240px;
     background: rgb(0, 0, 0);
     padding-top: 5px;
   }
@@ -241,11 +337,40 @@
   padding: 16px 24px;
   width: 100%;
 }
+
+/* Mobile dropdown overrides */
+.dropdown-toggle {
+  display: block;
+  padding: 16px 24px;
+  width: 100%;
+  text-align: left;
+}
+
+.dropdown-menu {
+  position: static;
+  transform: none;
+  background: rgba(255, 255, 255, 0.05);
+  border: none;
+  border-radius: 0;
+  min-width: 0;
+  padding: 0;
+  animation: none;
+}
+
+@keyframes dropdownFadeIn {
+  from { opacity: 1; transform: none; }
+  to { opacity: 1; transform: none; }
+}
+
+.dropdown-item {
+  padding: 12px 24px 12px 40px;
+  font-size: 0.95rem;
+}
 .links li a::before,
 .links li a::after {
   content: "";
   position: absolute;
-  width: 180px;
+  width: 240px;
   height: 2px;
   background: linear-gradient(to right, #1b489c, #9708e4);
   bottom: -5px;

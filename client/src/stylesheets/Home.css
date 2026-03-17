@@ -109,7 +109,7 @@
     align-items: center;
     min-height: 100vh;
     background-color: #102854;
-    padding: 0 20px;
+    
 }
 
 .intro-content {
@@ -329,7 +329,6 @@
     align-items: center;
     justify-content: center;
     text-align: center;
-    padding: 60px 20px;
     background: linear-gradient(180deg, #6A037B 0%, #000000 100%);
     width: 100%;
     box-sizing: border-box;
