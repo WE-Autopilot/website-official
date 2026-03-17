@@ -27,7 +27,7 @@ const roadmapData: RoadmapItem[] = [
     description:
       "WEAP hosted its first technical workshop introducing core machine learning and computer vision concepts through hands-on development of an image classifier using the MNIST dataset, a standard benchmark of handwritten digits (0–9) used to evaluate image recognition models.",
     status: "completed",
-    links: [{ label: "See Workshop", url: "/gallery" }],
+    links: [{ label: "See Workshop", url: "/gallery/workshop-1" }],
   },
   {
     id: 3,
@@ -45,7 +45,7 @@ const roadmapData: RoadmapItem[] = [
     description:
       "Software developed in simulation (previous competition) was transferred to physical RC cars, where teams implemented real-time perception, sensor fusion, and autonomous control on actual hardware.",
     status: "completed",
-    links: [{ label: "Event Highlights", url: "/gallery" }],
+    links: [{ label: "Event Highlights", url: "/gallery/race-rc" }],
   },
   {
     id: 5,
