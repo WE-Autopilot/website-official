@@ -99,6 +99,9 @@
 #Discord:hover {
   filter: drop-shadow(0 0 8px #9524d6);
 }
+#GitHub:hover {
+  filter: drop-shadow(0 0 8px #bbbbbb);
+}
 
 #SocialImages > img {
   /* prevents image squash*/
