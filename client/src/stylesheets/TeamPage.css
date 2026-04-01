@@ -1,6 +1,23 @@
 /* ── Base ── */
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    font-family: 'Jura', sans-serif;
+    
+    background: radial-gradient(
+        circle at center,
+        #6b037b 0%,
+        #3a0050 25%,
+        #1c0036 60%,
+        #000000 100%
+    );
+    background-attachment: fixed;
+    background-size: cover;
+}
+
 .team-page {
-  background: linear-gradient(180deg, #560d81 0%, #000000 100%);
+  /* background: linear-gradient(180deg, #560d81 0%, #000000 100%); */
   min-height: 80vh;
   display: flex;
   justify-content: center;
