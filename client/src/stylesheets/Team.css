@@ -1,3 +1,20 @@
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    font-family: 'Jura', sans-serif;
+    
+    background: radial-gradient(
+        circle at center,
+        #6b037b 0%,
+        #3a0050 25%,
+        #1c0036 60%,
+        #000000 100%
+    );
+    background-attachment: fixed;
+    background-size: cover;
+}
+
 .team-container {
   position: relative;
   min-height: 100vh;
@@ -29,7 +46,7 @@ h2{
 /* Background decoration container */
 .background-decoration {
   position: absolute;
-  background: linear-gradient(180deg, #6A037B 0%, #102854 100%);
+  /* background: linear-gradient(180deg, #6A037B 0%, #102854 100%); */
   top: 0;
   left: 0;
   width: 100%;
