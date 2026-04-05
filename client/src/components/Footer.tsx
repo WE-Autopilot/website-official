@@ -56,7 +56,21 @@ const Footer: React.FC = () => {
               />
             </a>
             <a
-              href="https://www.linkedin.com/company/we-autopilot-club"
+              href="https://github.com/WE-Autopilot"
+              id="GitHub"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="GitHub"
+            >
+              <img
+                src="/socials/github.svg"
+                width="40"
+                height="40"
+                alt="GitHub"
+              />
+            </a>
+            <a
+              href="https://www.linkedin.com/company/we-autopilot/posts/?feedView=all"
               id="LinkedIn"
               target="_blank"
               rel="noopener noreferrer"
