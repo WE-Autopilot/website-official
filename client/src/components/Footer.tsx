@@ -70,7 +70,7 @@ const Footer: React.FC = () => {
               />
             </a>
             <a
-              href="https://www.linkedin.com/company/we-autopilot-club"
+              href="https://www.linkedin.com/company/we-autopilot/posts/?feedView=all"
               id="LinkedIn"
               target="_blank"
               rel="noopener noreferrer"
