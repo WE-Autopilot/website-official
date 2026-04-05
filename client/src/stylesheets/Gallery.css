@@ -46,7 +46,7 @@ min-height: 100vh;
   height: 300px;
   background: rgba(255, 208, 0, 0.1);
   border-radius: 50%;
-  filter: blur(80px);
+  opacity: 0.2;
 }
 
 
@@ -59,7 +59,7 @@ min-height: 100vh;
   height: 500px;
   background: rgba(124, 58, 237, 0.2);
   border-radius: 50%;
-  filter: blur(100px);
+  opacity: 0.2;
 }
 
 

@@ -1,11 +1,10 @@
 import React, { useEffect } from "react";
 import "../stylesheets/Gallery.css";
-//bleh
 
 type MilestoneStatus = "completed" | "in progress" | "planned";
 type MilestonePhase =
   | "simulation"
-  | "physical testing"
+  | "physical-testing"
   | "competition"
   | "development"
   | "integration";
@@ -49,11 +48,11 @@ const MILESTONES: Milestone[] = [
     summary:
       "Hands-on introduction to simulation environments and control pipelines.",
     images: [
-      { src: "/Gallery/MNISTNumbers.png", 
+      { src: "/Gallery/WebP/MNISTNumbers.webp", 
         caption: "The MNIST dataset contains 70,000 images of handwritten digits (0-9), used to train neural networks." },
       //{ src: "/Gallery/NeutralNetworkLayers.png", caption: "blurb about neutral network layers." },
-      { src: "/Gallery/PresentationPanOut.jpeg", caption: "View of the workshop attendees engaged in the initial presentation." },
-      { src: "/Gallery/Presentation.JPG", caption: "Our Planning and Control lead Aly Ashour leading his portion of the workshop." },
+      { src: "/Gallery/WebP/PresentationPanOut.webp", caption: "View of the workshop attendees engaged in the initial presentation." },
+      { src: "/Gallery/WebP/Presentation.webp", caption: "Our Planning and Control lead Aly Ashour leading his portion of the workshop." },
     ],
   },
   {
@@ -65,13 +64,13 @@ const MILESTONES: Milestone[] = [
     summary:
       "Competitive evaluation of perception and planning stacks in simulation.",
     images: [
-      { src: "/Gallery/BlackTeamGroupPic.png", caption: "Group picture of the Black team." },
-      { src: "/Gallery/RedTeamGroupPic.png", caption: "Group picture of the Red team." },
-      { src: "/Gallery/AwardWinners.png", caption: "Group picture of the award winners from each team." },
-      { src: "/Gallery/BlackTeamAwardIan.png", caption: "Ian Tan, leader of the Black team recieving an award for his outstanding contributions." },
-      { src: "/Gallery/RedTeamAwardBen.png", caption: "Ben Namayandeh, leader of the Red team recieving an award for contributing the most lines of code." },
-      { src: "/Gallery/RedTeamAwardCady.jpeg", caption: "Cadence McGillicuddy, recieving an award for her exceptional dedication to the red team." },
-      { src: "/Gallery/BlackTeamAwardLogan.png", caption: "Logan Ouellette, recieving an award for his outstanding contributions to the black team." },
+      { src: "/Gallery/WebP/BlackTeamGroupPic.webp", caption: "Group picture of the Black team." },
+      { src: "/Gallery/WebP/RedTeamGroupPic.webp", caption: "Group picture of the Red team." },
+      { src: "/Gallery/WebP/AwardWinners.webp", caption: "Group picture of the award winners from each team." },
+      { src: "/Gallery/WebP/BlackTeamAwardIan.webp", caption: "Ian Tan, leader of the Black team recieving an award for his outstanding contributions." },
+      { src: "/Gallery/WebP/RedTeamAwardBen.webp", caption: "Ben Namayandeh, leader of the Red team recieving an award for contributing the most lines of code." },
+      { src: "/Gallery/WebP/RedTeamAwardCady.webp", caption: "Cadence McGillicuddy, recieving an award for her exceptional dedication to the red team." },
+      { src: "/Gallery/WebP/BlackTeamAwardLogan.webp", caption: "Logan Ouellette, recieving an award for his outstanding contributions to the black team." },
     ],
   },
   {
@@ -83,10 +82,10 @@ const MILESTONES: Milestone[] = [
     summary:
       "Transition from simulation to real-world autonomous racing conditions.",
     images: [
-      { src: "/Gallery/TrackAbove.png", caption: "An overhead view of the race track used in the competition, the track was set up in 3 different ways." },
-      { src: "/Gallery/TheCars2.jpeg", caption: "The 2 RC cars built and coded by each of the teams." },
-      { src: "/Gallery/Comp2GroupPic.png", caption: "Group photo of those who attended WEAP's RC competition." },
-      { src: "/Gallery/TheTrackScenic.jpeg", caption: "Race Results: With an average time of 45 seconds, the Black team came out on top with 60 pts! \n The Red team trailed behind with a total of 20 pts for completing 2 of the 3 tracks." },
+      { src: "/Gallery/WebP/TrackAbove.webp", caption: "An overhead view of the race track used in the competition, the track was set up in 3 different ways." },
+      { src: "/Gallery/WebP/TheCars2.webp", caption: "The 2 RC cars built and coded by each of the teams." },
+      { src: "/Gallery/WebP/Comp2GroupPic.webp", caption: "Group photo of those who attended WEAP's RC competition." },
+      { src: "/Gallery/WebP/TheTrackScenic.webp", caption: "Race Results: With an average time of 45 seconds, the Black team came out on top with 60 pts! \n The Red team trailed behind with a total of 20 pts for completing 2 of the 3 tracks." },
     ],
   },
 ];
@@ -120,7 +119,14 @@ export default function Gallery() {
           <div className="image-grid">
             {m.images.map((img, i) => (
               <figure key={i} className="gallery-item">
-                <img src={img.src} alt={img.caption} />
+                <img
+                  src={img.src}
+                  alt={img.caption}
+                  loading="lazy"
+                  decoding="async"
+                  width={300}
+                  height={200}
+                />
                 <figcaption>{img.caption}</figcaption>
               </figure>
             ))}
