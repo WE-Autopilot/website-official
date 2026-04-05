@@ -143,6 +143,24 @@ function Team() {
       ],
     },
     {
+      id: "build",
+      title: "Build Team",
+      leads: [
+        {
+          id: "lead-ritwick",
+          name: "Ritwick Vemula",
+          role: "Build Team Lead",
+          //image: NoPicture,
+        },
+        {
+          id: "lead-nathanael",
+          name: "Nathanael Cadman-Neu",
+          role: "Build Team Lead",
+          //image: NoPicture,
+        },
+      ],
+    },
+    {
       id: "web",
       title: "Web",
       leads: [
