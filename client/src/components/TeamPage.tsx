@@ -103,8 +103,8 @@ keymilestones: [
     description:
       "The Build Team handles the physical design, fabrication, and integration of hardware systems on our autonomous vehicle platform. They ensure all mechanical and electrical components work together reliably.",
     teamLeads: [
-      {name: "Tygo Crawley", imageURL: TygoImg},
-      {name: "Ian Tan", imageURL: IanImg}
+      {name: "Ritwick Vemula"},
+      {name: "Nathanael Cadman-Neu"}
     ],
     focusAreas: [
       "Vehicle platform integration",
