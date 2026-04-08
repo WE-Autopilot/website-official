@@ -2,31 +2,34 @@ import "../stylesheets/Home.css";
 import Roadmap from "./Roadmap";
 import Teams from "./Teams";
 import React from "react";
-
-
-
+import { Parallax } from "react-scroll-parallax";
 
 function Home() {
   const [isPaused, setIsPaused] = React.useState(false);
   return (
     <>
       <div className="logo-card">
-        <div className="logo-align">
-          <div className="logo">
-            <h2>WE</h2>
-            <img src="Logo_trimmed.svg" id="Logo" alt="Logo" />
-            <h2>AUTOPILOT</h2>
-          </div>
+        <div className="logo-card theme-lidar">
+          <Parallax className="hero-parallax" translateY={[-130, 130]}>
+            <div className="logo">
+              <h2>WE</h2>
+              <img src="Logo_trimmed.svg" id="Logo" alt="Logo" />
+              <h2>AUTOPILOT</h2>
+            </div>
 
-          <div className="line"></div>
-          <div className="logo-align">
-            <p>Western Engineering AutoPilot Club</p>
-          </div>
+            <div className="line"></div>
+            <div className="logo-align">
+              <p>Western Engineering AutoPilot Club</p>
+            </div>
+          </Parallax>
         </div>
       </div>
-
-      <div className="TeamPhoto" onMouseEnter={() => setIsPaused(true)} onMouseLeave={() => setIsPaused(false)}>
-        <div className={`carousel-container ${isPaused ? 'paused' : ""}`}>
+      <div
+        className="TeamPhoto"
+        onMouseEnter={() => setIsPaused(true)}
+        onMouseLeave={() => setIsPaused(false)}
+      >
+        <div className={`carousel-container ${isPaused ? "paused" : ""}`}>
           <img src="/FirstEverAGM.jpeg" alt="First Ever AGM Meeting" />
           <img src="/LastYearsExecs.png" alt="Last Year's Executives" />
           <img src="/TeamPhoto1.webp" alt="Team Photo" />
@@ -44,7 +47,6 @@ function Home() {
           <img src="/ThisYearsAGM.JPG" alt="This Year's AGM Meeting" />
         </div>
       </div>
-
       <div className="Buttons">
         <div className="RoadmapButton">
           <a href="#Roadmap">

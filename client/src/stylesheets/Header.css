@@ -35,9 +35,16 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  position: relative;
-  
-  
+  background: rgba(98, 12, 117, 0.4); /* 50% opacity */
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  box-shadow: 0px 4px 4px 5px rgba(0, 0, 0, 0.25);
+  top: 0;
+  left: 0;
+  right: 0;
+  position: fixed;
+  z-index: 100;
+
   /* height: auto; */
 }
 
@@ -55,15 +62,14 @@
 
 .links li a {
   position: relative;
-  display: inline-block; 
+  display: inline-block;
   text-decoration: none;
   color: #ffffff;
   font-weight: 600;
-  font-family: 'Jura', sans-serif;
+  font-family: "Jura", sans-serif;
   font-size: 1.2rem;
   z-index: 2; /* Ensure links are clickable */
 }
-
 
 .links li a::before,
 .links li a::after {
@@ -75,14 +81,12 @@
   bottom: -5px;
   left: 0;
   transform: scaleX(0);
-  transform-origin: center; 
+  transform-origin: center;
   transition: transform 0.4s ease-out;
 }
 
-
 .links li a:hover::before,
 .links li a:hover::after,
-
 .links li a:focus-visible::before,
 .links li a:focus-visible::after {
   transform: scaleX(1);
@@ -100,10 +104,10 @@
 }
 
 .nav {
-    order: 3;
-    position: absolute;
-    padding-left: 35%;
-    z-index: 2; /* Ensure nav is above vector */
+  order: 3;
+  position: absolute;
+  padding-left: 35%;
+  z-index: 2; /* Ensure nav is above vector */
 }
 
 #headervector {
@@ -111,7 +115,7 @@
   position: absolute;
   top: 0;
   right: 0;
-  height: 100%;     
+  height: 100%;
   width: auto;
   z-index: 1; /* Place vector behind links */
   pointer-events: none; /* Prevent vector from catching clicks */
@@ -178,7 +182,7 @@
   cursor: pointer;
   color: #ffffff;
   font-weight: 600;
-  font-family: 'Jura', sans-serif;
+  font-family: "Jura", sans-serif;
   font-size: 1.2rem;
   padding: 0;
   position: relative;
@@ -240,7 +244,7 @@
   padding: 10px 20px;
   color: #ffffff;
   text-decoration: none;
-  font-family: 'Jura', sans-serif;
+  font-family: "Jura", sans-serif;
   font-size: 1rem;
   font-weight: 500;
   white-space: nowrap;
@@ -299,91 +303,100 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0,0,0,0.5);
+    background-color: rgba(0, 0, 0, 0.5);
     z-index: 998;
     animation: fadeIn 0.3s ease;
   }
   @keyframes fadeIn {
-    from { opacity: 0;}
-    to { opacity: 1;}
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
   }
 
-  .links{
+  .links {
     gap: 0;
     margin-top: 80px;
   }
-.nav .links {
-  display: flex;
-  flex-direction: column;
-  opacity: 0;
-  width: 100%;
-  pointer-events: none;
-  transition: opacity 0.4s ease;
-}
+  .nav .links {
+    display: flex;
+    flex-direction: column;
+    opacity: 0;
+    width: 100%;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+  }
 
-.nav.open .links {
-  padding: 0;
-  opacity: 1;
-  pointer-events: auto;
-  animation: slideDown 0.5s ease forwards;
-}
+  .nav.open .links {
+    padding: 0;
+    opacity: 1;
+    pointer-events: auto;
+    animation: slideDown 0.5s ease forwards;
+  }
 
-.links li {
-  margin-right: 0;
-  width: 100%;
-}
-.links li a {
-  display: block;
-  padding: 16px 24px;
-  width: 100%;
-}
+  .links li {
+    margin-right: 0;
+    width: 100%;
+  }
+  .links li a {
+    display: block;
+    padding: 16px 24px;
+    width: 100%;
+  }
 
-/* Mobile dropdown overrides */
-.dropdown-toggle {
-  display: block;
-  padding: 16px 24px;
-  width: 100%;
-  text-align: left;
-}
+  /* Mobile dropdown overrides */
+  .dropdown-toggle {
+    display: block;
+    padding: 16px 24px;
+    width: 100%;
+    text-align: left;
+  }
 
-.dropdown-menu {
-  position: static;
-  transform: none;
-  background: rgba(255, 255, 255, 0.05);
-  border: none;
-  border-radius: 0;
-  min-width: 0;
-  padding: 0;
-  animation: none;
-}
+  .dropdown-menu {
+    position: static;
+    transform: none;
+    background: rgba(255, 255, 255, 0.05);
+    border: none;
+    border-radius: 0;
+    min-width: 0;
+    padding: 0;
+    animation: none;
+  }
 
-@keyframes dropdownFadeIn {
-  from { opacity: 1; transform: none; }
-  to { opacity: 1; transform: none; }
-}
+  @keyframes dropdownFadeIn {
+    from {
+      opacity: 1;
+      transform: none;
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
 
-.dropdown-item {
-  padding: 12px 24px 12px 40px;
-  font-size: 0.95rem;
-}
-.links li a::before,
-.links li a::after {
-  content: "";
-  position: absolute;
-  width: 240px;
-  height: 2px;
-  background: linear-gradient(to right, #1b489c, #9708e4);
-  bottom: -5px;
-  left: 0;
-  transform: scaleX(0);
-  transform-origin: center; 
-  transition: transform 0.4s ease-out;
-}
+  .dropdown-item {
+    padding: 12px 24px 12px 40px;
+    font-size: 0.95rem;
+  }
+  .links li a::before,
+  .links li a::after {
+    content: "";
+    position: absolute;
+    width: 240px;
+    height: 2px;
+    background: linear-gradient(to right, #1b489c, #9708e4);
+    bottom: -5px;
+    left: 0;
+    transform: scaleX(0);
+    transform-origin: center;
+    transition: transform 0.4s ease-out;
+  }
 
-/* .nav.closing .links {
+  /* .nav.closing .links {
   opacity: 0;
   pointer-events: none;
   animation: slideUp 0.5s ease forwards;
 } */
-
 }
