@@ -27,33 +27,18 @@ const App: React.FC = () => {
         <main className="content">
           <ParallaxProvider>
             <Routes>
+              <Route path="/" element={<Home />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/join" element={<Join />} />
               <Route path="/Team" element={<Team />} />
               <Route path="/sponsors" element={<Sponsors />} />
               <Route path="/gallery" element={<Gallery />} />
               {/* <Route path="/competition" element={<Competition />} /> */}
-              <Route path="/" element={<Home />} />
               <Route path="/teams/:teamSlug" element={<TeamPage />} />
-              <Route
-                path="/UnderConstruction"
-                element={<UnderConstruction />}
+              <Route path="/UnderConstruction" element={<UnderConstruction />}
               />
             </Routes>
           </ParallaxProvider>
-          <Routes>
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/join" element={<Join />} />
-            <Route path="/Team" element={<Team />} />
-            <Route path="/sponsors" element={<Sponsors />} />
-            <Route path="/gallery" element={<Gallery />} />
-            <Route path="/gallery/workshop-1" element={<Gallery />} />
-            <Route path="/galler/sim-rc" element={<Gallery />} />
-            <Route path="/gallery/race-rc" element={<Gallery />} />
-            <Route path="/" element={<Home />} />
-            <Route path="/teams/:teamSlug" element={<TeamPage />} />
-            <Route path="/UnderConstruction" element={<UnderConstruction />} />
-          </Routes>
         </main>
 
         <Footer />
