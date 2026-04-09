@@ -23,6 +23,7 @@
     "http-errors": "^2.0.0",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.15.1",
+    "react-scroll-parallax": "^3.5.0",
     "zod": "^3.25.57"
   },
   "devDependencies": {
