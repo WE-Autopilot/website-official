@@ -35,6 +35,8 @@ export interface ValidationRules {
   program: (t: TFunction) => Record<string, any>;
   team: (t: TFunction) => Record<string, any>;
   resumeUrl: (t: TFunction, uploadMethod: string) => Record<string, any>;
+  discordUsername: (t: TFunction) => Record<string, any>;
+  screenshot: (t: TFunction) => Record<string, any>;
 }
 
 /**

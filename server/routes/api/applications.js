@@ -51,7 +51,8 @@ router.get("/:id", protect, authorize("admin"), getApplication);
  */
 router.post(
   "/",
-  upload.single("resume"), // This will process one file under the field name 'resume'
+  // upload.single("resume"), // This will process one file under the field name 'resume'
+  upload.single("screenshot"),
   apiLimiter,
   applicationValidationRules,
   createApplication

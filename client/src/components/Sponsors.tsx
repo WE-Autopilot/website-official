@@ -65,7 +65,18 @@ const Sponsors: React.FC = () => {
 
                 <div className="contact-box">
                     <p><strong>Contact:</strong> Ethan Greene</p>
-                    <p><strong>Email:</strong> egreene4@uwo.ca</p>
+                    <p><strong>Email:</strong>
+                        <a 
+                            href="mailto:egreene4@uwo.ca"
+                            style={{ 
+                                color: '#007bff',
+                                textDecoration: 'underline',
+                                fontWeight: 'bold',
+                                cursor: 'pointer'
+                            }}>
+                            egreene4@uwo.ca
+                        </a>
+                    </p>
                 </div>
             </section>    
 
