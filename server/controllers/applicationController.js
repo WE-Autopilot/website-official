@@ -105,10 +105,15 @@ exports.createApplication = async (req, res) => {
     };
 
     // If a file was uploaded, add its path to the data
+    // if (req.file) {
+    //   applicationData.resumeData = req.file.path; // e.g., 'uploads/resume-1627843... .pdf'
+    // } else if (req.body.resumeMethod === "link") {
+    //   applicationData.resumeData = req.body.resumeUrl;
+    // }
+
+    // handle screenshot upload
     if (req.file) {
-      applicationData.resumeData = req.file.path; // e.g., 'uploads/resume-1627843... .pdf'
-    } else if (req.body.resumeMethod === "link") {
-      applicationData.resumeData = req.body.resumeUrl;
+      applicationData.screenshotPath = req.file.path;
     }
 
     // Create application in database with the file path

@@ -39,10 +39,24 @@ const ApplicationSchema = new mongoose.Schema(
       trim: true,
     },
     team: {
-      type: String,
+      type: [String],
       required: [true, "Team selection is required"],
       trim: true,
     },
+
+    discordUsername: {
+      type: String,
+      required: [true, "Discord username is required"],
+      trim: true,
+      minlength: 2,
+      maxlength: 32,
+    },
+
+    screenshotPath: {
+      type: String,
+      required: [true, "Payment screenshot is required"],
+    },
+
     resumeUrl: {
       type: String,
       validate: {

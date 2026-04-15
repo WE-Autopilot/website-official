@@ -29,13 +29,18 @@ const resources = {
       "team.perception.description":
         "The perception team works with machine learning and computer vision models to help the car detect and interpret its environment (lanes, stop signs, obstacles).",
 
-      "team.m&p.title": "Mapping and Localization",
-      "team.m&p.description":
+      "team.m&l.title": "Mapping and Localization",
+      "team.m&l.description":
         "Mapping and Localization (M&P) Team implements SLAM (Simultaneous Localization and Mapping) so the car can accurately track its position on the track.",
 
       "team.p&c.title": "Planning and Control",
       "team.p&c.description":
         "Planning and Control (P&C) Team designs decision tree logic and other control algorithms that allow the car to plan safe trajectories and execute smooth driving.",
+
+      "team.build.title": "Build Team",
+      "team.build.description":
+        "Planning and Control (P&C) Team designs decision tree logic and other control algorithms that allow the car to plan safe trajectories and execute smooth driving.",
+
 
       // Application form
       "application.title": "Join WE Autopilot",
@@ -54,6 +59,13 @@ const resources = {
       "application.maxSize": "Maximum file size: 5MB",
       "application.chooseFile": "Choose File",
       "application.submitting": "Submitting...",
+      "application.discordUsername": "Discord Username",
+      "application.screenshotTitle": "Proof of Membership Payment",
+      "application.screenshotDesc": "Please upload a screenshot of your payment confirmation for the membership fee. This is required to verify your payment and complete your application.",
+      "application.browse": "Browse your device",
+      "application.savedData": "Do you want to load your previous form?",
+      "application.restore": "Restore",
+      "application.discard": "Discard",
 
       // Success messages
       "success.title": "Application Submitted!",
@@ -69,6 +81,12 @@ const resources = {
       "error.schoolEmail": "Please enter a valid UWO email address",
       "error.studentId": "Please enter a valid student ID (8-10 digits)",
       "error.resumeRequired": "Please upload your resume",
+      "error.teamRequired": "Please select at least one team",
+      // Discord username validation error
+      "error.discordUsernameLength": "Discord username must be between 2 and 32 characters long", 
+      "error.discordUsernameInvalid": "Discord username invalid",
+      // Image upload errors
+      "error.screenshotRequired": "Screenshot is required"
     },
   },
   fr: {

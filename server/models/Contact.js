@@ -3,6 +3,7 @@
  * Based on the client-side Yup schema for data consistency
  */
 const mongoose = require("mongoose");
+// const { required } = require("zod/v4-mini");
 
 const ContactSchema = new mongoose.Schema(
   {
@@ -13,6 +14,7 @@ const ContactSchema = new mongoose.Schema(
       minlength: [2, "Name must be at least 2 characters"],
       maxlength: [100, "Name cannot exceed 100 characters"],
     },
+
     email: {
       type: String,
       required: [true, "Email is required"],
@@ -22,6 +24,7 @@ const ContactSchema = new mongoose.Schema(
       maxlength: [100, "Email cannot exceed 100 characters"],
       index: true,
     },
+
     phone: {
       type: String,
       match: [
@@ -30,6 +33,7 @@ const ContactSchema = new mongoose.Schema(
       ],
       maxlength: [20, "Phone number cannot exceed 20 characters"],
     },
+
     subject: {
       type: String,
       required: [true, "Subject is required"],
@@ -37,6 +41,7 @@ const ContactSchema = new mongoose.Schema(
       minlength: [2, "Subject must be at least 2 characters"],
       maxlength: [100, "Subject cannot exceed 100 characters"],
     },
+
     message: {
       type: String,
       required: [true, "Message is required"],
@@ -44,32 +49,64 @@ const ContactSchema = new mongoose.Schema(
       minlength: [10, "Message must be at least 10 characters"],
       maxlength: [1000, "Message cannot exceed 1000 characters"],
     },
+
+    SchoolEmail: {
+      type: String,
+      required: [true, "School email is required"],
+      trim: true,
+      lowercase: true,
+      match: [
+        /^[^\s@]+@(?:[\w-]+\.)*uwo\.ca$/, 
+        "Please use a valid Western University email address (@uwo.ca)"
+      ],
+    },
+
+    discordUsername: {
+      type: String,
+      required: [true, "Discord username is required"],
+      trim: true,
+      lowercase: true,
+      match: [/^(?!.*\.\.)[a-z0-9_.]{2,32}$/, "Invalid Discord username format"],
+    },
+
+    screenshot: {
+      type: String,
+      required: [true, "Screenshot is required"],
+    },
+
     // File handling fields
     fileName: {
       type: String,
     },
+
     fileType: {
       type: String,
     },
+
     filePath: {
       type: String,
     },
+
     fileSize: {
       type: Number,
     },
+
     // Metadata fields
     status: {
       type: String,
       enum: ["new", "read", "responded", "archived"],
       default: "new",
     },
+
     ipAddress: {
       type: String,
     },
+
     userAgent: {
       type: String,
     },
   },
+  
   {
     timestamps: true,
     toJSON: { virtuals: true },
