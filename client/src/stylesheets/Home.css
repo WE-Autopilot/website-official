@@ -1,96 +1,230 @@
-@import url('https://fonts.googleapis.com/css2?family=Jura:wght@300;700&family=Inter:wght@600&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Jura:wght@300;700&family=Inter:wght@600&display=swap");
+
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    font-family: 'Jura', sans-serif;
+    
+    background: radial-gradient(
+        circle at center,
+        #6b037b 0%,
+        #3a0050 25%,
+        #1c0036 60%,
+        #000000 100%
+    );
+    background-attachment: fixed;
+    background-size: cover;
+}
 
 .logo-card {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: auto;
-    width: auto;
-    min-width: 100%;
-    background: linear-gradient(180deg, #000000 0%, #531999 100%);
-    overflow-x: hidden;
-    margin-top: -70px;
-    padding-top: 70px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 120vh;
+  width: auto;
+  min-width: 100%;
+  /* background: linear-gradient(180deg, #000000 0%, #531999 100%); */
+  overflow: hidden;
+  position: relative;
+}
+
+.logo-card::before,
+.logo-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.logo-card::before {
+  z-index: 0;
+}
+
+.logo-card::after {
+  z-index: 1;
+}
+
+/* Lidar Theme */
+.logo-card.theme-lidar {
+  background:
+    radial-gradient(
+      circle at 50% 40%,
+      rgba(160, 92, 255, 0.08) 0%,
+      transparent 45%
+    ),
+    linear-gradient(180deg, #01040a 0%, #0a1c36 55%, #05274f 100%);
+}
+
+.logo-card.theme-lidar::before {
+  background: repeating-radial-gradient(
+    circle at 50% 45%,
+    rgba(184, 92, 255, 0.18) 0 2px,
+    transparent 2px 48px
+  );
+}
+
+.logo-card.theme-lidar::after {
+  border-radius: 50%;
+  background: conic-gradient(
+    from 0deg at 50% 45%,
+
+    transparent 0deg,
+    rgba(206, 92, 255, 0.02) 4deg,
+    rgba(206, 92, 255, 0.18) 18deg,
+    rgba(206, 92, 255, 0.02) 32deg,
+    transparent 42deg,
+    transparent 360deg
+  );
+  -webkit-mask-image: radial-gradient(
+    circle at 50% 45%,
+    rgba(0, 0, 0, 1) 0 36%,
+    rgba(0, 0, 0, 0.65) 40%,
+    rgba(0, 0, 0, 0) 48%
+  );
+  mask-image: radial-gradient(
+    circle at 50% 45%,
+    rgba(0, 0, 0, 1) 0 36%,
+    rgba(0, 0, 0, 0.65) 40%,
+    rgba(0, 0, 0, 0) 48%
+  );
+  animation: lidarSweep 8s linear infinite;
+  transform-origin: 50% 45%;
+}
+
+@keyframes lidarSweep {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .logo-align {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  max-width: 100%;
+  position: relative;
+  z-index: 2;
+}
+
+.hero-parallax {
+  width: 100%;
+
+  will-change: transform;
 }
 
 .logo-align p {
-    margin-top: 15px;
-    font-weight: 700;
-    font-size: 36px;
-    font-family: "Jura", serif;
-    text-align: center;
-    background: linear-gradient(90deg, #9253c8 0%, #c4c4c4 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    text-fill-color: transparent;
+  margin-top: 15px;
+  font-weight: 700;
+  font-size: 36px;
+  font-family: "Jura", serif;
+  text-align: center;
+  background: linear-gradient(90deg, #9253c8 0%, #c4c4c4 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .logo {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    max-width: 100%;
-    flex-wrap: wrap;
-    flex-direction: row;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 100%;
+  flex-wrap: wrap;
+  flex-direction: row;
 }
 
 .logo img {
-    transform: scale(0.8);
-    padding-top: 75px;
+  transform: scale(0.8);
+  padding-top: 75px;
 }
 
 .logo h2 {
-    color: #FFDE38;
-    font-size: 89px;
-    margin-bottom: 1%;
-    text-align: center;
-    font-family: 'Jura', sans-serif;
+  color: #ffde38;
+  font-size: 89px;
+  margin-bottom: 1%;
+  text-align: center;
+  font-family: "Jura", sans-serif;
 }
 
 .line {
-    margin-top: 0;
-    margin-bottom: 0;
-    width: 100%;
-    max-width: 970px;
-    height: 5px;
-    background: #FFDE38;
-    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  margin-top: 0;
+  margin-bottom: 0;
+  margin-left: auto;
+  margin-right: auto;
+  align-self: center;
+  width: 100%;
+  max-width: 970px;
+  height: 5px;
+  background: #ffde38;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
 
 /* TEAM PHOTO STYLING */
 
 .TeamPhoto {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    padding: 60px 20px;
-    box-sizing: border-box;
-    background: linear-gradient(180deg, #000000 0%, #8b2eb5 100%);
+  overflow: hidden;
+  width: 100%;
+  height: 350px;
+  --webkit-mask-image: linear-gradient(
+    to right,
+    transparent,
+    0%,
+    black 8%,
+    black 92%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 8%,
+    black 92%,
+    transparent 100%
+  );
+}
+.carousel-container {
+  padding: 20px 0;
+  display: flex;
+  width: max-content;
+  animation: scroll 40s linear infinite;
 }
 
-.TeamPhoto img {
-    width: 100%;
-    max-width: 976px;
-    height: auto;
-    border-radius: 15px;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3), 0 0 40px rgba(255, 222, 56, 0.2);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+.carousel-container.paused {
+  animation-play-state: paused;
 }
 
-.TeamPhoto img:hover {
-    transform: scale(1.02);
-    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4), 0 0 60px rgba(255, 222, 56, 0.3);
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.carousel-container img {
+  flex-shrink: 0;
+  box-shadow: 0 4px 15px rgba(119, 5, 195, 0.8);
+  width: 400px;
+  height: auto;
+  border-radius: 8px;
+  object-fit: cover;
+  margin-right: 1rem;
+  transition:
+    transform 0.3s ease-in-out,
+    border-color 0.3s ease-in-out;
+}
+
+.carousel-container img:hover {
+  transform: scale(1.05);
+  border-color: #ffde38;
+  border-width: 4px;
+  border-style: solid;
 }
 
 /* POLYCARD STYLING */
@@ -98,37 +232,36 @@
 /* INTRO CARD */
 
 .intro-section {
-    width: 100%;
-    max-width: 976px;
+  width: 100%;
+  max-width: 976px;
 }
 
 .home-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    background-color: #102854;
-    padding: 0 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #102854;
 }
 
 .intro-content {
-    height: 318px;
-    background-image: url("/home/IMG_4885.jpeg");
-    border-radius: 15px;
-    padding: 40px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    margin-bottom: 40px;
-    background-size: cover;
-    background-position: center;  
-    background-repeat: no-repeat;
-    position: relative;
+  height: 318px;
+  background-image: url("/home/IMG_4885.jpeg");
+  border-radius: 15px;
+  padding: 40px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-bottom: 40px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
 }
 
-.intro-overlay{
+.intro-overlay {
   position: absolute;
   inset: 0;
   background-color: rgba(16, 40, 84, 0.6);
@@ -137,156 +270,153 @@
 }
 
 .title {
-    width: 354px;
-    height: 51px;
-    font-family: 'Jura', sans-serif;
-    font-weight: 700;
-    font-size: 32px;
-    color: #ffffff;
-    margin-bottom: 20px;
-    z-index: 1;
+  width: 354px;
+  height: 51px;
+  font-family: "Jura", sans-serif;
+  font-weight: 700;
+  font-size: 32px;
+  color: #ffffff;
+  margin-bottom: 20px;
+  z-index: 1;
 }
 
 .divider {
-    width: 60%;
-    height: 0;
-    border: 3px solid #ffffff;
-    margin: 10px 0;
-    z-index: 1;
+  width: 60%;
+  height: 0;
+  border: 3px solid #ffffff;
+  margin: 10px 0;
+  z-index: 1;
 }
 
 .description {
-    font-family: 'Jura', sans-serif;
-    font-weight: 300;
-    font-size: 20px;
-    color: #f8f5ff;
-    z-index: 1;
+  font-family: "Jura", sans-serif;
+  font-weight: 300;
+  font-size: 20px;
+  color: #f8f5ff;
+  z-index: 1;
 }
 
 /* MISSION AND COMMITMENTS SECTION */
 
 .mission-section,
 .commitments-section {
-    width: 100%;
-    max-width: 976px;
-    margin-bottom: 50px;
+  width: 100%;
+  max-width: 976px;
+  margin-bottom: 50px;
 }
-
 
 /* SHAPE SECTION */
 .polycard1,
 .polycard2 {
-    width: 100%;
-    max-width: 976px;
-    height: 197px;
-    position: relative;
-    margin-bottom: 50px;
+  width: 100%;
+  max-width: 976px;
+  height: 197px;
+  position: relative;
+  margin-bottom: 50px;
 }
 
 .mission-shape,
 .commitments-shape {
-    display: flex;
-    width: 100%;
-    height: 100%;
-    margin-top: 40px;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  margin-top: 40px;
 }
 
 .mission-content {
-    width: 80%;
+  width: 80%;
 }
 
 .mission-content h2,
 .commitments-content h2 {
-    font-family: 'Jura', sans-serif;
-    font-size: 20px;
-    font-weight: 700;
-    margin-bottom: 10px;
+  font-family: "Jura", sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 10px;
 }
 
 .left-mission-header {
-    margin-bottom: 0;
-    margin-top: 4%;
+  margin-bottom: 0;
+  margin-top: 4%;
 }
 
 .left-mission-p {
-    margin-top: 3%;
+  margin-top: 3%;
 }
 
-.commitments-content p, .mission-content p {
-    font-family: 'Jura', sans-serif;
-    font-size: 16px;
-    font-weight: 300;
+.commitments-content p,
+.mission-content p {
+  font-family: "Jura", sans-serif;
+  font-size: 16px;
+  font-weight: 300;
 }
 
 .mission-content {
-    position: relative;
-    display: flex;
-    flex-direction: column;
+  position: relative;
+  display: flex;
+  flex-direction: column;
 }
 
 .mission-content h2,
 .mission-content p {
-    text-align: left;
-    padding-left: 3%;
-    color: #6b047b;
+  text-align: left;
+  padding-left: 3%;
+  color: #6b047b;
 }
 
 .commitments-content {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    width: 80%;
-    margin-left: 18%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 80%;
+  margin-left: 18%;
 }
 
 .commitments-content h2,
 .commitments-content p {
-    text-align: right;
-    color: #6b047b;
+  text-align: right;
+  color: #6b047b;
 }
 
-.leftpoly
-{
-    width: 575px;
-    background-color: #FFE561;
-    height: 213px;
-    clip-path: polygon(100% 100%, 0% 100%, 0% 0%, 65% 0%);
-    margin-right: -170px;
+.leftpoly {
+  width: 575px;
+  background-color: #ffe561;
+  height: 213px;
+  clip-path: polygon(100% 100%, 0% 100%, 0% 0%, 65% 0%);
+  margin-right: -170px;
 }
 
-.rightpoly
-{
-    width: 575px;
-    height: 100%;
-    height: 213px;
-    clip-path: polygon(100% 100%, 35% 100%, 0% 0%, 100% 0%);
-    margin: 0 auto;
-    background-image: url("/home/IMG_5393.jpeg");
-    background-size: cover;
-    background-position: -34% 59%;  
-    background-repeat: no-repeat;
+.rightpoly {
+  width: 575px;
+  height: 100%;
+  height: 213px;
+  clip-path: polygon(100% 100%, 35% 100%, 0% 0%, 100% 0%);
+  margin: 0 auto;
+  background-image: url("/home/IMG_5393.jpeg");
+  background-size: cover;
+  background-position: -34% 59%;
+  background-repeat: no-repeat;
 }
 
-.leftpoly2{
-    width: 575px;
-    height: 213px;
-    clip-path: polygon(65% 100%, 0% 100%, 0% 0%, 100% 0%);
-    margin-right: -170px;
-    background-image: url("/home/IMG_5372.png");
-    background-size: cover;
-    background-position: -34% 59%;  
-    background-repeat: no-repeat;
+.leftpoly2 {
+  width: 575px;
+  height: 213px;
+  clip-path: polygon(65% 100%, 0% 100%, 0% 0%, 100% 0%);
+  margin-right: -170px;
+  background-image: url("/home/IMG_5372.png");
+  background-size: cover;
+  background-position: -34% 59%;
+  background-repeat: no-repeat;
 }
 
-.rightpoly2
-{
-    width: 575px;
-    height: 100%;
-    height: 213px;
-    clip-path: polygon(100% 100%, 0% 100%, 35% 0%, 100% 0%);
-    margin: 0 auto;
-    background-color: #FFE561;
+.rightpoly2 {
+  width: 575px;
+  height: 100%;
+  height: 213px;
+  clip-path: polygon(100% 100%, 0% 100%, 35% 0%, 100% 0%);
+  margin: 0 auto;
+  background-color: #ffe561;
 }
 
 .color-overlay {
@@ -298,158 +428,160 @@
 }
 
 .flt_svg {
-    visibility: hidden; 
-    position: absolute;
-    width: 0px;
-    height: 0px;
+  visibility: hidden;
+  position: absolute;
+  width: 0px;
+  height: 0px;
 }
 
-.box_parent
-{
-    filter: url('#flt_tag');
-    height: 213px
+.box_parent {
+  filter: url("#flt_tag");
+  height: 213px;
 }
 
-.Buttons{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    gap: 75px;
-    padding: 40px 20px;
-    box-sizing: border-box;
-    background-color: #000000;
+.Buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  gap: 75px;
+  padding: 20px;
+  box-sizing: border-box;
+  /* background-color: #000000; */
 }
 
 /* ABOUT US SECTION */
 .About-Us {
-    font-family: 'Jura', sans-serif;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 60px 20px;
-    background: linear-gradient(180deg, #6A037B 0%, #000000 100%);
-    width: 100%;
-    box-sizing: border-box;
+  font-family: "Jura", sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  /* background: linear-gradient(180deg, #6a037b 0%, #000000 100%); */
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .About-Us h2 {
-    font-weight: 700;
-    font-size: 48px;
-    margin-bottom: 30px;
-    color: #FFDE38;
-    letter-spacing: 0.1em;
+  font-weight: 700;
+  font-size: 48px;
+  margin-bottom: 30px;
+  color: #ffde38;
+  letter-spacing: 0.1em;
 }
 
 .About-Us p {
-    font-weight: 300;
-    font-size: 18px;
-    line-height: 1.8;
-    color: #f8f5ff;
-    max-width: 800px;
-    margin: 0 auto 40px auto;
+  font-weight: 300;
+  font-size: 18px;
+  line-height: 1.8;
+  color: #f8f5ff;
+  max-width: 800px;
+  margin: 0 auto 40px auto;
 }
 
 .About-Us .See-More-Button {
-    margin-top: 10px;
-    background: linear-gradient(135deg, #FFDE38 0%, #FFE561 100%);
+  margin-top: 10px;
+  background: linear-gradient(135deg, #ffde38 0%, #ffe561 100%);
 }
 
 .About-Us .See-More-Button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0px 6px 12px 0px rgba(255, 222, 56, 0.5);
+  transform: translateY(-2px);
+  box-shadow: 0px 6px 12px 0px rgba(255, 222, 56, 0.5);
 }
 
 .About-Us .See-More-Button a {
-    text-decoration: none;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  text-decoration: none;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .About-Us .See-More-Button span {
-    font-family: 'Jura', sans-serif;
-    font-weight: 600;
-    font-size: 15px;
-    letter-spacing: 0.05em;
-    color: #102854;
+  font-family: "Jura", sans-serif;
+  font-weight: 600;
+  font-size: 15px;
+  letter-spacing: 0.05em;
+  color: #102854;
 }
 .See-More-Button {
-    width: 200px;
-    height: 50px;
-    background: linear-gradient(118.41deg, #102854 35.65%, #925fbb 100%);
-    backdrop-filter: blur(4px);
-    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 8px;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-    cursor: pointer;
+  width: 200px;
+  height: 50px;
+  background: linear-gradient(118.41deg, #102854 35.65%, #925fbb 100%);
+  backdrop-filter: blur(4px);
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+  cursor: pointer;
 }
 
 .RoadmapButton,
 .TeamsButtons {
-    width: 250px;
-    height: 50px;
-    backdrop-filter: blur(4px);
-    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 8px;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-    cursor: pointer;
+  width: 250px;
+  height: 50px;
+  backdrop-filter: blur(4px);
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+  cursor: pointer;
 }
 
 .RoadmapButton {
-    background: linear-gradient(135deg, #FFDE38 0%, #FFE561 100%);
+  background: linear-gradient(135deg, #ffde38 0%, #ffe561 100%);
 }
 
 .RoadmapButton:hover {
-    transform: translateY(-2px);
-    box-shadow: 0px 6px 12px 0px rgba(255, 222, 56, 0.5);
+  transform: translateY(-2px);
+  box-shadow: 0px 6px 12px 0px rgba(255, 222, 56, 0.5);
 }
 
 .TeamsButtons {
-    background: linear-gradient(135deg, #6A037B 0%, #EA00FF 100%);
+  background: linear-gradient(135deg, #6a037b 0%, #ea00ff 100%);
 }
 
 .TeamsButtons:hover {
-    transform: translateY(-2px);
-    box-shadow: 0px 6px 12px 0px rgba(234, 0, 255, 0.4);
+  transform: translateY(-2px);
+  box-shadow: 0px 6px 12px 0px rgba(234, 0, 255, 0.4);
 }
 
 .RoadmapButton a,
 .TeamsButtons a {
-    text-decoration: none;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  text-decoration: none;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .RoadmapButton span {
-    font-family: 'Jura', sans-serif;
-    font-weight: 600;
-    font-size: 15px;
-    letter-spacing: 0.05em;
-    color: #102854;
-    text-align: center;
+  font-family: "Jura", sans-serif;
+  font-weight: 600;
+  font-size: 15px;
+  letter-spacing: 0.05em;
+  color: #102854;
+  text-align: center;
 }
 
 .TeamsButtons span {
-    font-family: 'Jura', sans-serif;
-    font-weight: 600;
-    font-size: 15px;
-    letter-spacing: 0.05em;
-    color: white;
-    text-align: center;
+  font-family: "Jura", sans-serif;
+  font-weight: 600;
+  font-size: 15px;
+  letter-spacing: 0.05em;
+  color: white;
+  text-align: center;
 }
 
 /* .join-section {
@@ -506,114 +638,114 @@
 
 /* Image Styles */
 .group-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 15px;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 15px;
 }
 
 .learning-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 15px;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 15px;
 }
 
 /* Responsive Styles */
 @media only screen and (max-width: 850px) {
-    .logo-card {
-        overflow-x: hidden;
-        width: 100%;
-    }
+  .logo-card {
+    overflow-x: hidden;
+    width: 100%;
+  }
 
-    .logo h2 {
-        font-size: 3rem;
-    }
+  .logo h2 {
+    font-size: 3rem;
+  }
 
-    .logo img {
-        transform: scale(0.6);
-    }
+  .logo img {
+    transform: scale(0.6);
+  }
 
-    .logo-align p {
-        font-size: 24px;
-        padding: 0 10px;
-    }
+  .logo-align p {
+    font-size: 24px;
+    padding: 0 10px;
+  }
 
-    .line {
-        height: 3px;
-        width: 90%;
-    }
+  .line {
+    height: 3px;
+    width: 90%;
+  }
 
-    .content {
-        height: auto; 
-        padding: 20px;
-    }
+  .content {
+    height: auto;
+    padding: 20px;
+  }
 
-    .title {
-        font-size: 24px;
-        width: auto; 
-    }
+  .title {
+    font-size: 24px;
+    width: auto;
+  }
 
-    .description {
-        font-size: 16px;
-    }
+  .description {
+    font-size: 16px;
+  }
 
-    .mission-content h2,
-    .commitments-content h2 {
-        font-size: 18px;
-    }
+  .mission-content h2,
+  .commitments-content h2 {
+    font-size: 18px;
+  }
 
-    .mission-content p,
-    .commitments-content p {
-        font-size: 14px;
-    }
+  .mission-content p,
+  .commitments-content p {
+    font-size: 14px;
+  }
 
-    .Buttons {
-        flex-direction: column;
-        gap: 15px;
-    }
+  .Buttons {
+    flex-direction: column;
+    gap: 15px;
+  }
 
-    .RoadmapButton,
-    .TeamsButtons {
-        width: 180px;
-        height: 45px;
-    }
+  .RoadmapButton,
+  .TeamsButtons {
+    width: 180px;
+    height: 45px;
+  }
 
-    .RoadmapButton span,
-    .TeamsButtons span {
-        font-size: 13px;
-    }
+  .RoadmapButton span,
+  .TeamsButtons span {
+    font-size: 13px;
+  }
 
-    .About-Us {
-        padding: 40px 15px;
-    }
+  .About-Us {
+    padding: 40px 15px;
+  }
 
-    .About-Us h2 {
-        font-size: 32px;
-        margin-bottom: 20px;
-    }
+  .About-Us h2 {
+    font-size: 32px;
+    margin-bottom: 20px;
+  }
 
-    .About-Us p {
-        font-size: 16px;
-        line-height: 1.6;
-        margin-bottom: 30px;
-    }
+  .About-Us p {
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 30px;
+  }
 
-    .polycard1,
-    .polycard2 {
-        height: auto; 
-    }
+  .polycard1,
+  .polycard2 {
+    height: auto;
+  }
 
-    .mission-shape,
-    .commitments-shape {
-        flex-direction: column; 
-    }
+  .mission-shape,
+  .commitments-shape {
+    flex-direction: column;
+  }
 
-    .left-part,
-    .right-part,
-    .left-part2,
-    .right-part2 {
-        flex: 1; 
-        height: auto; 
-    }
+  .left-part,
+  .right-part,
+  .left-part2,
+  .right-part2 {
+    flex: 1;
+    height: auto;
+  }
 }

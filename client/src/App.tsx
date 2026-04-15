@@ -8,9 +8,11 @@ import Sponsors from "./components/Sponsors";
 import Gallery from "./components/Gallery";
 import Footer from "./components/Footer";
 import UnderConstruction from "./components/UnderConstruction";
+import TeamPage from "./components/TeamPage";
 import "./App.css";
 
-import { Analytics } from "@vercel/analytics/react"
+import { Analytics } from "@vercel/analytics/react";
+import { ParallaxProvider } from "react-scroll-parallax";
 
 /**
  * Main App component
@@ -23,16 +25,20 @@ const App: React.FC = () => {
         <Header />
 
         <main className="content">
-          <Routes>
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/join" element={<Join />} />
-            <Route path="/Team" element={<Team />} />
-            <Route path="/sponsors" element={<Sponsors />} />
-            <Route path="/gallery" element={<Gallery />} />
-            {/* <Route path="/competition" element={<Competition />} /> */}
-            <Route path="/" element={<Home />} />
-            <Route path="/UnderConstruction" element={<UnderConstruction />} />
-          </Routes>
+          <ParallaxProvider>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/contact" element={<Contact />} />
+              <Route path="/join" element={<Join />} />
+              <Route path="/Team" element={<Team />} />
+              <Route path="/sponsors" element={<Sponsors />} />
+              <Route path="/gallery" element={<Gallery />} />
+              {/* <Route path="/competition" element={<Competition />} /> */}
+              <Route path="/teams/:teamSlug" element={<TeamPage />} />
+              <Route path="/UnderConstruction" element={<UnderConstruction />}
+              />
+            </Routes>
+          </ParallaxProvider>
         </main>
 
         <Footer />
