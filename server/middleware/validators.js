@@ -44,17 +44,25 @@ exports.applicationValidationRules = [
   body("program").notEmpty().withMessage("Program is required").trim(),
 
   // Team validation
-  body("team").notEmpty().withMessage("Team selection is required").trim(),
+  // body("team").notEmpty().withMessage("Team selection is required").trim(),
+  body("team")
+    .notEmpty().withMessage("Team selection is required"),
 
-  // Resume URL validation (if provided)
-  body("resumeUrl")
-    .optional()
-    .custom((value) => !value || value.startsWith("http"))
-    .withMessage("URL must start with http:// or https://"),
+  // // Resume URL validation (if provided)
+  // body("resumeUrl")
+  //   .optional()
+  //   .custom((value) => !value || value.startsWith("http"))
+  //   .withMessage("URL must start with http:// or https://"),
 
-  // Resume method validation
-  body("resumeMethod")
-    .optional()
-    .isIn(["url", "file"])
-    .withMessage("Resume method must be url or file"),
+  // // Resume method validation
+  // body("resumeMethod")
+  //   .optional()
+  //   .isIn(["url", "file"])
+  //   .withMessage("Resume method must be url or file"),
+
+  body("discordUsername")
+    .notEmpty().withMessage("Discord username is required")
+    .isLength({ min: 2, max: 32 }).withMessage("Discord username must be 2-32 characters")
+    .matches(/^(?!.*\.\.)[a-z0-9_.]{2,32}$/).withMessage("Invalid Discord username format")
+    .trim(),
 ];
