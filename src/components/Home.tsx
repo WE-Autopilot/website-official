@@ -36,7 +36,7 @@ export const Home: React.FC = () => {
 
             {/* Subtitle */}
             <p className="ds-home-hero-desc">
-              We're an undergraduate engineering club at Western University building an autonomous vehicle — from perception models and path planning to drive-by-wire mechanics.
+              We're an undergraduate engineering club building an autonomous vehicle. So watch out Elon...
             </p>
 
             {/* Hero CTAs */}

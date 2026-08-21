@@ -1,3 +1,4 @@
+import React, { Suspense, lazy } from "react";
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import Join from "./components/Join";
 import Header from "./components/Header";
@@ -9,11 +10,16 @@ import Footer from "./components/Footer";
 import UnderConstruction from "./components/UnderConstruction";
 import TeamPage from "./components/TeamPage";
 import ScrollToTop from "./components/ScrollToTop";
-import DesignSystemShowcase from "./components/design-system/DesignSystemShowcase";
 import "./App.css";
 
 import { Analytics } from "@vercel/analytics/react";
 import { ParallaxProvider } from "react-scroll-parallax";
+
+const isDesignMode = import.meta.env.MODE === "design";
+
+const DesignSystemShowcase = isDesignMode
+  ? lazy(() => import("./components/design-system/DesignSystemShowcase"))
+  : null;
 
 /**
  * Main App component
@@ -30,7 +36,16 @@ const App: React.FC = () => {
           <ParallaxProvider>
             <Routes>
               <Route path="/" element={<Home />} />
-              <Route path="/design-system" element={<DesignSystemShowcase />} />
+              {isDesignMode && DesignSystemShowcase && (
+                <Route
+                  path="/design-system"
+                  element={
+                    <Suspense fallback={null}>
+                      <DesignSystemShowcase />
+                    </Suspense>
+                  }
+                />
+              )}
               <Route path="/join" element={<Join />} />
               <Route path="/contact" element={<Navigate to="/join" replace />} />
               <Route path="/team" element={<Team />} />

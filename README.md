@@ -7,8 +7,6 @@
 * **Icons**: Lucide Icons
 * **Hosting & Deployment**: Vercel
 
----
-
 ## Quickstart
 
 ### 1. Install Dependencies
@@ -23,18 +21,25 @@ npm run dev
 
 The site will be available at `http://localhost:5173`.
 
----
-
 ## Available Scripts
 
 | Script | Description |
 | :--- | :--- |
-| `npm run dev` | Starts Vite local development server with hot module reloading. |
+| `npm run dev` | Starts Vite local development server with hot module reloading for the main website. |
+| `npm run design` | Launches the interactive design system showcase (`/design-system`) to inspect tokens, components, and typography. Excluded from production builds. |
 | `npm run build` | Compiles TypeScript and builds optimized production bundles into `dist/`. |
 | `npm run preview` | Runs a local web server to preview the production build in `dist/`. |
 | `npm run lint` | Runs ESLint to check for code quality and syntax issues. |
 
----
+### Design System Explorer
+
+To explore and test UI components, color tokens, typography scales, buttons, and telemetry HUD elements in isolation without deploying them to production:
+
+```bash
+npm run design
+```
+
+> **Note:** The design system showcase route (`/design-system`) is conditionally loaded in `design` mode only and is automatically tree-shaken and excluded during production builds (`npm run build`).
 
 ## Project Structure
 
@@ -58,8 +63,6 @@ The site will be available at `http://localhost:5173`.
 ├── vite.config.ts          # Vite build configuration
 └── vercel.json             # Vercel SPA routing rewrite rules
 ```
-
----
 
 ## Deployment
 

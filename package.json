@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "design": "vite --mode design --open /design-system",
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview"

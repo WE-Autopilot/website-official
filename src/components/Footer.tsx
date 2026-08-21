@@ -31,7 +31,9 @@ const Footer: React.FC = () => {
               <li><Link to="/team">Our Team</Link></li>
               <li><Link to="/sponsors">Sponsors</Link></li>
               <li><Link to="/join">Join the Club</Link></li>
-              <li><Link to="/design-system">Design System</Link></li>
+              {import.meta.env.MODE === "design" && (
+                <li><Link to="/design-system">Design System</Link></li>
+              )}
             </ul>
           </div>
 
