@@ -19,13 +19,8 @@ const Footer: React.FC = () => {
           <div className="ds-footer-brand-col">
             <Logo size="lg" punctuation="/" animateOnHover linkToHome />
             <p className="ds-footer-tagline">
-              Western University’s premier multidisciplinary engineering club dedicated to designing, building,
-              and testing full-scale autonomous vehicles.
+              An undergraduate engineering club at Western University building an autonomous vehicle platform from scratch.
             </p>
-            <div className="ds-footer-status-pill">
-              <span className="ds-pulse-dot" />
-              <span>2026 Active Vehicle Program • Level 2+ Autonomy</span>
-            </div>
           </div>
 
           {/* Navigation Col */}
@@ -34,21 +29,20 @@ const Footer: React.FC = () => {
             <ul className="ds-footer-links">
               <li><Link to="/">Home</Link></li>
               <li><Link to="/team">Our Team</Link></li>
-              <li><a href="/#Roadmap">2026 Roadmap</a></li>
               <li><Link to="/sponsors">Sponsors</Link></li>
-              <li><Link to="/join">Join Our Team</Link></li>
+              <li><Link to="/join">Join the Club</Link></li>
               <li><Link to="/design-system">Design System</Link></li>
             </ul>
           </div>
 
           {/* Sub-teams Col */}
           <div className="ds-footer-nav-col">
-            <h4 className="ds-footer-heading">Autonomous Divisions</h4>
+            <h4 className="ds-footer-heading">Sub-teams</h4>
             <ul className="ds-footer-links">
               <li><Link to="/teams/planning-and-control">Planning & Control</Link></li>
-              <li><Link to="/teams/perception">Perception & LiDAR</Link></li>
-              <li><Link to="/teams/localization">Localization (EKF & SLAM)</Link></li>
-              <li><Link to="/teams/build">Build & Mechanical Chassis</Link></li>
+              <li><Link to="/teams/perception">Perception</Link></li>
+              <li><Link to="/teams/localization">Localization & Mapping</Link></li>
+              <li><Link to="/teams/build">Build & Mechanical</Link></li>
             </ul>
           </div>
 
@@ -56,7 +50,7 @@ const Footer: React.FC = () => {
           <div className="ds-footer-social-col">
             <h4 className="ds-footer-heading">Connect With Us</h4>
             <p className="ds-footer-social-desc">
-              Follow our engineering milestones, open-source repositories, and competition updates.
+              Follow our projects, open-source repositories, and club announcements.
             </p>
             <div className="ds-footer-social-icons">
               <a
@@ -122,7 +116,7 @@ const Footer: React.FC = () => {
         {/* Bottom Bar */}
         <div className="ds-footer-bottom">
           <div className="ds-footer-copy">
-            © {new Date().getFullYear()} Western Engineering AutoPilot (WEAP). Built by students at Western University.
+            © {new Date().getFullYear()} Western Engineering AutoPilot (WEAP). Western University.
           </div>
 
           <button className="ds-back-to-top" onClick={scrollToTop} aria-label="Back to top">

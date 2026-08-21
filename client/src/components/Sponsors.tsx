@@ -1,5 +1,5 @@
 import React from "react";
-import { Mail, CheckCircle2, Award, Zap, Users, Sparkles, ArrowRight, ShieldCheck } from "lucide-react";
+import { Mail, Award, Zap, Users, ShieldCheck } from "lucide-react";
 import SectionHeading from "./design-system/SectionHeading";
 import Badge from "./design-system/Badge";
 import Card from "./design-system/Card";
@@ -15,18 +15,17 @@ export const Sponsors: React.FC = () => {
         
         {/* Header */}
         <SectionHeading
-          badge="INDUSTRY PARTNERS"
+          badge="SPONSORS"
           title="Our Sponsors &"
-          titleGradient="Corporate Partners"
-          subtitle="Empowering student engineering innovation through cutting-edge software, hardware, and sponsorship support."
+          titleGradient="Partners"
+          subtitle="Thank you to the companies and organizations that support undergraduate engineering at Western."
         />
 
         {/* Current Sponsors Grid */}
         <div className="ds-current-sponsors-section">
           <Card variant="glass" padding="xl" className="ds-sponsor-spotlight-card">
             <div className="ds-sponsor-badge-row">
-              <Badge variant="purple" size="sm" dot>OFFICIAL RTOS & EMBEDDED PARTNER</Badge>
-              <Badge variant="cyan" size="sm">TIER 1 SPONSOR</Badge>
+              <Badge variant="purple" size="sm" dot>OFFICIAL PARTNER</Badge>
             </div>
 
             <div className="ds-sponsor-logo-box">
@@ -36,8 +35,8 @@ export const Sponsors: React.FC = () => {
             <div className="ds-sponsor-details">
               <h3>BlackBerry QNX</h3>
               <p>
-                Providing industry-standard deterministic real-time operating systems (RTOS) and embedded developer toolchains
-                to power our vehicle safety architecture and low-latency drive-by-wire controller stack.
+                Providing real-time operating system (RTOS) licenses and embedded development tools
+                to support our vehicle control and system software.
               </p>
             </div>
           </Card>
@@ -46,10 +45,10 @@ export const Sponsors: React.FC = () => {
         {/* Why Sponsor Us Grid */}
         <div className="ds-why-sponsor-section">
           <SectionHeading
-            badge="VALUE & IMPACT"
-            title="Why Partner with"
-            titleGradient="Western AutoPilot?"
-            subtitle="Collaborate with Western's top engineering talent on high-impact autonomous vehicle challenges."
+            badge="PARTNERSHIP"
+            title="Why Sponsor"
+            titleGradient="autopilot/?"
+            subtitle="Support hands-on student engineering and connect with Western undergraduates."
           />
 
           <div className="ds-benefits-grid">
@@ -57,9 +56,9 @@ export const Sponsors: React.FC = () => {
               <div className="ds-benefit-icon-box ds-icon-purple">
                 <Users size={24} />
               </div>
-              <h4>Direct Access to Top Talent</h4>
+              <h4>Connect with Students</h4>
               <p>
-                Connect directly with passionate software, computer, electrical, and mechanical engineering students with hands-on robotics experience.
+                Meet passionate software, electrical, mechatronics, and mechanical engineering students who build real extracurricular projects.
               </p>
             </Card>
 
@@ -67,9 +66,9 @@ export const Sponsors: React.FC = () => {
               <div className="ds-benefit-icon-box ds-icon-cyan">
                 <Zap size={24} />
               </div>
-              <h4>Technology Integration</h4>
+              <h4>Tool & Hardware Usage</h4>
               <p>
-                Have your developer tools, sensors, compute kits, or hardware deployed and battle-tested on an active self-driving vehicle platform.
+                Get your sensors, development boards, software tools, or hardware platforms into the hands of student developers.
               </p>
             </Card>
 
@@ -77,9 +76,9 @@ export const Sponsors: React.FC = () => {
               <div className="ds-benefit-icon-box ds-icon-emerald">
                 <Award size={24} />
               </div>
-              <h4>Prominent Brand Visibility</h4>
+              <h4>Logo Visibility</h4>
               <p>
-                Showcase your logo on our vehicle chassis, team apparel, recruitment events, technical workshops, and digital media channels.
+                Your brand featured on our vehicle chassis, team apparel, technical workshop slides, and club website.
               </p>
             </Card>
 
@@ -87,29 +86,28 @@ export const Sponsors: React.FC = () => {
               <div className="ds-benefit-icon-box ds-icon-blue">
                 <ShieldCheck size={24} />
               </div>
-              <h4>Support STEM Innovation</h4>
+              <h4>Support Student Engineering</h4>
               <p>
-                Help student engineers gain invaluable experience in automotive safety, deep learning, and advanced manufacturing.
+                Help fund vehicle parts, microcontrollers, mechanical materials, and workshop equipment for students.
               </p>
             </Card>
           </div>
         </div>
 
-        {/* Contact & Sponsorship Packages Card */}
+        {/* Contact Card */}
         <div className="ds-sponsor-cta-section">
           <Card variant="glass" padding="xl" className="ds-sponsor-cta-card">
             <div className="ds-sponsor-cta-content">
-              <Badge variant="purple" size="sm" dot pulse>SPONSORSHIP PACKAGES 2026</Badge>
-              <h2 className="ds-sponsor-cta-title">Become an Official Sponsor</h2>
+              <Badge variant="purple" size="sm" dot>GET IN TOUCH</Badge>
+              <h2 className="ds-sponsor-cta-title">Interested in Sponsoring?</h2>
               <p className="ds-sponsor-cta-desc">
-                We offer customizable sponsorship tiers tailored to your organization's recruitment and technological goals.
-                Get in touch with our finance and executive team today.
+                We'd love to discuss sponsorship packages or hardware donations. Contact our VP Finance to connect.
               </p>
 
               <div className="ds-sponsor-contact-box">
                 <div className="ds-contact-rep-info">
                   <span className="ds-rep-name">Ethan Greene</span>
-                  <span className="ds-rep-role">VP Finance & Corporate Relations</span>
+                  <span className="ds-rep-role">VP Finance</span>
                 </div>
                 <Button
                   href="mailto:egreene4@uwo.ca"
@@ -117,7 +115,7 @@ export const Sponsors: React.FC = () => {
                   size="md"
                   leftIcon={<Mail size={16} />}
                 >
-                  Contact Sponsorship Team
+                  Contact VP Finance
                 </Button>
               </div>
             </div>

@@ -1,7 +1,5 @@
 import React, { useState } from "react";
-import { ArrowRight, Cpu, Eye, Compass, Wrench, Shield, Zap, Sparkles, Layers, Award } from "lucide-react";
-import { Link } from "react-router-dom";
-import Roadmap from "./Roadmap";
+import { ArrowRight, Cpu, Eye, Compass, Wrench, Sparkles, Layers, Users, Car, BookOpen } from "lucide-react";
 import Teams from "./Teams";
 import Badge from "./design-system/Badge";
 import Button from "./design-system/Button";
@@ -15,8 +13,8 @@ const teamPhotos = [
   { src: "/FirstEverAGM.jpeg", label: "First Ever AGM Meeting" },
   { src: "/LastYearsExecs.png", label: "Executive Leadership Team" },
   { src: "/TeamPhoto1.webp", label: "General Team Photo" },
-  { src: "/MINSTWorkshop.JPG", label: "Autonomous ML Workshop" },
-  { src: "/RCCars.jpeg", label: "Physical RC Autonomous Testing" },
+  { src: "/MINSTWorkshop.JPG", label: "Computer Vision ML Workshop" },
+  { src: "/RCCars.jpeg", label: "RC Autonomous Vehicle Testing" },
   { src: "/ThisYearsExecs.JPG", label: "2025/2026 Executive Team" },
   { src: "/ThisYearsAGM.JPG", label: "Annual General Assembly" },
 ];
@@ -33,23 +31,22 @@ export const Home: React.FC = () => {
             
             {/* Top Pill Badge */}
             <div className="ds-hero-badge-wrap">
-              <Badge variant="purple" size="sm" dot pulse>
-                WESTERN ENGINEERING AUTOPILOT CLUB
+              <Badge variant="purple" size="sm">
+                WESTERN UNIVERSITY
               </Badge>
               <Badge variant="cyan" size="sm">
-                2026 VEHICLE PROGRAM
+                UNDERGRAD DESIGN TEAM
               </Badge>
             </div>
 
             {/* Main Title */}
             <h1 className="ds-home-hero-title">
-              Engineering the Next Generation of{" "}
-              <span className="ds-gradient-text">Autonomous Mobility.</span>
+              Engineering a self-driving car at <span className="ds-gradient-text">WesternU.</span>
             </h1>
 
             {/* Subtitle */}
             <p className="ds-home-hero-desc">
-              We are Western University students researching, designing, and manufacturing full-scale Level 2+ self-driving vehicles through hands-on multidisciplinary engineering.
+              We're an undergraduate engineering club at Western University building an autonomous vehicle — from perception models and path planning to drive-by-wire mechanics.
             </p>
 
             {/* Hero CTAs */}
@@ -57,10 +54,10 @@ export const Home: React.FC = () => {
               <Button
                 variant="glow"
                 size="lg"
-                href="#Roadmap"
+                href="#Teams"
                 rightIcon={<ArrowRight size={18} />}
               >
-                Explore Our Roadmap
+                Explore Sub-teams
               </Button>
               <Button
                 variant="secondary"
@@ -69,18 +66,6 @@ export const Home: React.FC = () => {
               >
                 Meet the Team
               </Button>
-            </div>
-
-            {/* Telemetry Status Banner */}
-            <div className="ds-hero-telemetry-strip">
-              <div className="ds-telemetry-indicator-item">
-                <span className="ds-pulse-dot" />
-                <span className="ds-mono ds-telemetry-text">STATUS: ACTIVE IN-LAB & SIMULATION</span>
-              </div>
-              <div className="ds-telemetry-sep">•</div>
-              <div className="ds-telemetry-indicator-item">
-                <span className="ds-mono ds-telemetry-text">CURRENT PLATFORM: FULL-SCALE AUTONOMOUS GOLF CART</span>
-              </div>
             </div>
 
           </div>
@@ -92,29 +77,28 @@ export const Home: React.FC = () => {
         <div className="ds-home-container">
           <div className="ds-home-metrics-grid">
             <MetricCard
-              value="45+"
-              label="Student Engineers"
-              sublabel="Software, Hardware & Systems"
-              trend="+30% growth"
-              icon={<Cpu size={20} />}
+              value="40+"
+              label="Student Members"
+              sublabel="Software, Electrical & Mechanical"
+              icon={<Users size={20} />}
             />
             <MetricCard
               value="4"
-              label="Specialized Subteams"
-              sublabel="Perception, Localization, Planning, Build"
+              label="Engineering Sub-teams"
+              sublabel="Planning, Perception, Localization, Build"
               icon={<Layers size={20} />}
             />
             <MetricCard
-              value="Level 2+"
-              label="Autonomy Target"
-              sublabel="Waypoint navigation & obstacle avoidance"
-              icon={<Zap size={20} />}
+              value="Full Scale"
+              label="Vehicle Platform"
+              sublabel="Physical vehicle build & testing"
+              icon={<Car size={20} />}
             />
             <MetricCard
               value="100%"
-              label="Student Engineered"
-              sublabel="From CAD chassis to MPC algorithms"
-              icon={<Award size={20} />}
+              label="Student-Run"
+              sublabel="Hands-on extracurricular team"
+              icon={<BookOpen size={20} />}
             />
           </div>
         </div>
@@ -125,9 +109,9 @@ export const Home: React.FC = () => {
         <div className="ds-home-container">
           <div className="ds-carousel-header">
             <Badge variant="cyan" size="sm" dot>
-              LIFE AT WEAP
+              OUR WORK
             </Badge>
-            <h3 className="ds-carousel-title">Workshops, Testing & Team Milestones</h3>
+            <h3 className="ds-carousel-title">Workshops, Projects & Testing</h3>
           </div>
         </div>
 
@@ -159,14 +143,14 @@ export const Home: React.FC = () => {
         </div>
       </section>
 
-      {/* 4. ABOUT US & MISSION PILLARS */}
+      {/* 4. ABOUT US & WHAT WE DO */}
       <section className="ds-about-section">
         <div className="ds-home-container">
           <SectionHeading
-            badge="OUR MISSION"
-            title="Empowering the Next Wave of"
-            titleGradient="Autonomous Robotics Engineers"
-            subtitle="Bridging classroom theory with real-world autonomous vehicle design, testing, and production."
+            badge="WHAT WE DO"
+            title="Hands-on Autonomous Vehicle"
+            titleGradient="Engineering"
+            subtitle="We give undergraduate students practical experience designing, coding, and building real autonomous systems."
           />
 
           <div className="ds-mission-grid">
@@ -174,9 +158,9 @@ export const Home: React.FC = () => {
               <div className="ds-mission-icon-box ds-icon-purple">
                 <Cpu size={24} />
               </div>
-              <h4 className="ds-mission-card-title">Real-World Autonomous Systems</h4>
+              <h4 className="ds-mission-card-title">Autonomous Software Stack</h4>
               <p className="ds-mission-card-desc">
-                We empower students to construct physical drive-by-wire vehicles, custom sensor rigs, and compute architectures that operate in real outdoor environments.
+                Writing C++ and Python nodes in ROS 2 for path planning, decision state machines, and feedback control algorithms.
               </p>
             </Card>
 
@@ -184,29 +168,29 @@ export const Home: React.FC = () => {
               <div className="ds-mission-icon-box ds-icon-cyan">
                 <Eye size={24} />
               </div>
-              <h4 className="ds-mission-card-title">Advanced Sensor Fusion & AI</h4>
+              <h4 className="ds-mission-card-title">Computer Vision & LiDAR</h4>
               <p className="ds-mission-card-desc">
-                Implementing state-of-the-art multi-beam LiDAR point cloud processing, deep vision neural nets (YOLO), and Extended Kalman Filter state estimators.
+                Processing sensor data using stereo depth cameras, 3D LiDAR point clouds, and object detection models to perceive the environment.
               </p>
             </Card>
 
             <Card variant="glass" padding="lg" className="ds-mission-card">
               <div className="ds-mission-icon-box ds-icon-emerald">
-                <Shield size={24} />
+                <Wrench size={24} />
               </div>
-              <h4 className="ds-mission-card-title">Safety & Control Architecture</h4>
+              <h4 className="ds-mission-card-title">Hardware & Chassis Build</h4>
               <p className="ds-mission-card-desc">
-                Developing robust failsafe emergency-stop protocols, CAN bus telemetry, and Model Predictive Control (MPC) motion trajectories for collision-free driving.
+                Designing custom mounts in CAD, wiring power distribution boards, and integrating drive-by-wire steering mechanisms.
               </p>
             </Card>
 
             <Card variant="glass" padding="lg" className="ds-mission-card">
               <div className="ds-mission-icon-box ds-icon-blue">
-                <Zap size={24} />
+                <BookOpen size={24} />
               </div>
-              <h4 className="ds-mission-card-title">Industry Collaboration</h4>
+              <h4 className="ds-mission-card-title">Workshops & Mentorship</h4>
               <p className="ds-mission-card-desc">
-                Partnering with industry sponsors, automotive tech leaders, and faculty researchers to prepare members for top autonomy and robotics engineering roles.
+                Running beginner technical workshops, collaborative work sessions, and helping members gain practical robotics project skills.
               </p>
             </Card>
           </div>
@@ -216,27 +200,24 @@ export const Home: React.FC = () => {
       {/* 5. SUB-TEAMS SHOWCASE */}
       <Teams />
 
-      {/* 6. ROADMAP TIMELINE */}
-      <Roadmap />
-
-      {/* 7. READY TO JOIN CTA */}
+      {/* 6. JOIN CTA */}
       <section className="ds-join-cta-section">
         <div className="ds-home-container">
           <div className="ds-join-cta-card">
             <div className="ds-cta-ambient-glow" />
             <div className="ds-cta-inner">
-              <Badge variant="purple" size="sm" dot pulse>
-                RECRUITMENT OPEN
+              <Badge variant="purple" size="sm" dot>
+                JOIN THE TEAM
               </Badge>
               <h2 className="ds-join-cta-title">
-                Ready to Build the Future with Us?
+                Interested in joining our club?
               </h2>
               <p className="ds-join-cta-desc">
-                Whether you're into Machine Learning, Embedded C++, Control Theory, or Mechanical CAD, there's a place for you on our engineering sub-teams.
+                We recruit each term across software, electrical, mechatronics, and mechanical engineering. No prior self-driving vehicle experience is needed.
               </p>
               <div className="ds-join-cta-btns">
                 <Button to="/join" variant="glow" size="lg" rightIcon={<ArrowRight size={18} />}>
-                  Apply to Join WEAP
+                  Apply to Join
                 </Button>
                 <Button to="/sponsors" variant="secondary" size="lg">
                   Sponsor Our Team

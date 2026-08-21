@@ -12,7 +12,7 @@ interface HeaderProps {
 
 const teamLinks = [
   { label: "Planning & Control", path: "/teams/planning-and-control", icon: <Cpu size={15} />, color: "#c084fc" },
-  { label: "Perception (LiDAR)", path: "/teams/perception", icon: <Eye size={15} />, color: "#22d3ee" },
+  { label: "Perception (LiDAR & Vision)", path: "/teams/perception", icon: <Eye size={15} />, color: "#22d3ee" },
   { label: "Localization & Mapping", path: "/teams/localization", icon: <Compass size={15} />, color: "#60a5fa" },
   { label: "Build & Mechanical", path: "/teams/build", icon: <Wrench size={15} />, color: "#34d399" },
 ];
@@ -22,6 +22,7 @@ const Header: React.FC<HeaderProps> = ({ className = "" }) => {
   const [isTeamsOpen, setTeamsOpen] = useState<boolean>(false);
   const [scrolled, setScrolled] = useState<boolean>(false);
   const navRef = useRef<HTMLElement>(null);
+  const dropdownTimerRef = useRef<NodeJS.Timeout | null>(null);
   const location = useLocation();
 
   useEffect(() => {
@@ -35,6 +36,20 @@ const Header: React.FC<HeaderProps> = ({ className = "" }) => {
   const handleMenuClose = () => {
     setMenu(false);
     setTeamsOpen(false);
+  };
+
+  const handleMouseEnter = () => {
+    if (dropdownTimerRef.current) {
+      clearTimeout(dropdownTimerRef.current);
+      dropdownTimerRef.current = null;
+    }
+    setTeamsOpen(true);
+  };
+
+  const handleMouseLeave = () => {
+    dropdownTimerRef.current = setTimeout(() => {
+      setTeamsOpen(false);
+    }, 200);
   };
 
   onClickOutside(navRef, () => {
@@ -77,12 +92,16 @@ const Header: React.FC<HeaderProps> = ({ className = "" }) => {
             {/* Sub-teams Dropdown */}
             <li
               className="ds-dropdown"
-              onMouseEnter={() => setTeamsOpen(true)}
-              onMouseLeave={() => setTeamsOpen(false)}
+              onMouseEnter={handleMouseEnter}
+              onMouseLeave={handleMouseLeave}
             >
               <button
+                type="button"
                 className={`ds-nav-link ds-dropdown-toggle ${location.pathname.startsWith("/teams/") ? "ds-nav-link-active" : ""}`}
-                onClick={() => setTeamsOpen((prev) => !prev)}
+                onClick={(e) => {
+                  e.preventDefault();
+                  setTeamsOpen((prev) => !prev);
+                }}
                 aria-expanded={isTeamsOpen}
                 aria-haspopup="true"
               >
@@ -91,7 +110,11 @@ const Header: React.FC<HeaderProps> = ({ className = "" }) => {
               </button>
 
               {isTeamsOpen && (
-                <div className="ds-dropdown-menu">
+                <div
+                  className="ds-dropdown-menu"
+                  onMouseEnter={handleMouseEnter}
+                  onMouseLeave={handleMouseLeave}
+                >
                   {teamLinks.map((team) => (
                     <Link
                       key={team.path}

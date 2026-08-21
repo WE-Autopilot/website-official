@@ -29,131 +29,127 @@ interface TeamInfo {
 const teamData: Record<string, TeamInfo> = {
   "planning-and-control": {
     name: "Planning & Control",
-    tagline: "Autonomous Decision Making & Motion Control",
+    tagline: "Path Planning, State Machines & Feedback Control",
     badgeVariant: "planning",
     icon: <Cpu size={28} />,
     teamLeads: [
-      { name: "Aly Ashour", imageURL: AlyImg, role: "Sub-team Co-Lead" },
-      { name: "Obaid Mohiud", imageURL: ObaidImg, role: "Sub-team Co-Lead" }
+      { name: "Aly Ashour", imageURL: AlyImg, role: "Planning & Control Lead" },
+      { name: "Obaid Mohiud", imageURL: ObaidImg, role: "Planning & Control Lead" }
     ],
     description:
-      "We design and implement motion planning, trajectory generation, and control algorithms that allow the vehicle to make split-second driving decisions and execute them accurately on drive-by-wire hardware.",
+      "We design and write motion planning algorithms, decision state machines, and feedback controllers in ROS 2 that let the car navigate waypoints, avoid obstacles, and execute smooth steering and throttle commands.",
     focusAreas: [
-      { label: "Path Planning", description: "Design graph search and optimization algorithms to generate collision-free trajectories between map waypoints." },
-      { label: "State Estimation", description: "Track vehicle velocity, heading, and wheel odometry to feed real-time telemetry to system controllers." },
-      { label: "Model Predictive Control", description: "Implement closed-loop MPC and PID feedback controllers to execute steering and throttle inputs with high precision." },
-      { label: "Mission Control Console", description: "Engineered our custom mission control HUD to monitor telemetry, sensor inputs, and debug algorithms live." },
-      { label: "Physics Simulation", description: "Created high-fidelity simulation environments in Gazebo and ROS 2 to validate algorithms before track deployment." },
-      { label: "System Safety & Failsafes", description: "Architected deterministic constraint enforcement, emergency brake triggers, and fault handling systems." }
+      { label: "Path Planning", description: "Designing algorithms to generate feasible, collision-free paths through waypoint tracks." },
+      { label: "State Machines", description: "Writing logic to handle stops, track intersections, and unexpected obstacle events." },
+      { label: "Feedback Controllers", description: "Implementing PID and Model Predictive Control (MPC) to closely follow target speed and steering angles." },
+      { label: "Simulation Testing", description: "Using Gazebo and custom ROS 2 simulations to test algorithms before testing on the physical vehicle." },
+      { label: "Safety Constraints", description: "Building safety checks and emergency stop logic to keep testing safe." }
     ],
     keymilestones: [
       { label: "Completed", description: "Closed-loop waypoint navigation pipeline" },
       { label: "Completed", description: "Closed-loop feedback control (PID)" },
-      { label: "Completed", description: "Linear kinematics simulation environment" },
-      { label: "In Progress", description: "Traffic sign & obstacle handling state machine" },
-      { label: "In Progress", description: "Model Predictive Controller (MPC) deployment" },
-      { label: "In Progress", description: "BlackBerry QNX RTOS real-time control migration" },
-      { label: "In Progress", description: "Full vehicle visualizer & telemetry stream" },
-      { label: "Planned", description: "Multi-lane intersection navigation" },
+      { label: "Completed", description: "Linear simulation testing environment" },
+      { label: "In Progress", description: "Traffic sign state machine logic" },
+      { label: "In Progress", description: "Model Predictive Control (MPC) tuning" },
+      { label: "In Progress", description: "BlackBerry QNX RTOS integration" },
+      { label: "Planned", description: "Complex intersection navigation" },
     ],
     technologies: [
-      { label: "Languages", description: "C++20 for real-time controllers, Python for simulation & tooling" },
-      { label: "Frameworks", description: "ROS 2 Jazzy, Gazebo Harmonic, Nav2" },
-      { label: "RTOS", description: "BlackBerry QNX for deterministic real-time execution" },
-      { label: "Graphics & UI", description: "OpenGL and modern web telemetry visualizers" },
-      { label: "CI/CD", description: "GitHub Actions automated test suite & linting" }
+      { label: "Languages", description: "C++ for control nodes, Python for tooling and scripts" },
+      { label: "Frameworks", description: "ROS 2 Jazzy, Gazebo Harmonic" },
+      { label: "RTOS", description: "BlackBerry QNX for real-time execution" },
+      { label: "Version Control", description: "Git and GitHub Actions CI" }
     ],
   },
   perception: {
     name: "Perception",
-    tagline: "3D Spatial Intelligence & Computer Vision",
+    tagline: "Computer Vision, LiDAR Scans & Object Detection",
     badgeVariant: "perception",
     icon: <Eye size={28} />,
     description:
-      "We interface with the multi-modal sensors on the vehicle including 3D LiDAR, stereoscopic depth cameras, and IMUs. We train deep vision models to detect lanes, classify objects, and construct 3D spatial representations.",
+      "We interface with cameras and LiDAR sensors on the car, training vision models to detect lanes, recognize traffic signs, and identify obstacles in real time.",
     teamLeads: [
-      { name: "Tygo Crawley", imageURL: TygoImg, role: "Sub-team Co-Lead" },
-      { name: "Ian Tan", imageURL: IanImg, role: "Sub-team Co-Lead" }
+      { name: "Tygo Crawley", imageURL: TygoImg, role: "Perception Co-Lead" },
+      { name: "Ian Tan", imageURL: IanImg, role: "Perception Co-Lead" }
     ],
     focusAreas: [
-      { label: "Sensor Ingestion & Calibration", description: "Performant multi-threaded ingestion of high-bandwidth camera and LiDAR point cloud streams with extrinsic calibration." },
-      { label: "Lane Boundary Detection", description: "Deep learning models to estimate driveable road boundaries and lane centers under varying lighting conditions." },
-      { label: "3D Object Detection", description: "Real-time YOLOv8/11 bounding box inference and 3D depth bounding for vehicles, pedestrians, and traffic signs." },
-      { label: "LiDAR Point Cloud Segmentation", description: "Filtering ground planes and clustering obstacle point clouds for occupancy grid mapping." }
+      { label: "Sensor Drivers & Feeds", description: "Setting up reliable data pipelines from stereo cameras, LiDAR, and IMUs." },
+      { label: "Lane Detection", description: "Training models to detect track boundaries and calculate the vehicle's offset from lane centers." },
+      { label: "Traffic Sign Detection", description: "Using YOLO models to recognize stop signs, speed markers, and traffic cues." },
+      { label: "LiDAR Obstacle Filtering", description: "Segmenting ground returns from actual obstacles to create clean point clouds." }
     ],
     keymilestones: [
-      { label: "Completed", description: "Custom lane detection model deployment" },
-      { label: "Completed", description: "Traffic sign detection & classification model" },
-      { label: "Completed", description: "Annotated synthetic & real-world training dataset" },
-      { label: "In Progress", description: "Simulated depth camera & point cloud environment" },
-      { label: "In Progress", description: "2D camera to 3D coordinate space mappings" },
-      { label: "In Progress", description: "Multi-sensor fusion perception pipeline" },
-      { label: "Planned", description: "Real-world onboard Jetson edge inference testing" }
+      { label: "Completed", description: "Lane detection model trained and verified" },
+      { label: "Completed", description: "Stop sign classification model" },
+      { label: "Completed", description: "Collected and annotated training datasets" },
+      { label: "In Progress", description: "Depth camera 3D distance estimation" },
+      { label: "In Progress", description: "LiDAR point cloud clustering pipeline" },
+      { label: "Planned", description: "Real-time edge inference on onboard Jetson" }
     ],
     technologies: [
-      { label: "Languages", description: "Python, C++ for CUDA-accelerated inference" },
-      { label: "Frameworks", description: "PyTorch, OpenCV, Point Cloud Library (PCL), ROS 2" },
-      { label: "Models", description: "YOLOv8/11, Ultra-Fast-Lane-Detection-v2" },
-      { label: "Hardware", description: "Stereo Depth Cameras, 128-beam LiDAR, NVIDIA Jetson" }
+      { label: "Languages", description: "Python, C++" },
+      { label: "Frameworks", description: "PyTorch, OpenCV, ROS 2" },
+      { label: "Models", description: "YOLOv8/11, Ultra-Fast-Lane-Detection" },
+      { label: "Hardware", description: "Stereo Depth Camera, 3D LiDAR, NVIDIA Jetson" }
     ],
   },
   localization: {
     name: "Localization & Mapping",
-    tagline: "High-Precision Pose & Environment Estimation",
+    tagline: "State Estimation, SLAM & Sensor Fusion",
     badgeVariant: "localization",
     icon: <Compass size={28} />,
     description:
-      "The Localization Team creates high-definition spatial maps and ensures our autonomous vehicles can accurately determine their position and orientation in real-time using SLAM, Extended Kalman Filters, and RTK-GPS.",
+      "We build systems that estimate the vehicle's exact position, heading, and velocity on the track using sensor fusion (Extended Kalman Filters), GPS, and IMU data.",
     teamLeads: [
-      { name: "Zain Syed", imageURL: ZainImg, role: "Sub-team Co-Lead" },
-      { name: "Benjamin Namayandeh", imageURL: BenjImg, role: "Sub-team Co-Lead" }
+      { name: "Zain Syed", imageURL: ZainImg, role: "Localization Lead" },
+      { name: "Benjamin Namayandeh", imageURL: BenjImg, role: "Localization Lead" }
     ],
     focusAreas: [
-      { label: "HD Map Generation", description: "Creating dense, centimeter-accurate feature maps of test tracks and campus driving routes." },
-      { label: "Multi-Sensor Fusion (EKF)", description: "Fusing wheel odometry, IMU angular velocity, and GPS coordinates via Extended Kalman Filtering." },
-      { label: "LiDAR SLAM", description: "Simultaneous Localization and Mapping for GPS-denied environments using scan-matching algorithms." }
+      { label: "Sensor Fusion (EKF)", description: "Fusing wheel encoders, IMU angular rates, and GPS fixes using Extended Kalman Filters." },
+      { label: "Track Mapping", description: "Building maps of testing areas and tracks to provide reference coordinates to planning." },
+      { label: "SLAM Integration", description: "Testing simultaneous localization and mapping for reliable positioning." }
     ],
     keymilestones: [
       { label: "Completed", description: "Wheel odometry & IMU data pipeline" },
       { label: "Completed", description: "Extended Kalman Filter simulation" },
-      { label: "In Progress", description: "RTK-GPS centimeter-accuracy integration" },
-      { label: "In Progress", description: "Cartographer LiDAR SLAM mapping" },
-      { label: "Planned", description: "HD map vector layer integration for global path planning" }
+      { label: "In Progress", description: "RTK-GPS centimeter positioning integration" },
+      { label: "In Progress", description: "LiDAR SLAM track mapping" },
+      { label: "Planned", description: "Full map integration with path planner" }
     ],
     technologies: [
       { label: "Languages", description: "C++, Python" },
       { label: "Frameworks", description: "Robot Localization (EKF), Cartographer SLAM, ROS 2" },
-      { label: "Hardware", description: "RTK-GPS, High-precision 9-axis IMU, Wheel Encoders" }
+      { label: "Hardware", description: "RTK-GPS, 9-Axis IMU, Wheel Encoders" }
     ]
   },
   build: {
     name: "Build & Mechanical",
-    tagline: "Chassis Fabrication, Drive-by-Wire & Power Systems",
+    tagline: "Chassis Modifications, Sensor Mounts & Electrical Wiring",
     badgeVariant: "build",
     icon: <Wrench size={28} />,
     description:
-      "The Build Team handles the physical mechanical engineering, structural mounting, power distribution, thermal cooling, and electrical wiring harnesses of our autonomous vehicle platforms.",
+      "We design custom mechanical brackets, fabricate mounts for sensors, wire power distribution boards, and integrate steering and braking actuators on the vehicle platform.",
     teamLeads: [
-      { name: "Ritwick Vemula", role: "Mechanical Lead" },
-      { name: "Nathanael Cadman-Neu", role: "Chassis & Hardware Lead" }
+      { name: "Ritwick Vemula", role: "Build & Mechanical Lead" },
+      { name: "Nathanael Cadman-Neu", role: "Chassis & Integration Lead" }
     ],
     focusAreas: [
-      { label: "Drive-by-Wire Integration", description: "Designing electronic actuators for steering, braking, and throttle control." },
-      { label: "Sensor Rigs & Vibration Dampening", description: "CAD designing and 3D printing custom mounts for LiDAR, cameras, and GPS antennas." },
-      { label: "Power Distribution & Safety", description: "Custom power distribution boards, fused battery systems, and physical emergency stop switches." },
-      { label: "Chassis Modification & Packaging", description: "Mechanical chassis alterations to securely house compute racks and cooling fans." }
+      { label: "Sensor Mounts in CAD", description: "Designing and 3D printing vibration-resistant mounts for LiDAR, cameras, and GPS antennas." },
+      { label: "Drive-by-Wire Actuation", description: "Integrating electric motors and controllers for electronic steering and braking control." },
+      { label: "Power & Wiring Harnesses", description: "Routing clean wiring, fuse blocks, emergency switches, and 12V/48V step-downs." },
+      { label: "Chassis Fabrication", description: "Custom mounting racks to safely hold the onboard computers and cooling fans." }
     ],
     keymilestones: [
-      { label: "Completed", description: "1/10th scale physical RC car platform" },
-      { label: "Completed", description: "Sensor mounting brackets CAD design" },
-      { label: "In Progress", description: "Full-scale golf cart steering actuator assembly" },
-      { label: "In Progress", description: "Isolated power distribution unit for onboard compute" },
-      { label: "Planned", description: "Full drive-by-wire track testing & calibration" }
+      { label: "Completed", description: "1/10th scale RC car testing platform" },
+      { label: "Completed", description: "Custom 3D printed sensor brackets" },
+      { label: "In Progress", description: "Steering actuator mounting and linkage" },
+      { label: "In Progress", description: "Onboard compute power distribution" },
+      { label: "Planned", description: "Full vehicle drive-by-wire integration" }
     ],
     technologies: [
-      { label: "CAD & CAM", description: "SolidWorks, Autodesk Fusion 360" },
-      { label: "Electrical", description: "CAN Bus, Custom PCB Design, 12V/48V Power Distribution" },
-      { label: "Fabrication", description: "3D Printing, Laser Cutting, CNC Milling, TIG Welding" }
+      { label: "CAD", description: "SolidWorks, Fusion 360" },
+      { label: "Electrical", description: "CAN Bus, Power Distribution, Relays & Fuses" },
+      { label: "Fabrication", description: "3D Printing, Laser Cutting, Soldering" }
     ]
   },
 };
@@ -192,10 +188,7 @@ export const TeamPage: React.FC = () => {
         <section className="ds-team-page-hero">
           <div className="ds-team-page-badge-row">
             <Badge variant={team.badgeVariant} size="md" icon={team.icon}>
-              AUTONOMOUS DIVISION
-            </Badge>
-            <Badge variant="cyan" size="sm" dot pulse>
-              ACTIVE PROJECT
+              ENGINEERING SUB-TEAM
             </Badge>
           </div>
 
@@ -232,7 +225,7 @@ export const TeamPage: React.FC = () => {
 
         {/* Focus Areas */}
         <section className="ds-team-page-section">
-          <h3 className="ds-team-section-heading">Core Engineering Focus Areas</h3>
+          <h3 className="ds-team-section-heading">What We Work On</h3>
           <div className="ds-focus-grid">
             {team.focusAreas.map((item, index) => {
               const label = typeof item === "string" ? item : item.label;
@@ -254,7 +247,7 @@ export const TeamPage: React.FC = () => {
         {/* Milestones */}
         {team.keymilestones && team.keymilestones.length > 0 && (
           <section className="ds-team-page-section">
-            <h3 className="ds-team-section-heading">Division Milestones & Roadmap</h3>
+            <h3 className="ds-team-section-heading">Sub-team Milestones</h3>
             <div className="ds-milestones-grid">
               {team.keymilestones.map((item, index) => {
                 const label = typeof item === "string" ? "Planned" : item.label;
@@ -286,10 +279,10 @@ export const TeamPage: React.FC = () => {
         {/* Technologies Used */}
         {team.technologies && team.technologies.length > 0 && (
           <section className="ds-team-page-section">
-            <h3 className="ds-team-section-heading">Technologies, Tooling & Stack</h3>
+            <h3 className="ds-team-section-heading">Tools & Technologies</h3>
             <div className="ds-tech-stack-grid">
               {team.technologies.map((item, index) => {
-                const label = typeof item === "string" ? `Tech ${index + 1}` : item.label;
+                const label = typeof item === "string" ? `Tool ${index + 1}` : item.label;
                 const desc = typeof item === "string" ? item : item.description;
                 return (
                   <Card key={label} variant="glass" padding="md" className="ds-tech-stack-card">
@@ -302,7 +295,7 @@ export const TeamPage: React.FC = () => {
           </section>
         )}
 
-        {/* Bottom Navigation to other teams */}
+        {/* Bottom Navigation */}
         <section className="ds-other-teams-section">
           <h4 className="ds-other-teams-title">Explore Other Sub-teams</h4>
           <div className="ds-other-teams-buttons">

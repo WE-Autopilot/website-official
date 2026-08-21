@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import SectionHeading from "./design-system/SectionHeading";
+import Logo from "./design-system/Logo";
 import Badge from "./design-system/Badge";
 import Card from "./design-system/Card";
 import Tabs from "./design-system/Tabs";
@@ -29,10 +29,10 @@ interface TeamMemberData {
 
 const membersList: TeamMemberData[] = [
   // Executive Leadership
-  { id: "exec-1", name: "Ali Elgalad", role: "President & Founder", category: "exec", subteamName: "Executive Leadership", image: Member1 },
-  { id: "exec-4", name: "Ethan Greene", role: "VP Finance", category: "exec", subteamName: "Executive Leadership", image: Member2 },
-  { id: "exec-5", name: "Danya Abbas", role: "VP Communications", category: "exec", subteamName: "Executive Leadership", image: Danya },
-  { id: "exec-6", name: "Dev Chaudhari", role: "VP Education", category: "exec", subteamName: "Executive Leadership", image: Dev },
+  { id: "exec-1", name: "Ali Elgalad", role: "President & Founder", category: "exec", subteamName: "Executive", image: Member1 },
+  { id: "exec-4", name: "Ethan Greene", role: "VP Finance", category: "exec", subteamName: "Executive", image: Member2 },
+  { id: "exec-5", name: "Danya Abbas", role: "VP Communications", category: "exec", subteamName: "Executive", image: Danya },
+  { id: "exec-6", name: "Dev Chaudhari", role: "VP Education", category: "exec", subteamName: "Executive", image: Dev },
 
   // Planning & Control
   { id: "lead-aly", name: "Aly Ashour", role: "Planning & Control Lead", category: "planning", subteamName: "Planning & Control", image: Member3 },
@@ -43,15 +43,15 @@ const membersList: TeamMemberData[] = [
   { id: "lead-ian", name: "Ian Patrick Tan", role: "Perception Co-Lead", category: "perception", subteamName: "Perception", image: BlackTeamLead },
 
   // Localization & Mapping
-  { id: "lead-zain", name: "Zain Syed", role: "Localization Lead", category: "localization", subteamName: "Localization & Mapping", image: Member5 },
-  { id: "lead-ben", name: "Benjamin Namayandeh", role: "Localization Lead", category: "localization", subteamName: "Localization & Mapping", image: Ben },
+  { id: "lead-zain", name: "Zain Syed", role: "Localization Lead", category: "localization", subteamName: "Localization", image: Member5 },
+  { id: "lead-ben", name: "Benjamin Namayandeh", role: "Localization Lead", category: "localization", subteamName: "Localization", image: Ben },
 
   // Build & Mechanical
-  { id: "lead-ritwick", name: "Ritwick Vemula", role: "Build & Mechanical Lead", category: "build", subteamName: "Build & Hardware" },
-  { id: "lead-nathanael", name: "Nathanael Cadman-Neu", role: "Chassis & Integration Lead", category: "build", subteamName: "Build & Hardware" },
+  { id: "lead-ritwick", name: "Ritwick Vemula", role: "Build & Mechanical Lead", category: "build", subteamName: "Build" },
+  { id: "lead-nathanael", name: "Nathanael Cadman-Neu", role: "Chassis & Integration Lead", category: "build", subteamName: "Build" },
 
   // Web & Infrastructure
-  { id: "lead-kierstin", name: "Kierstin Griffith", role: "Web & Infrastructure Lead", category: "web", subteamName: "Web & Telemetry", image: Member4 },
+  { id: "lead-kierstin", name: "Kierstin Griffith", role: "Web Lead", category: "web", subteamName: "Web", image: Member4 },
 ];
 
 export const Team: React.FC = () => {
@@ -86,13 +86,18 @@ export const Team: React.FC = () => {
     <TechGridBackground variant="both" glowColor="both" className="ds-team-root">
       <div className="ds-team-container">
         
-        {/* Section Heading */}
-        <SectionHeading
-          badge="LEADERSHIP & TALENT"
-          title="The Engineers Behind"
-          titleGradient="Western AutoPilot"
-          subtitle="A multidisciplinary collective of passionate software engineers, roboticists, electrical builders, and researchers."
-        />
+        {/* Section Heading with styled inline Logo */}
+        <div className="ds-team-custom-heading">
+          <Badge variant="purple" size="sm" dot>
+            STUDENT LEADERSHIP
+          </Badge>
+          <h1 className="ds-team-custom-title">
+            The Team Behind <span className="ds-team-logo-embed"><Logo size="lg" punctuation="/" linkToHome={false} animateOnHover /></span>
+          </h1>
+          <p className="ds-team-custom-subtitle">
+            Undergraduates across software, electrical, mechatronics, and mechanical engineering working together at Western University.
+          </p>
+        </div>
 
         {/* Filter Tabs */}
         <div className="ds-team-tabs-row">
