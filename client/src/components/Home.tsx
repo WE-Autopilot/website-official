@@ -25,7 +25,7 @@ export const Home: React.FC = () => {
   return (
     <div className="ds-home-root">
       {/* 1. HERO & METRICS AREA (Covered seamlessly by Antigravity Grid) */}
-      <TechGridBackground className="ds-hero-metrics-wrapper">
+      <TechGridBackground showGrid className="ds-hero-metrics-wrapper">
         <section className="ds-hero-section">
           <div className="ds-hero-content-wrapper">
 
@@ -190,7 +190,7 @@ export const Home: React.FC = () => {
       <Teams />
 
       {/* 6. JOIN CTA (Covered by Antigravity Grid) */}
-      <TechGridBackground className="ds-join-cta-wrapper">
+      <TechGridBackground showGrid className="ds-join-cta-wrapper">
         <section className="ds-join-cta-section">
           <div className="ds-home-container">
             <div className="ds-join-cta-card">

@@ -12,7 +12,7 @@ export interface TechGridBackgroundProps {
 
 export const TechGridBackground: React.FC<TechGridBackgroundProps> = ({
   glowColor = 'purple',
-  showGrid = true,
+  showGrid = false, // Disabled by default, enabled only on Home page
   children,
   className = '',
 }) => {
@@ -23,7 +23,7 @@ export const TechGridBackground: React.FC<TechGridBackgroundProps> = ({
         <div className="ds-subtle-ambient-glow" aria-hidden="true" />
       )}
 
-      {/* Interactive Google Antigravity Spring Matrix */}
+      {/* Interactive Google Antigravity Spring Matrix (Home page only) */}
       {showGrid && <AntigravityGrid />}
 
       {/* Content wrapper */}
