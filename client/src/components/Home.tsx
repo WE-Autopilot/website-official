@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { ArrowRight, Cpu, Eye, Compass, Wrench, Sparkles, Layers, Users, Car, BookOpen } from "lucide-react";
+import { ArrowRight, Cpu, Eye, Car, BookOpen, Layers, Users } from "lucide-react";
 import Teams from "./Teams";
 import Badge from "./design-system/Badge";
 import Button from "./design-system/Button";
@@ -28,16 +28,6 @@ export const Home: React.FC = () => {
       <section className="ds-hero-section">
         <TechGridBackground variant="both" glowColor="both">
           <div className="ds-hero-content-wrapper">
-            
-            {/* Top Pill Badge */}
-            <div className="ds-hero-badge-wrap">
-              <Badge variant="purple" size="sm">
-                WESTERN UNIVERSITY
-              </Badge>
-              <Badge variant="cyan" size="sm">
-                UNDERGRAD DESIGN TEAM
-              </Badge>
-            </div>
 
             {/* Main Title */}
             <h1 className="ds-home-hero-title">
@@ -147,7 +137,6 @@ export const Home: React.FC = () => {
       <section className="ds-about-section">
         <div className="ds-home-container">
           <SectionHeading
-            badge="WHAT WE DO"
             title="Hands-on Autonomous Vehicle"
             titleGradient="Engineering"
             subtitle="We give undergraduate students practical experience designing, coding, and building real autonomous systems."
@@ -160,7 +149,7 @@ export const Home: React.FC = () => {
               </div>
               <h4 className="ds-mission-card-title">Autonomous Software Stack</h4>
               <p className="ds-mission-card-desc">
-                Writing C++ and Python nodes in ROS 2 for path planning, decision state machines, and feedback control algorithms.
+                We develop our entire autonomy stack in-house from scratch. We build and test software in iterative cycles—from path planners to control algorithms—working towards a complete self-driving system.
               </p>
             </Card>
 
@@ -168,19 +157,19 @@ export const Home: React.FC = () => {
               <div className="ds-mission-icon-box ds-icon-cyan">
                 <Eye size={24} />
               </div>
-              <h4 className="ds-mission-card-title">Computer Vision & LiDAR</h4>
+              <h4 className="ds-mission-card-title">Computer Vision</h4>
               <p className="ds-mission-card-desc">
-                Processing sensor data using stereo depth cameras, 3D LiDAR point clouds, and object detection models to perceive the environment.
+                We train custom vision models and process live depth camera feeds and 3D LiDAR point clouds to detect lane markings, identify obstacles, and recognize traffic signs in real time.
               </p>
             </Card>
 
             <Card variant="glass" padding="lg" className="ds-mission-card">
               <div className="ds-mission-icon-box ds-icon-emerald">
-                <Wrench size={24} />
+                <Car size={24} />
               </div>
-              <h4 className="ds-mission-card-title">Hardware & Chassis Build</h4>
+              <h4 className="ds-mission-card-title">Hardware Testing</h4>
               <p className="ds-mission-card-desc">
-                Designing custom mounts in CAD, wiring power distribution boards, and integrating drive-by-wire steering mechanisms.
+                Your work won't just stay in simulation. We mount sensors and computers onto our physical vehicle and golf cart platform, deploying code and validating algorithms in real outdoor testing environments.
               </p>
             </Card>
 
@@ -190,7 +179,7 @@ export const Home: React.FC = () => {
               </div>
               <h4 className="ds-mission-card-title">Workshops & Mentorship</h4>
               <p className="ds-mission-card-desc">
-                Running beginner technical workshops, collaborative work sessions, and helping members gain practical robotics project skills.
+                Come learn about computer vision, AI, control systems, and robotics at our club workshops! You can also connect with industry partners and alumni at our partnered events.
               </p>
             </Card>
           </div>
