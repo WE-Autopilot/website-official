@@ -1,4 +1,10 @@
+import React from "react";
 import { useParams, Link } from "react-router-dom";
+import { ArrowLeft, Cpu, Eye, Compass, Wrench, CheckCircle2, Clock, Sparkles } from "lucide-react";
+import Badge from "./design-system/Badge";
+import Card from "./design-system/Card";
+import Button from "./design-system/Button";
+import TechGridBackground from "./design-system/TechGridBackground";
 import "../stylesheets/TeamPage.css";
 
 import AlyImg from "../assets/Aly.webp";
@@ -7,221 +13,268 @@ import TygoImg from "../assets/Tygo.webp";
 import IanImg from "../assets/Ian.webp";
 import ZainImg from "../assets/Zain.webp";
 import BenjImg from "../assets/Benjamin.webp";
+
 interface TeamInfo {
   name: string;
+  tagline: string;
   description: string;
-  teamLeads: {name: string, imageURL?: string}[];
-  technologies?: string[] | {label: string, description: string}[];
-  focusAreas: string[] | {label: string, description: string}[];
-  keymilestones?: string[] | {label: string, description: string}[];
-  visuals?: string[];
-  
+  badgeVariant: "planning" | "perception" | "localization" | "build";
+  icon: React.ReactNode;
+  teamLeads: { name: string; imageURL?: string; role?: string }[];
+  technologies?: string[] | { label: string; description: string }[];
+  focusAreas: string[] | { label: string; description: string }[];
+  keymilestones?: string[] | { label: string; description: string }[];
 }
 
 const teamData: Record<string, TeamInfo> = {
   "planning-and-control": {
-    name: "Planning and Control",
+    name: "Planning & Control",
+    tagline: "Autonomous Decision Making & Motion Control",
+    badgeVariant: "planning",
+    icon: <Cpu size={28} />,
     teamLeads: [
-      {name: "Aly Ashour", imageURL: AlyImg},
-      {name: "Obaid Mohiud", imageURL: ObaidImg}
+      { name: "Aly Ashour", imageURL: AlyImg, role: "Sub-team Co-Lead" },
+      { name: "Obaid Mohiud", imageURL: ObaidImg, role: "Sub-team Co-Lead" }
     ],
     description:
-      "We design and implement motion planning, trajectory generation, and control algorithms that allow the car to make decisions and exectute them in the real world!",
-focusAreas: [
-      {label: "Path Planning", description: "Use algorithms to navigate through nodes and sketch paths between them."},
-      {label: "State Estimation", description: "Determine and keep track of the car's overall state and use that to make system-level decisions."},
-      {label: "Feedback Control", description: "Use feedback from the car's sensors to adjust its trajectory and ensure it follows the planned path accurately."},
-      {label: "Console", description: "We also created the system console, through which we interact with AP1. This includes visuals and comands we can use to control and debug the entire system."},
-      {label: "Simulation", description: "We create custom simulations to test the car from scratch."},
-      {label: "System Safety", description: "We design system safety features. Namely constrain enforcement and fault handling between planning and control."}
+      "We design and implement motion planning, trajectory generation, and control algorithms that allow the vehicle to make split-second driving decisions and execute them accurately on drive-by-wire hardware.",
+    focusAreas: [
+      { label: "Path Planning", description: "Design graph search and optimization algorithms to generate collision-free trajectories between map waypoints." },
+      { label: "State Estimation", description: "Track vehicle velocity, heading, and wheel odometry to feed real-time telemetry to system controllers." },
+      { label: "Model Predictive Control", description: "Implement closed-loop MPC and PID feedback controllers to execute steering and throttle inputs with high precision." },
+      { label: "Mission Control Console", description: "Engineered our custom mission control HUD to monitor telemetry, sensor inputs, and debug algorithms live." },
+      { label: "Physics Simulation", description: "Created high-fidelity simulation environments in Gazebo and ROS 2 to validate algorithms before track deployment." },
+      { label: "System Safety & Failsafes", description: "Architected deterministic constraint enforcement, emergency brake triggers, and fault handling systems." }
     ],
-keymilestones: [
-    {label: "Completed", description: "Closed loop navigation"},
-    {label: "Completed", description: "Closed loop control (PID)"},
-    {label: "Completed", description: "Linear simulation completed"},
-    {label: "In Progress", description: "Sign handling state machine"},
-    {label: "In Progress", description: "Closed loop control 2 (MPC)"},
-    {label: "In Progress", description: "Control RTOS (QNX) migration"},
-    {label: "In Progress", description: "Full simulation complete with visualizer"},
-    {label: "Planned", description: "Intersection navigation"},
-    {label: "Planned", description: "Debugging and logging tools (cross-team)"},
+    keymilestones: [
+      { label: "Completed", description: "Closed-loop waypoint navigation pipeline" },
+      { label: "Completed", description: "Closed-loop feedback control (PID)" },
+      { label: "Completed", description: "Linear kinematics simulation environment" },
+      { label: "In Progress", description: "Traffic sign & obstacle handling state machine" },
+      { label: "In Progress", description: "Model Predictive Controller (MPC) deployment" },
+      { label: "In Progress", description: "BlackBerry QNX RTOS real-time control migration" },
+      { label: "In Progress", description: "Full vehicle visualizer & telemetry stream" },
+      { label: "Planned", description: "Multi-lane intersection navigation" },
     ],
     technologies: [
-        {label: "Languages", description: "C++ for control algorithms, Python for simulation and tooling"},
-        {label: "Frameworks", description: "ROS2 Jazzy and Gazebo Harmonic"},
-        {label: "RTOS", description: "QNX for real-time control implementation"},
-        {label: "Graphics Programming", description: "OpenGL for visualization and rendering"},
-        {label: "Automated Testing", description: "GitHub Actions for continuous integration and testing"}
+      { label: "Languages", description: "C++20 for real-time controllers, Python for simulation & tooling" },
+      { label: "Frameworks", description: "ROS 2 Jazzy, Gazebo Harmonic, Nav2" },
+      { label: "RTOS", description: "BlackBerry QNX for deterministic real-time execution" },
+      { label: "Graphics & UI", description: "OpenGL and modern web telemetry visualizers" },
+      { label: "CI/CD", description: "GitHub Actions automated test suite & linting" }
     ],
   },
   perception: {
     name: "Perception",
+    tagline: "3D Spatial Intelligence & Computer Vision",
+    badgeVariant: "perception",
+    icon: <Eye size={28} />,
     description:
-      "We interface with the sensors on the vehicle including: depth camera and inertial measurement unit (IMU). We then develop and train models to extract meaningful infromation such as lane lines, objects detected, and distances in 3D space, which allows the vehicle to 'perceive' the surrounding world",
+      "We interface with the multi-modal sensors on the vehicle including 3D LiDAR, stereoscopic depth cameras, and IMUs. We train deep vision models to detect lanes, classify objects, and construct 3D spatial representations.",
     teamLeads: [
-      {name: "Tygo Crawley", imageURL: TygoImg},
-      {name: "Ian Tan", imageURL: IanImg}
+      { name: "Tygo Crawley", imageURL: TygoImg, role: "Sub-team Co-Lead" },
+      { name: "Ian Tan", imageURL: IanImg, role: "Sub-team Co-Lead" }
     ],
     focusAreas: [
-      {label: "Sensor data ingestion and calibration", description: "Enable successful use of sensors, performant ingestion of that data, and calibration of the sensors so that they work together to create a rich percieved environment"},
-      {label: "Lane detection", description: "Enable detection of left and right lane lines so that the vehicle knows its boundaries."},
-      {label: "Sign detection", description: "Enable detection of traffic signs via depth camera. Classification of the sign and distance from the vehicle are the main outputs that allow the vehicle to navigate correctly when encounting traffic signs"},
+      { label: "Sensor Ingestion & Calibration", description: "Performant multi-threaded ingestion of high-bandwidth camera and LiDAR point cloud streams with extrinsic calibration." },
+      { label: "Lane Boundary Detection", description: "Deep learning models to estimate driveable road boundaries and lane centers under varying lighting conditions." },
+      { label: "3D Object Detection", description: "Real-time YOLOv8/11 bounding box inference and 3D depth bounding for vehicles, pedestrians, and traffic signs." },
+      { label: "LiDAR Point Cloud Segmentation", description: "Filtering ground planes and clustering obstacle point clouds for occupancy grid mapping." }
     ],
     keymilestones: [
-      {label: "Completed", description: "Lane detection model"},
-      {label: "Completed", description: "Stop sign detection model"},
-      {label: "Completed", description: "Train and test dataset"},
-      {label: "In Progress", description: "Simulated depth camera enviornment"},
-      {label: "In Progress", description: "Coordinate space mappings between 2D and 3D camera data"},
-      {label: "In Progress", description: "Information pipeline"},
-      {label: "Planned", description: "Real-world inference testing with depth camera"},
-      {label: "Planned", description: "Whole system integration (cross-team system)"}
+      { label: "Completed", description: "Custom lane detection model deployment" },
+      { label: "Completed", description: "Traffic sign detection & classification model" },
+      { label: "Completed", description: "Annotated synthetic & real-world training dataset" },
+      { label: "In Progress", description: "Simulated depth camera & point cloud environment" },
+      { label: "In Progress", description: "2D camera to 3D coordinate space mappings" },
+      { label: "In Progress", description: "Multi-sensor fusion perception pipeline" },
+      { label: "Planned", description: "Real-world onboard Jetson edge inference testing" }
     ],
     technologies: [
-      {label: "Languages", description: "Python for model development and testing"},
-      {label: "Frameworks", description: "PyTorch, and openCV for model development, ROS2 Jazzy for real-time implementation"},
-      {label: "Models", description: "yolo11, ultra-fast-lane-detection2"},
-      {label: "Hardware", description: "Depth camera, IMU"}
+      { label: "Languages", description: "Python, C++ for CUDA-accelerated inference" },
+      { label: "Frameworks", description: "PyTorch, OpenCV, Point Cloud Library (PCL), ROS 2" },
+      { label: "Models", description: "YOLOv8/11, Ultra-Fast-Lane-Detection-v2" },
+      { label: "Hardware", description: "Stereo Depth Cameras, 128-beam LiDAR, NVIDIA Jetson" }
     ],
   },
   localization: {
-    name: "Localization",
+    name: "Localization & Mapping",
+    tagline: "High-Precision Pose & Environment Estimation",
+    badgeVariant: "localization",
+    icon: <Compass size={28} />,
     description:
-      "The Localization Team is responsible for creating accurate maps and ensuring that our autonomous vehicles can determine their position within those maps. They work with various sensors and algorithms to achieve precise localization in diverse environments.",
+      "The Localization Team creates high-definition spatial maps and ensures our autonomous vehicles can accurately determine their position and orientation in real-time using SLAM, Extended Kalman Filters, and RTK-GPS.",
     teamLeads: [
-      {name: "Zain Syed", imageURL: ZainImg},
-      {name: "Benjamin Namayandeh", imageURL: BenjImg}
+      { name: "Zain Syed", imageURL: ZainImg, role: "Sub-team Co-Lead" },
+      { name: "Benjamin Namayandeh", imageURL: BenjImg, role: "Sub-team Co-Lead" }
     ],
     focusAreas: [
-      "HD map creation",
-      "GPS and IMU integration",
-      "Simultaneous Localization and Mapping (SLAM)",
+      { label: "HD Map Generation", description: "Creating dense, centimeter-accurate feature maps of test tracks and campus driving routes." },
+      { label: "Multi-Sensor Fusion (EKF)", description: "Fusing wheel odometry, IMU angular velocity, and GPS coordinates via Extended Kalman Filtering." },
+      { label: "LiDAR SLAM", description: "Simultaneous Localization and Mapping for GPS-denied environments using scan-matching algorithms." }
     ],
+    keymilestones: [
+      { label: "Completed", description: "Wheel odometry & IMU data pipeline" },
+      { label: "Completed", description: "Extended Kalman Filter simulation" },
+      { label: "In Progress", description: "RTK-GPS centimeter-accuracy integration" },
+      { label: "In Progress", description: "Cartographer LiDAR SLAM mapping" },
+      { label: "Planned", description: "HD map vector layer integration for global path planning" }
+    ],
+    technologies: [
+      { label: "Languages", description: "C++, Python" },
+      { label: "Frameworks", description: "Robot Localization (EKF), Cartographer SLAM, ROS 2" },
+      { label: "Hardware", description: "RTK-GPS, High-precision 9-axis IMU, Wheel Encoders" }
+    ]
   },
   build: {
-    name: "Build",
+    name: "Build & Mechanical",
+    tagline: "Chassis Fabrication, Drive-by-Wire & Power Systems",
+    badgeVariant: "build",
+    icon: <Wrench size={28} />,
     description:
-      "The Build Team handles the physical design, fabrication, and integration of hardware systems on our autonomous vehicle platform. They ensure all mechanical and electrical components work together reliably.",
+      "The Build Team handles the physical mechanical engineering, structural mounting, power distribution, thermal cooling, and electrical wiring harnesses of our autonomous vehicle platforms.",
     teamLeads: [
-      {name: "Ritwick Vemula"},
-      {name: "Nathanael Cadman-Neu"}
+      { name: "Ritwick Vemula", role: "Mechanical Lead" },
+      { name: "Nathanael Cadman-Neu", role: "Chassis & Hardware Lead" }
     ],
     focusAreas: [
-      "Vehicle platform integration",
-      "Sensor mounting and wiring",
-      "Hardware prototyping and testing",
+      { label: "Drive-by-Wire Integration", description: "Designing electronic actuators for steering, braking, and throttle control." },
+      { label: "Sensor Rigs & Vibration Dampening", description: "CAD designing and 3D printing custom mounts for LiDAR, cameras, and GPS antennas." },
+      { label: "Power Distribution & Safety", description: "Custom power distribution boards, fused battery systems, and physical emergency stop switches." },
+      { label: "Chassis Modification & Packaging", description: "Mechanical chassis alterations to securely house compute racks and cooling fans." }
     ],
+    keymilestones: [
+      { label: "Completed", description: "1/10th scale physical RC car platform" },
+      { label: "Completed", description: "Sensor mounting brackets CAD design" },
+      { label: "In Progress", description: "Full-scale golf cart steering actuator assembly" },
+      { label: "In Progress", description: "Isolated power distribution unit for onboard compute" },
+      { label: "Planned", description: "Full drive-by-wire track testing & calibration" }
+    ],
+    technologies: [
+      { label: "CAD & CAM", description: "SolidWorks, Autodesk Fusion 360" },
+      { label: "Electrical", description: "CAN Bus, Custom PCB Design, 12V/48V Power Distribution" },
+      { label: "Fabrication", description: "3D Printing, Laser Cutting, CNC Milling, TIG Welding" }
+    ]
   },
 };
 
-function TeamPage() {
+export const TeamPage: React.FC = () => {
   const { teamSlug } = useParams<{ teamSlug: string }>();
   const team = teamSlug ? teamData[teamSlug] : undefined;
 
   if (!team) {
     return (
-      <div className="team-page">
-        <div className="team-page-content">
-          <h1>Team Not Found</h1>
-          <p>
-            The team you're looking for doesn't exist.{" "}
-            <Link to="/">Go back home</Link>.
-          </p>
+      <TechGridBackground variant="both" className="ds-team-page-root">
+        <div className="ds-team-page-container ds-not-found-box">
+          <h2>Sub-team Not Found</h2>
+          <p>The sub-team you are looking for does not exist.</p>
+          <Button to="/" variant="primary" leftIcon={<ArrowLeft size={16} />}>
+            Back to Home
+          </Button>
         </div>
-      </div>
+      </TechGridBackground>
     );
   }
 
   return (
-    <div className="team-page">
-      <div className="team-page-content">
-        {/* Hero section */}
-        <section className="team-page-hero">
-          <h1 className="team-page-title">{team.name}</h1>
-          <hr className="team-page-divider" />
-          <p className="team-page-description">{team.description}</p>
+    <TechGridBackground variant="both" glowColor="both" className="ds-team-page-root">
+      <div className="ds-team-page-container">
+        
+        {/* Back Link */}
+        <div className="ds-team-page-back">
+          <Link to="/team" className="ds-back-link">
+            <ArrowLeft size={16} />
+            <span>All Teams & Leadership</span>
+          </Link>
+        </div>
+
+        {/* Hero Section */}
+        <section className="ds-team-page-hero">
+          <div className="ds-team-page-badge-row">
+            <Badge variant={team.badgeVariant} size="md" icon={team.icon}>
+              AUTONOMOUS DIVISION
+            </Badge>
+            <Badge variant="cyan" size="sm" dot pulse>
+              ACTIVE PROJECT
+            </Badge>
+          </div>
+
+          <h1 className="ds-team-page-title">{team.name}</h1>
+          <p className="ds-team-page-tagline">{team.tagline}</p>
+          <p className="ds-team-page-desc">{team.description}</p>
         </section>
 
         {/* Team Leads */}
         {team.teamLeads && team.teamLeads.length > 0 && (
-          <section className="team-page-section">
-            <h2 className="team-page-subtitle">Team Leads</h2>
-            <div className="team-leads-grid">
+          <section className="ds-team-page-section">
+            <h3 className="ds-team-section-heading">Sub-team Leadership</h3>
+            <div className="ds-team-leads-grid">
               {team.teamLeads.map((lead) => (
-                <div key={lead.name} className="team-lead-card">
-                  <div className="team-lead-avatar">
+                <Card key={lead.name} variant="glass" padding="md" className="ds-team-lead-card">
+                  <div className="ds-lead-avatar-wrap">
                     {lead.imageURL ? (
-                      <img src={lead.imageURL} alt={lead.name} className="team-lead-avatar-image" />
+                      <img src={lead.imageURL} alt={lead.name} className="ds-lead-avatar-img" />
                     ) : (
-                      lead
-                        .name
-                        .split(" ")
-                        .map((n) => n[0])
-                        .join("")
+                      <div className="ds-lead-avatar-fallback">
+                        {lead.name.split(" ").map((n) => n[0]).join("")}
+                      </div>
                     )}
                   </div>
-                  <span className="team-lead-name">{lead.name}</span>
-                </div>
+                  <div className="ds-lead-info">
+                    <h4 className="ds-lead-name">{lead.name}</h4>
+                    <span className="ds-lead-role">{lead.role || "Team Lead"}</span>
+                  </div>
+                </Card>
               ))}
             </div>
           </section>
         )}
 
         {/* Focus Areas */}
-        <section className="team-page-section">
-          <h2 className="team-page-subtitle">What We Work On</h2>
-          <div className="focus-areas-grid">
-            {team.focusAreas.map((item, index) => (
-              <div
-                key={typeof item === "string" ? item : item.label}
-                className="focus-card"
-              >
-                <span className="focus-card-number">
-                  {String(index + 1).padStart(2, "0")}
-                </span>
-                {typeof item === "string" ? (
-                  <h3 className="focus-card-title">{item}</h3>
-                ) : (
-                  <>
-                    <h3 className="focus-card-title">{item.label}</h3>
-                    <p className="focus-card-desc">{item.description}</p>
-                  </>
-                )}
-              </div>
-            ))}
+        <section className="ds-team-page-section">
+          <h3 className="ds-team-section-heading">Core Engineering Focus Areas</h3>
+          <div className="ds-focus-grid">
+            {team.focusAreas.map((item, index) => {
+              const label = typeof item === "string" ? item : item.label;
+              const desc = typeof item === "string" ? "" : item.description;
+              return (
+                <Card key={label} variant="glass" padding="lg" className="ds-focus-card">
+                  <div className="ds-focus-card-top">
+                    <span className="ds-mono ds-focus-index">{String(index + 1).padStart(2, "0")}</span>
+                    <Sparkles size={16} className="ds-focus-sparkle" />
+                  </div>
+                  <h4 className="ds-focus-title">{label}</h4>
+                  {desc && <p className="ds-focus-desc">{desc}</p>}
+                </Card>
+              );
+            })}
           </div>
         </section>
 
-        {/* Milestones Timeline */}
+        {/* Milestones */}
         {team.keymilestones && team.keymilestones.length > 0 && (
-          <section className="team-page-section">
-            <h2 className="team-page-subtitle">Key Milestones</h2>
-            <div className="milestones-timeline">
+          <section className="ds-team-page-section">
+            <h3 className="ds-team-section-heading">Division Milestones & Roadmap</h3>
+            <div className="ds-milestones-grid">
               {team.keymilestones.map((item, index) => {
-                const label =
-                  typeof item === "string" ? "" : item.label.toLowerCase();
-                const statusClass = label.includes("completed")
-                  ? "completed"
-                  : label.includes("in progress")
-                  ? "in-progress"
-                  : "planned";
+                const label = typeof item === "string" ? "Planned" : item.label;
+                const desc = typeof item === "string" ? item : item.description;
+                const isCompleted = label.toLowerCase().includes("completed");
+                const isInProgress = label.toLowerCase().includes("in progress");
+
                 return (
-                  <div
-                    key={index}
-                    className={`milestone-item milestone-${statusClass}`}
-                  >
-                    <div className="milestone-dot" />
-                    <div className="milestone-content">
-                      {typeof item === "string" ? (
-                        <p className="milestone-text">{item}</p>
+                  <div key={index} className="ds-milestone-row">
+                    <div className="ds-milestone-status-col">
+                      {isCompleted ? (
+                        <Badge variant="success" size="sm" icon={<CheckCircle2 size={12} />}>Completed</Badge>
+                      ) : isInProgress ? (
+                        <Badge variant="purple" size="sm" dot pulse icon={<Clock size={12} />}>In Progress</Badge>
                       ) : (
-                        <>
-                          <span className={`milestone-badge badge-${statusClass}`}>
-                            {item.label}
-                          </span>
-                          <p className="milestone-text">{item.description}</p>
-                        </>
+                        <Badge variant="outline" size="sm">Planned</Badge>
                       )}
+                    </div>
+                    <div className="ds-milestone-text-col">
+                      <p className="ds-milestone-text">{desc}</p>
                     </div>
                   </div>
                 );
@@ -230,32 +283,39 @@ function TeamPage() {
           </section>
         )}
 
-        {/* Technologies */}
+        {/* Technologies Used */}
         {team.technologies && team.technologies.length > 0 && (
-          <section className="team-page-section">
-            <h2 className="team-page-subtitle">Technologies We Use</h2>
-            <div className="tech-grid">
-              {team.technologies.map((item) => (
-                <div
-                  key={typeof item === "string" ? item : item.label}
-                  className="tech-card"
-                >
-                  {typeof item === "string" ? (
-                    <span className="tech-label">{item}</span>
-                  ) : (
-                    <>
-                      <span className="tech-label">{item.label}</span>
-                      <span className="tech-desc">{item.description}</span>
-                    </>
-                  )}
-                </div>
-              ))}
+          <section className="ds-team-page-section">
+            <h3 className="ds-team-section-heading">Technologies, Tooling & Stack</h3>
+            <div className="ds-tech-stack-grid">
+              {team.technologies.map((item, index) => {
+                const label = typeof item === "string" ? `Tech ${index + 1}` : item.label;
+                const desc = typeof item === "string" ? item : item.description;
+                return (
+                  <Card key={label} variant="glass" padding="md" className="ds-tech-stack-card">
+                    <span className="ds-tech-category">{label}</span>
+                    <p className="ds-tech-details">{desc}</p>
+                  </Card>
+                );
+              })}
             </div>
           </section>
         )}
+
+        {/* Bottom Navigation to other teams */}
+        <section className="ds-other-teams-section">
+          <h4 className="ds-other-teams-title">Explore Other Sub-teams</h4>
+          <div className="ds-other-teams-buttons">
+            <Button to="/teams/planning-and-control" variant="secondary" size="sm">Planning & Control</Button>
+            <Button to="/teams/perception" variant="secondary" size="sm">Perception</Button>
+            <Button to="/teams/localization" variant="secondary" size="sm">Localization</Button>
+            <Button to="/teams/build" variant="secondary" size="sm">Build</Button>
+          </div>
+        </section>
+
       </div>
-    </div>
+    </TechGridBackground>
   );
-}
+};
 
 export default TeamPage;

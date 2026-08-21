@@ -1,341 +1,304 @@
-/* ── Base ── */
-body {
-    margin: 0;
-    padding: 0;
-    min-height: 100vh;
-    font-family: 'Jura', sans-serif;
-    
-    background: radial-gradient(
-        circle at center,
-        #6b037b 0%,
-        #3a0050 25%,
-        #1c0036 60%,
-        #000000 100%
-    );
-    background-attachment: fixed;
-    background-size: cover;
+/* ==========================================================================
+   WEAP SILICON VALLEY MINIMALIST SUB-TEAM DETAIL PAGE
+   ========================================================================== */
+
+.ds-team-page-root {
+  min-height: 100vh;
+  padding: 40px 0 100px 0;
 }
 
-.team-page {
-  /* background: linear-gradient(180deg, #560d81 0%, #000000 100%); */
-  min-height: 80vh;
-  display: flex;
-  justify-content: center;
-  padding: 4rem 2rem;
-}
-
-.team-page-content {
-  max-width: 900px;
-  width: 100%;
-}
-
-/* ── Hero ── */
-.team-page-hero {
-  margin-bottom: 3rem;
-}
-
-.team-page-title {
-  font-family: 'Jura', sans-serif;
-  font-size: 2.8rem;
-  font-weight: 700;
-  color: #ffffff;
-  margin-bottom: 0.5rem;
-}
-
-.team-page-divider {
-  border: none;
-  height: 3px;
-  background: linear-gradient(to right, #1b489c, #9708e4);
-  margin-bottom: 1.5rem;
-  width: 120px;
-}
-
-.team-page-description {
-  font-family: 'Jura', sans-serif;
-  font-size: 1.15rem;
-  line-height: 1.8;
-  color: #d0d0d0;
-}
-
-/* ── Sections ── */
-.team-page-section {
-  margin-bottom: 3rem;
-}
-
-.team-page-subtitle {
-  font-family: 'Jura', sans-serif;
-  font-size: 1.5rem;
-  font-weight: 600;
-  color: #ffffff;
-  margin-bottom: 1.25rem;
-  position: relative;
-  padding-bottom: 0.5rem;
-}
-
-.team-page-subtitle::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 40px;
-  height: 2px;
-  background: #9708e4;
-}
-
-/* ── Team Leads ── */
-.team-leads-grid {
-  display: flex;
-  gap: 2rem;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-.team-lead-card {
+.ds-team-page-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 24px;
   display: flex;
   flex-direction: column;
+  gap: 48px;
+}
+
+.ds-team-page-back {
+  margin-bottom: -16px;
+}
+
+.ds-back-link {
+  display: inline-flex;
   align-items: center;
-  gap: 0.75rem;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 16px;
-  padding: 1.5rem 2rem;
-  transition: border-color 0.3s ease, transform 0.3s ease;
+  gap: 8px;
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: all var(--transition-fast);
+}
+.ds-back-link:hover {
+  color: #ffffff;
+  transform: translateX(-3px);
 }
 
-.team-lead-card:hover {
-  border-color: rgba(151, 8, 228, 0.4);
-  transform: translateY(-3px);
+/* Hero */
+.ds-team-page-hero {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: flex-start;
 }
 
-.team-lead-avatar {
-  width: 80px;
-  height: 80px;
+.ds-team-page-badge-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.ds-team-page-title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(2.25rem, 5vw, 3.5rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+  color: #ffffff;
+}
+
+.ds-team-page-tagline {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--purple-300);
+}
+
+.ds-team-page-desc {
+  margin: 0;
+  font-size: 1.0625rem;
+  line-height: 1.7;
+  color: var(--text-secondary);
+  max-width: 860px;
+}
+
+/* Sections */
+.ds-team-page-section {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.ds-team-section-heading {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: -0.02em;
+}
+
+/* Leads Grid */
+.ds-team-leads-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 16px;
+}
+
+.ds-team-lead-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  transition: transform var(--transition-normal), border-color var(--transition-normal);
+}
+.ds-team-lead-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--border-medium);
+}
+
+.ds-lead-avatar-wrap {
+  width: 56px;
+  height: 56px;
   border-radius: 50%;
   overflow: hidden;
-  border: 3px solid rgba(151, 8, 228, 0.5);
+  border: 2px solid var(--border-bright);
+  background: var(--bg-tertiary);
   flex-shrink: 0;
-  box-shadow: 0 0 12px rgba(151, 8, 228, 0.25);
 }
 
-.team-lead-avatar-image {
+.ds-lead-avatar-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  display: block;
 }
 
-.team-lead-name {
-  font-family: 'Jura', sans-serif;
-  font-size: 1.05rem;
-  font-weight: 600;
-  color: #ffffff;
-  text-align: center;
-}
-
-/* ── Focus Areas (card grid) ── */
-.focus-areas-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  gap: 1.25rem;
-}
-
-.focus-card {
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 12px;
-  padding: 1.5rem;
-  transition: border-color 0.3s ease, transform 0.3s ease;
-  position: relative;
-}
-
-.focus-card:hover {
-  border-color: rgba(151, 8, 228, 0.4);
-  transform: translateY(-3px);
-}
-
-.focus-card-number {
-  font-family: 'Jura', sans-serif;
-  font-size: 0.8rem;
-  font-weight: 700;
-  color: #9708e4;
-  opacity: 0.6;
-  display: block;
-  margin-bottom: 0.5rem;
-}
-
-.focus-card-title {
-  font-family: 'Jura', sans-serif;
-  font-size: 1.1rem;
-  font-weight: 700;
-  color: #ffffff;
-  margin: 0 0 0.5rem 0;
-}
-
-.focus-card-desc {
-  font-family: 'Jura', sans-serif;
-  font-size: 0.92rem;
-  line-height: 1.6;
-  color: #b0b0b0;
-  margin: 0;
-}
-
-/* ── Milestones Timeline ── */
-.milestones-timeline {
-  position: relative;
-  padding-left: 2rem;
-}
-
-.milestones-timeline::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 7px;
-  bottom: 0;
-  width: 2px;
-  background: rgba(255, 255, 255, 0.1);
-}
-
-.milestone-item {
-  position: relative;
-  padding-bottom: 1.5rem;
+.ds-lead-avatar-fallback {
+  width: 100%;
+  height: 100%;
   display: flex;
-  align-items: flex-start;
-  gap: 1rem;
-}
-
-.milestone-item:last-child {
-  padding-bottom: 0;
-}
-
-.milestone-dot {
-  position: absolute;
-  left: -2rem;
-  top: 4px;
-  width: 16px;
-  height: 16px;
-  border-radius: 50%;
-  border: 2px solid;
-  background: #000;
-  flex-shrink: 0;
-  z-index: 1;
-}
-
-.milestone-completed .milestone-dot {
-  border-color: #22c55e;
-  background: rgba(34, 197, 94, 0.2);
-  box-shadow: 0 0 8px rgba(34, 197, 94, 0.3);
-}
-
-.milestone-in-progress .milestone-dot {
-  border-color: #f59e0b;
-  background: rgba(245, 158, 11, 0.2);
-  box-shadow: 0 0 8px rgba(245, 158, 11, 0.3);
-}
-
-.milestone-planned .milestone-dot {
-  border-color: #6b7280;
-  background: rgba(107, 114, 128, 0.15);
-}
-
-.milestone-content {
-  padding-top: 0;
-}
-
-.milestone-badge {
-  display: inline-block;
-  font-family: 'Jura', sans-serif;
-  font-size: 0.7rem;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-sans);
+  font-size: 1rem;
   font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  padding: 3px 10px;
-  border-radius: 20px;
-  margin-bottom: 0.35rem;
+  color: var(--purple-300);
+  background: rgba(139, 92, 246, 0.15);
 }
 
-.badge-completed {
-  background: rgba(34, 197, 94, 0.15);
-  color: #22c55e;
-  border: 1px solid rgba(34, 197, 94, 0.3);
-}
-
-.badge-in-progress {
-  background: rgba(245, 158, 11, 0.15);
-  color: #f59e0b;
-  border: 1px solid rgba(245, 158, 11, 0.3);
-}
-
-.badge-planned {
-  background: rgba(107, 114, 128, 0.15);
-  color: #9ca3af;
-  border: 1px solid rgba(107, 114, 128, 0.3);
-}
-
-.milestone-text {
-  font-family: 'Jura', sans-serif;
-  font-size: 0.95rem;
-  color: #d0d0d0;
-  margin: 0;
-  line-height: 1.5;
-}
-
-/* ── Technologies ── */
-.tech-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-  gap: 1rem;
-}
-
-.tech-card {
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 10px;
-  padding: 1.25rem;
+.ds-lead-info {
   display: flex;
   flex-direction: column;
-  gap: 0.4rem;
-  transition: border-color 0.3s ease;
+  gap: 2px;
 }
 
-.tech-card:hover {
-  border-color: rgba(27, 72, 156, 0.5);
-}
-
-.tech-label {
-  font-family: 'Jura', sans-serif;
-  font-size: 0.85rem;
+.ds-lead-name {
+  margin: 0;
+  font-size: 1rem;
   font-weight: 700;
+  color: #ffffff;
+}
+
+.ds-lead-role {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+/* Focus Areas */
+.ds-focus-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.ds-focus-card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  transition: all var(--transition-normal);
+}
+.ds-focus-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--border-medium);
+}
+
+.ds-focus-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.ds-focus-index {
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: var(--purple-400);
+}
+
+.ds-focus-sparkle {
+  color: var(--cyan-400);
+}
+
+.ds-focus-title {
+  margin: 0;
+  font-size: 1.0625rem;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: -0.01em;
+}
+
+.ds-focus-desc {
+  margin: 0;
+  font-size: 0.875rem;
+  line-height: 1.6;
+  color: var(--text-secondary);
+}
+
+/* Milestones Rows */
+.ds-milestones-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.ds-milestone-row {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  background: var(--bg-glass-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  padding: 14px 20px;
+  backdrop-filter: blur(12px);
+  transition: all var(--transition-fast);
+}
+.ds-milestone-row:hover {
+  background: rgba(20, 25, 42, 0.8);
+  border-color: var(--border-medium);
+}
+
+.ds-milestone-status-col {
+  flex-shrink: 0;
+  min-width: 110px;
+}
+
+.ds-milestone-text-col {
+  flex: 1;
+}
+
+.ds-milestone-text {
+  margin: 0;
+  font-size: 0.9375rem;
+  color: var(--text-primary);
+}
+
+/* Tech Stack */
+.ds-tech-stack-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 16px;
+}
+
+.ds-tech-stack-card {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.ds-tech-category {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--cyan-300);
   text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: #9708e4;
+  letter-spacing: 0.04em;
 }
 
-.tech-desc {
-  font-family: 'Jura', sans-serif;
-  font-size: 0.92rem;
-  color: #c0c0c0;
+.ds-tech-details {
+  margin: 0;
+  font-size: 0.875rem;
   line-height: 1.5;
+  color: var(--text-secondary);
 }
 
-/* ── Responsive ── */
-@media only screen and (max-width: 768px) {
-  .team-page {
-    padding: 2rem 1rem;
-  }
+/* Other Teams bottom bar */
+.ds-other-teams-section {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border-subtle);
+}
 
-  .team-page-title {
-    font-size: 2rem;
-  }
+.ds-other-teams-title {
+  margin: 0;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
 
-  .focus-areas-grid {
-    grid-template-columns: 1fr;
-  }
+.ds-other-teams-buttons {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
 
-  .tech-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .team-leads-grid {
-    flex-direction: column;
-  }
+.ds-not-found-box {
+  text-align: center;
+  padding: 80px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
 }

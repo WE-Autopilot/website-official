@@ -1,152 +1,147 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import SectionHeading from "./design-system/SectionHeading";
+import Badge from "./design-system/Badge";
+import Card from "./design-system/Card";
+import TechGridBackground from "./design-system/TechGridBackground";
+import Tabs from "./design-system/Tabs";
 import "../stylesheets/Gallery.css";
-
-type MilestoneStatus = "completed" | "in progress" | "planned";
-type MilestonePhase =
-  | "simulation"
-  | "physical-testing"
-  | "competition"
-  | "development"
-  | "integration";
 
 interface GalleryImage {
   src: string;
   caption: string;
 }
 
-  interface Milestone {
+interface Milestone {
   id: string;
   title: string;
-  phase: MilestonePhase;
+  phase: string;
   timeframe: string;
-  status: MilestoneStatus;
+  status: "completed" | "in progress" | "planned";
   summary: string;
   images: GalleryImage[];
 }
 
 const MILESTONES: Milestone[] = [
-  /*{
-    id: "agm-1",
-    title: "First AGM",
-    phase: "development",
-    status: "completed",
-    timeframe: "December 2024",
-    summary:
-      "Formalized the club’s structure and established its technical direction.",
-    images: [
-      //These are placeholders - replace later with actual AGM photos
-      { src: "/agm/meeting.jpg", caption: "Initial general body meeting" },
-      { src: "/agm/team.jpg", caption: "Founding members and exec team" },
-    ],
-  },*/
   {
     id: "workshop-1",
-    title: "First MNST Workshop",
-    phase: "integration",
+    title: "First MNIST Machine Learning Workshop",
+    phase: "Technical Workshop",
     status: "completed",
     timeframe: "January 2025",
-    summary:
-      "Hands-on introduction to simulation environments and control pipelines.",
+    summary: "Hands-on introduction to neural networks, computer vision datasets, and ROS 2 control pipelines.",
     images: [
-      { src: "/Gallery/WebP/MNISTNumbers.webp", 
-        caption: "The MNIST dataset contains 70,000 images of handwritten digits (0-9), used to train neural networks." },
-      //{ src: "/Gallery/NeutralNetworkLayers.png", caption: "blurb about neutral network layers." },
-      { src: "/Gallery/WebP/PresentationPanOut.webp", caption: "View of the workshop attendees engaged in the initial presentation." },
-      { src: "/Gallery/WebP/Presentation.webp", caption: "Our Planning and Control lead Aly Ashour leading his portion of the workshop." },
+      { src: "/Gallery/WebP/MNISTNumbers.webp", caption: "The MNIST dataset contains 70,000 images of handwritten digits (0-9) used to train neural networks." },
+      { src: "/Gallery/WebP/PresentationPanOut.webp", caption: "Workshop attendees learning initial convolutional neural net architecture." },
+      { src: "/Gallery/WebP/Presentation.webp", caption: "Planning & Control Lead Aly Ashour presenting closed-loop feedback controllers." },
     ],
   },
   {
     id: "sim-rc",
-    title: "RC Car Simulation Competition",
-    phase: "simulation",
+    title: "RC Autonomous Simulation Challenge",
+    phase: "Simulation Competition",
     status: "completed",
     timeframe: "March 2025",
-    summary:
-      "Competitive evaluation of perception and planning stacks in simulation.",
+    summary: "Competitive evaluation of perception algorithms and Model Predictive Controllers in high-fidelity simulation.",
     images: [
       { src: "/Gallery/WebP/BlackTeamGroupPic.webp", caption: "Group picture of the Black team." },
       { src: "/Gallery/WebP/RedTeamGroupPic.webp", caption: "Group picture of the Red team." },
-      { src: "/Gallery/WebP/AwardWinners.webp", caption: "Group picture of the award winners from each team." },
-      { src: "/Gallery/WebP/BlackTeamAwardIan.webp", caption: "Ian Tan, leader of the Black team recieving an award for his outstanding contributions." },
-      { src: "/Gallery/WebP/RedTeamAwardBen.webp", caption: "Ben Namayandeh, leader of the Red team recieving an award for contributing the most lines of code." },
-      { src: "/Gallery/WebP/RedTeamAwardCady.webp", caption: "Cadence McGillicuddy, recieving an award for her exceptional dedication to the red team." },
-      { src: "/Gallery/WebP/BlackTeamAwardLogan.webp", caption: "Logan Ouellette, recieving an award for his outstanding contributions to the black team." },
+      { src: "/Gallery/WebP/AwardWinners.webp", caption: "Award recipients from both competitive teams." },
+      { src: "/Gallery/WebP/BlackTeamAwardIan.webp", caption: "Ian Tan receiving an award for outstanding perception stack contributions." },
+      { src: "/Gallery/WebP/RedTeamAwardBen.webp", caption: "Benjamin Namayandeh receiving an award for exceptional codebase commits." },
+      { src: "/Gallery/WebP/RedTeamAwardCady.webp", caption: "Cadence McGillicuddy receiving an award for technical dedication." },
+      { src: "/Gallery/WebP/BlackTeamAwardLogan.webp", caption: "Logan Ouellette receiving an award for systems integration." },
     ],
   },
   {
     id: "race-rc",
-    title: "RC Car Racing Competition",
-    phase: "competition",
+    title: "Physical RC Autonomous Racing",
+    phase: "Physical Testing",
     status: "completed",
     timeframe: "May 2025",
-    summary:
-      "Transition from simulation to real-world autonomous racing conditions.",
+    summary: "Deploying autonomous software stacks onto physical 1/10th scale RC vehicles on real test tracks.",
     images: [
-      { src: "/Gallery/WebP/TrackAbove.webp", caption: "An overhead view of the race track used in the competition, the track was set up in 3 different ways." },
-      { src: "/Gallery/WebP/TheCars2.webp", caption: "The 2 RC cars built and coded by each of the teams." },
-      { src: "/Gallery/WebP/Comp2GroupPic.webp", caption: "Group photo of those who attended WEAP's RC competition." },
-      { src: "/Gallery/WebP/TheTrackScenic.webp", caption: "Race Results: With an average time of 45 seconds, the Black team came out on top with 60 pts! \n The Red team trailed behind with a total of 20 pts for completing 2 of the 3 tracks." },
+      { src: "/Gallery/WebP/TrackAbove.webp", caption: "Overhead view of the physical obstacle track configured in 3 distinct layouts." },
+      { src: "/Gallery/WebP/TheCars2.webp", caption: "Autonomous RC vehicles equipped with microcontrollers, camera rigs, and battery systems." },
+      { src: "/Gallery/WebP/Comp2GroupPic.webp", caption: "Members, competitors, and attendees at the annual RC Autonomous Challenge." },
+      { src: "/Gallery/WebP/TheTrackScenic.webp", caption: "Race Results: Black Team achieved 1st place with 60 pts; Red Team achieved 20 pts." },
     ],
   },
 ];
 
-export default function Gallery() {
+export const Gallery: React.FC = () => {
+  const [selectedMilestone, setSelectedMilestone] = useState("all");
+
   useEffect(() => {
     const hash = window.location.hash.slice(1);
     if (!hash) return;
-
     const section = document.getElementById(hash);
     section?.scrollIntoView({ behavior: "smooth", block: "start" });
   }, []);
 
+  const tabs = [
+    { id: "all", label: "All Events" },
+    { id: "workshop-1", label: "ML Workshop" },
+    { id: "sim-rc", label: "Simulation Challenge" },
+    { id: "race-rc", label: "Physical Racing" },
+  ];
+
+  const visibleMilestones = selectedMilestone === "all"
+    ? MILESTONES
+    : MILESTONES.filter(m => m.id === selectedMilestone);
+
   return (
-    <main className="gallery-page">
-      {MILESTONES.map((m) => (
-        <section key={m.id} id={m.id} className="gallery-section">
-          {/* Metadata Overlay */}
-          <header className="hero-section">
-            <h2 className="hero-title">{m.title}</h2>
-            <p className="hero-summary">{m.summary}</p>
+    <TechGridBackground variant="both" glowColor="both" className="ds-gallery-root">
+      <div className="ds-gallery-container">
+        
+        <SectionHeading
+          badge="MEDIA & ARCHIVE"
+          title="Engineering Gallery &"
+          titleGradient="Event Archive"
+          subtitle="A visual chronicle of our team workshops, racing competitions, and vehicle testing."
+        />
 
-            <div className="meta">
-              <span className={`phase ${m.phase}`}>{m.phase}</span>
-              <span className={`status ${m.status}`}>{m.status}</span>
-              <span>{m.timeframe}</span>
+        {/* Filter Tabs */}
+        <div className="ds-gallery-tabs-row">
+          <Tabs
+            tabs={tabs}
+            activeTab={selectedMilestone}
+            onChange={setSelectedMilestone}
+          />
+        </div>
+
+        {/* Milestones Sections */}
+        <div className="ds-gallery-sections">
+          {visibleMilestones.map((m) => (
+            <div key={m.id} id={m.id} className="ds-gallery-event-block">
+              <div className="ds-gallery-event-header">
+                <div className="ds-event-badge-row">
+                  <Badge variant="purple" size="sm">{m.phase}</Badge>
+                  <Badge variant="success" size="sm" dot>Completed</Badge>
+                  <span className="ds-event-timeframe">{m.timeframe}</span>
+                </div>
+                <h3 className="ds-event-title">{m.title}</h3>
+                <p className="ds-event-summary">{m.summary}</p>
+              </div>
+
+              <div className="ds-event-photo-grid">
+                {m.images.map((img, i) => (
+                  <Card key={i} variant="glass" padding="none" className="ds-event-photo-card">
+                    <div className="ds-photo-wrapper">
+                      <img src={img.src} alt={img.caption} loading="lazy" />
+                    </div>
+                    <div className="ds-photo-info">
+                      <p className="ds-photo-desc">{img.caption}</p>
+                    </div>
+                  </Card>
+                ))}
+              </div>
             </div>
-          </header>
+          ))}
+        </div>
 
-          {/* VISUALS ARE THE SECTION */}
-          <div className="image-grid">
-            {m.images.map((img, i) => (
-              <figure key={i} className="gallery-item">
-                <img
-                  src={img.src}
-                  alt={img.caption}
-                  loading="lazy"
-                  decoding="async"
-                  width={300}
-                  height={200}
-                />
-                <figcaption>{img.caption}</figcaption>
-              </figure>
-            ))}
-          </div>
-        </section>
-      ))}
-    </main>
+      </div>
+    </TechGridBackground>
   );
-}
+};
 
-//function Gallery() {
-//  return (
-//    <div className="gallery-container">
-//      <h2>Come back soon to see all of the photos of our club!</h2>
-//      <div className="Work-in-progress">
-//        <img src="/Wip.png" alt="Work in progress Image" />
-//        
-//      </div>
-//    </div>
-//  );
-//}
-
-//export default Gallery;
+export default Gallery;

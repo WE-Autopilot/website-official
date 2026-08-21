@@ -1,60 +1,86 @@
 import React from 'react';
+import { Cpu, Eye, Compass, Wrench } from 'lucide-react';
+import SectionHeading from './design-system/SectionHeading';
+import TechCard from './design-system/TechCard';
 import '../stylesheets/Teams.css';
 
 const teamsData = [
   {
-    name: "Mapping and Localization",
-    summary: "Develops the systems that allow our vehicles to understand and navigate their environment.",
-    description: "The Mapping and Localization Team is responsible for creating accurate maps and ensuring that our autonomous vehicles can determine their position within those maps. They work with various sensors and algorithms to achieve precise localization in diverse environments.",
-    link: "/teams/localization"
+    title: "Planning & Control",
+    subtitle: "// SUB-TEAM 01",
+    description: "Designs state machines, path planning trajectories, model predictive controllers (MPC), and drive-by-wire actuations.",
+    badge: "Active",
+    badgeVariant: "planning" as const,
+    accentColor: "planning" as const,
+    tags: ["ROS 2", "MPC", "C++", "Motion Planning"],
+    icon: <Cpu size={22} />,
+    link: "/teams/planning-and-control",
   },
   {
-    name: "Planning and Control",
-    summary: "Designs the algorithms that enable our vehicles to make decisions and control their movements.",
-    description: "The Planning and Control Team develops the algorithms that allow our vehicles to plan routes, make decisions, and control their movements safely and efficiently. They work on path planning, motion control, and decision-making systems.",
-    link: "/teams/planning-and-control"
+    title: "Perception",
+    subtitle: "// SUB-TEAM 02",
+    description: "Extracts 3D spatial features using multi-beam LiDAR point clouds, YOLOv8 object detection cameras, and sensor fusion.",
+    badge: "Active",
+    badgeVariant: "perception" as const,
+    accentColor: "perception" as const,
+    tags: ["LiDAR 3D", "YOLOv8", "PyTorch", "Point Clouds"],
+    icon: <Eye size={22} />,
+    link: "/teams/perception",
   },
   {
-    name: "Perception",
-    summary: "Builds the systems that allow our vehicles to perceive and interpret their surroundings.",
-    description: "The Perception Team develops the algorithms and systems that enable our vehicles to detect, classify, and understand objects and events in their environment. They work with sensors such as cameras, LiDAR, and radar to create a comprehensive perception system.",
-    link: "/teams/perception"
+    title: "Localization & Mapping",
+    subtitle: "// SUB-TEAM 03",
+    description: "Estimates vehicle pose and maps environments utilizing Extended Kalman Filters (EKF), SLAM, RTK-GPS, and IMU telemetry.",
+    badge: "Active",
+    badgeVariant: "localization" as const,
+    accentColor: "localization" as const,
+    tags: ["SLAM", "EKF Fusion", "RTK-GPS", "State Estimation"],
+    icon: <Compass size={22} />,
+    link: "/teams/localization",
   },
   {
-    name: "Build",
-    summary: "Constructs the physical vehicles and ensures they are ready for testing and competition.",
-    description: "The Build Team is responsible for constructing the physical autonomous vehicles. They work on the mechanical design, fabrication, and assembly of the vehicles, ensuring that they meet the specifications and are ready for testing and competition.",
-    link: "/teams/build"
-  }
+    title: "Build & Mechanical",
+    subtitle: "// SUB-TEAM 04",
+    description: "Engineers mechanical chassis, custom mounting rigs, thermal cooling systems, wiring harnesses, and battery power distro.",
+    badge: "Active",
+    badgeVariant: "build" as const,
+    accentColor: "build" as const,
+    tags: ["CAD / SolidWorks", "CAN Bus", "Power Distro", "Chassis Rig"],
+    icon: <Wrench size={22} />,
+    link: "/teams/build",
+  },
 ];
 
-function Teams(): JSX.Element {
+export const Teams: React.FC = () => {
   return (
-    <div className="teams-page">
-      <div className="teams-background"></div>
-      <div className="teams-content">
-        <h1 className="teams-title">Meet the Teams</h1>
-        <div className="teams-container">
-          {teamsData.map((team, index) => (
-            <div key={index} className="team-card-wrapper">
-              <div className="team-card">
-                <div className="team-card-front">
-                  <h2 className="team-name">{team.name}</h2>
-                  <p className="team-summary">{team.summary}</p>
-                </div>
-                <div className="team-card-back">
-                  <p className="team-description">{team.description}</p>
-                  <a href={team.link} className="team-link-button">
-                    Learn More
-                  </a>
-                </div>
-              </div>
-            </div>
+    <section className="ds-teams-section" id="Teams">
+      <div className="ds-teams-container">
+        <SectionHeading
+          badge="AUTONOMOUS DIVISIONS"
+          title="Specialized Engineering"
+          titleGradient="Sub-teams"
+          subtitle="Our club is organized into four core multidisciplinary engineering sub-teams working in tight unison."
+        />
+
+        <div className="ds-teams-grid">
+          {teamsData.map((team) => (
+            <TechCard
+              key={team.title}
+              title={team.title}
+              subtitle={team.subtitle}
+              description={team.description}
+              badge={team.badge}
+              badgeVariant={team.badgeVariant}
+              accentColor={team.accentColor}
+              tags={team.tags}
+              icon={team.icon}
+              to={team.link}
+            />
           ))}
         </div>
       </div>
-    </div>
+    </section>
   );
-}
+};
 
 export default Teams;

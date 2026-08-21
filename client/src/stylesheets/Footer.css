@@ -1,163 +1,215 @@
-/*Footer is divided into 3 columns, the third being empty space*/
-.Footer {
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  bottom: 0;
+/* ==========================================================================
+   WEAP SILICON VALLEY MINIMALIST FOOTER
+   ========================================================================== */
+
+.ds-footer {
   position: relative;
+  background: #070910;
+  border-top: 1px solid var(--border-subtle);
+  color: var(--text-secondary);
   overflow: hidden;
-
-  padding: 40px 0;
+  margin-top: 80px;
 }
 
-#animated-bg {
+.ds-footer-top-line {
   position: absolute;
-  inset: 0;
-  z-index: 0;
-  overflow: hidden;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, rgba(139, 92, 246, 0.4) 35%, rgba(56, 189, 248, 0.4) 65%, transparent 100%);
 }
 
-#gradient-canvas {
-  width: 100%;
-  height: 100%;
-  display: block;
-  --gradient-color-1: #53035f;
-  --gradient-color-2: #750985;
-  --gradient-color-3: #831194;
-  --gradient-color-4: #c79dcd;
+.ds-footer-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 64px 24px 32px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
 }
 
-#FooterLeft {
-  width: 33%;
-  position: relative; /* keep it in normal flow while logo is positioned absolutely */
-  z-index: 1;
+.ds-footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1.2fr 1.5fr;
+  gap: 48px;
 }
 
-#FooterLogo {
-  position: absolute;
-  left: 16px;
-  bottom: 12px;
-  width: 195px;
-  height: auto;
-  padding: 0;
+.ds-footer-brand-col {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.ds-footer-tagline {
   margin: 0;
-  z-index: 2; /* above the animated background */
-  display: block;
-  pointer-events: auto;
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: var(--text-muted);
+  max-width: 380px;
 }
 
-/* Keep the footer layout as-is but make the logo itself absolutely positioned
-   so only the autopilot logo sticks to the bottom-left without affecting flow */
-
-#Socials {
-  width: 33%;
-  text-align: center;
-  position: relative;
-  z-index: 1;
-}
-
-#SocialTitle {
-  font-size: 25px;
-  font-weight: 950;
-  font-family: "Jura", serif;
-  color: #6b047b;
-  padding-top: 40px;
-
-  background: linear-gradient(to right, #000000, #4f4a4a);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-
-  display: inline-block;
-  position: relative; 
-  z-index: 1;
-}
-
-#SocialImages {
-  display: flex;
-  flex-direction: row;
-  gap: 40px;
-  justify-content: center;
+.ds-footer-status-pill {
+  display: inline-flex;
   align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-full);
+  font-size: 0.75rem;
+  font-family: 'Fira Code', monospace;
+  color: var(--text-muted);
 }
-#SocialImages a {
+
+.ds-footer-heading {
+  margin: 0 0 16px 0;
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+}
+
+.ds-footer-links {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.ds-footer-links a {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: all var(--transition-fast);
   display: inline-block;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-#SocialImages a:hover {
-  transform: scale(1.2) rotate(10deg);
-}
-#LinkTree:hover {
-  filter: drop-shadow(0 0 8px #e38648);
-}
-#Instagram:hover {
-  filter: drop-shadow(0 0 8px #e130b8);
-}
-#LinkedIn:hover {
-  filter: drop-shadow(0 0 8px #0a66c2);
-}
-#Discord:hover {
-  filter: drop-shadow(0 0 8px #9524d6);
-}
-#GitHub:hover {
-  filter: drop-shadow(0 0 8px #bbbbbb);
 }
 
-#SocialImages > img {
-  /* prevents image squash*/
-  align-self: center;
+.ds-footer-links a:hover {
+  color: #ffffff;
+  transform: translateX(3px);
 }
 
-#LinkTree {
+.ds-footer-social-desc {
+  margin: 0 0 16px 0;
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  line-height: 1.5;
 }
 
-#Instagram {
+.ds-footer-social-icons {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
 }
 
-#Discord {
+.ds-social-icon-btn {
+  width: 38px;
+  height: 38px;
+  border-radius: var(--radius-sm);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  transition: all var(--transition-fast);
 }
 
-/*Mobile*/
-@media only screen and (max-width: 850px) {
-  .Footer {
+.ds-social-icon-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  transform: translateY(-2px);
+  border-color: var(--border-bright);
+}
+
+.ds-social-github:hover {
+  box-shadow: 0 0 16px -2px rgba(255, 255, 255, 0.3);
+}
+.ds-social-linkedin:hover {
+  color: #38bdf8;
+  border-color: #38bdf8;
+  box-shadow: 0 0 16px -2px rgba(56, 189, 248, 0.4);
+}
+.ds-social-instagram:hover {
+  color: #f43f5e;
+  border-color: #f43f5e;
+  box-shadow: 0 0 16px -2px rgba(244, 63, 94, 0.4);
+}
+.ds-social-discord:hover {
+  color: #a78bfa;
+  border-color: #a78bfa;
+  box-shadow: 0 0 16px -2px rgba(167, 139, 250, 0.4);
+}
+
+/* Bottom sub bar */
+.ds-footer-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 24px;
+  border-top: 1px solid var(--border-subtle);
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.ds-footer-copy {
+  font-size: 0.8125rem;
+  color: var(--text-subtle);
+}
+
+.ds-back-to-top {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-full);
+  padding: 6px 14px;
+  color: var(--text-muted);
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.ds-back-to-top:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: #ffffff;
+  border-color: var(--border-medium);
+  transform: translateY(-2px);
+}
+
+/* Responsive */
+@media (max-width: 960px) {
+  .ds-footer-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 36px;
+  }
+  .ds-footer-brand-col {
+    grid-column: span 2;
+  }
+}
+
+@media (max-width: 600px) {
+  .ds-footer-grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+  .ds-footer-brand-col {
+    grid-column: span 1;
+  }
+  .ds-footer-bottom {
     flex-direction: column;
-    text-align: center;
-  }
-
-  #FooterLeft {
-    width: 100%;
-    text-align: center;
-  }
-
-  #FooterLogo {
-    position: relative;
-    left: auto;
-    bottom: auto;
-    margin: 0 auto;
-  }
-
-  #Address {
-    /* padding-bottom: 0;
-    padding-left: 0;
-    margin-bottom: -10px; */
-    padding: 5px 0;
-    margin-bottom: 5px;
-    line-height: 1.4;
-  }
-
-  #TextBreak {
-    display: none;
-  }
-
-  #Socials {
-    width: 100%;
-  }
-
-  #SocialTitle {
-    padding-top: 0;
-  }
-
-  #SocialImages {
-    padding-bottom: 5%;
+    align-items: flex-start;
   }
 }

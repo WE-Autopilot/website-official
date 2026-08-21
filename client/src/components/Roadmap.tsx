@@ -1,4 +1,5 @@
 import React, { useState, useMemo } from "react";
+import SectionHeading from "./design-system/SectionHeading";
 import "../stylesheets/Roadmap.css";
 
 interface RoadmapItem {
@@ -245,7 +246,14 @@ const Roadmap: React.FC = () => {
 
   return (
     <section className="Roadmap" id="Roadmap" ref={roadmapRef}>
-      <h2 className="roadmap-title">Our Roadmap</h2>
+      <div className="ds-home-container">
+        <SectionHeading
+          badge="AUTONOMOUS VEHICLE PROGRAM"
+          title="Engineering Milestones &"
+          titleGradient="2026 Roadmap"
+          subtitle="Follow our journey from miniature robotics and simulation algorithms to physical Level 2+ vehicle deployment."
+        />
+      </div>
       <div className="roadmap-container">
         <div className="roadmap-track">
           {/* SVG Race Track */}
@@ -298,8 +306,8 @@ const Roadmap: React.FC = () => {
             
             <defs>
               <linearGradient id="progressGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stopColor="#FFDE38" />
-                <stop offset="100%" stopColor="#6A037B" />
+                <stop offset="0%" stopColor="#8b5cf6" />
+                <stop offset="100%" stopColor="#38bdf8" />
               </linearGradient>
             </defs>
           </svg>
@@ -309,7 +317,6 @@ const Roadmap: React.FC = () => {
             <div
               ref={carRef}
               className="car-indicator"
-              // Initial position at start line (Node 1) to avoid FOUC (Flash of Unstyled Content)
               style={{
                 left: `${trackPositions[0].x}%`,
                 top: `${trackPositions[0].y}%`,
@@ -325,26 +332,26 @@ const Roadmap: React.FC = () => {
                 {/* Car body */}
                 <path
                   d="M10 20 L14 10 L28 8 L42 8 L50 14 L54 20 L54 24 L10 24 Z"
-                  fill="#FFDE38"
-                  stroke="#6A037B"
+                  fill="#7c3aed"
+                  stroke="#a78bfa"
                   strokeWidth="1.5"
                 />
                 {/* Windshield */}
                 <path
                   d="M28 10 L26 18 L40 18 L44 14 L42 10 Z"
-                  fill="#102854"
-                  opacity="0.7"
+                  fill="#0f172a"
+                  opacity="0.85"
                 />
                 {/* Wheels */}
-                <circle cx="20" cy="24" r="5" fill="#333" />
-                <circle cx="20" cy="24" r="2.5" fill="#666" />
-                <circle cx="44" cy="24" r="5" fill="#333" />
-                <circle cx="44" cy="24" r="2.5" fill="#666" />
+                <circle cx="20" cy="24" r="5" fill="#1e293b" />
+                <circle cx="20" cy="24" r="2.5" fill="#94a3b8" />
+                <circle cx="44" cy="24" r="5" fill="#1e293b" />
+                <circle cx="44" cy="24" r="2.5" fill="#94a3b8" />
                 {/* Headlight */}
-                <rect x="52" y="16" width="3" height="4" rx="1" fill="#FFE561" />
-                {/* Sensor dome (autonomous car touch) */}
-                <ellipse cx="32" cy="6" rx="6" ry="3" fill="#6A037B" />
-                <circle cx="32" cy="5" r="1.5" fill="#00ff88" className="sensor-light" />
+                <rect x="52" y="16" width="3" height="4" rx="1" fill="#38bdf8" />
+                {/* LiDAR sensor dome */}
+                <ellipse cx="32" cy="6" rx="6" ry="3" fill="#38bdf8" />
+                <circle cx="32" cy="5" r="1.5" fill="#10b981" className="sensor-light" />
               </svg>
             </div>
           )}

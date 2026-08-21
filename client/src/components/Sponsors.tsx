@@ -1,87 +1,132 @@
-
-import '../stylesheets/Sponsors.css'
+import React from "react";
+import { Mail, CheckCircle2, Award, Zap, Users, Sparkles, ArrowRight, ShieldCheck } from "lucide-react";
+import SectionHeading from "./design-system/SectionHeading";
+import Badge from "./design-system/Badge";
+import Card from "./design-system/Card";
+import Button from "./design-system/Button";
+import TechGridBackground from "./design-system/TechGridBackground";
 import BlackberryQNX from "../assets/BlackberryQNXSponsor.png";
-/**
-function Sponsors() {
+import "../stylesheets/Sponsors.css";
 
-    return (
-        <div className = "Sponsors">
-            <h1 className = "heading">Our Sponsors</h1>
-            <div className = "logos">
-                <div className = "sponsor">
-                    <img src = "\sponsors.svg\ROBOSHOP_V2 1.svg" alt = "RobotShop Logo" className = "roboshop-logo"/>
-                </div>
-                <div className = "sponsor">
-                    <img src = "\sponsors.svg\digikey 1.svg" alt = "Digikey" className = "digikey-logo"/>
-                </div>
-            </div>
-        </div>
-    )
+export const Sponsors: React.FC = () => {
+  return (
+    <TechGridBackground variant="both" glowColor="both" className="ds-sponsors-root">
+      <div className="ds-sponsors-container">
+        
+        {/* Header */}
+        <SectionHeading
+          badge="INDUSTRY PARTNERS"
+          title="Our Sponsors &"
+          titleGradient="Corporate Partners"
+          subtitle="Empowering student engineering innovation through cutting-edge software, hardware, and sponsorship support."
+        />
 
-}
-
-export default Sponsors;
-**/
-
-const Sponsors: React.FC = () => {
-    return (
-        <div className="Sponsors">
-
-            {/* Current Sponsors Section - TBD */}
-            <section className="current-sponsors sponsor-animate delay-1">
-
-            <h1 className="heading">Our Sponsors</h1>
-
-             <div className = "logos sponsor-animate delay-2">
-
-                <div className = "sponsor">
-                    <img src = {BlackberryQNX} alt = "Blackberry QNX Logo" className = "blackberry-logo"/>
-                </div>
-
+        {/* Current Sponsors Grid */}
+        <div className="ds-current-sponsors-section">
+          <Card variant="glass" padding="xl" className="ds-sponsor-spotlight-card">
+            <div className="ds-sponsor-badge-row">
+              <Badge variant="purple" size="sm" dot>OFFICIAL RTOS & EMBEDDED PARTNER</Badge>
+              <Badge variant="cyan" size="sm">TIER 1 SPONSOR</Badge>
             </div>
 
-            </section>
+            <div className="ds-sponsor-logo-box">
+              <img src={BlackberryQNX} alt="BlackBerry QNX" className="ds-sponsor-img" />
+            </div>
 
-            {/* Why Sponsor Us Section */}
-            <section className="section sponsor-animate delay-3">
-                <h2 className="section-title">Why Sponsor Us?</h2>
-
-                <ul className="bullet-list">
-                    <li>Support innovative, hands-on projects in autonomous mobility.</li>
-                    <li>Gain exposure to engineering talent and future industry leaders.</li>
-                    <li>Build connections with a rapidly growing university engineering community.</li>
-                    <li>Promote your brand in high-visibility events, competitions and workshops.</li>
-                </ul>
-            </section>
-
-            {/* Become a Sponsor */}
-            <section className="section sponsor-animate delay-4">
-                <h2 className="section-title">Become a Sponsor</h2>
-
-                <p className="contact-text">
-                    Interested in supporting WEAP? We offer flexible sponsorship packages 
-                    and can tailor opportunities to your organization's goals.
-                </p>
-
-                <div className="contact-box">
-                    <p><strong>Contact:</strong> Ethan Greene</p>
-                    <p><strong>Email:</strong>
-                        <a 
-                            href="mailto:egreene4@uwo.ca"
-                            style={{ 
-                                color: '#007bff',
-                                textDecoration: 'underline',
-                                fontWeight: 'bold',
-                                cursor: 'pointer'
-                            }}>
-                            egreene4@uwo.ca
-                        </a>
-                    </p>
-                </div>
-            </section>    
-
+            <div className="ds-sponsor-details">
+              <h3>BlackBerry QNX</h3>
+              <p>
+                Providing industry-standard deterministic real-time operating systems (RTOS) and embedded developer toolchains
+                to power our vehicle safety architecture and low-latency drive-by-wire controller stack.
+              </p>
+            </div>
+          </Card>
         </div>
-    );
+
+        {/* Why Sponsor Us Grid */}
+        <div className="ds-why-sponsor-section">
+          <SectionHeading
+            badge="VALUE & IMPACT"
+            title="Why Partner with"
+            titleGradient="Western AutoPilot?"
+            subtitle="Collaborate with Western's top engineering talent on high-impact autonomous vehicle challenges."
+          />
+
+          <div className="ds-benefits-grid">
+            <Card variant="glass" padding="lg" className="ds-benefit-card">
+              <div className="ds-benefit-icon-box ds-icon-purple">
+                <Users size={24} />
+              </div>
+              <h4>Direct Access to Top Talent</h4>
+              <p>
+                Connect directly with passionate software, computer, electrical, and mechanical engineering students with hands-on robotics experience.
+              </p>
+            </Card>
+
+            <Card variant="glass" padding="lg" className="ds-benefit-card">
+              <div className="ds-benefit-icon-box ds-icon-cyan">
+                <Zap size={24} />
+              </div>
+              <h4>Technology Integration</h4>
+              <p>
+                Have your developer tools, sensors, compute kits, or hardware deployed and battle-tested on an active self-driving vehicle platform.
+              </p>
+            </Card>
+
+            <Card variant="glass" padding="lg" className="ds-benefit-card">
+              <div className="ds-benefit-icon-box ds-icon-emerald">
+                <Award size={24} />
+              </div>
+              <h4>Prominent Brand Visibility</h4>
+              <p>
+                Showcase your logo on our vehicle chassis, team apparel, recruitment events, technical workshops, and digital media channels.
+              </p>
+            </Card>
+
+            <Card variant="glass" padding="lg" className="ds-benefit-card">
+              <div className="ds-benefit-icon-box ds-icon-blue">
+                <ShieldCheck size={24} />
+              </div>
+              <h4>Support STEM Innovation</h4>
+              <p>
+                Help student engineers gain invaluable experience in automotive safety, deep learning, and advanced manufacturing.
+              </p>
+            </Card>
+          </div>
+        </div>
+
+        {/* Contact & Sponsorship Packages Card */}
+        <div className="ds-sponsor-cta-section">
+          <Card variant="glass" padding="xl" className="ds-sponsor-cta-card">
+            <div className="ds-sponsor-cta-content">
+              <Badge variant="purple" size="sm" dot pulse>SPONSORSHIP PACKAGES 2026</Badge>
+              <h2 className="ds-sponsor-cta-title">Become an Official Sponsor</h2>
+              <p className="ds-sponsor-cta-desc">
+                We offer customizable sponsorship tiers tailored to your organization's recruitment and technological goals.
+                Get in touch with our finance and executive team today.
+              </p>
+
+              <div className="ds-sponsor-contact-box">
+                <div className="ds-contact-rep-info">
+                  <span className="ds-rep-name">Ethan Greene</span>
+                  <span className="ds-rep-role">VP Finance & Corporate Relations</span>
+                </div>
+                <Button
+                  href="mailto:egreene4@uwo.ca"
+                  variant="glow"
+                  size="md"
+                  leftIcon={<Mail size={16} />}
+                >
+                  Contact Sponsorship Team
+                </Button>
+              </div>
+            </div>
+          </Card>
+        </div>
+
+      </div>
+    </TechGridBackground>
+  );
 };
 
 export default Sponsors;
