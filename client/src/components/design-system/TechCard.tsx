@@ -44,9 +44,14 @@ export const TechCard: React.FC<TechCardProps> = ({
       className={`ds-tech-card ds-tech-accent-${accentColor} ${to || href ? 'ds-tech-clickable' : ''} ${className}`}
       {...linkProps}
     >
-      {/* Top Bar: Icon + Badge/Arrow */}
+      {/* Top Bar: Subtitle/Icon + Badge/Arrow */}
       <div className="ds-tech-card-topbar">
-        {icon && <div className="ds-tech-icon-box">{icon}</div>}
+        {icon ? (
+          <div className="ds-tech-icon-box">{icon}</div>
+        ) : subtitle ? (
+          <span className="ds-tech-subtitle">{subtitle}</span>
+        ) : <div />}
+
         <div className="ds-tech-topbar-actions">
           {badge && <Badge variant={badgeVariant} size="sm">{badge}</Badge>}
           {(to || href) && (
@@ -57,11 +62,8 @@ export const TechCard: React.FC<TechCardProps> = ({
         </div>
       </div>
 
-      {/* Title & Subtitle Block */}
-      <div className="ds-tech-title-block">
-        {subtitle && <span className="ds-tech-subtitle">{subtitle}</span>}
-        <h3 className="ds-tech-title">{title}</h3>
-      </div>
+      {/* Title */}
+      <h3 className="ds-tech-title">{title}</h3>
 
       {/* Description */}
       {description && <p className="ds-tech-desc">{description}</p>}

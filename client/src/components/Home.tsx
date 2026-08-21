@@ -144,8 +144,9 @@ export const Home: React.FC = () => {
 
           <div className="ds-mission-grid">
             <Card variant="glass" padding="lg" className="ds-mission-card">
-              <div className="ds-mission-icon-box ds-icon-purple">
-                <Cpu size={24} />
+              <div className="ds-mission-card-header">
+                <span className="ds-mission-index">01</span>
+                <Cpu size={20} className="ds-mission-icon ds-icon-purple" />
               </div>
               <h4 className="ds-mission-card-title">Autonomous Software Stack</h4>
               <p className="ds-mission-card-desc">
@@ -154,8 +155,9 @@ export const Home: React.FC = () => {
             </Card>
 
             <Card variant="glass" padding="lg" className="ds-mission-card">
-              <div className="ds-mission-icon-box ds-icon-cyan">
-                <Eye size={24} />
+              <div className="ds-mission-card-header">
+                <span className="ds-mission-index">02</span>
+                <Eye size={20} className="ds-mission-icon ds-icon-cyan" />
               </div>
               <h4 className="ds-mission-card-title">Computer Vision</h4>
               <p className="ds-mission-card-desc">
@@ -164,8 +166,9 @@ export const Home: React.FC = () => {
             </Card>
 
             <Card variant="glass" padding="lg" className="ds-mission-card">
-              <div className="ds-mission-icon-box ds-icon-emerald">
-                <Car size={24} />
+              <div className="ds-mission-card-header">
+                <span className="ds-mission-index">03</span>
+                <Car size={20} className="ds-mission-icon ds-icon-emerald" />
               </div>
               <h4 className="ds-mission-card-title">Hardware Testing</h4>
               <p className="ds-mission-card-desc">
@@ -174,8 +177,9 @@ export const Home: React.FC = () => {
             </Card>
 
             <Card variant="glass" padding="lg" className="ds-mission-card">
-              <div className="ds-mission-icon-box ds-icon-blue">
-                <BookOpen size={24} />
+              <div className="ds-mission-card-header">
+                <span className="ds-mission-index">04</span>
+                <BookOpen size={20} className="ds-mission-icon ds-icon-blue" />
               </div>
               <h4 className="ds-mission-card-title">Workshops & Mentorship</h4>
               <p className="ds-mission-card-desc">
