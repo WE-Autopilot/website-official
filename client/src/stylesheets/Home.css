@@ -21,7 +21,7 @@
 /* 1. HERO SECTION */
 .ds-hero-section {
   position: relative;
-  min-height: calc(100vh - 72px);
+  min-height: 92vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -30,14 +30,14 @@
 }
 
 .ds-hero-content-wrapper {
-  max-width: 1020px;
+  max-width: 1060px;
   margin: 0 auto;
-  padding: 110px 24px 90px 24px;
+  padding: 140px 24px 130px 24px;
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
-  gap: 28px;
+  gap: 32px;
   position: relative;
   z-index: 2;
 }

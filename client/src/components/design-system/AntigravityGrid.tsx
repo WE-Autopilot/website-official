@@ -31,7 +31,7 @@ export const AntigravityGrid: React.FC = () => {
       targetY: 0,
       strength: 0,
       isInside: false,
-      radius: 110,
+      radius: 120, // Spacious, generous interaction field
     };
 
     let dots: Dot[] = [];
@@ -48,11 +48,11 @@ export const AntigravityGrid: React.FC = () => {
       ctx.scale(dpr, dpr);
 
       dots = [];
-      const cols = Math.ceil(width / spacing) + 1;
-      const rows = Math.ceil(height / spacing) + 1;
+      const cols = Math.ceil(width / spacing) + 2;
+      const rows = Math.ceil(height / spacing) + 2;
 
-      for (let r = 0; r <= rows; r++) {
-        for (let c = 0; c <= cols; c++) {
+      for (let r = -1; r <= rows; r++) {
+        for (let c = -1; c <= cols; c++) {
           const originX = c * spacing;
           const originY = r * spacing;
 
@@ -77,7 +77,7 @@ export const AntigravityGrid: React.FC = () => {
       const clientX = e.clientX - rect.left;
       const clientY = e.clientY - rect.top;
 
-      if (clientX >= 0 && clientX <= width && clientY >= 0 && clientY <= height) {
+      if (clientX >= -20 && clientX <= width + 20 && clientY >= -20 && clientY <= height + 20) {
         if (!mouse.isInside) {
           // Instant snap to entry point to prevent jump from top-left, then fade strength up gradually from 0
           mouse.x = clientX;
@@ -105,7 +105,7 @@ export const AntigravityGrid: React.FC = () => {
 
     const spring = 0.045;
     const damping = 0.85;
-    const maxRepulsion = 3.0;
+    const maxRepulsion = 3.2;
     let time = 0;
 
     const render = () => {
