@@ -139,16 +139,6 @@ const Header: React.FC<HeaderProps> = ({ className = "" }) => {
                 Sponsors
               </Link>
             </li>
-
-            <li>
-              <Link
-                className={`ds-nav-link ${isActive("/design-system") ? "ds-nav-link-active" : ""}`}
-                to="/design-system"
-                onClick={handleMenuClose}
-              >
-                Design System
-              </Link>
-            </li>
           </ul>
         </nav>
 
