@@ -31,7 +31,7 @@ export const AntigravityGrid: React.FC = () => {
       targetY: 0,
       strength: 0,
       isInside: false,
-      radius: 120, // Spacious, generous interaction field
+      radius: 120,
     };
 
     let dots: Dot[] = [];
@@ -77,7 +77,11 @@ export const AntigravityGrid: React.FC = () => {
       const clientX = e.clientX - rect.left;
       const clientY = e.clientY - rect.top;
 
-      if (clientX >= -20 && clientX <= width + 20 && clientY >= -20 && clientY <= height + 20) {
+      // Check boundaries of both the canvas and the window (for split screen / multi-monitor)
+      const isInsideCanvas = clientX >= 0 && clientX <= width && clientY >= 0 && clientY <= height;
+      const isInsideWindow = e.clientX >= 0 && e.clientX <= window.innerWidth && e.clientY >= 0 && e.clientY <= window.innerHeight;
+
+      if (isInsideCanvas && isInsideWindow) {
         if (!mouse.isInside) {
           // Instant snap to entry point to prevent jump from top-left, then fade strength up gradually from 0
           mouse.x = clientX;
@@ -99,9 +103,30 @@ export const AntigravityGrid: React.FC = () => {
       mouse.isInside = false;
     };
 
+    const handleWindowBlur = () => {
+      mouse.isInside = false;
+    };
+
+    const handleMouseOut = (e: MouseEvent) => {
+      // Disengage tracking if cursor leaves window (split-screen / multi-window)
+      if (!e.relatedTarget && !(e as any).toElement) {
+        mouse.isInside = false;
+      }
+    };
+
+    const handleVisibilityChange = () => {
+      if (document.hidden) {
+        mouse.isInside = false;
+      }
+    };
+
     window.addEventListener('resize', initGrid);
     window.addEventListener('mousemove', handleMouseMove);
+    window.addEventListener('blur', handleWindowBlur);
+    window.addEventListener('mouseout', handleMouseOut);
     document.addEventListener('mouseleave', handleMouseLeave);
+    document.documentElement.addEventListener('mouseleave', handleMouseLeave);
+    document.addEventListener('visibilitychange', handleVisibilityChange);
 
     const spring = 0.045;
     const damping = 0.85;
@@ -213,7 +238,11 @@ export const AntigravityGrid: React.FC = () => {
     return () => {
       window.removeEventListener('resize', initGrid);
       window.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener('blur', handleWindowBlur);
+      window.removeEventListener('mouseout', handleMouseOut);
       document.removeEventListener('mouseleave', handleMouseLeave);
+      document.documentElement.removeEventListener('mouseleave', handleMouseLeave);
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
       cancelAnimationFrame(animationFrameId);
     };
   }, []);
