@@ -237,7 +237,7 @@ export const DesignSystemShowcase: React.FC = () => {
               badge="BRAND IDENTITY & ANIMATION"
               title="Club Logo with"
               titleGradient="Punctuation Cycling Animation"
-              subtitle="The trailing '/' dynamically cycles through [!^*,. ... : :: &quot;+/|<] at a deliberate pace to indicate loading or hover interaction."
+              subtitle="The trailing '/' dynamically cycles through [!^*,.: :: &quot;+/|<] at a deliberate pace to indicate loading or hover interaction."
               align="left"
             />
 
@@ -265,7 +265,7 @@ export const DesignSystemShowcase: React.FC = () => {
                     <div className="ds-anim-info-row">
                       <span className="ds-mono ds-anim-label">SEQUENCE FRAMES:</span>
                       <div className="ds-anim-chars-flow">
-                        {['!', '^', '*', ',', '.', '...', ':', '::', '"', '+', '/', '|', '<'].map((ch, idx) => (
+                        {['!', '^', '*', ',', '.', ':', '::', '"', '+', '/', '|', '<'].map((ch, idx) => (
                           <span key={idx} className="ds-anim-char-badge">{ch}</span>
                         ))}
                       </div>
