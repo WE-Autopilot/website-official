@@ -31,11 +31,11 @@ export const AntigravityGrid: React.FC = () => {
       targetY: 0,
       strength: 0,
       isInside: false,
-      radius: 140,
+      radius: 70, // Tight, focused interaction radius without blowing a large void
     };
 
     let dots: Dot[] = [];
-    const spacing = 25; // Slightly denser dot matrix
+    const spacing = 25; // Clean, high-density dot matrix
 
     const initGrid = () => {
       if (!canvas || !canvas.parentElement) return;
@@ -103,9 +103,9 @@ export const AntigravityGrid: React.FC = () => {
     window.addEventListener('mousemove', handleMouseMove);
     document.addEventListener('mouseleave', handleMouseLeave);
 
-    const spring = 0.04;
-    const damping = 0.86;
-    const maxRepulsion = 15;
+    const spring = 0.05;
+    const damping = 0.84;
+    const maxRepulsion = 5.5; // Gentle displacement: dots remain clearly visible around cursor
     let time = 0;
 
     const render = () => {
@@ -115,11 +115,11 @@ export const AntigravityGrid: React.FC = () => {
 
       // Smooth fade-in and position interpolation
       if (mouse.isInside) {
-        mouse.strength += (1.0 - mouse.strength) * 0.08;
-        mouse.x += (mouse.targetX - mouse.x) * 0.16;
-        mouse.y += (mouse.targetY - mouse.y) * 0.16;
+        mouse.strength += (1.0 - mouse.strength) * 0.09;
+        mouse.x += (mouse.targetX - mouse.x) * 0.18;
+        mouse.y += (mouse.targetY - mouse.y) * 0.18;
       } else {
-        mouse.strength += (0.0 - mouse.strength) * 0.05;
+        mouse.strength += (0.0 - mouse.strength) * 0.06;
       }
 
       const idleWeight = Math.max(0, 1.0 - mouse.strength);
@@ -145,14 +145,16 @@ export const AntigravityGrid: React.FC = () => {
           const dist = Math.sqrt(dx * dx + dy * dy);
 
           if (dist < mouse.radius && dist > 0) {
-            const force = (1 - dist / mouse.radius) * mouse.strength;
+            const normalizedDist = dist / mouse.radius;
+            // Smooth quadratic falloff: gentle deflection without clearing a blank void
+            const force = Math.pow(1 - normalizedDist, 1.8) * mouse.strength;
             const angle = Math.atan2(dy, dx);
             const push = force * maxRepulsion;
 
-            d.vx += Math.cos(angle) * push * 0.35;
-            d.vy += Math.sin(angle) * push * 0.35;
+            d.vx += Math.cos(angle) * push * 0.25;
+            d.vy += Math.sin(angle) * push * 0.25;
 
-            d.intensity = Math.min(1, d.intensity + force * 0.6);
+            d.intensity = Math.min(1, d.intensity + force * 0.75);
           }
         }
 
@@ -166,11 +168,11 @@ export const AntigravityGrid: React.FC = () => {
         d.x += d.vx;
         d.y += d.vy;
 
-        d.intensity *= 0.93; // Decay active glow
+        d.intensity *= 0.92; // Decay active glow
 
         // Displacement distance for active color shift
         const displacement = Math.sqrt((d.x - d.originX) ** 2 + (d.y - d.originY) ** 2);
-        const activeRatio = Math.min(displacement / 18 + d.intensity, 1);
+        const activeRatio = Math.min(displacement / 7 + d.intensity, 1);
 
         // Idle diagonal shimmer pulse
         let shimmerBoost = 0;
@@ -182,7 +184,7 @@ export const AntigravityGrid: React.FC = () => {
         }
 
         // Draw dot
-        const dotRadius = d.baseRadius + activeRatio * 1.1;
+        const dotRadius = d.baseRadius + activeRatio * 0.8;
         ctx.beginPath();
         ctx.arc(d.x, d.y, dotRadius, 0, Math.PI * 2);
 
