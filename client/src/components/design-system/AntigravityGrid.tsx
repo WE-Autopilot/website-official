@@ -31,7 +31,7 @@ export const AntigravityGrid: React.FC = () => {
       targetY: 0,
       strength: 0,
       isInside: false,
-      radius: 70, // Tight, focused interaction radius without blowing a large void
+      radius: 110,
     };
 
     let dots: Dot[] = [];
@@ -103,9 +103,9 @@ export const AntigravityGrid: React.FC = () => {
     window.addEventListener('mousemove', handleMouseMove);
     document.addEventListener('mouseleave', handleMouseLeave);
 
-    const spring = 0.05;
-    const damping = 0.84;
-    const maxRepulsion = 5.5; // Gentle displacement: dots remain clearly visible around cursor
+    const spring = 0.045;
+    const damping = 0.85;
+    const maxRepulsion = 3.0; // Subtle gentle displacement so dots stay present near cursor
     let time = 0;
 
     const render = () => {
@@ -138,23 +138,26 @@ export const AntigravityGrid: React.FC = () => {
           targetY += waveY * idleWeight;
         }
 
-        // Active mouse repulsion physics scaled by mouse.strength
+        // Active mouse wave physics: bell curve falloff preserves dots near the center
         if (mouse.strength > 0.01) {
           const dx = d.x - mouse.x;
           const dy = d.y - mouse.y;
           const dist = Math.sqrt(dx * dx + dy * dy);
 
           if (dist < mouse.radius && dist > 0) {
-            const normalizedDist = dist / mouse.radius;
-            // Smooth quadratic falloff: gentle deflection without clearing a blank void
-            const force = Math.pow(1 - normalizedDist, 1.8) * mouse.strength;
+            const norm = dist / mouse.radius; // 0 at center, 1 at edge
+            
+            // Bell-curve wave: 0 at center (dots stay present under mouse), peaks at 0.5, 0 at edge
+            const bellForce = Math.sin(norm * Math.PI) * mouse.strength;
             const angle = Math.atan2(dy, dx);
-            const push = force * maxRepulsion;
+            const push = bellForce * maxRepulsion;
 
-            d.vx += Math.cos(angle) * push * 0.25;
-            d.vy += Math.sin(angle) * push * 0.25;
+            d.vx += Math.cos(angle) * push * 0.22;
+            d.vy += Math.sin(angle) * push * 0.22;
 
-            d.intensity = Math.min(1, d.intensity + force * 0.75);
+            // Proximity glow is highest directly under cursor
+            const proximityGlow = (1 - norm) * mouse.strength;
+            d.intensity = Math.min(1, d.intensity + proximityGlow * 0.9);
           }
         }
 
@@ -170,9 +173,9 @@ export const AntigravityGrid: React.FC = () => {
 
         d.intensity *= 0.92; // Decay active glow
 
-        // Displacement distance for active color shift
+        // Displacement and proximity ratio for active color shift
         const displacement = Math.sqrt((d.x - d.originX) ** 2 + (d.y - d.originY) ** 2);
-        const activeRatio = Math.min(displacement / 7 + d.intensity, 1);
+        const activeRatio = Math.min(displacement / 5 + d.intensity, 1);
 
         // Idle diagonal shimmer pulse
         let shimmerBoost = 0;
@@ -184,12 +187,12 @@ export const AntigravityGrid: React.FC = () => {
         }
 
         // Draw dot
-        const dotRadius = d.baseRadius + activeRatio * 0.8;
+        const dotRadius = d.baseRadius + activeRatio * 0.6;
         ctx.beginPath();
         ctx.arc(d.x, d.y, dotRadius, 0, Math.PI * 2);
 
         if (activeRatio > 0.05) {
-          // Color shift: purple to cyan when deflected
+          // Color shift: purple to cyan when excited by cursor
           const currentHue = 270 - activeRatio * 85;
           ctx.fillStyle = `hsla(${currentHue}, 85%, 68%, ${0.15 + activeRatio * 0.65})`;
         } else if (shimmerBoost > 0) {
