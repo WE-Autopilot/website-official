@@ -100,24 +100,23 @@
 .ds-dropdown-menu {
   position: absolute;
   top: 100%;
-  left: 50%;
-  transform: translateX(-50%);
-  background: rgba(13, 16, 28, 0.96);
+  left: 0;
+  background: rgba(10, 12, 22, 0.96);
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
   border: 1px solid var(--border-medium);
   border-radius: var(--radius-md);
-  box-shadow: var(--shadow-lg), 0 0 25px -5px var(--purple-glow);
-  padding: 8px;
-  min-width: 250px;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.7), 0 0 25px -5px var(--purple-glow);
+  padding: 6px;
+  min-width: 230px;
   display: flex;
   flex-direction: column;
-  gap: 3px;
+  gap: 2px;
   z-index: 110;
-  animation: ds-drop-fade 0.18s ease-out;
+  animation: ds-drop-fade 0.15s ease-out;
 }
 
-/* Invisible bridge so moving cursor from toggle to menu never closes it */
+/* Hover bridge */
 .ds-dropdown-menu::before {
   content: '';
   position: absolute;
@@ -129,19 +128,19 @@
 }
 
 @keyframes ds-drop-fade {
-  from { opacity: 0; transform: translateX(-50%) translateY(-4px); }
-  to { opacity: 1; transform: translateX(-50%) translateY(0); }
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 .ds-dropdown-item {
   display: flex;
   align-items: center;
-  gap: 12px;
-  padding: 10px 12px;
+  justify-content: space-between;
+  padding: 10px 14px;
   border-radius: var(--radius-sm);
   color: var(--text-secondary);
   text-decoration: none;
-  font-size: 0.8125rem;
+  font-size: 0.875rem;
   font-weight: 500;
   transition: all var(--transition-fast);
 }
@@ -149,23 +148,24 @@
 .ds-dropdown-item:hover {
   background: rgba(255, 255, 255, 0.08);
   color: #ffffff;
-  transform: translateX(3px);
+  transform: translateX(2px);
 }
 
-.ds-dropdown-icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 28px;
-  height: 28px;
-  border-radius: var(--radius-xs);
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid var(--border-subtle);
-  flex-shrink: 0;
+.ds-dropdown-item-label {
+  font-family: var(--font-sans);
 }
 
-.ds-dropdown-label {
-  flex: 1;
+.ds-dropdown-item-indicator {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--purple-400);
+  opacity: 0;
+  transition: opacity var(--transition-fast);
+}
+
+.ds-dropdown-item:hover .ds-dropdown-item-indicator {
+  opacity: 1;
 }
 
 /* Header Actions */

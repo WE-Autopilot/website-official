@@ -13,7 +13,6 @@ export interface TechCardProps {
   icon?: React.ReactNode;
   to?: string;
   href?: string;
-  cornerAccent?: boolean;
   accentColor?: 'purple' | 'cyan' | 'planning' | 'perception' | 'localization' | 'build';
   tags?: string[];
   className?: string;
@@ -30,7 +29,6 @@ export const TechCard: React.FC<TechCardProps> = ({
   icon,
   to,
   href,
-  cornerAccent = true,
   accentColor = 'purple',
   tags,
   className = '',
@@ -46,8 +44,6 @@ export const TechCard: React.FC<TechCardProps> = ({
       className={`ds-tech-card ds-tech-accent-${accentColor} ${to || href ? 'ds-tech-clickable' : ''} ${className}`}
       {...linkProps}
     >
-      {cornerAccent && <div className="ds-tech-corners" />}
-
       {/* Top Bar: Icon + Badge/Arrow */}
       <div className="ds-tech-card-topbar">
         {icon && <div className="ds-tech-icon-box">{icon}</div>}
@@ -61,7 +57,7 @@ export const TechCard: React.FC<TechCardProps> = ({
         </div>
       </div>
 
-      {/* Title & Subtitle Block (Full Width, prevents cramped wrapping) */}
+      {/* Title & Subtitle Block */}
       <div className="ds-tech-title-block">
         {subtitle && <span className="ds-tech-subtitle">{subtitle}</span>}
         <h3 className="ds-tech-title">{title}</h3>

@@ -1,5 +1,5 @@
 import React from "react";
-import { Mail, Award, Zap, Users, ShieldCheck } from "lucide-react";
+import { Mail } from "lucide-react";
 import SectionHeading from "./design-system/SectionHeading";
 import Badge from "./design-system/Badge";
 import Card from "./design-system/Card";
@@ -7,6 +7,29 @@ import Button from "./design-system/Button";
 import TechGridBackground from "./design-system/TechGridBackground";
 import BlackberryQNX from "../assets/BlackberryQNXSponsor.png";
 import "../stylesheets/Sponsors.css";
+
+const benefitItems = [
+  {
+    num: "01",
+    title: "Connect with Students",
+    description: "Meet passionate software, electrical, mechatronics, and mechanical engineering students who build real extracurricular robotics projects.",
+  },
+  {
+    num: "02",
+    title: "Hardware & Tool Integration",
+    description: "Put your sensors, development boards, software toolchains, or compute kits directly into the hands of active student developers.",
+  },
+  {
+    num: "03",
+    title: "Logo Visibility",
+    description: "Your brand featured on our vehicle chassis, team apparel, technical workshop slides, and club website.",
+  },
+  {
+    num: "04",
+    title: "Support Student Engineering",
+    description: "Directly fund vehicle parts, microcontrollers, mechanical fabrication materials, and student workshop equipment.",
+  },
+];
 
 export const Sponsors: React.FC = () => {
   return (
@@ -47,50 +70,18 @@ export const Sponsors: React.FC = () => {
           <SectionHeading
             badge="PARTNERSHIP"
             title="Why Sponsor"
-            titleGradient="autopilot/?"
+            titleGradient="autopilot?"
             subtitle="Support hands-on student engineering and connect with Western undergraduates."
           />
 
           <div className="ds-benefits-grid">
-            <Card variant="glass" padding="lg" className="ds-benefit-card">
-              <div className="ds-benefit-icon-box ds-icon-purple">
-                <Users size={24} />
-              </div>
-              <h4>Connect with Students</h4>
-              <p>
-                Meet passionate software, electrical, mechatronics, and mechanical engineering students who build real extracurricular projects.
-              </p>
-            </Card>
-
-            <Card variant="glass" padding="lg" className="ds-benefit-card">
-              <div className="ds-benefit-icon-box ds-icon-cyan">
-                <Zap size={24} />
-              </div>
-              <h4>Tool & Hardware Usage</h4>
-              <p>
-                Get your sensors, development boards, software tools, or hardware platforms into the hands of student developers.
-              </p>
-            </Card>
-
-            <Card variant="glass" padding="lg" className="ds-benefit-card">
-              <div className="ds-benefit-icon-box ds-icon-emerald">
-                <Award size={24} />
-              </div>
-              <h4>Logo Visibility</h4>
-              <p>
-                Your brand featured on our vehicle chassis, team apparel, technical workshop slides, and club website.
-              </p>
-            </Card>
-
-            <Card variant="glass" padding="lg" className="ds-benefit-card">
-              <div className="ds-benefit-icon-box ds-icon-blue">
-                <ShieldCheck size={24} />
-              </div>
-              <h4>Support Student Engineering</h4>
-              <p>
-                Help fund vehicle parts, microcontrollers, mechanical materials, and workshop equipment for students.
-              </p>
-            </Card>
+            {benefitItems.map((item) => (
+              <Card key={item.num} variant="glass" padding="lg" className="ds-benefit-card">
+                <span className="ds-mono ds-benefit-num">{item.num}</span>
+                <h4 className="ds-benefit-title">{item.title}</h4>
+                <p className="ds-benefit-desc">{item.description}</p>
+              </Card>
+            ))}
           </div>
         </div>
 

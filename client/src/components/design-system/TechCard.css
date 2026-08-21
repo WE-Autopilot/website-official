@@ -21,33 +21,6 @@
   cursor: pointer;
 }
 
-/* Corner bracket accents */
-.ds-tech-corners {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-}
-.ds-tech-corners::before,
-.ds-tech-corners::after {
-  content: '';
-  position: absolute;
-  width: 8px;
-  height: 8px;
-  transition: all var(--transition-normal);
-}
-.ds-tech-corners::before {
-  top: 0;
-  left: 0;
-  border-top: 2px solid rgba(255, 255, 255, 0.2);
-  border-left: 2px solid rgba(255, 255, 255, 0.2);
-}
-.ds-tech-corners::after {
-  bottom: 0;
-  right: 0;
-  border-bottom: 2px solid rgba(255, 255, 255, 0.2);
-  border-right: 2px solid rgba(255, 255, 255, 0.2);
-}
-
 /* Top bar */
 .ds-tech-card-topbar {
   display: flex;
@@ -167,45 +140,33 @@
   box-shadow: 0 10px 30px -5px rgba(139, 92, 246, 0.25);
 }
 .ds-tech-accent-purple .ds-tech-icon-box { color: var(--purple-400); }
-.ds-tech-accent-purple .ds-tech-corners::before,
-.ds-tech-accent-purple .ds-tech-corners::after { border-color: var(--purple-400); }
 
 .ds-tech-accent-cyan:hover {
   border-color: rgba(56, 189, 248, 0.5);
   box-shadow: 0 10px 30px -5px rgba(56, 189, 248, 0.25);
 }
 .ds-tech-accent-cyan .ds-tech-icon-box { color: var(--cyan-400); }
-.ds-tech-accent-cyan .ds-tech-corners::before,
-.ds-tech-accent-cyan .ds-tech-corners::after { border-color: var(--cyan-400); }
 
 .ds-tech-accent-planning:hover {
   border-color: rgba(168, 85, 247, 0.5);
   box-shadow: 0 10px 30px -5px rgba(168, 85, 247, 0.25);
 }
 .ds-tech-accent-planning .ds-tech-icon-box { color: #c084fc; background: rgba(168, 85, 247, 0.1); border-color: rgba(168, 85, 247, 0.25); }
-.ds-tech-accent-planning .ds-tech-corners::before,
-.ds-tech-accent-planning .ds-tech-corners::after { border-color: #c084fc; }
 
 .ds-tech-accent-perception:hover {
   border-color: rgba(6, 182, 212, 0.5);
   box-shadow: 0 10px 30px -5px rgba(6, 182, 212, 0.25);
 }
 .ds-tech-accent-perception .ds-tech-icon-box { color: #22d3ee; background: rgba(6, 182, 212, 0.1); border-color: rgba(6, 182, 212, 0.25); }
-.ds-tech-accent-perception .ds-tech-corners::before,
-.ds-tech-accent-perception .ds-tech-corners::after { border-color: #22d3ee; }
 
 .ds-tech-accent-localization:hover {
   border-color: rgba(59, 130, 246, 0.5);
   box-shadow: 0 10px 30px -5px rgba(59, 130, 246, 0.25);
 }
 .ds-tech-accent-localization .ds-tech-icon-box { color: #60a5fa; background: rgba(59, 130, 246, 0.1); border-color: rgba(59, 130, 246, 0.25); }
-.ds-tech-accent-localization .ds-tech-corners::before,
-.ds-tech-accent-localization .ds-tech-corners::after { border-color: #60a5fa; }
 
 .ds-tech-accent-build:hover {
   border-color: rgba(16, 185, 129, 0.5);
   box-shadow: 0 10px 30px -5px rgba(16, 185, 129, 0.25);
 }
 .ds-tech-accent-build .ds-tech-icon-box { color: #34d399; background: rgba(16, 185, 129, 0.1); border-color: rgba(16, 185, 129, 0.25); }
-.ds-tech-accent-build .ds-tech-corners::before,
-.ds-tech-accent-build .ds-tech-corners::after { border-color: #34d399; }

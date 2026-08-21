@@ -1,6 +1,6 @@
 import React, { useState, useRef, memo, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { ChevronDown, Cpu, Eye, Compass, Wrench, Sparkles, Menu, X } from "lucide-react";
+import { ChevronDown, Sparkles, Menu, X } from "lucide-react";
 import onClickOutside from "../hooks/onClickOutside";
 import Logo from "./design-system/Logo";
 import Button from "./design-system/Button";
@@ -11,10 +11,10 @@ interface HeaderProps {
 }
 
 const teamLinks = [
-  { label: "Planning & Control", path: "/teams/planning-and-control", icon: <Cpu size={15} />, color: "#c084fc" },
-  { label: "Perception (LiDAR & Vision)", path: "/teams/perception", icon: <Eye size={15} />, color: "#22d3ee" },
-  { label: "Localization & Mapping", path: "/teams/localization", icon: <Compass size={15} />, color: "#60a5fa" },
-  { label: "Build & Mechanical", path: "/teams/build", icon: <Wrench size={15} />, color: "#34d399" },
+  { label: "Planning & Control", path: "/teams/planning-and-control" },
+  { label: "Perception", path: "/teams/perception" },
+  { label: "Mapping & Localization", path: "/teams/localization" },
+  { label: "Build & Mechanical", path: "/teams/build" },
 ];
 
 const Header: React.FC<HeaderProps> = ({ className = "" }) => {
@@ -122,10 +122,8 @@ const Header: React.FC<HeaderProps> = ({ className = "" }) => {
                       to={team.path}
                       onClick={handleMenuClose}
                     >
-                      <span className="ds-dropdown-icon" style={{ color: team.color }}>
-                        {team.icon}
-                      </span>
-                      <span className="ds-dropdown-label">{team.label}</span>
+                      <span className="ds-dropdown-item-label">{team.label}</span>
+                      <span className="ds-dropdown-item-indicator" />
                     </Link>
                   ))}
                 </div>

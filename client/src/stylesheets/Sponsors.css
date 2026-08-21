@@ -82,7 +82,7 @@
   color: var(--text-secondary);
 }
 
-/* Benefits Grid */
+/* Benefits Grid: Clean, minimalist, zero distracting square icons */
 .ds-benefits-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -92,33 +92,38 @@
 .ds-benefit-card {
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 10px;
   align-items: flex-start;
   transition: all var(--transition-normal);
+  background: rgba(13, 16, 28, 0.6);
+  border: 1px solid var(--border-subtle);
 }
 .ds-benefit-card:hover {
   transform: translateY(-3px);
   border-color: var(--border-medium);
+  background: rgba(18, 22, 38, 0.8);
 }
 
-.ds-benefit-icon-box {
-  width: 44px;
-  height: 44px;
-  border-radius: var(--radius-sm);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid var(--border-subtle);
+.ds-benefit-num {
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: var(--purple-400);
+  background: rgba(139, 92, 246, 0.1);
+  border: 1px solid rgba(139, 92, 246, 0.25);
+  padding: 2px 8px;
+  border-radius: var(--radius-xs);
 }
 
-.ds-benefit-card h4 {
-  margin: 0;
+.ds-benefit-title {
+  margin: 4px 0 0 0;
+  font-family: var(--font-sans);
   font-size: 1.0625rem;
   font-weight: 700;
   color: #ffffff;
+  letter-spacing: -0.01em;
 }
 
-.ds-benefit-card p {
+.ds-benefit-desc {
   margin: 0;
   font-size: 0.875rem;
   line-height: 1.6;
