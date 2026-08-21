@@ -189,33 +189,35 @@ export const Home: React.FC = () => {
       {/* 5. SUB-TEAMS SHOWCASE */}
       <Teams />
 
-      {/* 6. JOIN CTA */}
-      <section className="ds-join-cta-section">
-        <div className="ds-home-container">
-          <div className="ds-join-cta-card">
-            <div className="ds-cta-ambient-glow" />
-            <div className="ds-cta-inner">
-              <Badge variant="purple" size="sm" dot>
-                JOIN THE TEAM
-              </Badge>
-              <h2 className="ds-join-cta-title">
-                Interested in joining our club?
-              </h2>
-              <p className="ds-join-cta-desc">
-                We recruit each term across software, electrical, mechatronics, and mechanical engineering. No prior self-driving vehicle experience is needed.
-              </p>
-              <div className="ds-join-cta-btns">
-                <Button to="/join" variant="glow" size="lg" rightIcon={<ArrowRight size={18} />}>
-                  Apply to Join
-                </Button>
-                <Button to="/sponsors" variant="secondary" size="lg">
-                  Sponsor Our Team
-                </Button>
+      {/* 6. JOIN CTA (Covered by Antigravity Grid) */}
+      <TechGridBackground className="ds-join-cta-wrapper">
+        <section className="ds-join-cta-section">
+          <div className="ds-home-container">
+            <div className="ds-join-cta-card">
+              <div className="ds-cta-ambient-glow" />
+              <div className="ds-cta-inner">
+                <Badge variant="purple" size="sm" dot>
+                  JOIN THE TEAM
+                </Badge>
+                <h2 className="ds-join-cta-title">
+                  Interested in joining our club?
+                </h2>
+                <p className="ds-join-cta-desc">
+                  We recruit each term across software, electrical, mechatronics, and mechanical engineering. No prior self-driving vehicle experience is needed.
+                </p>
+                <div className="ds-join-cta-btns">
+                  <Button to="/join" variant="glow" size="lg" rightIcon={<ArrowRight size={18} />}>
+                    Apply to Join
+                  </Button>
+                  <Button to="/sponsors" variant="secondary" size="lg">
+                    Sponsor Our Team
+                  </Button>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </TechGridBackground>
     </div>
   );
 };
