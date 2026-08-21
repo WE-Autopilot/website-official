@@ -4,6 +4,34 @@
   min-height: 100%;
   overflow: hidden;
   background-color: var(--bg-base);
+  perspective: 1200px;
+}
+
+/* 3D Perspective Plane with dynamic tilt */
+.ds-perspective-plane {
+  position: absolute;
+  inset: -5%;
+  width: 110%;
+  height: 110%;
+  pointer-events: none;
+  transform: rotateX(calc((var(--mouse-y-norm, 0.4) - 0.4) * -8deg))
+             rotateY(calc((var(--mouse-x-norm, 0.5) - 0.5) * 10deg))
+             translateZ(0);
+  transform-style: preserve-3d;
+  transition: transform 0.18s cubic-bezier(0.2, 0, 0.3, 1);
+  will-change: transform;
+}
+
+/* Autonomous LiDAR Point Cloud / Boids Canvas */
+.ds-point-mesh-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.95;
+  mix-blend-mode: screen;
 }
 
 /* Interactive dynamic cursor spotlight */
@@ -13,14 +41,14 @@
   pointer-events: none;
   z-index: 0;
   background: radial-gradient(
-    750px circle at var(--mouse-x, 50%) var(--mouse-y, 40%),
-    rgba(168, 85, 247, 0.15) 0%,
-    rgba(56, 189, 248, 0.1) 30%,
+    850px circle at var(--mouse-x, 50%) var(--mouse-y, 40%),
+    rgba(168, 85, 247, 0.16) 0%,
+    rgba(56, 189, 248, 0.11) 32%,
     rgba(139, 92, 246, 0.03) 60%,
     transparent 80%
   );
   transition: opacity 0.3s ease;
-  opacity: 0.9;
+  opacity: 0.95;
 }
 
 /* Cursor grid illumination effect */
@@ -30,12 +58,12 @@
   pointer-events: none;
   z-index: 0;
   background-image: 
-    linear-gradient(to right, rgba(168, 85, 247, 0.16) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(56, 189, 248, 0.16) 1px, transparent 1px);
+    linear-gradient(to right, rgba(168, 85, 247, 0.18) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(56, 189, 248, 0.18) 1px, transparent 1px);
   background-size: 32px 32px;
-  mask-image: radial-gradient(450px circle at var(--mouse-x, 50%) var(--mouse-y, 40%), black 0%, transparent 80%);
-  -webkit-mask-image: radial-gradient(450px circle at var(--mouse-x, 50%) var(--mouse-y, 40%), black 0%, transparent 80%);
-  opacity: 0.85;
+  mask-image: radial-gradient(500px circle at var(--mouse-x, 50%) var(--mouse-y, 40%), black 0%, transparent 80%);
+  -webkit-mask-image: radial-gradient(500px circle at var(--mouse-x, 50%) var(--mouse-y, 40%), black 0%, transparent 80%);
+  opacity: 0.9;
   transition: opacity 0.3s ease;
 }
 
@@ -45,10 +73,10 @@
   top: -120px;
   left: 50%;
   transform: translateX(-50%);
-  width: 1000px;
-  height: 650px;
-  background: radial-gradient(circle, rgba(139, 92, 246, 0.22) 0%, rgba(56, 189, 248, 0.12) 40%, transparent 70%);
-  filter: blur(90px);
+  width: 1100px;
+  height: 700px;
+  background: radial-gradient(circle, rgba(139, 92, 246, 0.24) 0%, rgba(56, 189, 248, 0.14) 40%, transparent 70%);
+  filter: blur(95px);
   pointer-events: none;
   z-index: 0;
 }
@@ -58,10 +86,10 @@
   position: absolute;
   bottom: 0%;
   right: -50px;
-  width: 850px;
-  height: 750px;
-  background: radial-gradient(circle, rgba(6, 182, 212, 0.16) 0%, rgba(139, 92, 246, 0.08) 45%, transparent 70%);
-  filter: blur(100px);
+  width: 900px;
+  height: 800px;
+  background: radial-gradient(circle, rgba(6, 182, 212, 0.18) 0%, rgba(139, 92, 246, 0.09) 45%, transparent 70%);
+  filter: blur(105px);
   pointer-events: none;
   z-index: 0;
 }
@@ -79,6 +107,6 @@
 
 .ds-bg-content {
   position: relative;
-  z-index: 1;
+  z-index: 2;
   width: 100%;
 }
