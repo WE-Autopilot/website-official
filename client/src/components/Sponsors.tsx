@@ -84,7 +84,7 @@ export const Sponsors: React.FC = () => {
                 <h3 className="ds-sponsor-note-title">A special thank you to BlackBerry QNX</h3>
               </div>
               <p className="ds-sponsor-note-text">
-                A massive thank you to <strong>BlackBerry QNX</strong> for believing in our club and supporting our engineering team! Through their generous support, our students get hands-on access to the same real-time operating system (RTOS) and developer tools used in mission-critical automotive systems worldwide.
+                A massive thank you to <strong>BlackBerry QNX</strong> for believing in our club and supporting our engineering team! Through their generous support, our students get access to better tools and sensors as well as the same real-time operating system used in mission-critical automotive systems worldwide.
               </p>
               <p className="ds-sponsor-note-text">
                 Having access to QNX technology lets our software and control sub-teams learn, build, and test production-grade embedded code right here on campus.
