@@ -30,20 +30,6 @@
   width: 100%;
 }
 
-.ds-tech-icon-box {
-  width: 44px;
-  height: 44px;
-  border-radius: var(--radius-sm);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid var(--border-subtle);
-  color: var(--text-primary);
-  flex-shrink: 0;
-  transition: all var(--transition-fast);
-}
-
 .ds-tech-topbar-actions {
   display: flex;
   align-items: center;
@@ -64,23 +50,16 @@
   transition: all var(--transition-fast);
 }
 
-/* Title Block: full width, clean line breaks */
-.ds-tech-title-block {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  width: 100%;
-}
-
+/* Subtitle */
 .ds-tech-subtitle {
   font-family: var(--font-mono);
-  font-size: 0.6875rem;
-  font-weight: 500;
-  color: var(--text-muted);
+  font-size: 0.75rem;
+  font-weight: 700;
   letter-spacing: 0.06em;
   text-transform: uppercase;
 }
 
+/* Title */
 .ds-tech-title {
   margin: 0;
   font-family: var(--font-sans);
@@ -113,60 +92,110 @@
 .ds-tech-tag {
   font-family: var(--font-mono);
   font-size: 0.6875rem;
-  font-weight: 500;
+  font-weight: 600;
   padding: 3px 8px;
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid var(--border-subtle);
   border-radius: var(--radius-xs);
-  color: var(--text-muted);
+  transition: all var(--transition-fast);
 }
 
-/* Hover States */
+/* Base Clickable Hover */
 .ds-tech-clickable:hover {
   transform: translateY(-4px);
   background: rgba(20, 26, 44, 0.85);
 }
 
 .ds-tech-clickable:hover .ds-tech-arrow {
-  background: #ffffff;
-  color: #06070a;
-  border-color: #ffffff;
   transform: translate(2px, -2px);
 }
 
-/* Sub-team accent colors */
-.ds-tech-accent-purple:hover {
-  border-color: rgba(139, 92, 246, 0.5);
-  box-shadow: 0 10px 30px -5px rgba(139, 92, 246, 0.25);
-}
-.ds-tech-accent-purple .ds-tech-icon-box { color: var(--purple-400); }
+/* ==========================================================================
+   INDIVIDUAL SUB-TEAM SIGNATURE COLORINGS
+   ========================================================================== */
 
-.ds-tech-accent-cyan:hover {
-  border-color: rgba(56, 189, 248, 0.5);
-  box-shadow: 0 10px 30px -5px rgba(56, 189, 248, 0.25);
+/* 1. Planning & Control - Purple / Violet */
+.ds-tech-accent-planning {
+  border-top: 2px solid rgba(192, 132, 252, 0.45);
 }
-.ds-tech-accent-cyan .ds-tech-icon-box { color: var(--cyan-400); }
-
+.ds-tech-accent-planning .ds-tech-subtitle {
+  color: #c084fc;
+}
+.ds-tech-accent-planning .ds-tech-tag {
+  background: rgba(192, 132, 252, 0.08);
+  border: 1px solid rgba(192, 132, 252, 0.22);
+  color: #e9d5ff;
+}
 .ds-tech-accent-planning:hover {
-  border-color: rgba(168, 85, 247, 0.5);
-  box-shadow: 0 10px 30px -5px rgba(168, 85, 247, 0.25);
+  border-color: rgba(192, 132, 252, 0.6);
+  box-shadow: 0 12px 32px -6px rgba(168, 85, 247, 0.3);
 }
-.ds-tech-accent-planning .ds-tech-icon-box { color: #c084fc; background: rgba(168, 85, 247, 0.1); border-color: rgba(168, 85, 247, 0.25); }
+.ds-tech-accent-planning:hover .ds-tech-arrow {
+  background: #c084fc;
+  color: #06070a;
+  border-color: #c084fc;
+}
 
+/* 2. Perception - Cyan / Teal */
+.ds-tech-accent-perception {
+  border-top: 2px solid rgba(34, 211, 238, 0.45);
+}
+.ds-tech-accent-perception .ds-tech-subtitle {
+  color: #22d3ee;
+}
+.ds-tech-accent-perception .ds-tech-tag {
+  background: rgba(34, 211, 238, 0.08);
+  border: 1px solid rgba(34, 211, 238, 0.22);
+  color: #cffafe;
+}
 .ds-tech-accent-perception:hover {
-  border-color: rgba(6, 182, 212, 0.5);
-  box-shadow: 0 10px 30px -5px rgba(6, 182, 212, 0.25);
+  border-color: rgba(34, 211, 238, 0.6);
+  box-shadow: 0 12px 32px -6px rgba(6, 182, 212, 0.3);
 }
-.ds-tech-accent-perception .ds-tech-icon-box { color: #22d3ee; background: rgba(6, 182, 212, 0.1); border-color: rgba(6, 182, 212, 0.25); }
+.ds-tech-accent-perception:hover .ds-tech-arrow {
+  background: #22d3ee;
+  color: #06070a;
+  border-color: #22d3ee;
+}
 
+/* 3. Localization & Mapping - Blue / Sky */
+.ds-tech-accent-localization {
+  border-top: 2px solid rgba(96, 165, 250, 0.45);
+}
+.ds-tech-accent-localization .ds-tech-subtitle {
+  color: #60a5fa;
+}
+.ds-tech-accent-localization .ds-tech-tag {
+  background: rgba(96, 165, 250, 0.08);
+  border: 1px solid rgba(96, 165, 250, 0.22);
+  color: #dbeafe;
+}
 .ds-tech-accent-localization:hover {
-  border-color: rgba(59, 130, 246, 0.5);
-  box-shadow: 0 10px 30px -5px rgba(59, 130, 246, 0.25);
+  border-color: rgba(96, 165, 250, 0.6);
+  box-shadow: 0 12px 32px -6px rgba(59, 130, 246, 0.3);
 }
-.ds-tech-accent-localization .ds-tech-icon-box { color: #60a5fa; background: rgba(59, 130, 246, 0.1); border-color: rgba(59, 130, 246, 0.25); }
+.ds-tech-accent-localization:hover .ds-tech-arrow {
+  background: #60a5fa;
+  color: #06070a;
+  border-color: #60a5fa;
+}
 
-.ds-tech-accent-build:hover {
-  border-color: rgba(16, 185, 129, 0.5);
-  box-shadow: 0 10px 30px -5px rgba(16, 185, 129, 0.25);
+/* 4. Build & Mechanical - Emerald / Green */
+.ds-tech-accent-build {
+  border-top: 2px solid rgba(52, 211, 153, 0.45);
 }
-.ds-tech-accent-build .ds-tech-icon-box { color: #34d399; background: rgba(16, 185, 129, 0.1); border-color: rgba(16, 185, 129, 0.25); }
+.ds-tech-accent-build .ds-tech-subtitle {
+  color: #34d399;
+}
+.ds-tech-accent-build .ds-tech-tag {
+  background: rgba(52, 211, 153, 0.08);
+  border: 1px solid rgba(52, 211, 153, 0.22);
+  color: #d1fae5;
+}
+.ds-tech-accent-build:hover {
+  border-color: rgba(52, 211, 153, 0.6);
+  box-shadow: 0 12px 32px -6px rgba(16, 185, 129, 0.3);
+}
+.ds-tech-accent-build:hover .ds-tech-arrow {
+  background: #34d399;
+  color: #06070a;
+  border-color: #34d399;
+}
