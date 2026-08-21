@@ -1,0 +1,189 @@
+.ds-tech-card {
+  position: relative;
+  background: var(--bg-glass-card);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  text-decoration: none;
+  color: var(--text-primary);
+  transition: all var(--transition-normal);
+  overflow: hidden;
+  min-width: 0;
+  width: 100%;
+}
+
+.ds-tech-clickable {
+  cursor: pointer;
+}
+
+/* Top bar */
+.ds-tech-card-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  width: 100%;
+}
+
+.ds-tech-topbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.ds-tech-arrow {
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-muted);
+  transition: all var(--transition-fast);
+}
+
+/* Subtitle */
+.ds-tech-subtitle {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+/* Title */
+.ds-tech-title {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.3;
+  color: #ffffff;
+  word-break: normal;
+  overflow-wrap: break-word;
+  white-space: normal;
+}
+
+.ds-tech-desc {
+  margin: 0;
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: var(--text-secondary);
+}
+
+/* Tech tags */
+.ds-tech-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: auto;
+  padding-top: 8px;
+}
+
+.ds-tech-tag {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: var(--radius-xs);
+  transition: all var(--transition-fast);
+}
+
+/* Base Clickable Hover */
+.ds-tech-clickable:hover {
+  transform: translateY(-4px);
+  background: rgba(20, 26, 44, 0.85);
+}
+
+.ds-tech-clickable:hover .ds-tech-arrow {
+  transform: translate(2px, -2px);
+}
+
+/* ==========================================================================
+   INDIVIDUAL SUB-TEAM SIGNATURE COLORINGS
+   ========================================================================== */
+
+/* 1. Planning & Control - Purple / Violet */
+.ds-tech-accent-planning .ds-tech-subtitle {
+  color: #c084fc;
+}
+.ds-tech-accent-planning .ds-tech-tag {
+  background: rgba(192, 132, 252, 0.08);
+  border: 1px solid rgba(192, 132, 252, 0.22);
+  color: #e9d5ff;
+}
+.ds-tech-accent-planning:hover {
+  border-color: var(--border-medium);
+  box-shadow: 0 12px 32px -6px rgba(0, 0, 0, 0.5);
+}
+.ds-tech-accent-planning:hover .ds-tech-arrow {
+  background: #c084fc;
+  color: #06070a;
+  border-color: #c084fc;
+}
+
+/* 2. Perception - Cyan / Teal */
+.ds-tech-accent-perception .ds-tech-subtitle {
+  color: #22d3ee;
+}
+.ds-tech-accent-perception .ds-tech-tag {
+  background: rgba(34, 211, 238, 0.08);
+  border: 1px solid rgba(34, 211, 238, 0.22);
+  color: #cffafe;
+}
+.ds-tech-accent-perception:hover {
+  border-color: var(--border-medium);
+  box-shadow: 0 12px 32px -6px rgba(0, 0, 0, 0.5);
+}
+.ds-tech-accent-perception:hover .ds-tech-arrow {
+  background: #22d3ee;
+  color: #06070a;
+  border-color: #22d3ee;
+}
+
+/* 3. Localization & Mapping - Blue / Sky */
+.ds-tech-accent-localization .ds-tech-subtitle {
+  color: #60a5fa;
+}
+.ds-tech-accent-localization .ds-tech-tag {
+  background: rgba(96, 165, 250, 0.08);
+  border: 1px solid rgba(96, 165, 250, 0.22);
+  color: #dbeafe;
+}
+.ds-tech-accent-localization:hover {
+  border-color: var(--border-medium);
+  box-shadow: 0 12px 32px -6px rgba(0, 0, 0, 0.5);
+}
+.ds-tech-accent-localization:hover .ds-tech-arrow {
+  background: #60a5fa;
+  color: #06070a;
+  border-color: #60a5fa;
+}
+
+/* 4. Build & Mechanical - Emerald / Green */
+.ds-tech-accent-build .ds-tech-subtitle {
+  color: #34d399;
+}
+.ds-tech-accent-build .ds-tech-tag {
+  background: rgba(52, 211, 153, 0.08);
+  border: 1px solid rgba(52, 211, 153, 0.22);
+  color: #d1fae5;
+}
+.ds-tech-accent-build:hover {
+  border-color: var(--border-medium);
+  box-shadow: 0 12px 32px -6px rgba(0, 0, 0, 0.5);
+}
+.ds-tech-accent-build:hover .ds-tech-arrow {
+  background: #34d399;
+  color: #06070a;
+  border-color: #34d399;
+}
