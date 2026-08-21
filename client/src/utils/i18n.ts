@@ -13,163 +13,76 @@ const resources = {
       "nav.about": "About",
       "nav.sponsors": "Sponsors",
       "nav.join": "Join",
-      "nav.competition": "Competition",
       "nav.contact": "Contact",
 
       // Join page
       "join.why": "Why Join?",
-      "join.teams": "Our Rosters",
+      "join.teams": "Our Sub-teams",
       "join.ready": "Ready to Apply?",
       "join.apply": "Apply Now",
       "join.readyDescription":
-        "Submit your application through our online form to join one of our teams. We're looking for motivated students with a passion for autonomous technology.",
+        "Submit your application through our online form to join one of our engineering sub-teams.",
 
       // Team descriptions
       "team.perception.title": "Perception",
       "team.perception.description":
-        "The perception team works with machine learning and computer vision models to help the car detect and interpret its environment (lanes, stop signs, obstacles).",
+        "Processes camera feeds and 3D LiDAR point clouds using computer vision and YOLO models to detect lanes, signs, and obstacles.",
 
       "team.m&l.title": "Mapping and Localization",
       "team.m&l.description":
-        "Mapping and Localization (M&P) Team implements SLAM (Simultaneous Localization and Mapping) so the car can accurately track its position on the track.",
+        "Implements SLAM, Extended Kalman Filters, and GPS/IMU sensor fusion so the vehicle can accurately track its position.",
 
       "team.p&c.title": "Planning and Control",
       "team.p&c.description":
-        "Planning and Control (P&C) Team designs decision tree logic and other control algorithms that allow the car to plan safe trajectories and execute smooth driving.",
+        "Designs decision state machines, path planning trajectories, and closed-loop feedback controllers (MPC / PID) in ROS 2.",
 
-      "team.build.title": "Build Team",
+      "team.build.title": "Build and Mechanical",
       "team.build.description":
-        "Planning and Control (P&C) Team designs decision tree logic and other control algorithms that allow the car to plan safe trajectories and execute smooth driving.",
-
+        "Designs CAD mounts, 3D prints sensor brackets, integrates drive-by-wire steering actuators, and wires vehicle power distribution.",
 
       // Application form
       "application.title": "Join WE Autopilot",
       "application.personal": "Personal Information",
-      "application.teamSelection": "Team Selection",
-      "application.resume": "Resume Upload",
-      "application.name": "Full Name",
-      "application.email": "Personal Email",
-      "application.schoolEmail": "School Email",
-      "application.studentId": "Student ID",
-      "application.program": "Program",
+      "application.teamSelection": "Select Sub-team(s)",
       "application.teamDesc":
-        "Select which team you'd like to join. Each team focuses on different aspects of autonomous vehicle development.",
-      "application.resumeUpload": "Upload Resume (PDF or Word)",
-      "application.submit": "Submit Application",
-      "application.maxSize": "Maximum file size: 5MB",
-      "application.chooseFile": "Choose File",
-      "application.submitting": "Submitting...",
+        "Choose which sub-team(s) you're interested in joining. You can select more than one.",
+      "application.name": "Full Name",
+      "application.schoolEmail": "UWO School Email (@uwo.ca)",
+      "application.studentId": "Student Number",
+      "application.program": "Program & Year of Study",
       "application.discordUsername": "Discord Username",
-      "application.screenshotTitle": "Proof of Membership Payment",
-      "application.screenshotDesc": "Please upload a screenshot of your payment confirmation for the membership fee. This is required to verify your payment and complete your application.",
-      "application.browse": "Browse your device",
-      "application.savedData": "Do you want to load your previous form?",
+      "application.interest": "Why are you interested in joining WE Autopilot?",
+      "application.interestPlaceholder": "Tell us briefly about your interests, relevant courses, or projects you've worked on...",
+      "application.resume": "Resume or Portfolio Link (Optional)",
+      "application.resumeUrl": "Resume / Portfolio / GitHub URL",
+      "application.submit": "Submit Application",
+      "application.submitting": "Submitting Application...",
+      "application.savedData": "Would you like to restore your previously entered form details?",
       "application.restore": "Restore",
       "application.discard": "Discard",
 
       // Success messages
-      "success.title": "Application Submitted!",
+      "success.title": "Application Received!",
       "success.message":
-        "Thank you for applying to WE Autopilot. We'll review your application and contact you soon.",
+        "Thanks for applying to WE Autopilot. Our team will review your application and reach out via your UWO email / Discord.",
 
       // Error messages
       "error.title": "Submission Failed",
       "error.message":
-        "There was a problem submitting your application. Please try again or contact us directly.",
+        "There was a problem submitting your application. Please check your information and try again.",
       "error.required": "This field is required",
-      "error.email": "Please enter a valid email address",
-      "error.schoolEmail": "Please enter a valid UWO email address",
-      "error.studentId": "Please enter a valid student ID (8-10 digits)",
-      "error.resumeRequired": "Please upload your resume",
-      "error.teamRequired": "Please select at least one team",
-      // Discord username validation error
-      "error.discordUsernameLength": "Discord username must be between 2 and 32 characters long", 
-      "error.discordUsernameInvalid": "Discord username invalid",
-      // Image upload errors
-      "error.screenshotRequired": "Screenshot is required"
-    },
-  },
-  fr: {
-    translation: {
-      // Navigation
-      "nav.home": "Accueil",
-      "nav.about": "À Propos",
-      "nav.sponsors": "Commanditaires",
-      "nav.join": "Rejoindre",
-      "nav.competition": "Compétition",
-      "nav.contact": "Contact",
-
-      // Join page
-      "join.why": "Pourquoi Nous Rejoindre?",
-      "join.teams": "Les Équipes",
-      "join.ready": "Prêt à Postuler?",
-      "join.apply": "Postuler Maintenant",
-      "join.readyDescription":
-        "Soumettez votre candidature via notre formulaire en ligne pour rejoindre l'une de nos équipes. Nous recherchons des étudiants motivés et passionnés par la technologie autonome.",
-
-      // Team descriptions
-      "team.red.title": "Équipe Rouge",
-      "team.red.description":
-        "L'équipe Rouge se concentre sur le matériel et les systèmes de véhicules. Les membres travaillent sur la conception mécanique, les systèmes électriques, l'intégration des capteurs et le développement physique des véhicules.",
-
-      "team.black.title": "Équipe Noire",
-      "team.black.description":
-        "L'équipe Noire dirige le développement de l'architecture logicielle et des algorithmes. Les membres travaillent sur la planification de trajectoires, la prise de décision, les systèmes de contrôle et la simulation.",
-
-      "team.cv.title": "Équipe CV",
-      "team.cv.description":
-        "L'équipe de Vision par Ordinateur (CV) développe des systèmes de perception pour la navigation autonome. Les membres travaillent sur la détection d'objets, l'identification des voies, la cartographie environnementale et la fusion de capteurs.",
-
-      // Application form
-      "application.title": "Rejoindre WE Autopilot",
-      "application.personal": "Informations Personnelles",
-      "application.teamSelection": "Sélection d'Équipe",
-      "application.resume": "Téléchargement de CV",
-      "application.name": "Nom Complet",
-      "application.email": "Courriel Personnel",
-      "application.schoolEmail": "Courriel Universitaire",
-      "application.studentId": "Numéro Étudiant",
-      "application.program": "Programme",
-      "application.teamDesc":
-        "Sélectionnez l'équipe que vous souhaitez rejoindre. Chaque équipe se concentre sur différents aspects du développement de véhicules autonomes.",
-      "application.resumeUpload": "Télécharger CV (PDF ou Word)",
-      "application.submit": "Soumettre la Candidature",
-      "application.maxSize": "Taille maximale: 5Mo",
-      "application.chooseFile": "Choisir un Fichier",
-      "application.submitting": "Soumission en cours...",
-
-      // Success messages
-      "success.title": "Candidature Soumise!",
-      "success.message":
-        "Merci d'avoir postulé à WE Autopilot. Nous examinerons votre candidature et vous contacterons bientôt.",
-
-      // Error messages
-      "error.title": "Échec de Soumission",
-      "error.message":
-        "Un problème est survenu lors de la soumission de votre candidature. Veuillez réessayer ou nous contacter directement.",
-      "error.required": "Ce champ est obligatoire",
-      "error.email": "Veuillez entrer une adresse courriel valide",
-      "error.schoolEmail": "Veuillez entrer une adresse courriel UWO valide",
-      "error.studentId":
-        "Veuillez entrer un numéro étudiant valide (8-10 chiffres)",
-      "error.resumeRequired": "Veuillez télécharger votre CV",
+      "error.schoolEmail": "Please enter a valid @uwo.ca email address",
+      "error.studentId": "Please enter a valid student number (8-10 digits)",
+      "error.teamRequired": "Please select at least one sub-team",
+      "error.discordUsernameLength": "Discord username must be between 2 and 32 characters", 
+      "error.discordUsernameInvalid": "Please enter a valid Discord username",
+      "error.validUrl": "Please enter a valid URL (e.g. https://linkedin.com/... or https://github.com/...)",
     },
   },
 };
 
 // Language detection
-const getUserLanguage = () => {
-  // Try to get from localStorage first (user preference)
-  const savedLanguage = localStorage.getItem("language");
-  if (savedLanguage) return savedLanguage;
-
-  // Use browser language as fallback
-  const browserLang = navigator.language || navigator.userLanguage;
-  const shortLang = browserLang.split("-")[0];
-
-  // Check if we support this language
-  return resources[shortLang] ? shortLang : "en";
-};
+const getUserLanguage = () => "en";
 
 // Initialize i18next
 i18n.use(initReactI18next).init({
@@ -177,18 +90,8 @@ i18n.use(initReactI18next).init({
   lng: getUserLanguage(),
   fallbackLng: "en",
   interpolation: {
-    escapeValue: false, // React already escapes values
-  },
-  detection: {
-    order: ["localStorage", "navigator"],
-    caches: ["localStorage"],
+    escapeValue: false,
   },
 });
-
-// Function to change language
-export const changeLanguage = (language) => {
-  i18n.changeLanguage(language);
-  localStorage.setItem("language", language);
-};
 
 export default i18n;

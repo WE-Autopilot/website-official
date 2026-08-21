@@ -9,6 +9,7 @@ import Gallery from "./components/Gallery";
 import Footer from "./components/Footer";
 import UnderConstruction from "./components/UnderConstruction";
 import TeamPage from "./components/TeamPage";
+import ScrollToTop from "./components/ScrollToTop";
 import DesignSystemShowcase from "./components/design-system/DesignSystemShowcase";
 import "./App.css";
 
@@ -22,6 +23,7 @@ import { ParallaxProvider } from "react-scroll-parallax";
 const App: React.FC = () => {
   return (
     <Router>
+      <ScrollToTop />
       <div className="app">
         <Header />
 
@@ -32,10 +34,10 @@ const App: React.FC = () => {
               <Route path="/design-system" element={<DesignSystemShowcase />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/join" element={<Join />} />
+              <Route path="/team" element={<Team />} />
               <Route path="/Team" element={<Team />} />
               <Route path="/sponsors" element={<Sponsors />} />
               <Route path="/gallery" element={<Gallery />} />
-              {/* <Route path="/competition" element={<Competition />} /> */}
               <Route path="/teams/:teamSlug" element={<TeamPage />} />
               <Route path="/UnderConstruction" element={<UnderConstruction />} />
             </Routes>
