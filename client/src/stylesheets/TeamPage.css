@@ -43,13 +43,6 @@
   align-items: flex-start;
 }
 
-.ds-team-page-badge-row {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  flex-wrap: wrap;
-}
-
 .ds-team-page-title {
   margin: 0;
   font-family: var(--font-display);
@@ -156,7 +149,7 @@
   color: var(--text-muted);
 }
 
-/* Focus Areas */
+/* Focus Areas: Inline title with number */
 .ds-focus-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -174,20 +167,21 @@
   border-color: var(--border-medium);
 }
 
-.ds-focus-card-top {
+.ds-focus-header-inline {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  gap: 12px;
 }
 
 .ds-focus-index {
   font-size: 0.8125rem;
   font-weight: 700;
   color: var(--purple-400);
-}
-
-.ds-focus-sparkle {
-  color: var(--cyan-400);
+  background: rgba(139, 92, 246, 0.1);
+  border: 1px solid rgba(139, 92, 246, 0.25);
+  padding: 2px 8px;
+  border-radius: var(--radius-xs);
+  flex-shrink: 0;
 }
 
 .ds-focus-title {
@@ -243,33 +237,51 @@
   color: var(--text-primary);
 }
 
-/* Tech Stack */
+/* Tech Stack: Clean Bulleted List */
 .ds-tech-stack-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 16px;
 }
 
 .ds-tech-stack-card {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 12px;
 }
 
 .ds-tech-category {
   font-family: var(--font-mono);
   font-size: 0.75rem;
-  font-weight: 600;
+  font-weight: 700;
   color: var(--cyan-300);
   text-transform: uppercase;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.05em;
 }
 
-.ds-tech-details {
+.ds-tech-items-list {
+  list-style: none;
+  padding: 0;
   margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.ds-tech-list-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
   font-size: 0.875rem;
-  line-height: 1.5;
   color: var(--text-secondary);
+}
+
+.ds-tech-bullet {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--purple-400);
+  flex-shrink: 0;
 }
 
 /* Other Teams bottom bar */

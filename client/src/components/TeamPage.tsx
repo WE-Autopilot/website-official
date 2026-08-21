@@ -1,6 +1,6 @@
 import React from "react";
 import { useParams, Link } from "react-router-dom";
-import { ArrowLeft, Cpu, Eye, Compass, Wrench, CheckCircle2, Clock, Sparkles } from "lucide-react";
+import { ArrowLeft, Cpu, Eye, Compass, Wrench, CheckCircle2, Clock } from "lucide-react";
 import Badge from "./design-system/Badge";
 import Card from "./design-system/Card";
 import Button from "./design-system/Button";
@@ -14,6 +14,11 @@ import IanImg from "../assets/Ian.webp";
 import ZainImg from "../assets/Zain.webp";
 import BenjImg from "../assets/Benjamin.webp";
 
+interface TechGroup {
+  category: string;
+  items: string[];
+}
+
 interface TeamInfo {
   name: string;
   tagline: string;
@@ -21,10 +26,17 @@ interface TeamInfo {
   badgeVariant: "planning" | "perception" | "localization" | "build";
   icon: React.ReactNode;
   teamLeads: { name: string; imageURL?: string; role?: string }[];
-  technologies?: string[] | { label: string; description: string }[];
-  focusAreas: string[] | { label: string; description: string }[];
-  keymilestones?: string[] | { label: string; description: string }[];
+  technologies: TechGroup[];
+  focusAreas: { label: string; description: string }[];
+  keymilestones: { label: string; description: string }[];
 }
+
+const allSubteams = [
+  { slug: "planning-and-control", label: "Planning & Control" },
+  { slug: "perception", label: "Perception" },
+  { slug: "localization", label: "Localization & Mapping" },
+  { slug: "build", label: "Build & Mechanical" },
+];
 
 const teamData: Record<string, TeamInfo> = {
   "planning-and-control": {
@@ -34,7 +46,7 @@ const teamData: Record<string, TeamInfo> = {
     icon: <Cpu size={28} />,
     teamLeads: [
       { name: "Aly Ashour", imageURL: AlyImg, role: "Planning & Control Lead" },
-      { name: "Obaid Mohiud", imageURL: ObaidImg, role: "Planning & Control Lead" }
+      { name: "Obaid Mohiuddin", imageURL: ObaidImg, role: "Planning & Control Lead" }
     ],
     description:
       "We design and write motion planning algorithms, decision state machines, and feedback controllers in ROS 2 that let the car navigate waypoints, avoid obstacles, and execute smooth steering and throttle commands.",
@@ -55,10 +67,10 @@ const teamData: Record<string, TeamInfo> = {
       { label: "Planned", description: "Complex intersection navigation" },
     ],
     technologies: [
-      { label: "Languages", description: "C++ for control nodes, Python for tooling and scripts" },
-      { label: "Frameworks", description: "ROS 2 Jazzy, Gazebo Harmonic" },
-      { label: "RTOS", description: "BlackBerry QNX for real-time execution" },
-      { label: "Version Control", description: "Git and GitHub Actions CI" }
+      { category: "Languages", items: ["C++20", "Python 3.10+"] },
+      { category: "Frameworks & Simulation", items: ["ROS 2 Jazzy", "Gazebo Harmonic", "Rviz2"] },
+      { category: "Real-Time OS", items: ["BlackBerry QNX RTOS", "POSIX Real-Time Threads"] },
+      { category: "Tooling & CI", items: ["Git & GitHub Actions", "Docker", "colcon build"] }
     ],
   },
   perception: {
@@ -87,10 +99,10 @@ const teamData: Record<string, TeamInfo> = {
       { label: "Planned", description: "Real-time edge inference on onboard Jetson" }
     ],
     technologies: [
-      { label: "Languages", description: "Python, C++" },
-      { label: "Frameworks", description: "PyTorch, OpenCV, ROS 2" },
-      { label: "Models", description: "YOLOv8/11, Ultra-Fast-Lane-Detection" },
-      { label: "Hardware", description: "Stereo Depth Camera, 3D LiDAR, NVIDIA Jetson" }
+      { category: "Languages", items: ["Python", "C++"] },
+      { category: "Vision & ML Frameworks", items: ["PyTorch", "OpenCV", "TensorRT", "CUDA"] },
+      { category: "Models & Architectures", items: ["YOLOv8 / YOLOv11", "Ultra-Fast-Lane-Detection"] },
+      { category: "Compute & Sensors", items: ["NVIDIA Jetson AGX Orin", "Stereo Depth Camera", "3D LiDAR"] }
     ],
   },
   localization: {
@@ -117,9 +129,10 @@ const teamData: Record<string, TeamInfo> = {
       { label: "Planned", description: "Full map integration with path planner" }
     ],
     technologies: [
-      { label: "Languages", description: "C++, Python" },
-      { label: "Frameworks", description: "Robot Localization (EKF), Cartographer SLAM, ROS 2" },
-      { label: "Hardware", description: "RTK-GPS, 9-Axis IMU, Wheel Encoders" }
+      { category: "Languages", items: ["C++", "Python"] },
+      { category: "Estimation & SLAM", items: ["Robot Localization (EKF)", "Cartographer SLAM", "Nav2"] },
+      { category: "Sensors & Hardware", items: ["RTK-GPS (Centimeter accuracy)", "9-Axis IMU", "Optical Wheel Encoders"] },
+      { category: "Simulation & Tools", items: ["ROS 2 bag analysis", "Foxglove Studio", "Rviz2"] }
     ]
   },
   build: {
@@ -147,9 +160,10 @@ const teamData: Record<string, TeamInfo> = {
       { label: "Planned", description: "Full vehicle drive-by-wire integration" }
     ],
     technologies: [
-      { label: "CAD", description: "SolidWorks, Fusion 360" },
-      { label: "Electrical", description: "CAN Bus, Power Distribution, Relays & Fuses" },
-      { label: "Fabrication", description: "3D Printing, Laser Cutting, Soldering" }
+      { category: "CAD & Modeling", items: ["SolidWorks", "Autodesk Fusion 360", "Onshape"] },
+      { category: "Electronics & Power", items: ["CAN Bus Network", "Microcontrollers (STM32/ESP32)", "Relays & Fuse Distribution"] },
+      { category: "Drive-by-Wire Hardware", items: ["Steering Actuators", "Electronic Throttle DAC", "Braking Servos"] },
+      { category: "Fabrication", items: ["3D Printing (PETG/Carbon Fiber)", "Laser Cutting", "Custom Wire Harnesses"] }
     ]
   },
 };
@@ -158,7 +172,7 @@ export const TeamPage: React.FC = () => {
   const { teamSlug } = useParams<{ teamSlug: string }>();
   const team = teamSlug ? teamData[teamSlug] : undefined;
 
-  if (!team) {
+  if (!team || !teamSlug) {
     return (
       <TechGridBackground variant="both" className="ds-team-page-root">
         <div className="ds-team-page-container ds-not-found-box">
@@ -172,6 +186,9 @@ export const TeamPage: React.FC = () => {
     );
   }
 
+  // Filter out the current team from other subteams
+  const otherTeams = allSubteams.filter((t) => t.slug !== teamSlug);
+
   return (
     <TechGridBackground variant="both" glowColor="both" className="ds-team-page-root">
       <div className="ds-team-page-container">
@@ -184,14 +201,8 @@ export const TeamPage: React.FC = () => {
           </Link>
         </div>
 
-        {/* Hero Section */}
+        {/* Hero Section (Removed Engineering sub-team pill) */}
         <section className="ds-team-page-hero">
-          <div className="ds-team-page-badge-row">
-            <Badge variant={team.badgeVariant} size="md" icon={team.icon}>
-              ENGINEERING SUB-TEAM
-            </Badge>
-          </div>
-
           <h1 className="ds-team-page-title">{team.name}</h1>
           <p className="ds-team-page-tagline">{team.tagline}</p>
           <p className="ds-team-page-desc">{team.description}</p>
@@ -223,24 +234,19 @@ export const TeamPage: React.FC = () => {
           </section>
         )}
 
-        {/* Focus Areas */}
+        {/* Focus Areas (Inline title with number, sparkle removed) */}
         <section className="ds-team-page-section">
           <h3 className="ds-team-section-heading">What We Work On</h3>
           <div className="ds-focus-grid">
-            {team.focusAreas.map((item, index) => {
-              const label = typeof item === "string" ? item : item.label;
-              const desc = typeof item === "string" ? "" : item.description;
-              return (
-                <Card key={label} variant="glass" padding="lg" className="ds-focus-card">
-                  <div className="ds-focus-card-top">
-                    <span className="ds-mono ds-focus-index">{String(index + 1).padStart(2, "0")}</span>
-                    <Sparkles size={16} className="ds-focus-sparkle" />
-                  </div>
-                  <h4 className="ds-focus-title">{label}</h4>
-                  {desc && <p className="ds-focus-desc">{desc}</p>}
-                </Card>
-              );
-            })}
+            {team.focusAreas.map((item, index) => (
+              <Card key={item.label} variant="glass" padding="lg" className="ds-focus-card">
+                <div className="ds-focus-header-inline">
+                  <span className="ds-mono ds-focus-index">{String(index + 1).padStart(2, "0")}</span>
+                  <h4 className="ds-focus-title">{item.label}</h4>
+                </div>
+                {item.description && <p className="ds-focus-desc">{item.description}</p>}
+              </Card>
+            ))}
           </div>
         </section>
 
@@ -250,10 +256,8 @@ export const TeamPage: React.FC = () => {
             <h3 className="ds-team-section-heading">Sub-team Milestones</h3>
             <div className="ds-milestones-grid">
               {team.keymilestones.map((item, index) => {
-                const label = typeof item === "string" ? "Planned" : item.label;
-                const desc = typeof item === "string" ? item : item.description;
-                const isCompleted = label.toLowerCase().includes("completed");
-                const isInProgress = label.toLowerCase().includes("in progress");
+                const isCompleted = item.label.toLowerCase().includes("completed");
+                const isInProgress = item.label.toLowerCase().includes("in progress");
 
                 return (
                   <div key={index} className="ds-milestone-row">
@@ -267,7 +271,7 @@ export const TeamPage: React.FC = () => {
                       )}
                     </div>
                     <div className="ds-milestone-text-col">
-                      <p className="ds-milestone-text">{desc}</p>
+                      <p className="ds-milestone-text">{item.description}</p>
                     </div>
                   </div>
                 );
@@ -276,33 +280,37 @@ export const TeamPage: React.FC = () => {
           </section>
         )}
 
-        {/* Technologies Used */}
+        {/* Technologies Used (Rendered as lists instead of paragraphs) */}
         {team.technologies && team.technologies.length > 0 && (
           <section className="ds-team-page-section">
             <h3 className="ds-team-section-heading">Tools & Technologies</h3>
             <div className="ds-tech-stack-grid">
-              {team.technologies.map((item, index) => {
-                const label = typeof item === "string" ? `Tool ${index + 1}` : item.label;
-                const desc = typeof item === "string" ? item : item.description;
-                return (
-                  <Card key={label} variant="glass" padding="md" className="ds-tech-stack-card">
-                    <span className="ds-tech-category">{label}</span>
-                    <p className="ds-tech-details">{desc}</p>
-                  </Card>
-                );
-              })}
+              {team.technologies.map((tech) => (
+                <Card key={tech.category} variant="glass" padding="md" className="ds-tech-stack-card">
+                  <span className="ds-tech-category">{tech.category}</span>
+                  <ul className="ds-tech-items-list">
+                    {tech.items.map((item, idx) => (
+                      <li key={idx} className="ds-tech-list-item">
+                        <span className="ds-tech-bullet" />
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </Card>
+              ))}
             </div>
           </section>
         )}
 
-        {/* Bottom Navigation */}
+        {/* Bottom Navigation (Current sub-team excluded) */}
         <section className="ds-other-teams-section">
           <h4 className="ds-other-teams-title">Explore Other Sub-teams</h4>
           <div className="ds-other-teams-buttons">
-            <Button to="/teams/planning-and-control" variant="secondary" size="sm">Planning & Control</Button>
-            <Button to="/teams/perception" variant="secondary" size="sm">Perception</Button>
-            <Button to="/teams/localization" variant="secondary" size="sm">Localization</Button>
-            <Button to="/teams/build" variant="secondary" size="sm">Build</Button>
+            {otherTeams.map((t) => (
+              <Button key={t.slug} to={`/teams/${t.slug}`} variant="secondary" size="sm">
+                {t.label}
+              </Button>
+            ))}
           </div>
         </section>
 

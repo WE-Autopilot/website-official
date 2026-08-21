@@ -29,21 +29,37 @@
 .ds-team-custom-title {
   margin: 0;
   font-family: var(--font-sans);
-  font-size: clamp(2rem, 4.5vw, 3rem);
+  font-size: clamp(2.25rem, 5vw, 3.5rem);
   font-weight: 800;
   letter-spacing: -0.03em;
   line-height: 1.2;
   color: #ffffff;
-  display: flex;
-  align-items: center;
+  display: inline-flex;
+  align-items: baseline;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 12px;
+  gap: 0.35em;
 }
 
 .ds-team-logo-embed {
   display: inline-flex;
   align-items: baseline;
+}
+
+.ds-team-logo-embed .ds-logo-wrapper {
+  display: inline-flex;
+  line-height: 1;
+}
+
+.ds-team-logo-embed .ds-logo-main {
+  font-size: 1em;
+  line-height: 1;
+}
+
+.ds-team-logo-embed .ds-logo-text,
+.ds-team-logo-embed .ds-logo-punct {
+  font-size: 1em !important;
+  line-height: 1;
 }
 
 .ds-team-custom-subtitle {
