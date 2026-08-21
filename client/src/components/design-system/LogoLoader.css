@@ -1,0 +1,33 @@
+.ds-logo-loader-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 48px 24px;
+  position: relative;
+  text-align: center;
+}
+
+.ds-logo-loader-glow {
+  position: absolute;
+  width: 250px;
+  height: 250px;
+  background: radial-gradient(circle, rgba(139, 92, 246, 0.2) 0%, rgba(56, 189, 248, 0.1) 45%, transparent 70%);
+  filter: blur(40px);
+  pointer-events: none;
+}
+
+.ds-logo-loader-message {
+  font-family: 'Fira Code', var(--font-mono);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  letter-spacing: 0.04em;
+  animation: ds-loader-pulse 2s ease-in-out infinite;
+}
+
+@keyframes ds-loader-pulse {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; color: var(--cyan-300); }
+}

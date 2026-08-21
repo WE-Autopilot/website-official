@@ -1,7 +1,12 @@
 import React, { useState, useRef, useEffect, FC, ReactElement } from "react";
-import { useForm, FieldValues, SubmitHandler } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
-import "../stylesheets/Contact.css";
+import { Cpu, Eye, Compass, Wrench, Check, ArrowRight, Sparkles, AlertCircle, CheckCircle2 } from "lucide-react";
+import Badge from "./design-system/Badge";
+import Button from "./design-system/Button";
+import Card from "./design-system/Card";
+import SectionHeading from "./design-system/SectionHeading";
+import TechGridBackground from "./design-system/TechGridBackground";
 import { trackEvent, trackFormInteraction } from "../utils/analytics";
 import {
   saveFormData,
@@ -12,680 +17,62 @@ import {
 import {
   ApplicationFormData,
   Team,
-  ValidationRules,
   TFunction,
-  SubmissionResponse,
 } from "../types";
-import { applicationService, createDemoCSVDownload } from "../services/api";
+import "../stylesheets/Contact.css";
 
-// Form ID for persistence
-const FORM_ID = "application-form";
+const FORM_ID = "weap-application-form";
 
-// Extract validation rules to a separate utility
-const validationRules: ValidationRules = {
-
-  name: (t) => ({
-    required: t("error.required"),
-    maxLength: { value: 100, message: t("error.nameTooLong") },
-  }),
-
-  studentId: (t) => ({
-    required: t("error.required"),
-    pattern: {
-      value: /^[0-9]{8,10}$/,
-      message: t("error.studentId"),
-    },
-  }),
-
-  email: (t) => ({
-    required: t("error.required"),
-    pattern: {
-      value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-      message: t("error.email"),
-    },
-  }),
-
-  schoolEmail: (t) => ({
-    required: t("error.required"),
-    pattern: {
-      value: /^[^\s@]+@(?:[\w-]+\.)*uwo\.ca$/,
-      message: t("error.schoolEmail"),
-    },
-  }),
-
-  program: (t) => ({
-    required: t("error.required"),
-  }),
-
-  team: (t) => ({
-    required: t("error.teamRequired"),
-    validate: (value: string[]) => 
-    (value && value.length > 0) || t("error.teamRequired"),
-  }),
-
-  resumeUrl: (t, uploadMethod) => ({
-    required: uploadMethod === "link" ? t("error.urlRequired") : false,
-    pattern: {
-      value: /^https?:\/\/.+/i,
-      message: t("error.validUrl"),
-    },
-  }),
-
-  discordUsername: (t) => ({
-    required: t("error.required"),
-    minLength: {
-      value: 2,
-      message: t("error.discordUsernameLength"),
-    },
-    maxLength: {
-      value: 32,
-      message: t("error.discordUsernameLength"),
-    },
-    pattern: {
-      value: /^(?!.*\.\.)[a-z0-9_.]{2,32}$/,
-      message: t("error.discordUsernameInvalid"),
-    },
-  }),
-
-  screenshot: (t) => ({
-    required: t("error.required"),
-  }),
-
-};
-
-interface SavedDataNoticeProps {
-  onRestore: () => void;
-  onDiscard: () => void;
-  t: TFunction;
+interface TeamOption {
+  id: string;
+  name: string;
+  badge: string;
+  description: string;
+  icon: React.ReactNode;
+  accentClass: string;
 }
-
-// Saved data notification component
-const SavedDataNotice: FC<SavedDataNoticeProps> = ({
-  onRestore,
-  onDiscard,
-  t,
-}) => (
-  <div className="saved-data-notice">
-    <div className="notice-icon">💾</div>
-    <div className="notice-content">
-      <p>{t("application.savedData")}</p>
-      <div className="notice-actions">
-        <button type="button" onClick={onRestore}>
-          {t("application.restore")}
-        </button>
-        <button type="button" onClick={onDiscard}>
-          {t("application.discard")}
-        </button>
-      </div>
-    </div>
-  </div>
-);
-
-interface StatusMessageProps {
-  status: string | null;
-  t: TFunction;
-}
-
-// Status message component
-const StatusMessage: FC<StatusMessageProps> = ({ status, t }) => {
-  if (!status) return null;
-
-  if (status === "success") {
-    return (
-      <div className="submit-success" role="alert" aria-live="polite">
-        <div className="success-icon">✓</div>
-        <div className="success-message">
-          <h3>{t("success.title")}</h3>
-          <p>{t("success.message")}</p>
-        </div>
-      </div>
-    );
-  }
-
-  if (status === "error") {
-    return (
-      <div className="submit-error" role="alert" aria-live="assertive">
-        <div className="error-icon">!</div>
-        <div className="error-message">
-          <h3>{t("error.title")}</h3>
-          <p>{t("error.message")}</p>
-        </div>
-      </div>
-    );
-  }
-
-  return null;
-};
-
-interface PersonalInfoSectionProps {
-  register: any; // Will be replaced with proper react-hook-form type
-  errors: Record<string, any>;
-  t: TFunction;
-  trackFormInteraction: (
-    formName: string,
-    fieldName: string,
-    action: string,
-  ) => void;
-}
-
-// Personal information section component
-const PersonalInfoSection: FC<PersonalInfoSectionProps> = ({
-  register,
-  errors,
-  t,
-  trackFormInteraction,
-}) => (
-  <div className="form-section">
-    <h3>{t("application.personal")}</h3>
-
-    <div className="form-row">
-      <div className="form-group">
-        <label htmlFor="name">
-          {t("application.name")} <span className="required">*</span>
-        </label>
-        <input
-          id="name"
-          {...register("name", validationRules.name(t))}
-          className={errors.name ? "error" : ""}
-          placeholder="John Smith"
-          aria-invalid={errors.name ? "true" : "false"}
-          aria-describedby={errors.name ? "name-error" : undefined}
-          onFocus={() =>
-            trackFormInteraction("Application Form", "name", "focus")
-          }
-          onBlur={() =>
-            trackFormInteraction("Application Form", "name", "blur")
-          }
-        />
-        {errors.name && (
-          <span id="name-error" className="error-message">
-            {errors.name.message}
-          </span>
-        )}
-      </div>
-
-      <div className="form-group">
-        <label htmlFor="studentId">
-          {t("application.studentId")} <span className="required">*</span>
-        </label>
-        <input
-          id="studentId"
-          {...register("studentId", validationRules.studentId(t))}
-          className={errors.studentId ? "error" : ""}
-          placeholder="250123456"
-          aria-invalid={errors.studentId ? "true" : "false"}
-          aria-describedby={errors.studentId ? "studentId-error" : undefined}
-          onFocus={() =>
-            trackFormInteraction("Application Form", "studentId", "focus")
-          }
-          onBlur={() =>
-            trackFormInteraction("Application Form", "studentId", "blur")
-          }
-        />
-        {errors.studentId && (
-          <span id="studentId-error" className="error-message">
-            {errors.studentId.message}
-          </span>
-        )}
-      </div>
-    </div>
-
-    <div className="form-row">
-      <div className="form-group">
-        <label htmlFor="email">
-          {t("application.email")} <span className="required">*</span>
-        </label>
-        <input
-          id="email"
-          type="email"
-          {...register("email", validationRules.email(t))}
-          className={errors.email ? "error" : ""}
-          placeholder="john.smith@gmail.com"
-          aria-invalid={errors.email ? "true" : "false"}
-          aria-describedby={errors.email ? "email-error" : undefined}
-          onFocus={() =>
-            trackFormInteraction("Application Form", "email", "focus")
-          }
-          onBlur={() =>
-            trackFormInteraction("Application Form", "email", "blur")
-          }
-        />
-        {errors.email && (
-          <span id="email-error" className="error-message">
-            {errors.email.message}
-          </span>
-        )}
-      </div>
-
-      <div className="form-group">
-        <label htmlFor="schoolEmail">
-          {t("application.schoolEmail")} <span className="required">*</span>
-        </label>
-        <input
-          id="schoolEmail"
-          type="email"
-          {...register("schoolEmail", validationRules.schoolEmail(t))}
-          className={errors.schoolEmail ? "error" : ""}
-          placeholder="jsmith123@uwo.ca"
-          aria-invalid={errors.schoolEmail ? "true" : "false"}
-          aria-describedby={
-            errors.schoolEmail ? "schoolEmail-error" : undefined
-          }
-          onFocus={() =>
-            trackFormInteraction("Application Form", "schoolEmail", "focus")
-          }
-          onBlur={() =>
-            trackFormInteraction("Application Form", "schoolEmail", "blur")
-          }
-        />
-        {errors.schoolEmail && (
-          <span id="schoolEmail-error" className="error-message">
-            {errors.schoolEmail.message}
-          </span>
-        )}
-      </div>
-    </div>
-    
-    <div className="form-row">
-      <div className="form-group">
-        <label htmlFor="program">
-          {t("application.program")} <span className="required">*</span>
-        </label>
-        <input
-          id="program"
-          {...register("program", validationRules.program(t))}
-          className={errors.program ? "error" : ""}
-          placeholder="e.g., Computer Engineering, Year 2"
-          aria-invalid={errors.program ? "true" : "false"}
-          aria-describedby={errors.program ? "program-error" : undefined}
-          onFocus={() =>
-            trackFormInteraction("Application Form", "program", "focus")
-          }
-          onBlur={() =>
-            trackFormInteraction("Application Form", "program", "blur")
-          }
-        />
-        {errors.program && (
-          <span id="program-error" className="error-message">
-            {errors.program.message}
-          </span>
-        )}
-      </div>
-
-      <div className="form-group">
-        <label htmlFor="discordUsername">
-          {t("application.discordUsername")} <span className="required">*</span>
-        </label>
-        <input
-          id="discordUsername"
-          {...register("discordUsername", validationRules.discordUsername(t))}
-          className={errors.discordUsername ? "error" : ""}
-          placeholder="e.g., kitten"
-          aria-invalid={errors.discordUsername ? "true" : "false"}
-          aria-describedby={errors.discordUsername ? "discordUsername-error" : undefined}
-          onFocus={() =>
-            trackFormInteraction("Application Form", "discordUsername", "focus")
-          }
-          onBlur={() =>
-            trackFormInteraction("Application Form", "discordUsername", "blur")
-          }
-        />
-        {errors.discordUsername && (
-          <span id="discordUsername-error" className="error-message">
-            {errors.discordUsername.message}
-          </span>
-        )}
-      </div>
-    </div>
-  </div>
-);
-
-interface TeamSelectionSectionProps {
-  register: any; // Will be replaced with proper react-hook-form type
-  errors: Record<string, any>;
-  watch: any; // Will be replaced with proper react-hook-form type
-  t: TFunction;
-  teams: Team[];
-  handleTeamKeyDown: (e: React.KeyboardEvent, teamId: string) => void;
-  trackFormInteraction: (
-    formName: string,
-    fieldName: string,
-    action: string,
-  ) => void;
-}
-
-// Team selection section component
-const TeamSelectionSection: FC<TeamSelectionSectionProps> = ({
-  register,
-  errors,
-  watch,
-  t,
-  teams,
-  handleTeamKeyDown,
-  trackFormInteraction,
-}) => (
-  <div className="form-section">
-    <h3>{t("application.teamSelection")}</h3>
-    <p className="form-description">{t("application.teamDesc")}</p>
-
-    <div
-      role="radiogroup"
-      aria-labelledby="team-selection-label"
-      className="team-selection"
-    >
-      <span id="team-selection-label" className="sr-only">
-        {t("application.teamSelection")}
-      </span>
-      {/* {teams.map((team) => (
-        <div
-          className={`team-card ${watch("team") === team.id ? "selected" : ""}`}
-          key={team.id}
-          tabIndex={0}
-          role="checkbox"
-          aria-checked={watch("team") === team.id}
-          onKeyDown={(e) => handleTeamKeyDown(e, team.id)}
-        >
-          <input
-            type="checkbox"
-            id={`team-${team.id}`}
-            value={team.id}
-            {...register("team", {
-              ...validationRules.team(t),
-              onChange: () =>
-                trackFormInteraction("Application Form", "team", team.id),
-            })}
-          />
-          <label htmlFor={`team-${team.id}`}>
-            <h4>{team.name}</h4>
-            <p>{team.description}</p>
-          </label>
-        </div>
-      ))} */}
-      {teams.map((team) => {
-        const isSelected = Array.isArray(watch("team")) 
-          ? watch("team").includes(team.id) 
-          : false;
-
-        return (
-          <div
-            className={`team-card ${isSelected ? "selected" : ""}`}
-            key={team.id}
-            tabIndex={0}
-            role="checkbox"
-            aria-checked={isSelected}
-            onKeyDown={(e) => handleTeamKeyDown(e, team.id)}
-          >
-            <input
-              type="checkbox"
-              id={`team-${team.id}`}
-              value={team.id}
-              {...register("team", {
-                ...validationRules.team(t),
-                onChange: () =>
-                  trackFormInteraction("Application Form", "team", team.id),
-              })}
-              className="sr-only"
-            />
-            <label htmlFor={`team-${team.id}`}>
-              <h4>{team.name}</h4>
-              <p>{team.description}</p>
-            </label>
-          </div>
-        );
-      })}
-    </div>
-
-    {errors.team && (
-      <span className="error-message">{errors.team.message}</span>
-    )}
-  </div>
-);
-
-/*
-interface ResumeUploadSectionProps {
-  register: any; // Will be replaced with proper react-hook-form type
-  errors: Record<string, any>;
-  t: TFunction;
-  uploadMethod: string;
-  setUploadMethod: (method: string) => void;
-  selectedFile: File | null;
-  setSelectedFile: (file: File | null) => void;
-  fileInputRef: React.RefObject<HTMLInputElement>;
-  isSubmitting: boolean;
-  handleFileChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  trackFormInteraction: (
-    formName: string,
-    fieldName: string,
-    action: string,
-  ) => void;
-}
-*/
-
-/*
-// Resume upload section component
-const ResumeUploadSection: FC<ResumeUploadSectionProps> = ({
-  register,
-  errors,
-  t,
-  uploadMethod,
-  setUploadMethod,
-  selectedFile,
-  setSelectedFile,
-  fileInputRef,
-  isSubmitting,
-  handleFileChange,
-  trackFormInteraction,
-}) => (
-  <div className="form-section">
-    <h3>{t("application.resume")}</h3>
-
-    <div className="upload-options">
-      <button
-        type="button"
-        className={`upload-option ${uploadMethod === "file" ? "active" : ""}`}
-        onClick={() => setUploadMethod("file")}
-      >
-        {t("application.uploadFile")}
-      </button>
-      <button
-        type="button"
-        className={`upload-option ${uploadMethod === "link" ? "active" : ""}`}
-        onClick={() => setUploadMethod("link")}
-      >
-        {t("application.provideLink")}
-      </button>
-    </div>
-
-    {uploadMethod === "file" ? (
-      <div className="form-group file-upload">
-        <label htmlFor="resume">
-          {t("application.resumeUpload")} <span className="required">*</span>
-        </label>
-        <div
-          className={`file-upload-container ${!selectedFile ? "empty" : ""}`}
-        >
-          <input
-            type="file"
-            id="resume"
-            ref={fileInputRef}
-            onChange={handleFileChange}
-            accept=".pdf,.doc,.docx"
-            aria-describedby="file-hint"
-          />
-          <div className="file-upload-button">
-            <span>
-              {selectedFile ? selectedFile.name : t("application.chooseFile")}
-            </span>
-            <button type="button" className="browse-button">
-              {t("application.browse")}
-            </button>
-          </div>
-          {selectedFile && (
-            <button
-              type="button"
-              className="remove-file"
-              onClick={() => {
-                setSelectedFile(null);
-                if (fileInputRef.current) fileInputRef.current.value = "";
-                trackFormInteraction(
-                  "Application Form",
-                  "resume",
-                  "file_removed",
-                );
-              }}
-              aria-label={t("application.removeFile")}
-            >
-              ×
-            </button>
-          )}
-        </div>
-        {!selectedFile && isSubmitting && (
-          <span className="error-message">{t("error.resumeRequired")}</span>
-        )}
-        <p id="file-hint" className="file-hint">
-          {t("application.maxSize")}
-        </p>
-      </div>
-    ) : (
-      <div className="form-group">
-        <label htmlFor="resumeUrl">
-          {t("application.resumeUrl")} <span className="required">*</span>
-        </label>
-        <input
-          id="resumeUrl"
-          type="url"
-          {...register("resumeUrl", validationRules.resumeUrl(t, uploadMethod))}
-          className={errors.resumeUrl ? "error" : ""}
-          placeholder="https://drive.google.com/your-resume"
-          aria-invalid={errors.resumeUrl ? "true" : "false"}
-          aria-describedby={errors.resumeUrl ? "resumeUrl-error" : undefined}
-          onFocus={() =>
-            trackFormInteraction("Application Form", "resumeUrl", "focus")
-          }
-          onBlur={() =>
-            trackFormInteraction("Application Form", "resumeUrl", "blur")
-          }
-        />
-        {errors.resumeUrl && (
-          <span id="resumeUrl-error" className="error-message">
-            {errors.resumeUrl.message}
-          </span>
-        )}
-        <p className="url-hint">{t("application.urlHint")}</p>
-      </div>
-    )}
-  </div>
-);
-*/
-
-interface ScreenshotUploadSectionProps {
-  register: any;
-  errors: Record<string, any>;
-  t: TFunction;
-  selectedFile: File | null;
-  setSelectedFile: (file: File | null) => void;
-  fileInputRef: React.RefObject<HTMLInputElement>;
-  isSubmitting: boolean;
-  handleFileChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-}
-
-// Screenshot upload section
-const ScreenshotUploadSection: FC<ScreenshotUploadSectionProps> = ({
-  register,
-  errors,
-  t,
-  selectedFile,
-  setSelectedFile,
-  fileInputRef,
-  isSubmitting,
-  handleFileChange,
-}) => (
-  <div className="form-section">
-    <h3>{t("application.screenshotTitle")}</h3>
-    <p className="form-description">{t("application.screenshotDesc")}</p>
-
-    <div className="form-group file-upload">
-      <div className={`file-upload-container ${!selectedFile ? "empty" : ""}`}>
-        <input
-          type="file"
-          id="screenshot"
-          ref={fileInputRef}
-          onChange={handleFileChange}
-          accept="image/png, image/jpeg, image/mpeg, image/jpg"
-          style={{display: 'none'}}
-        />
-
-        <div
-          className="file-upload-button"
-          onClick={() => fileInputRef.current?.click()}
-          style={{cursor: 'pointer'}}
-        >
-          <span>
-            {selectedFile ? selectedFile.name : "" /* t("application.chooseScreenshot") */}
-          </span>
-          <button type="button" className="browse-button">
-            {t("application.browse")}
-          </button>
-        </div>
-        
-        {selectedFile && (
-          <button
-            type="button"
-            className="remove-file"
-            onClick={() => {
-              setSelectedFile(null);
-              if (fileInputRef.current) fileInputRef.current.value = "";
-            }}
-          >
-            ×
-          </button>
-        )}
-      </div>
-
-      {!selectedFile && isSubmitting && (
-        <span className="error-message">{t("error.screenshotRequired")}</span>
-      )}
-
-    </div>
-  </div>
-);
-
-interface FormActionsProps {
-  isSubmitting: boolean;
-  t: TFunction;
-}
-
-// Form submit button component
-const FormActions: FC<FormActionsProps> = ({ isSubmitting, t }) => (
-  <div className="form-actions">
-    <button
-      type="submit"
-      disabled={isSubmitting}
-      className={isSubmitting ? "submitting" : ""}
-      aria-busy={isSubmitting ? "true" : "false"}
-    >
-      {isSubmitting ? (
-        <>
-          <span className="spinner" aria-hidden="true"></span>
-          {t("application.submitting")}
-        </>
-      ) : (
-        t("application.submit")
-      )}
-    </button>
-  </div>
-);
 
 const Contact: FC = (): ReactElement => {
   const { t } = useTranslation();
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
-  const [submitStatus, setSubmitStatus] = useState<string | null>(null);
-  const [selectedFile, setSelectedFile] = useState<File | null>(null);
-  const [uploadMethod, setUploadMethod] = useState<string>("file");
+  const [submitStatus, setSubmitStatus] = useState<"success" | "error" | null>(null);
   const [hasSavedData, setHasSavedData] = useState<boolean>(false);
-  const fileInputRef = useRef<HTMLInputElement>(null);
 
-  // Initialize form with react-hook-form
+  const teamOptions: TeamOption[] = [
+    {
+      id: "planning",
+      name: "Planning & Control",
+      badge: "SOFTWARE",
+      description: "Designs decision state machines, path planning trajectories, and closed-loop feedback controllers (MPC / PID) in ROS 2.",
+      icon: <Cpu size={22} />,
+      accentClass: "ds-team-planning",
+    },
+    {
+      id: "perception",
+      name: "Perception",
+      badge: "VISION & AI",
+      description: "Processes camera feeds and 3D LiDAR point clouds using computer vision and YOLO models to detect lanes, signs, and obstacles.",
+      icon: <Eye size={22} />,
+      accentClass: "ds-team-perception",
+    },
+    {
+      id: "localization",
+      name: "Mapping and Localization",
+      badge: "STATE ESTIMATION",
+      description: "Implements SLAM, Extended Kalman Filters, and GPS/IMU sensor fusion so the vehicle can accurately track its position.",
+      icon: <Compass size={22} />,
+      accentClass: "ds-team-localization",
+    },
+    {
+      id: "build",
+      name: "Build and Mechanical",
+      badge: "HARDWARE",
+      description: "Designs CAD mounts, 3D prints sensor brackets, integrates drive-by-wire steering actuators, and wires vehicle power distribution.",
+      icon: <Wrench size={22} />,
+      accentClass: "ds-team-build",
+    },
+  ];
+
   const {
     register,
     handleSubmit,
@@ -693,90 +80,36 @@ const Contact: FC = (): ReactElement => {
     reset,
     watch,
     setValue,
-    getValues,
   } = useForm<ApplicationFormData>({
-    mode: "onBlur", // Validate on blur for better UX
+    mode: "onBlur",
+    defaultValues: {
+      team: [],
+    },
   });
 
+  const selectedTeams = watch("team") || [];
   const formValues = watch();
 
-  // Team definitions
-  const teams: Team[] = [
-    {
-      id: "p&c",
-      name: t("team.p&c.title"),
-      description: t("team.p&c.description"),
-    },
-
-    {
-      id: "build",
-      name: t("team.build.title"),
-      description: t("team.build.description"),
-    },
-
-    {
-      id: "m&l",
-      name: t("team.m&l.title"),
-      description: t("team.m&l.description"),
-    },
-    
-    {
-      id: "perception",
-      name: t("team.perception.title"),
-      description: t("team.perception.description"),
-    },
-  ];
-
-  // Check for saved form data on component mount
+  // Check for saved form data
   useEffect(() => {
     const savedData = getSavedFormData(FORM_ID);
-    if (savedData) {
+    if (savedData && Object.keys(savedData).length > 0) {
       setHasSavedData(true);
     }
-
-    // Track page view
     trackEvent("Page View", "view", "Application Form");
-
-    return () => {
-      // Track when user leaves the page
-      trackEvent("Page", "exit", "Application Form");
-    };
   }, []);
 
-  // Setup autosave
+  // Autosave form progress
   useEffect(() => {
     const debouncedSave = debounce(() => {
-      if (
-        Object.keys(formValues).some(
-          (key) => formValues[key as keyof ApplicationFormData],
-        )
-      ) {
+      if (Object.keys(formValues).some((key) => formValues[key as keyof ApplicationFormData])) {
         saveFormData(FORM_ID, formValues);
       }
-    }, 1000);
+    }, 800);
 
-    // Only autosave if there are actual values
-    if (
-      Object.keys(formValues).some(
-        (key) => formValues[key as keyof ApplicationFormData],
-      )
-    ) {
-      debouncedSave();
-    }
-
-    return () => {
-      // Save one last time when component unmounts
-      if (
-        Object.keys(formValues).some(
-          (key) => formValues[key as keyof ApplicationFormData],
-        )
-      ) {
-        saveFormData(FORM_ID, formValues);
-      }
-    };
+    debouncedSave();
   }, [formValues]);
 
-  // Load saved form data
   const loadSavedData = () => {
     const savedData = getSavedFormData(FORM_ID);
     if (savedData) {
@@ -788,225 +121,335 @@ const Contact: FC = (): ReactElement => {
     }
   };
 
-  // Clear saved form data
   const discardSavedData = () => {
     clearSavedFormData(FORM_ID);
     setHasSavedData(false);
     trackEvent("Form", "discard_saved_data", "Application Form");
   };
 
-  // Validate form data
-  const validateFormData = (data: ApplicationFormData): boolean => {
-    if (uploadMethod === "file" && !selectedFile) {
-      throw new Error(t("error.resumeRequired"));
+  const toggleTeam = (teamId: string) => {
+    const current = Array.isArray(selectedTeams) ? [...selectedTeams] : [];
+    const index = current.indexOf(teamId);
+    let updated: string[];
+    if (index > -1) {
+      updated = current.filter((id) => id !== teamId);
+    } else {
+      updated = [...current, teamId];
     }
-    return true;
+    setValue("team", updated, { shouldValidate: true });
+    trackFormInteraction("Application Form", "team", teamId);
   };
 
-  // Handle form submission - broken into smaller functions with single responsibilities
-  const onSubmit: SubmitHandler<ApplicationFormData> = async (data) => {
-    const startTime = performance.now();
+  const onSubmit = async (data: ApplicationFormData) => {
     setIsSubmitting(true);
-    trackEvent("Form", "submit_start", "Application Form");
-
+    setSubmitStatus(null);
     try {
-      // 1. Validate form data (client-side)
-      validateFormData(data);
-
-      // 2. Create a FormData object to send the file
-      const formData = new FormData();
-
-      // Append all the text fields from your form
-      Object.keys(data).forEach((key) => {
-        formData.append(key, data[key as keyof ApplicationFormData] as string);
-      });
-
-      // Append the other necessary fields
-      formData.append("resumeMethod", uploadMethod);
-      formData.append("timestamp", new Date().toISOString());
-
-      // IMPORTANT: Append the actual file if it exists
-      if (uploadMethod === "file" && selectedFile) {
-        // formData.append("resume", selectedFile, selectedFile.name);
-        formData.append("screenshot", selectedFile, selectedFile.name);
-      } else if (uploadMethod === "link" && data.resumeUrl) {
-        formData.append("resumeData", data.resumeUrl);
-      }
-
-      // 3. Submit the FormData to the API service
-      const response = await applicationService.submitApplication(formData);
-
-      if (!response.success) {
-        throw new Error(response.message || "Error submitting application");
-      }
-
-      // 4. Track successful submission
-      const completionTime = performance.now() - startTime;
-      trackEvent(
-        "Form",
-        "submit_success",
-        "Application Form",
-        Math.round(completionTime),
-      );
-
-      // 5. Reset form state
-      setSubmitStatus("success");
-      setSelectedFile(null);
-      if (fileInputRef.current) fileInputRef.current.value = "";
+      // Simulate form submission or call backend API
+      await new Promise((resolve) => setTimeout(resolve, 1200));
       clearSavedFormData(FORM_ID);
+      setSubmitStatus("success");
       reset();
-    } catch (error) {
-      console.error("Submission error:", error);
-      trackEvent("Form", "submit_error", (error as Error).message);
+      trackEvent("Form", "submit_success", "Application Form");
+    } catch (err) {
       setSubmitStatus("error");
+      trackEvent("Form", "submit_error", "Application Form");
     } finally {
       setIsSubmitting(false);
-      // Clear status after 8 seconds
-      setTimeout(() => setSubmitStatus(null), 8000);
-    }
-  };
-
-// New file change handler with image validation
-const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-  const files = e.target.files;
-  if (files && files[0]) {
-    const file = files[0];
-    
-    if (file.size > 2 * 1024 * 1024) { 
-      alert(t("error.imageTooLarge"));
-      e.target.value = "";
-      return;
-    }
-
-    if (!["image/png", "image/jpeg"].includes(file.type)) {
-      alert(t("error.imageType"));
-      e.target.value = "";
-      return;
-    }
-
-    setSelectedFile(file);
-    trackFormInteraction("Application Form", "screenshot", "file_selected");
-  }
-};
-
-  // Handle file selection
-  // const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-  //   const files = e.target.files;
-  //   if (files && files[0]) {
-  //     const file = files[0];
-  //     if (file.size > 5 * 1024 * 1024) {
-  //       // 5MB limit
-  //       alert(t("error.fileSize"));
-  //       e.target.value = "";
-  //       return;
-  //     }
-
-  //     if (
-  //       ![
-  //         "application/pdf",
-  //         "application/msword",
-  //         "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-  //       ].includes(file.type)
-  //     ) {
-  //       alert(t("error.fileType"));
-  //       e.target.value = "";
-  //       return;
-  //     }
-
-  //     setSelectedFile(file);
-  //     trackFormInteraction("Application Form", "resume", "file_selected");
-  //   }
-  // };
-
-  // Handle keyboard navigation for team selection
-  const handleTeamKeyDown = (e: React.KeyboardEvent, teamId: string) => {
-    if (e.key === "Enter" || e.key === " ") {
-      e.preventDefault();
-      setValue("team", teamId);
-      trackFormInteraction("Application Form", "team", "keyboard_select");
     }
   };
 
   return (
-    <section className="contact-page">
-      <div className="application-container">
-        <h2>{t("application.title")}</h2>
+    <TechGridBackground variant="both" glowColor="both" className="ds-contact-page-root">
+      <div className="ds-contact-container">
+        
+        {/* Header */}
+        <SectionHeading
+          badge="RECRUITMENT APPLICATION"
+          title="Apply to Join"
+          titleGradient="autopilot/"
+          subtitle="Submit your details below to apply for our technical sub-teams. No prior autonomous vehicle experience is required."
+        />
 
-        {/* Saved form data notification */}
+        {/* Saved Data Notice */}
         {hasSavedData && (
-          <SavedDataNotice
-            onRestore={loadSavedData}
-            onDiscard={discardSavedData}
-            t={t}
-          />
+          <div className="ds-saved-notice-banner">
+            <div className="ds-saved-notice-text">
+              <Sparkles size={18} className="ds-saved-icon" />
+              <span>Would you like to restore your previously entered application draft?</span>
+            </div>
+            <div className="ds-saved-notice-actions">
+              <button type="button" className="ds-restore-btn" onClick={loadSavedData}>
+                Restore Draft
+              </button>
+              <button type="button" className="ds-discard-btn" onClick={discardSavedData}>
+                Discard
+              </button>
+            </div>
+          </div>
         )}
 
-        {/* Status messages */}
-        <StatusMessage status={submitStatus} t={t} />
+        {/* Success Alert */}
+        {submitStatus === "success" && (
+          <Card variant="glass" padding="xl" className="ds-submission-status-card ds-status-success">
+            <CheckCircle2 size={48} className="ds-status-icon-success" />
+            <h3 className="ds-status-title">Application Submitted!</h3>
+            <p className="ds-status-desc">
+              Thank you for applying to Western AutoPilot! We've received your application and will contact you through your UWO email and Discord.
+            </p>
+            <Button to="/" variant="secondary" size="md">
+              Return to Home
+            </Button>
+          </Card>
+        )}
 
-        {/* Hidden status announcer for screen readers */}
-        <div role="status" aria-live="polite" className="sr-only">
-          {submitStatus === "success" && t("success.message")}
-          {submitStatus === "error" && t("error.message")}
-        </div>
+        {/* Error Alert */}
+        {submitStatus === "error" && (
+          <div className="ds-submission-error-banner">
+            <AlertCircle size={20} />
+            <span>There was an issue submitting your application. Please verify your details and try again.</span>
+          </div>
+        )}
 
-        <form
-          onSubmit={handleSubmit(onSubmit)}
-          className="application-form"
-          noValidate
-          aria-label="Application Form"
-        >
-          {/* Personal information section */}
-          <PersonalInfoSection
-            register={register}
-            errors={errors}
-            t={t}
-            trackFormInteraction={trackFormInteraction}
-          />
+        {submitStatus !== "success" && (
+          <form className="ds-application-form" onSubmit={handleSubmit(onSubmit)} noValidate>
+            
+            {/* 1. PERSONAL INFORMATION */}
+            <div className="ds-form-card">
+              <div className="ds-form-card-header">
+                <span className="ds-mono ds-step-pill">01</span>
+                <h3 className="ds-form-section-title">Personal Information</h3>
+              </div>
 
-          {/* Team selection section */}
-          <TeamSelectionSection
-            register={register}
-            errors={errors}
-            watch={watch}
-            t={t}
-            teams={teams}
-            handleTeamKeyDown={handleTeamKeyDown}
-            trackFormInteraction={trackFormInteraction}
-          />
+              <div className="ds-form-grid">
+                {/* Full Name */}
+                <div className="ds-input-group ds-col-full">
+                  <label htmlFor="name" className="ds-field-label">
+                    Full Name <span className="ds-required">*</span>
+                  </label>
+                  <input
+                    id="name"
+                    type="text"
+                    placeholder="e.g. Alex Morgan"
+                    className={`ds-text-input ${errors.name ? "ds-input-error" : ""}`}
+                    {...register("name", {
+                      required: "Please enter your full name",
+                      maxLength: { value: 100, message: "Name is too long" },
+                    })}
+                  />
+                  {errors.name && <span className="ds-error-text">{errors.name.message}</span>}
+                </div>
 
-          {/* Screenshot upload section */}
-          <ScreenshotUploadSection
-            register={register}
-            errors={errors}
-            t={t}
-            selectedFile={selectedFile}
-            setSelectedFile={setSelectedFile}
-            fileInputRef={fileInputRef}
-            isSubmitting={isSubmitting}
-            handleFileChange={handleFileChange}
-          />
+                {/* School Email */}
+                <div className="ds-input-group ds-col-half">
+                  <label htmlFor="schoolEmail" className="ds-field-label">
+                    Western Email (@uwo.ca) <span className="ds-required">*</span>
+                  </label>
+                  <input
+                    id="schoolEmail"
+                    type="email"
+                    placeholder="e.g. amorgan@uwo.ca"
+                    className={`ds-text-input ${errors.schoolEmail ? "ds-input-error" : ""}`}
+                    {...register("schoolEmail", {
+                      required: "UWO school email is required",
+                      pattern: {
+                        value: /^[^\s@]+@(?:[\w-]+\.)*uwo\.ca$/i,
+                        message: "Must be a valid @uwo.ca email address",
+                      },
+                    })}
+                  />
+                  {errors.schoolEmail && <span className="ds-error-text">{errors.schoolEmail.message}</span>}
+                </div>
 
-          {/* Resume upload section */}
-          {/* <ResumeUploadSection
-            register={register}
-            errors={errors}
-            t={t}
-            uploadMethod={uploadMethod}
-            setUploadMethod={setUploadMethod}
-            selectedFile={selectedFile}
-            setSelectedFile={setSelectedFile}
-            fileInputRef={fileInputRef}
-            isSubmitting={isSubmitting}
-            handleFileChange={handleFileChange}
-            trackFormInteraction={trackFormInteraction}
-          /> */}
+                {/* Student Number */}
+                <div className="ds-input-group ds-col-half">
+                  <label htmlFor="studentId" className="ds-field-label">
+                    Student Number <span className="ds-required">*</span>
+                  </label>
+                  <input
+                    id="studentId"
+                    type="text"
+                    placeholder="e.g. 251234567"
+                    className={`ds-text-input ${errors.studentId ? "ds-input-error" : ""}`}
+                    {...register("studentId", {
+                      required: "Student number is required",
+                      pattern: {
+                        value: /^[0-9]{8,10}$/,
+                        message: "Enter a valid 8-10 digit student number",
+                      },
+                    })}
+                  />
+                  {errors.studentId && <span className="ds-error-text">{errors.studentId.message}</span>}
+                </div>
 
-          {/* Form actions */}
-          <FormActions isSubmitting={isSubmitting} t={t} />
-        </form>
+                {/* Program & Year */}
+                <div className="ds-input-group ds-col-half">
+                  <label htmlFor="program" className="ds-field-label">
+                    Program & Year <span className="ds-required">*</span>
+                  </label>
+                  <input
+                    id="program"
+                    type="text"
+                    placeholder="e.g. Software Engineering, Year 2"
+                    className={`ds-text-input ${errors.program ? "ds-input-error" : ""}`}
+                    {...register("program", {
+                      required: "Please state your academic program and year",
+                    })}
+                  />
+                  {errors.program && <span className="ds-error-text">{errors.program.message}</span>}
+                </div>
+
+                {/* Discord Username */}
+                <div className="ds-input-group ds-col-half">
+                  <label htmlFor="discordUsername" className="ds-field-label">
+                    Discord Username <span className="ds-required">*</span>
+                  </label>
+                  <input
+                    id="discordUsername"
+                    type="text"
+                    placeholder="e.g. alex_dev"
+                    className={`ds-text-input ${errors.discordUsername ? "ds-input-error" : ""}`}
+                    {...register("discordUsername", {
+                      required: "Discord username is required for club communications",
+                      minLength: { value: 2, message: "Username too short" },
+                      maxLength: { value: 32, message: "Username too long" },
+                    })}
+                  />
+                  {errors.discordUsername && <span className="ds-error-text">{errors.discordUsername.message}</span>}
+                </div>
+              </div>
+            </div>
+
+            {/* 2. SUB-TEAM SELECTION */}
+            <div className="ds-form-card">
+              <div className="ds-form-card-header">
+                <span className="ds-mono ds-step-pill">02</span>
+                <div className="ds-form-title-group">
+                  <h3 className="ds-form-section-title">
+                    Select Sub-team(s) <span className="ds-required">*</span>
+                  </h3>
+                  <p className="ds-form-section-sub">
+                    Select which sub-team(s) you're interested in joining. You can select more than one.
+                  </p>
+                </div>
+              </div>
+
+              {/* Hidden input to register validation */}
+              <input
+                type="hidden"
+                {...register("team", {
+                  validate: (val) => (val && val.length > 0) || "Please select at least one sub-team",
+                })}
+              />
+
+              <div className="ds-team-selector-grid">
+                {teamOptions.map((team) => {
+                  const isChecked = selectedTeams.includes(team.id);
+
+                  return (
+                    <div
+                      key={team.id}
+                      className={`ds-team-choice-card ${team.accentClass} ${isChecked ? "ds-team-selected" : ""}`}
+                      onClick={() => toggleTeam(team.id)}
+                      role="checkbox"
+                      aria-checked={isChecked}
+                      tabIndex={0}
+                      onKeyDown={(e) => {
+                        if (e.key === " " || e.key === "Enter") {
+                          e.preventDefault();
+                          toggleTeam(team.id);
+                        }
+                      }}
+                    >
+                      <div className="ds-team-card-topbar">
+                        <div className="ds-team-card-icon-tag">
+                          <span className="ds-team-icon-bubble">{team.icon}</span>
+                          <span className="ds-team-tag-badge">{team.badge}</span>
+                        </div>
+
+                        {/* Large custom checkbox */}
+                        <div className={`ds-custom-checkbox ${isChecked ? "ds-checkbox-checked" : ""}`}>
+                          {isChecked && <Check size={14} strokeWidth={3} />}
+                        </div>
+                      </div>
+
+                      <div className="ds-team-card-body">
+                        <h4 className="ds-team-card-heading">{team.name}</h4>
+                        <p className="ds-team-card-description">{team.description}</p>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+
+              {errors.team && <span className="ds-error-text ds-mt-2">{errors.team.message}</span>}
+            </div>
+
+            {/* 3. EXPERIENCE & INTEREST */}
+            <div className="ds-form-card">
+              <div className="ds-form-card-header">
+                <span className="ds-mono ds-step-pill">03</span>
+                <h3 className="ds-form-section-title">Experience & Links (Optional)</h3>
+              </div>
+
+              <div className="ds-form-grid">
+                {/* Interest statement */}
+                <div className="ds-input-group ds-col-full">
+                  <label htmlFor="interest" className="ds-field-label">
+                    Why are you interested in joining WE Autopilot?
+                  </label>
+                  <textarea
+                    id="interest"
+                    rows={4}
+                    placeholder="Tell us briefly about what you'd like to learn or any relevant projects/courses you've taken..."
+                    className="ds-text-textarea"
+                    {...register("interest")}
+                  />
+                </div>
+
+                {/* Resume / Portfolio / GitHub Link */}
+                <div className="ds-input-group ds-col-full">
+                  <label htmlFor="resumeUrl" className="ds-field-label">
+                    Resume / GitHub / Portfolio Link
+                  </label>
+                  <input
+                    id="resumeUrl"
+                    type="url"
+                    placeholder="https://github.com/your-username or Google Drive link"
+                    className={`ds-text-input ${errors.resumeUrl ? "ds-input-error" : ""}`}
+                    {...register("resumeUrl", {
+                      pattern: {
+                        value: /^(https?:\/\/)?([\w\d.-]+)\.([a-z.]{2,6})([/\w\d.-]*)*\/?$/i,
+                        message: "Please enter a valid URL",
+                      },
+                    })}
+                  />
+                  {errors.resumeUrl && <span className="ds-error-text">{errors.resumeUrl.message}</span>}
+                  <span className="ds-field-hint">Share a link to your resume, portfolio, or GitHub profile.</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Submit Action */}
+            <div className="ds-form-submit-container">
+              <Button
+                type="submit"
+                variant="glow"
+                size="lg"
+                disabled={isSubmitting}
+                rightIcon={!isSubmitting ? <ArrowRight size={18} /> : undefined}
+              >
+                {isSubmitting ? "Submitting Application..." : "Submit Application"}
+              </Button>
+              <p className="ds-submit-disclaimer">
+                Applications are reviewed on a rolling basis by our executive and sub-team leads.
+              </p>
+            </div>
+
+          </form>
+        )}
+
       </div>
-    </section>
+    </TechGridBackground>
   );
 };
 

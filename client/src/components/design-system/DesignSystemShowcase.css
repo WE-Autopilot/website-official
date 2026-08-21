@@ -1,0 +1,574 @@
+.ds-showcase-page {
+  min-height: 100vh;
+  padding: 40px 24px 100px 24px;
+}
+
+.ds-showcase-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+/* Header Hero */
+.ds-showcase-hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 20px;
+  max-width: 840px;
+  margin: 0 auto;
+  padding: 40px 0 20px 0;
+}
+
+.ds-hero-badge-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.ds-hero-logo-banner {
+  padding: 12px 0;
+}
+
+.ds-showcase-lead {
+  font-size: 1.125rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.ds-showcase-quick-stats {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-top: 12px;
+}
+
+.ds-stat-pill {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-full);
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+}
+
+.ds-stat-icon-purple { color: var(--purple-400); }
+.ds-stat-icon-cyan { color: var(--cyan-400); }
+.ds-stat-icon-emerald { color: #34d399; }
+
+/* Sticky Tabs */
+.ds-showcase-tabs-sticky {
+  position: sticky;
+  top: 80px;
+  z-index: 40;
+  display: flex;
+  justify-content: center;
+  padding: 12px 0;
+}
+
+/* Sections */
+.ds-showcase-section {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  animation: ds-fade-in 0.3s ease-out;
+}
+
+@keyframes ds-fade-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Color Tokens Grid */
+.ds-tokens-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+}
+
+.ds-color-group {
+  background: var(--bg-glass-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.ds-color-group-title {
+  margin: 0;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  letter-spacing: -0.01em;
+}
+
+.ds-swatches-row {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.ds-color-swatch {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 6px 10px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+.ds-color-swatch:hover {
+  background: rgba(255, 255, 255, 0.07);
+  border-color: var(--border-bright);
+  transform: translateX(3px);
+}
+
+.ds-swatch-color {
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  flex-shrink: 0;
+}
+
+.ds-swatch-info {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  align-items: center;
+}
+
+.ds-swatch-name {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+
+.ds-swatch-hex {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* Logo Showcase */
+.ds-logo-showcase-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.ds-logo-tester-box {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.ds-logo-live-preview {
+  padding: 32px;
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.ds-flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.ds-animation-details-box {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  padding: 16px;
+}
+
+.ds-anim-info-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.ds-anim-label {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.ds-anim-chars-flow {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.ds-anim-char-badge {
+  font-family: 'Fira Code', monospace;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  width: 26px;
+  height: 26px;
+  border-radius: var(--radius-xs);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(139, 92, 246, 0.12);
+  border: 1px solid rgba(139, 92, 246, 0.25);
+  color: var(--cyan-300);
+}
+
+.ds-anim-tip {
+  margin: 0;
+  font-size: 0.8125rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+.ds-loader-demo-frame {
+  padding: 32px;
+  background: rgba(8, 10, 18, 0.8);
+  border: 1px solid rgba(56, 189, 248, 0.2);
+  border-radius: var(--radius-md);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  position: relative;
+  overflow: hidden;
+}
+
+.ds-logo-sizes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.ds-logo-sample-row {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+  padding: 16px 0;
+}
+
+/* Sub-teams grid: balanced columns, min 280px */
+.ds-subteams-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+  width: 100%;
+}
+
+/* High-Contrast Terminal Window */
+.ds-terminal-window {
+  background: #080a12;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: var(--radius-md);
+  box-shadow: 0 12px 36px -4px rgba(0, 0, 0, 0.7), 0 0 20px -5px rgba(139, 92, 246, 0.2);
+  overflow: hidden;
+  font-family: 'Fira Code', var(--font-mono);
+}
+
+.ds-terminal-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 16px;
+  background: #0e1220;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.ds-terminal-dots {
+  display: flex;
+  gap: 6px;
+}
+.ds-term-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+.ds-dot-red { background: #ff5f56; }
+.ds-dot-yellow { background: #ffbd2e; }
+.ds-dot-green { background: #27c93f; }
+
+.ds-terminal-title {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--text-muted);
+}
+
+.ds-terminal-body {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  overflow-x: auto;
+  font-size: 0.875rem;
+  line-height: 1.7;
+}
+
+.ds-code-line {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  white-space: nowrap;
+}
+
+.ds-code-ln {
+  color: #475569;
+  font-size: 0.75rem;
+  user-select: none;
+  width: 20px;
+  text-align: right;
+  flex-shrink: 0;
+}
+
+.ds-code-comment { color: #94a3b8; font-style: italic; }
+.ds-code-purple { color: #c084fc; font-weight: 600; }
+.ds-code-cyan { color: #38bdf8; font-weight: 600; }
+.ds-code-key { color: #a78bfa; }
+.ds-code-val { color: #ffffff; font-weight: 500; }
+.ds-code-emerald { color: #34d399; font-weight: 600; }
+.ds-code-time { color: #64748b; font-weight: 500; }
+.ds-code-dim { color: #334155; }
+.ds-code-prompt { color: #38bdf8; font-weight: 600; }
+.ds-code-cursor {
+  color: #38bdf8;
+  animation: ds-cursor-blink 1s step-start infinite;
+}
+
+@keyframes ds-cursor-blink {
+  50% { opacity: 0; }
+}
+
+/* Telemetry HUD Panel */
+.ds-telemetry-panel {
+  background: rgba(10, 14, 26, 0.85);
+  border: 1px solid rgba(56, 189, 248, 0.25);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  box-shadow: 0 0 30px -10px var(--cyan-glow);
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.ds-telemetry-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  border-bottom: 1px solid var(--border-subtle);
+  padding-bottom: 16px;
+}
+
+.ds-telemetry-header-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.ds-telemetry-title {
+  font-family: 'Fira Code', var(--font-mono);
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #ffffff;
+  letter-spacing: 0.03em;
+}
+
+.ds-icon-pulse-cyan {
+  color: var(--cyan-400);
+}
+
+.ds-telemetry-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+}
+
+.ds-telemetry-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.ds-telemetry-label {
+  font-family: 'Fira Code', var(--font-mono);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  color: #94a3b8;
+  letter-spacing: 0.05em;
+}
+
+.ds-telemetry-num {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.ds-telemetry-num small {
+  font-family: 'Fira Code', var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--cyan-300);
+  margin-left: 4px;
+}
+
+.ds-telemetry-bar {
+  height: 4px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 9999px;
+  overflow: hidden;
+}
+
+.ds-telemetry-bar div {
+  height: 100%;
+  background: linear-gradient(90deg, var(--purple-500), var(--cyan-400));
+  border-radius: 9999px;
+}
+
+/* Typography Demo Grid */
+.ds-typography-demo-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.ds-type-label {
+  font-family: 'Fira Code', var(--font-mono);
+  font-size: 0.6875rem;
+  color: var(--purple-400);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.ds-type-h1 {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  margin: 0 0 8px 0;
+  color: #ffffff;
+}
+
+.ds-type-h2 {
+  font-family: var(--font-sans);
+  font-size: 1.875rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin: 0 0 8px 0;
+  color: #ffffff;
+}
+
+.ds-type-body {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin: 0 0 8px 0;
+}
+
+.ds-type-desc {
+  font-family: 'Fira Code', var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+/* Component matrix cards */
+.ds-component-card {
+  background: var(--bg-glass-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.ds-component-card h4 {
+  margin: 0;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  letter-spacing: -0.01em;
+}
+
+.ds-flex-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.ds-buttons-matrix {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Badges Grid */
+.ds-badges-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.ds-badges-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+/* Cards Demo Grid */
+.ds-cards-demo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+}
+
+/* Inputs grid */
+.ds-inputs-grid {
+  max-width: 600px;
+}
+
+.ds-inputs-col {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}

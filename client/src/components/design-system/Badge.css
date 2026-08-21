@@ -1,0 +1,137 @@
+.ds-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border-radius: var(--radius-full);
+  font-family: var(--font-sans);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  transition: all var(--transition-fast);
+  width: fit-content;
+  white-space: nowrap;
+  vertical-align: middle;
+}
+
+/* Sizes */
+.ds-badge-sm {
+  font-size: 0.75rem;
+  padding: 2px 8px;
+}
+.ds-badge-md {
+  font-size: 0.8125rem;
+  padding: 4px 12px;
+}
+.ds-badge-lg {
+  font-size: 0.875rem;
+  padding: 6px 16px;
+}
+
+/* Icons & Dots */
+.ds-badge-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9em;
+}
+
+.ds-badge-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: currentColor;
+  flex-shrink: 0;
+}
+
+.ds-badge-dot-pulse {
+  position: relative;
+}
+.ds-badge-dot-pulse::after {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: 50%;
+  background-color: currentColor;
+  opacity: 0.5;
+  animation: ds-badge-pulse 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+@keyframes ds-badge-pulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.7;
+  }
+  100% {
+    transform: scale(2.4);
+    opacity: 0;
+  }
+}
+
+/* Variants */
+.ds-badge-default {
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text-secondary);
+  border: 1px solid var(--border-subtle);
+}
+
+.ds-badge-purple {
+  background: rgba(139, 92, 246, 0.12);
+  color: var(--purple-300);
+  border: 1px solid rgba(139, 92, 246, 0.3);
+  box-shadow: 0 0 12px -3px rgba(139, 92, 246, 0.25);
+}
+
+.ds-badge-cyan {
+  background: rgba(56, 189, 248, 0.1);
+  color: var(--cyan-300);
+  border: 1px solid rgba(56, 189, 248, 0.3);
+  box-shadow: 0 0 12px -3px rgba(56, 189, 248, 0.25);
+}
+
+.ds-badge-success {
+  background: rgba(16, 185, 129, 0.12);
+  color: #34d399;
+  border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.ds-badge-warning {
+  background: rgba(245, 158, 11, 0.12);
+  color: #fbbf24;
+  border: 1px solid rgba(245, 158, 11, 0.3);
+}
+
+.ds-badge-error {
+  background: rgba(239, 68, 68, 0.12);
+  color: #f87171;
+  border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+.ds-badge-outline {
+  background: transparent;
+  color: var(--text-muted);
+  border: 1px solid var(--border-medium);
+}
+
+/* Sub-team specific variants */
+.ds-badge-planning {
+  background: rgba(168, 85, 247, 0.12);
+  color: #c084fc;
+  border: 1px solid rgba(168, 85, 247, 0.35);
+}
+
+.ds-badge-perception {
+  background: rgba(6, 182, 212, 0.12);
+  color: #22d3ee;
+  border: 1px solid rgba(6, 182, 212, 0.35);
+}
+
+.ds-badge-localization {
+  background: rgba(59, 130, 246, 0.12);
+  color: #60a5fa;
+  border: 1px solid rgba(59, 130, 246, 0.35);
+}
+
+.ds-badge-build {
+  background: rgba(16, 185, 129, 0.12);
+  color: #34d399;
+  border: 1px solid rgba(16, 185, 129, 0.35);
+}

@@ -1,0 +1,98 @@
+.ds-logo-link {
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  user-select: none;
+  cursor: pointer;
+}
+
+.ds-logo-wrapper {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+  line-height: 1;
+  user-select: none;
+}
+
+.ds-logo-main {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0px;
+}
+
+.ds-logo-text {
+  font-family: 'Righteous', sans-serif;
+  letter-spacing: -0.02em;
+  color: #ffffff;
+  transition: all var(--transition-fast);
+  text-transform: lowercase;
+}
+
+.ds-logo-link:hover .ds-logo-text,
+.ds-logo-animating .ds-logo-text {
+  text-shadow: 0 0 16px rgba(255, 255, 255, 0.4);
+}
+
+.ds-logo-punct {
+  font-family: 'Righteous', 'Fira Code', sans-serif;
+  font-weight: 700;
+  background: linear-gradient(135deg, var(--purple-400) 0%, var(--cyan-400) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+  letter-spacing: -0.02em;
+  text-shadow: 0 0 12px var(--cyan-glow);
+  transition: transform var(--transition-fast), filter var(--transition-fast);
+  margin-left: 2px;
+  text-align: left;
+  min-width: 0.65em;
+  width: max-content;
+}
+
+.ds-logo-punct-active {
+  filter: brightness(1.35) drop-shadow(0 0 8px rgba(56, 189, 248, 0.7));
+  transform: scale(1.1);
+}
+
+.ds-logo-link:hover .ds-logo-punct {
+  filter: brightness(1.3);
+}
+
+.ds-logo-subtitle {
+  font-family: var(--font-sans);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* Sizes */
+.ds-logo-sm .ds-logo-text {
+  font-size: 1.125rem;
+}
+.ds-logo-sm .ds-logo-punct {
+  font-size: 1.125rem;
+}
+
+.ds-logo-md .ds-logo-text {
+  font-size: 1.5rem;
+}
+.ds-logo-md .ds-logo-punct {
+  font-size: 1.5rem;
+}
+
+.ds-logo-lg .ds-logo-text {
+  font-size: 2.25rem;
+}
+.ds-logo-lg .ds-logo-punct {
+  font-size: 2.25rem;
+}
+
+.ds-logo-xl .ds-logo-text {
+  font-size: clamp(3rem, 7vw, 4.5rem);
+}
+.ds-logo-xl .ds-logo-punct {
+  font-size: clamp(3rem, 7vw, 4.5rem);
+}

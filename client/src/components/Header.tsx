@@ -1,6 +1,9 @@
-import React, { useState, useRef, memo } from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useRef, memo, useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
+import { ChevronDown, Sparkles, Menu, X } from "lucide-react";
 import onClickOutside from "../hooks/onClickOutside";
+import Logo from "./design-system/Logo";
+import Button from "./design-system/Button";
 import "../stylesheets/Header.css";
 
 interface HeaderProps {
@@ -8,153 +11,158 @@ interface HeaderProps {
 }
 
 const teamLinks = [
-  { label: "Planning and Control", path: "/teams/planning-and-control" },
+  { label: "Planning & Control", path: "/teams/planning-and-control" },
   { label: "Perception", path: "/teams/perception" },
-  { label: "Localization", path: "/teams/localization" },
-  { label: "Build", path: "/teams/build" },
+  { label: "Mapping & Localization", path: "/teams/localization" },
+  { label: "Build & Mechanical", path: "/teams/build" },
 ];
 
 const Header: React.FC<HeaderProps> = ({ className = "" }) => {
   const [isMenu, setMenu] = useState<boolean>(false);
   const [isTeamsOpen, setTeamsOpen] = useState<boolean>(false);
+  const [scrolled, setScrolled] = useState<boolean>(false);
   const navRef = useRef<HTMLElement>(null);
+  const dropdownTimerRef = useRef<NodeJS.Timeout | null>(null);
+  const location = useLocation();
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const handleMenuClose = () => {
     setMenu(false);
+    setTeamsOpen(false);
+  };
+
+  const handleMouseEnter = () => {
+    if (dropdownTimerRef.current) {
+      clearTimeout(dropdownTimerRef.current);
+      dropdownTimerRef.current = null;
+    }
+    setTeamsOpen(true);
+  };
+
+  const handleMouseLeave = () => {
+    dropdownTimerRef.current = setTimeout(() => {
+      setTeamsOpen(false);
+    }, 200);
   };
 
   onClickOutside(navRef, () => {
     if (isMenu) handleMenuClose();
+    if (isTeamsOpen) setTeamsOpen(false);
   });
 
-  return (
-    <header className={`Header ${className}`}>
-      <Link to="/" className="logo-link" aria-label="Home">
-        <img src="/headerlogo.png" alt="Logo" className="logo" />
-      </Link>
+  const isActive = (path: string) => location.pathname === path;
 
-      <div className="menu-icon">
-        <button
-          className="fimenu"
-          onClick={() => {
-            setMenu(!isMenu);
-          }}
-          aria-expanded={isMenu}
-          aria-label={isMenu ? "Close menu" : "Open menu"}
-        >
-          {isMenu ? (
-            <svg
-              className={`menu-icon menuRotate ${isMenu ? "active" : ""}`}
-              stroke="currentColor"
-              fill="currentColor"
-              strokeWidth="0"
-              viewBox="0 0 24 24"
-              height="1em"
-              width="1em"
-              xmlns="http://www.w3.org/2000/svg"
-              aria-hidden="true"
+  return (
+    <header className={`ds-header ${scrolled ? "ds-header-scrolled" : ""} ${className}`}>
+      <div className="ds-header-inner">
+        {/* Logo */}
+        <div className="ds-header-logo-wrap">
+          <Logo size="md" punctuation="/" linkToHome animateOnHover />
+        </div>
+
+        {/* Desktop Nav Links */}
+        <nav ref={navRef} className={`ds-header-nav ${isMenu ? "ds-nav-open" : ""}`}>
+          <ul className="ds-nav-list">
+            <li>
+              <Link
+                className={`ds-nav-link ${isActive("/") ? "ds-nav-link-active" : ""}`}
+                to="/"
+                onClick={handleMenuClose}
+              >
+                Home
+              </Link>
+            </li>
+            <li>
+              <Link
+                className={`ds-nav-link ${isActive("/team") ? "ds-nav-link-active" : ""}`}
+                to="/team"
+                onClick={handleMenuClose}
+              >
+                Our Team
+              </Link>
+            </li>
+
+            {/* Sub-teams Dropdown */}
+            <li
+              className="ds-dropdown"
+              onMouseEnter={handleMouseEnter}
+              onMouseLeave={handleMouseLeave}
             >
-              <path
-                className="line1"
-                fill="none"
-                stroke="#ffffff"
-                strokeWidth="3"
-                d="M3,3 L21,21 M3,21 L21,3"
-              ></path>
-            </svg>
-          ) : (
-            <svg
-              className={`menu-icon menuRotate ${isMenu ? "active" : ""}`}
-              stroke="#ffffff"
-              fill="none"
-              strokeWidth={2}
-              viewBox="0 0 24 24"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              height="1.5em"
-              width="1.5em"
-              aria-hidden="true"
-            >
-              <line x1={3} y1={12} x2={21} y2={12} />
-              <line x1={3} y1={6} x2={21} y2={6} />
-              <line x1={3} y1={18} x2={21} y2={18} />
-            </svg>
-          )}
-        </button>
+              <button
+                type="button"
+                className={`ds-nav-link ds-dropdown-toggle ${location.pathname.startsWith("/teams/") ? "ds-nav-link-active" : ""}`}
+                onClick={(e) => {
+                  e.preventDefault();
+                  setTeamsOpen((prev) => !prev);
+                }}
+                aria-expanded={isTeamsOpen}
+                aria-haspopup="true"
+              >
+                <span>Sub-teams</span>
+                <ChevronDown size={14} className={`ds-dropdown-arrow ${isTeamsOpen ? "ds-arrow-rotated" : ""}`} />
+              </button>
+
+              {isTeamsOpen && (
+                <div
+                  className="ds-dropdown-menu"
+                  onMouseEnter={handleMouseEnter}
+                  onMouseLeave={handleMouseLeave}
+                >
+                  {teamLinks.map((team) => (
+                    <Link
+                      key={team.path}
+                      className="ds-dropdown-item"
+                      to={team.path}
+                      onClick={handleMenuClose}
+                    >
+                      <span className="ds-dropdown-item-label">{team.label}</span>
+                      <span className="ds-dropdown-item-indicator" />
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </li>
+
+            <li>
+              <Link
+                className={`ds-nav-link ${isActive("/sponsors") ? "ds-nav-link-active" : ""}`}
+                to="/sponsors"
+                onClick={handleMenuClose}
+              >
+                Sponsors
+              </Link>
+            </li>
+          </ul>
+        </nav>
+
+        {/* Right CTA & Mobile Hamburger */}
+        <div className="ds-header-actions">
+          <div className="ds-header-cta-desktop">
+            <Button to="/join" variant="glow" size="sm" leftIcon={<Sparkles size={14} />}>
+              Join Club
+            </Button>
+          </div>
+
+          <button
+            className="ds-mobile-menu-btn"
+            onClick={() => setMenu(!isMenu)}
+            aria-expanded={isMenu}
+            aria-label={isMenu ? "Close menu" : "Open menu"}
+          >
+            {isMenu ? <X size={22} /> : <Menu size={22} />}
+          </button>
+        </div>
       </div>
 
-      {isMenu && <div className="drawer-overlay" onClick={handleMenuClose} />}
-
-      <nav ref={navRef} className={`nav ${isMenu ? "open" : ""}`}>
-        <ul className="links">
-          <li>
-            <Link className="nav-link" to="/" onClick={handleMenuClose}>
-              Home
-            </Link>
-          </li>
-          <li>
-            <Link className="nav-link" to="/team" onClick={handleMenuClose}>
-              Our Team
-            </Link>
-          </li>
-          <li
-            className="dropdown"
-            onMouseEnter={() => setTeamsOpen(true)}
-            onMouseLeave={() => setTeamsOpen(false)}
-          >
-            <button
-              className="nav-link dropdown-toggle"
-              onClick={() => setTeamsOpen((prev) => !prev)}
-              aria-expanded={isTeamsOpen}
-              aria-haspopup="true"
-            >
-              Teams
-            </button>
-            {isTeamsOpen && (
-              <ul className="dropdown-menu">
-                {teamLinks.map((team) => (
-                  <li key={team.path}>
-                    <Link
-                      className="dropdown-item"
-                      to={team.path}
-                      onClick={() => {
-                        setTeamsOpen(false);
-                        handleMenuClose();
-                      }}
-                    >
-                      {team.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            )}
-          </li>
-          {/* <li> 
-            <Link className="nav-link" to="/gallery" onClick={handleMenuClose}>
-            Gallery</Link> 
-            </li> */}
-          <li>
-            <Link to="/sponsors" onClick={handleMenuClose}>
-              Sponsor Us
-            </Link>
-          </li>
-          {/* <li>
-            <Link to="/competition" onClick={handleMenuClose}>
-              Competition
-            </Link>
-          </li> */}
-          {/* <li className="application-link">
-            <Link to="/contact" onClick={handleMenuClose}>
-              Application
-            </Link>
-          </li> */}
-        </ul>
-      </nav>
-      <img
-        id="headervector"
-        src="/vectors/HeaderVector.svg"
-        alt="Decorative header element"
-      />
+      {/* Mobile Drawer Overlay */}
+      {isMenu && <div className="ds-drawer-overlay" onClick={handleMenuClose} />}
     </header>
   );
 };

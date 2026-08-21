@@ -1,160 +1,144 @@
-// Design tokens for the application
+/**
+ * WEAP Design Tokens - Silicon Valley Minimalist Theme
+ * Modern Dark Slate & Obsidian with Western Electric Purple & Autonomous Cyan Accents
+ */
 
-// Color palette
 export const colors = {
-  // Primary colors
-  primary: {
-    50: "#e6f1ff",
-    100: "#cce3ff",
-    200: "#99c7ff",
-    300: "#66aaff",
-    400: "#338eff",
-    500: "#0072ff", // Primary brand color
-    600: "#005bcc",
-    700: "#004499",
-    800: "#002e66",
-    900: "#001733",
+  // Background surfaces
+  bg: {
+    base: '#06070a',
+    primary: '#0a0c12',
+    secondary: '#0f121d',
+    tertiary: '#161a29',
+    elevated: '#1e2337',
+    glass: 'rgba(16, 20, 34, 0.65)',
+    glassCard: 'rgba(15, 19, 32, 0.75)',
+    glassHover: 'rgba(255, 255, 255, 0.06)',
   },
 
-  // Secondary colors
-  secondary: {
-    50: "#f5e6ff",
-    100: "#ebccff",
-    200: "#d699ff",
-    300: "#c266ff",
-    400: "#ad33ff",
-    500: "#9900ff", // Secondary brand color
-    600: "#7a00cc",
-    700: "#5c0099",
-    800: "#3d0066",
-    900: "#1f0033",
+  // Western Heritage Purple / Electric Violet
+  purple: {
+    50: '#faf5ff',
+    100: '#f3e8ff',
+    200: '#e9d5ff',
+    300: '#c4b5fd',
+    400: '#a78bfa',
+    500: '#8b5cf6', // Primary Accent
+    600: '#7c3aed', // Western Electric Purple
+    700: '#6d28d9',
+    800: '#5b21b6',
+    900: '#3b0764',
+    glow: 'rgba(139, 92, 246, 0.35)',
   },
 
-  // Neutral colors
-  neutral: {
-    50: "#f8f9fa",
-    100: "#f1f3f5",
-    200: "#e9ecef",
-    300: "#dee2e6",
-    400: "#ced4da",
-    500: "#adb5bd",
-    600: "#6c757d",
-    700: "#495057",
-    800: "#343a40",
-    900: "#212529",
+  // Autonomous Tech Cyan / Electric Sky
+  cyan: {
+    50: '#f0fdfa',
+    100: '#ccfbf1',
+    200: '#99f6e4',
+    300: '#7dd3fc',
+    400: '#38bdf8', // Lidar Cyan
+    500: '#06b6d4',
+    600: '#0284c7',
+    700: '#0369a1',
+    800: '#075985',
+    900: '#0c4a6e',
+    glow: 'rgba(56, 189, 248, 0.35)',
   },
 
-  // Feedback colors
-  success: "#28a745",
-  warning: "#ffc107",
-  error: "#dc3545",
-  info: "#17a2b8",
+  // Engineering Sub-team Signatures
+  teams: {
+    planning: '#a855f7',    // Planning & Control - Purple
+    perception: '#06b6d4',  // Perception - Cyan
+    localization: '#3b82f6',// Localization - Blue
+    build: '#10b981',       // Build - Emerald
+  },
+
+  // Text Hierarchy
+  text: {
+    primary: '#f8fafc',
+    secondary: '#cbd5e1',
+    muted: '#94a3b8',
+    subtle: '#64748b',
+    disabled: '#475569',
+  },
+
+  // Borders
+  border: {
+    subtle: 'rgba(255, 255, 255, 0.07)',
+    medium: 'rgba(255, 255, 255, 0.12)',
+    bright: 'rgba(255, 255, 255, 0.22)',
+    purple: 'rgba(139, 92, 246, 0.4)',
+    cyan: 'rgba(56, 189, 248, 0.4)',
+  },
+
+  // Telemetry & Status
+  status: {
+    success: '#10b981',
+    warning: '#f59e0b',
+    error: '#ef4444',
+    info: '#0ea5e9',
+  }
 };
 
-// Typography
 export const typography = {
   fontFamily: {
-    primary: "'Inter', sans-serif",
-    secondary: "'Poppins', sans-serif",
-    mono: "'IBM Plex Mono', monospace",
+    sans: "'Plus Jakarta Sans', 'Inter', sans-serif",
+    display: "'Space Grotesk', 'Plus Jakarta Sans', sans-serif",
+    heading: "'Jura', 'Space Grotesk', sans-serif",
+    mono: "'JetBrains Mono', 'IBM Plex Mono', monospace",
   },
   fontSize: {
-    xs: "0.75rem", // 12px
-    sm: "0.875rem", // 14px
-    md: "1rem", // 16px
-    lg: "1.25rem", // 20px
-    xl: "1.5rem", // 24px
-    "2xl": "2rem", // 32px
-    "3xl": "2.5rem", // 40px
-    "4xl": "3rem", // 48px
+    xs: '0.75rem',    // 12px
+    sm: '0.875rem',   // 14px
+    base: '1rem',      // 16px
+    lg: '1.125rem',   // 18px
+    xl: '1.25rem',    // 20px
+    '2xl': '1.5rem',  // 24px
+    '3xl': '1.875rem',// 30px
+    '4xl': '2.25rem', // 36px
+    '5xl': '3rem',    // 48px
+    '6xl': '3.75rem', // 60px
+    '7xl': '4.5rem',  // 72px
   },
   fontWeight: {
-    light: 300,
-    regular: 400,
+    normal: 400,
     medium: 500,
     semibold: 600,
     bold: 700,
+    extrabold: 800,
   },
-  lineHeight: {
-    tight: 1.2,
-    normal: 1.5,
-    loose: 1.8,
-  },
+  letterSpacing: {
+    tightest: '-0.03em',
+    tight: '-0.02em',
+    normal: '0',
+    wide: '0.05em',
+    widest: '0.1em',
+  }
 };
 
-// Spacing
-export const spacing = {
-  0: "0",
-  1: "0.25rem", // 4px
-  2: "0.5rem", // 8px
-  3: "0.75rem", // 12px
-  4: "1rem", // 16px
-  5: "1.5rem", // 24px
-  6: "2rem", // 32px
-  8: "3rem", // 48px
-  10: "4rem", // 64px
-  12: "5rem", // 80px
-  16: "8rem", // 128px
+export const radii = {
+  xs: '4px',
+  sm: '8px',
+  md: '12px',
+  lg: '16px',
+  xl: '24px',
+  full: '9999px',
 };
 
-// Borders
-export const borders = {
-  radius: {
-    none: "0",
-    sm: "0.125rem", // 2px
-    md: "0.25rem", // 4px
-    lg: "0.5rem", // 8px
-    xl: "1rem", // 16px
-    full: "9999px", // Fully rounded
-  },
-  width: {
-    thin: "1px",
-    medium: "2px",
-    thick: "4px",
-  },
-};
-
-// Shadows
 export const shadows = {
-  sm: "0 1px 2px 0 rgba(0, 0, 0, 0.05)",
-  md: "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)",
-  lg: "0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)",
-  xl: "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)",
-  "2xl": "0 25px 50px -12px rgba(0, 0, 0, 0.25)",
-  inner: "inset 0 2px 4px 0 rgba(0, 0, 0, 0.06)",
-  outline: "0 0 0 3px rgba(66, 153, 225, 0.5)",
-  none: "none",
+  sm: '0 1px 2px 0 rgba(0, 0, 0, 0.4)',
+  md: '0 4px 12px -2px rgba(0, 0, 0, 0.5), 0 2px 6px -1px rgba(0, 0, 0, 0.4)',
+  lg: '0 12px 32px -4px rgba(0, 0, 0, 0.6), 0 4px 12px -2px rgba(0, 0, 0, 0.4)',
+  xl: '0 20px 48px -8px rgba(0, 0, 0, 0.75)',
+  glass: '0 8px 32px 0 rgba(0, 0, 0, 0.5)',
+  glowPurple: '0 0 25px -5px rgba(139, 92, 246, 0.45)',
+  glowCyan: '0 0 25px -5px rgba(56, 189, 248, 0.45)',
 };
 
-// Transitions
 export const transitions = {
-  duration: {
-    fast: "150ms",
-    normal: "300ms",
-    slow: "500ms",
-  },
-  timing: {
-    ease: "ease",
-    linear: "linear",
-    easeIn: "ease-in",
-    easeOut: "ease-out",
-    easeInOut: "ease-in-out",
-  },
-};
-
-// Z-index scale
-export const zIndex = {
-  hide: -1,
-  auto: "auto",
-  base: 0,
-  docked: 10,
-  dropdown: 1000,
-  sticky: 1100,
-  banner: 1200,
-  overlay: 1300,
-  modal: 1400,
-  popover: 1500,
-  skipLink: 1600,
-  toast: 1700,
-  tooltip: 1800,
+  fast: '150ms cubic-bezier(0.4, 0, 0.2, 1)',
+  normal: '250ms cubic-bezier(0.4, 0, 0.2, 1)',
+  slow: '400ms cubic-bezier(0.4, 0, 0.2, 1)',
+  spring: '500ms cubic-bezier(0.175, 0.885, 0.32, 1.275)',
 };

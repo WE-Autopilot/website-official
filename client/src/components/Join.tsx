@@ -1,115 +1,132 @@
+import React from "react";
+import { ArrowRight, Cpu, Eye, Compass, Wrench, Code2, Users, Rocket } from "lucide-react";
+import SectionHeading from "./design-system/SectionHeading";
+import Badge from "./design-system/Badge";
+import Card from "./design-system/Card";
+import Button from "./design-system/Button";
+import TechCard from "./design-system/TechCard";
+import TechGridBackground from "./design-system/TechGridBackground";
 import "../stylesheets/Join.css";
-import { Link } from "react-router-dom";
-import { useTranslation } from "react-i18next";
-import { useEffect } from "react";
-import { useAnimateIn } from "../utils/animations";
-import { trackPageView, trackEvent } from "../utils/analytics";
 
-function Join() {
-  const { t } = useTranslation();
-
-  // Animation refs
-  const infoBoxRef = useAnimateIn("animate-slide-in");
-  const redTeamRef = useAnimateIn("animate-fade-in");
-  const blackTeamRef = useAnimateIn("animate-fade-in");
-  const cvTeamRef = useAnimateIn("animate-fade-in");
-  const ctaRef = useAnimateIn("animate-slide-up");
-
-  // Prefetch Contact component when hovering the CTA button
-  // const prefetchContactForm = () => {
-  //   import("./Contact.tsx");
-  // };
-
-  // Track page view
-  useEffect(() => {
-    trackPageView("Join Page");
-  }, []);
-
+export const Join: React.FC = () => {
   return (
-    <div className="join-container">
-      <div className="join-info">
-        <div className="join-info-box" ref={infoBoxRef}>
-          <h2 className="join-info-heading">{t("join.why")}</h2>
-          <hr className="header-line-break"></hr>
-          <div>
-            <p className="join-info-body">
-              Western Engineering AutoPilot offers hands-on experience
-              developing cutting-edge autonomous vehicle technology. As a
-              member, you'll gain valuable technical skills, work alongside
-              passionate peers, and build a competitive portfolio that stands
-              out to employers. Join us to make meaningful contributions to the
-              future of transportation technology.
-            </p>
-          </div>
-        </div>
-      </div>
+    <TechGridBackground variant="both" glowColor="both" className="ds-join-root">
+      <div className="ds-join-container">
+        
+        {/* Header */}
+        <SectionHeading
+          badge="JOIN THE CLUB"
+          title="Build Self-Driving Projects at"
+          titleGradient="Western"
+          subtitle="Get hands-on experience in ROS 2, computer vision, robotics hardware, and mechanical CAD."
+        />
 
-      <div className="team-info">
-        <h2 className="team-info-heading">{t("join.teams")}</h2>
-        <hr className="team-info-header-line-break"></hr>
-        <div className="team-box" id="perception-team-box" ref={redTeamRef}>
-          <h2 className="team-heading">{t("team.perception.title")}</h2>
-          <hr className="team-header-line-break"></hr>
-          <div>
-            <p className="team-body">{t("team.perception.description")}</p>
-          </div>
-        </div>
-        <div className="team-box" id="mapping-team-box" ref={blackTeamRef}>
-          <h2 className="team-heading">{t("team.m&p.title")}</h2>
-          <hr className="team-header-line-break"></hr>
-          <div>
-            <p className="team-body">{t("team.m&p.description")}</p>
-          </div>
-        </div>
-        <div className="team-box" id="planning-team-box" ref={cvTeamRef}>
-          <h2 className="team-heading">{t("team.p&c.title")}</h2>
-          <hr className="team-header-line-break"></hr>
-          <div>
-            <p className="team-body">{t("team.p&c.description")}</p>
-          </div>
-        </div>
-      </div>
-
-      {/* <div className="cv-team-container" ref={cvContainerRef}>
-          <div className="team-lead-card">
-            <div className="team-lead-image">
-              {TygoImage ? (
-                <img src={TygoImage} alt="Tygo Crawley" />
-              ) : (
-                <div className="placeholder-image" aria-label="Tygo Crawley">
-                  TC
-                </div>
-              )}
+        {/* Why Join Benefits */}
+        <div className="ds-join-benefits-grid">
+          <Card variant="glass" padding="lg" className="ds-join-benefit-card">
+            <div className="ds-benefit-icon ds-icon-purple">
+              <Rocket size={22} />
             </div>
-            <h3 className="team-lead-name">Tygo Crawley</h3>
-            <p className="team-lead-role">
-              Team Lead - Computer Vision Project
-            </p>
-          </div>
-          <div className="team-box" id="cv-team-box">
-            <h2 className="team-heading">{t("team.cv.title")}</h2>
-            <hr className="team-header-line-break" />
-            <div>
-              <p className="team-body">{t("team.cv.description")}</p>
-            </div>
-          </div>
-        </div> */}
+            <h4>Hands-On Projects</h4>
+            <p>Work directly on physical vehicle hardware, LiDAR sensors, stereo cameras, and onboard microcontrollers.</p>
+          </Card>
 
-      {/* <div className="join-cta-container" ref={ctaRef}>
-        <div className="join-cta-content">
-          <h2>{t("join.ready")}</h2>
-          <p>{t("join.readyDescription")}</p>
-          <Link
-            to="/contact"
-            className="apply-button"
-            onMouseEnter={prefetchContactForm}
-            onClick={() => trackEvent("Navigation", "click", "Apply Button")}
-          >
-            {t("join.apply")}
-          </Link>
+          <Card variant="glass" padding="lg" className="ds-join-benefit-card">
+            <div className="ds-benefit-icon ds-icon-cyan">
+              <Code2 size={22} />
+            </div>
+            <h4>Practical Robotics Tools</h4>
+            <p>Learn ROS 2, PyTorch, C++, Gazebo simulation, and CAD modeling used in real-world robotics engineering.</p>
+          </Card>
+
+          <Card variant="glass" padding="lg" className="ds-join-benefit-card">
+            <div className="ds-benefit-icon ds-icon-emerald">
+              <Users size={22} />
+            </div>
+            <h4>Teamwork & Learning</h4>
+            <p>Collaborate with fellow Western undergrads across software, electrical, mechatronics, and mechanical engineering.</p>
+          </Card>
         </div>
-      </div> */}
-    </div>
+
+        {/* Sub-teams Openings */}
+        <div className="ds-join-openings-section">
+          <SectionHeading
+            badge="SUB-TEAMS"
+            title="Choose Your"
+            titleGradient="Engineering Division"
+            subtitle="Find the sub-team that matches what you're excited to learn and build."
+          />
+
+          <div className="ds-join-subteams-grid">
+            <TechCard
+              title="Planning & Control"
+              subtitle="// SOFTWARE"
+              description="Open to students interested in path planning, state machines, and writing C++ / ROS 2 nodes for navigation."
+              badge="Open"
+              badgeVariant="planning"
+              accentColor="planning"
+              tags={["C++", "ROS 2", "Control", "Path Planning"]}
+              icon={<Cpu size={22} />}
+              to="/teams/planning-and-control"
+            />
+
+            <TechCard
+              title="Perception"
+              subtitle="// VISION & AI"
+              description="Open to students interested in computer vision, training object detection models (YOLO), and processing LiDAR scans."
+              badge="Open"
+              badgeVariant="perception"
+              accentColor="perception"
+              tags={["PyTorch", "LiDAR", "YOLO", "OpenCV"]}
+              icon={<Eye size={22} />}
+              to="/teams/perception"
+            />
+
+            <TechCard
+              title="Localization & Mapping"
+              subtitle="// STATE ESTIMATION"
+              description="Open to students interested in sensor fusion (EKF), GPS/IMU telemetry, and track mapping algorithms."
+              badge="Open"
+              badgeVariant="localization"
+              accentColor="localization"
+              tags={["SLAM", "EKF", "GPS", "IMU"]}
+              icon={<Compass size={22} />}
+              to="/teams/localization"
+            />
+
+            <TechCard
+              title="Build & Mechanical"
+              subtitle="// HARDWARE & MECHATRONICS"
+              description="Open to students interested in CAD modeling, 3D printing sensor mounts, steering actuation, and power wiring."
+              badge="Open"
+              badgeVariant="build"
+              accentColor="build"
+              tags={["SolidWorks", "CAN Bus", "Wiring", "Actuators"]}
+              icon={<Wrench size={22} />}
+              to="/teams/build"
+            />
+          </div>
+        </div>
+
+        {/* Application CTA Card */}
+        <div className="ds-join-application-cta">
+          <Card variant="glass" padding="xl" className="ds-join-cta-box">
+            <div className="ds-join-cta-text">
+              <Badge variant="purple" size="sm" dot>APPLICATIONS</Badge>
+              <h3>Ready to Join the Team?</h3>
+              <p>Applications are reviewed each semester. All engineering years and backgrounds are welcome.</p>
+            </div>
+            <div className="ds-join-cta-action">
+              <Button to="/contact" variant="glow" size="lg" rightIcon={<ArrowRight size={18} />}>
+                Go to Application Form
+              </Button>
+            </div>
+          </Card>
+        </div>
+
+      </div>
+    </TechGridBackground>
   );
-}
+};
+
 export default Join;
