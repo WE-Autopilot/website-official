@@ -1,35 +1,8 @@
 .ds-bg-root {
   position: relative;
   width: 100%;
-  min-height: 100%;
-  overflow: hidden;
+  min-height: 100vh;
   background-color: var(--bg-base);
-}
-
-/* Minimal top gradient fade */
-.ds-bg-root::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 30px;
-  background: linear-gradient(to bottom, var(--bg-base) 0%, rgba(6, 7, 10, 0) 100%);
-  pointer-events: none;
-  z-index: 1;
-}
-
-/* Minimal bottom gradient fade */
-.ds-bg-root::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 40px;
-  background: linear-gradient(to top, var(--bg-base) 0%, rgba(6, 7, 10, 0) 100%);
-  pointer-events: none;
-  z-index: 1;
 }
 
 /* Soft, non-intrusive ambient background lighting */
@@ -38,20 +11,20 @@
   top: -160px;
   left: 50%;
   transform: translateX(-50%);
-  width: 1000px;
-  height: 600px;
+  width: 1100px;
+  height: 700px;
   background: radial-gradient(
     ellipse at center,
     rgba(124, 58, 237, 0.12) 0%,
     rgba(56, 189, 248, 0.05) 45%,
     transparent 70%
   );
-  filter: blur(80px);
+  filter: blur(90px);
   pointer-events: none;
   z-index: 0;
 }
 
-/* Antigravity Interactive Spring Canvas with minimal edge vignette */
+/* Antigravity Interactive Spring Canvas spanning full vertical height */
 .ds-antigravity-canvas {
   position: absolute;
   inset: 0;
@@ -59,8 +32,6 @@
   height: 100%;
   pointer-events: none;
   z-index: 1;
-  mask-image: linear-gradient(to bottom, transparent 0%, black 24px, black calc(100% - 36px), transparent 100%);
-  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 24px, black calc(100% - 36px), transparent 100%);
 }
 
 .ds-bg-content {

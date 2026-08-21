@@ -23,43 +23,41 @@ export const Home: React.FC = () => {
   const [isPaused, setIsPaused] = useState(false);
 
   return (
-    <div className="ds-home-root">
+    <TechGridBackground className="ds-home-root">
       {/* 1. HERO SECTION */}
       <section className="ds-hero-section">
-        <TechGridBackground variant="both" glowColor="both">
-          <div className="ds-hero-content-wrapper">
+        <div className="ds-hero-content-wrapper">
 
-            {/* Main Title */}
-            <h1 className="ds-home-hero-title">
-              Engineering a self-driving car at <span className="ds-gradient-text">WesternU.</span>
-            </h1>
+          {/* Main Title */}
+          <h1 className="ds-home-hero-title">
+            Engineering a self-driving car at <span className="ds-gradient-text">WesternU.</span>
+          </h1>
 
-            {/* Subtitle */}
-            <p className="ds-home-hero-desc">
-              We're an undergraduate engineering club at Western University building an autonomous vehicle — from perception models and path planning to drive-by-wire mechanics.
-            </p>
+          {/* Subtitle */}
+          <p className="ds-home-hero-desc">
+            We're an undergraduate engineering club at Western University building an autonomous vehicle — from perception models and path planning to drive-by-wire mechanics.
+          </p>
 
-            {/* Hero CTAs */}
-            <div className="ds-hero-cta-group">
-              <Button
-                variant="glow"
-                size="lg"
-                href="#Teams"
-                rightIcon={<ArrowRight size={18} />}
-              >
-                Explore Sub-teams
-              </Button>
-              <Button
-                variant="secondary"
-                size="lg"
-                to="/team"
-              >
-                Meet the Team
-              </Button>
-            </div>
-
+          {/* Hero CTAs */}
+          <div className="ds-hero-cta-group">
+            <Button
+              variant="glow"
+              size="lg"
+              href="#Teams"
+              rightIcon={<ArrowRight size={18} />}
+            >
+              Explore Sub-teams
+            </Button>
+            <Button
+              variant="secondary"
+              size="lg"
+              to="/team"
+            >
+              Meet the Team
+            </Button>
           </div>
-        </TechGridBackground>
+
+        </div>
       </section>
 
       {/* 2. KEY METRICS STATS BAR */}
@@ -216,7 +214,7 @@ export const Home: React.FC = () => {
           </div>
         </div>
       </section>
-    </div>
+    </TechGridBackground>
   );
 };
 
