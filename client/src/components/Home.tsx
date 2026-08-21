@@ -23,74 +23,76 @@ export const Home: React.FC = () => {
   const [isPaused, setIsPaused] = useState(false);
 
   return (
-    <TechGridBackground className="ds-home-root">
-      {/* 1. HERO SECTION */}
-      <section className="ds-hero-section">
-        <div className="ds-hero-content-wrapper">
+    <div className="ds-home-root">
+      {/* 1. HERO & METRICS AREA (Covered seamlessly by Antigravity Grid) */}
+      <TechGridBackground className="ds-hero-metrics-wrapper">
+        <section className="ds-hero-section">
+          <div className="ds-hero-content-wrapper">
 
-          {/* Main Title */}
-          <h1 className="ds-home-hero-title">
-            Engineering a self-driving car at <span className="ds-gradient-text">WesternU.</span>
-          </h1>
+            {/* Main Title */}
+            <h1 className="ds-home-hero-title">
+              Engineering a self-driving car at <span className="ds-gradient-text">WesternU.</span>
+            </h1>
 
-          {/* Subtitle */}
-          <p className="ds-home-hero-desc">
-            We're an undergraduate engineering club at Western University building an autonomous vehicle — from perception models and path planning to drive-by-wire mechanics.
-          </p>
+            {/* Subtitle */}
+            <p className="ds-home-hero-desc">
+              We're an undergraduate engineering club at Western University building an autonomous vehicle — from perception models and path planning to drive-by-wire mechanics.
+            </p>
 
-          {/* Hero CTAs */}
-          <div className="ds-hero-cta-group">
-            <Button
-              variant="glow"
-              size="lg"
-              href="#Teams"
-              rightIcon={<ArrowRight size={18} />}
-            >
-              Explore Sub-teams
-            </Button>
-            <Button
-              variant="secondary"
-              size="lg"
-              to="/team"
-            >
-              Meet the Team
-            </Button>
+            {/* Hero CTAs */}
+            <div className="ds-hero-cta-group">
+              <Button
+                variant="glow"
+                size="lg"
+                href="#Teams"
+                rightIcon={<ArrowRight size={18} />}
+              >
+                Explore Sub-teams
+              </Button>
+              <Button
+                variant="secondary"
+                size="lg"
+                to="/team"
+              >
+                Meet the Team
+              </Button>
+            </div>
+
           </div>
+        </section>
 
-        </div>
-      </section>
-
-      {/* 2. KEY METRICS STATS BAR */}
-      <section className="ds-metrics-bar-section">
-        <div className="ds-home-container">
-          <div className="ds-home-metrics-grid">
-            <MetricCard
-              value="40+"
-              label="Student Members"
-              sublabel="Software, Electrical & Mechanical"
-              icon={<Users size={20} />}
-            />
-            <MetricCard
-              value="4"
-              label="Engineering Sub-teams"
-              sublabel="Planning, Perception, Localization, Build"
-              icon={<Layers size={20} />}
-            />
-            <MetricCard
-              value="Full Scale"
-              label="Vehicle Platform"
-              sublabel="Physical vehicle build & testing"
-              icon={<Car size={20} />}
-            />
-            <MetricCard
-              value="100%"
-              label="Student-Run"
-              sublabel="Hands-on extracurricular team"
-              icon={<BookOpen size={20} />}
-            />
+        {/* 2. KEY METRICS STATS BAR (40+ Student Members Area) */}
+        <section className="ds-metrics-bar-section">
+          <div className="ds-home-container">
+            <div className="ds-home-metrics-grid">
+              <MetricCard
+                value="40+"
+                label="Student Members"
+                sublabel="Software, Electrical & Mechanical"
+                icon={<Users size={20} />}
+              />
+              <MetricCard
+                value="4"
+                label="Engineering Sub-teams"
+                sublabel="Planning, Perception, Localization, Build"
+                icon={<Layers size={20} />}
+              />
+              <MetricCard
+                value="Full Scale"
+                label="Vehicle Platform"
+                sublabel="Physical vehicle build & testing"
+                icon={<Car size={20} />}
+              />
+              <MetricCard
+                value="100%"
+                label="Student-Run"
+                sublabel="Hands-on extracurricular team"
+                icon={<BookOpen size={20} />}
+              />
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </TechGridBackground>
 
       {/* 3. PHOTO / WORKSHOP CAROUSEL */}
       <section className="ds-carousel-section">
@@ -214,7 +216,7 @@ export const Home: React.FC = () => {
           </div>
         </div>
       </section>
-    </TechGridBackground>
+    </div>
   );
 };
 
