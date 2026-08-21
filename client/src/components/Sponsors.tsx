@@ -12,22 +12,38 @@ const benefitItems = [
   {
     num: "01",
     title: "Connect with Students",
-    description: "Meet passionate software, electrical, mechatronics, and mechanical engineering students who build real extracurricular robotics projects.",
+    description: (
+      <>
+        Meet <strong>passionate software, electrical, mechatronics, and mechanical engineering students</strong> who build real extracurricular robotics projects.
+      </>
+    ),
   },
   {
     num: "02",
     title: "Hardware & Tool Integration",
-    description: "Put your sensors, development boards, software toolchains, or compute kits directly into the hands of active student developers.",
+    description: (
+      <>
+        Put your <strong>sensors, development boards, software toolchains, or compute kits</strong> directly into the hands of active student developers.
+      </>
+    ),
   },
   {
     num: "03",
     title: "Logo Visibility",
-    description: "Your brand featured on our vehicle chassis, team apparel, technical workshop slides, and club website.",
+    description: (
+      <>
+        <strong>Your brand</strong> featured on our <strong>vehicle chassis, team apparel, technical workshop slides, and club website</strong>.
+      </>
+    ),
   },
   {
     num: "04",
-    title: "Support Student Engineering",
-    description: "Directly fund vehicle parts, microcontrollers, mechanical fabrication materials, and student workshop equipment.",
+    title: "Growing Club Support",
+    description: (
+      <>
+        As a rapidly growing student club, <strong>any kind of support</strong>—whether financial sponsorship, hardware donations, or technical mentorship—makes a huge difference for our team!
+      </>
+    ),
   },
 ];
 
@@ -38,7 +54,6 @@ export const Sponsors: React.FC = () => {
         
         {/* Header */}
         <SectionHeading
-          badge="SPONSORS"
           title="Our Sponsors &"
           titleGradient="Partners"
           subtitle="Thank you to the companies and organizations that support undergraduate engineering at Western."
@@ -68,7 +83,6 @@ export const Sponsors: React.FC = () => {
         {/* Why Sponsor Us Grid */}
         <div className="ds-why-sponsor-section">
           <SectionHeading
-            badge="PARTNERSHIP"
             title="Why Sponsor"
             titleGradient="autopilot?"
             subtitle="Support hands-on student engineering and connect with Western undergraduates."
@@ -89,10 +103,9 @@ export const Sponsors: React.FC = () => {
         <div className="ds-sponsor-cta-section">
           <Card variant="glass" padding="xl" className="ds-sponsor-cta-card">
             <div className="ds-sponsor-cta-content">
-              <Badge variant="purple" size="sm" dot>GET IN TOUCH</Badge>
               <h2 className="ds-sponsor-cta-title">Interested in Sponsoring?</h2>
               <p className="ds-sponsor-cta-desc">
-                We'd love to discuss sponsorship packages or hardware donations. Contact our VP Finance to connect.
+                We'd love to discuss sponsorship packages, hardware donations, or mentorship opportunities. Reach out to our VP Finance to connect.
               </p>
 
               <div className="ds-sponsor-contact-box">

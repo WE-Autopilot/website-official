@@ -130,6 +130,11 @@
   color: var(--text-secondary);
 }
 
+.ds-benefit-desc strong {
+  color: #ffffff;
+  font-weight: 600;
+}
+
 /* CTA Card */
 .ds-sponsor-cta-card {
   border-color: rgba(56, 189, 248, 0.3);
