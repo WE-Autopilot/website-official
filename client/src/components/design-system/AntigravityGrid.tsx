@@ -79,7 +79,7 @@ export const AntigravityGrid: React.FC = () => {
 
       if (clientX >= 0 && clientX <= width && clientY >= 0 && clientY <= height) {
         if (!mouse.isInside) {
-          // Instant snap to prevent jump from top-left, then fade strength up from 0
+          // Instant snap to entry point to prevent jump from top-left, then fade strength up gradually from 0
           mouse.x = clientX;
           mouse.y = clientY;
           mouse.targetX = clientX;
@@ -105,7 +105,7 @@ export const AntigravityGrid: React.FC = () => {
 
     const spring = 0.045;
     const damping = 0.85;
-    const maxRepulsion = 3.0; // Subtle gentle displacement so dots stay present near cursor
+    const maxRepulsion = 3.0;
     let time = 0;
 
     const render = () => {
@@ -113,13 +113,13 @@ export const AntigravityGrid: React.FC = () => {
 
       time += 0.014;
 
-      // Smooth fade-in and position interpolation
+      // Slower, smoother, more gradual fade-in and fade-out
       if (mouse.isInside) {
-        mouse.strength += (1.0 - mouse.strength) * 0.09;
-        mouse.x += (mouse.targetX - mouse.x) * 0.18;
-        mouse.y += (mouse.targetY - mouse.y) * 0.18;
+        mouse.strength += (1.0 - mouse.strength) * 0.035; // smooth ~1.2s ease-in
+        mouse.x += (mouse.targetX - mouse.x) * 0.14;
+        mouse.y += (mouse.targetY - mouse.y) * 0.14;
       } else {
-        mouse.strength += (0.0 - mouse.strength) * 0.06;
+        mouse.strength += (0.0 - mouse.strength) * 0.025; // smooth ~1.8s ease-out
       }
 
       const idleWeight = Math.max(0, 1.0 - mouse.strength);
