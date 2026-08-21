@@ -9,6 +9,7 @@ import Gallery from "./components/Gallery";
 import Footer from "./components/Footer";
 import UnderConstruction from "./components/UnderConstruction";
 import TeamPage from "./components/TeamPage";
+import DesignSystemShowcase from "./components/design-system/DesignSystemShowcase";
 import "./App.css";
 
 import { Analytics } from "@vercel/analytics/react";
@@ -28,6 +29,7 @@ const App: React.FC = () => {
           <ParallaxProvider>
             <Routes>
               <Route path="/" element={<Home />} />
+              <Route path="/design-system" element={<DesignSystemShowcase />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/join" element={<Join />} />
               <Route path="/Team" element={<Team />} />
@@ -35,8 +37,7 @@ const App: React.FC = () => {
               <Route path="/gallery" element={<Gallery />} />
               {/* <Route path="/competition" element={<Competition />} /> */}
               <Route path="/teams/:teamSlug" element={<TeamPage />} />
-              <Route path="/UnderConstruction" element={<UnderConstruction />}
-              />
+              <Route path="/UnderConstruction" element={<UnderConstruction />} />
             </Routes>
           </ParallaxProvider>
         </main>

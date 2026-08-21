@@ -1,6 +1,7 @@
 import React, { useState, useRef, memo } from "react";
 import { Link } from "react-router-dom";
 import onClickOutside from "../hooks/onClickOutside";
+import Logo from "./design-system/Logo";
 import "../stylesheets/Header.css";
 
 interface HeaderProps {
@@ -29,9 +30,7 @@ const Header: React.FC<HeaderProps> = ({ className = "" }) => {
 
   return (
     <header className={`Header ${className}`}>
-      <Link to="/" className="logo-link" aria-label="Home">
-        <img src="/headerlogo.png" alt="Logo" className="logo" />
-      </Link>
+      <Logo size="md" punctuation="/" linkToHome />
 
       <div className="menu-icon">
         <button
@@ -136,6 +135,11 @@ const Header: React.FC<HeaderProps> = ({ className = "" }) => {
           <li>
             <Link to="/sponsors" onClick={handleMenuClose}>
               Sponsor Us
+            </Link>
+          </li>
+          <li>
+            <Link className="nav-link" to="/design-system" onClick={handleMenuClose}>
+              Design System
             </Link>
           </li>
           {/* <li>

@@ -1,0 +1,66 @@
+.ds-tabs-container {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: rgba(15, 19, 32, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-full);
+  padding: 4px;
+  max-width: 100%;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.ds-tabs-container::-webkit-scrollbar {
+  display: none;
+}
+
+.ds-tab-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: var(--radius-full);
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  white-space: nowrap;
+  user-select: none;
+}
+
+.ds-tab-button:hover:not(.ds-tab-active) {
+  color: var(--text-primary);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.ds-tab-active {
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  font-weight: 600;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 12px -2px rgba(139, 92, 246, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.ds-tab-icon {
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.9em;
+}
+
+.ds-tab-count {
+  font-size: 0.75rem;
+  padding: 1px 6px;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--text-muted);
+}
+.ds-count-active {
+  background: rgba(139, 92, 246, 0.25);
+  color: var(--purple-300);
+}
