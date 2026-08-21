@@ -1,7 +1,6 @@
 import React from "react";
-import { Mail } from "lucide-react";
+import { Mail, ArrowUpRight } from "lucide-react";
 import SectionHeading from "./design-system/SectionHeading";
-import Badge from "./design-system/Badge";
 import Card from "./design-system/Card";
 import Button from "./design-system/Button";
 import TechGridBackground from "./design-system/TechGridBackground";
@@ -59,25 +58,34 @@ export const Sponsors: React.FC = () => {
           subtitle="Thank you to the companies and organizations that support undergraduate engineering at Western."
         />
 
-        {/* Current Sponsors Grid */}
+        {/* Current Sponsors Section */}
         <div className="ds-current-sponsors-section">
-          <Card variant="glass" padding="xl" className="ds-sponsor-spotlight-card">
-            <div className="ds-sponsor-badge-row">
-              <Badge variant="purple" size="sm" dot>OFFICIAL PARTNER</Badge>
+          <div className="ds-partner-showcase-card">
+            <div className="ds-partner-logo-container">
+              <img src={BlackberryQNX} alt="BlackBerry QNX" className="ds-partner-logo-img" />
             </div>
 
-            <div className="ds-sponsor-logo-box">
-              <img src={BlackberryQNX} alt="BlackBerry QNX" className="ds-sponsor-img" />
-            </div>
+            <div className="ds-partner-content">
+              <div className="ds-partner-header-block">
+                <h3 className="ds-partner-name">BlackBerry QNX</h3>
+                <span className="ds-partner-category">Real-Time Operating System & Embedded Software</span>
+              </div>
 
-            <div className="ds-sponsor-details">
-              <h3>BlackBerry QNX</h3>
-              <p>
-                Providing real-time operating system (RTOS) licenses and embedded development tools
-                to support our vehicle control and system software.
+              <p className="ds-partner-description">
+                BlackBerry QNX provides our engineering team with industry-standard RTOS software licenses and embedded development tools to build, test, and run our low-latency vehicle control algorithms and system safety architecture.
               </p>
+
+              <a
+                href="https://blackberry.qnx.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="ds-partner-link"
+              >
+                <span>Learn more about BlackBerry QNX</span>
+                <ArrowUpRight size={15} />
+              </a>
             </div>
-          </Card>
+          </div>
         </div>
 
         {/* Why Sponsor Us Grid */}
