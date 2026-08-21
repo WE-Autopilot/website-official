@@ -3,6 +3,7 @@
   display: inline-flex;
   align-items: center;
   user-select: none;
+  cursor: pointer;
 }
 
 .ds-logo-wrapper {
@@ -11,12 +12,13 @@
   align-items: flex-start;
   gap: 2px;
   line-height: 1;
+  user-select: none;
 }
 
 .ds-logo-main {
   display: inline-flex;
   align-items: baseline;
-  gap: 2px;
+  gap: 0px;
 }
 
 .ds-logo-text {
@@ -27,7 +29,8 @@
   text-transform: lowercase;
 }
 
-.ds-logo-link:hover .ds-logo-text {
+.ds-logo-link:hover .ds-logo-text,
+.ds-logo-animating .ds-logo-text {
   text-shadow: 0 0 16px rgba(255, 255, 255, 0.4);
 }
 
@@ -40,13 +43,20 @@
   display: inline-block;
   letter-spacing: -0.02em;
   text-shadow: 0 0 12px var(--cyan-glow);
-  transition: all var(--transition-normal);
-  margin-left: 1px;
+  transition: transform var(--transition-fast), filter var(--transition-fast);
+  margin-left: 2px;
+  text-align: center;
+  /* Fixed width container prevents layout jitter during rapid character cycling */
+  width: 0.65em;
+}
+
+.ds-logo-punct-active {
+  filter: brightness(1.35) drop-shadow(0 0 8px rgba(56, 189, 248, 0.7));
+  transform: scale(1.1);
 }
 
 .ds-logo-link:hover .ds-logo-punct {
-  transform: scale(1.15) rotate(5deg);
-  filter: brightness(1.25);
+  filter: brightness(1.3);
 }
 
 .ds-logo-subtitle {

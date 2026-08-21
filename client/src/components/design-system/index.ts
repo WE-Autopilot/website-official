@@ -1,4 +1,5 @@
 export * from './Logo';
+export * from './LogoLoader';
 export * from './Badge';
 export * from './Button';
 export * from './Card';

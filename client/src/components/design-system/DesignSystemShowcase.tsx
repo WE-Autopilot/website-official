@@ -234,67 +234,81 @@ export const DesignSystemShowcase: React.FC = () => {
         {activeTab === 'logo' && (
           <section className="ds-showcase-section">
             <SectionHeading
-              badge="BRAND IDENTITY"
+              badge="BRAND IDENTITY & ANIMATION"
               title="Club Logo with"
-              titleGradient="Righteous Font & Stylized Punctuation"
-              subtitle="Printed in Righteous font with electric glowing punctuation mark accents."
+              titleGradient="Punctuation Cycling Animation"
+              subtitle="The trailing '/' dynamically cycles through [!^*,.::&quot;+/|<] to indicate loading, active computation, or hover interaction."
               align="left"
             />
 
             <div className="ds-logo-showcase-grid">
-              {/* Interactive Punctuation Tester */}
+              {/* Interactive Animation Player */}
               <Card variant="glass" padding="lg">
                 <div className="ds-logo-tester-box">
-                  <span className="ds-type-label">OFFICIAL LOGO PREVIEW (Righteous Font)</span>
-                  <div className="ds-logo-live-preview">
-                    <Logo size="xl" punctuation={customPunctuation} linkToHome={false} />
+                  <div className="ds-flex-between">
+                    <span className="ds-type-label">LIVE ANIMATION PLAYER</span>
+                    <Badge variant="cyan" size="sm" dot pulse>
+                      SEQUENCE: !^*,.::&quot;+/|&lt;
+                    </Badge>
                   </div>
 
-                  <div className="ds-logo-controls">
-                    <label className="ds-input-label">Punctuation Selector (Default: '/' | Preparing for animation):</label>
-                    <div className="ds-logo-button-presets">
-                      {['/', '.,^*/', './*', '.*', '.^', '_', '///', '->', '::*'].map((punct) => (
-                        <Button
-                          key={punct}
-                          variant={customPunctuation === punct ? 'glow' : 'outline'}
-                          size="sm"
-                          onClick={() => setCustomPunctuation(punct)}
-                        >
-                          {punct}
-                        </Button>
-                      ))}
-                    </div>
-                    <Input
-                      placeholder="Or type custom punctuation here..."
-                      value={customPunctuation}
-                      onChange={(e) => setCustomPunctuation(e.target.value)}
-                      containerClassName="ds-custom-punct-input"
+                  <div className="ds-logo-live-preview">
+                    <Logo
+                      size="xl"
+                      animated={true}
+                      animationSpeed={90}
+                      linkToHome={false}
                     />
+                  </div>
+
+                  <div className="ds-animation-details-box">
+                    <div className="ds-anim-info-row">
+                      <span className="ds-mono ds-anim-label">TARGET SEQUENCE:</span>
+                      <div className="ds-anim-chars-flow">
+                        {['!', '^', '*', ',', '.', ':', ':', '"', '+', '/', '|', '<'].map((ch, idx) => (
+                          <span key={idx} className="ds-anim-char-badge">{ch}</span>
+                        ))}
+                      </div>
+                    </div>
+                    <p className="ds-anim-tip">
+                      💡 <strong>Hover interaction:</strong> All static instances of the logo (including in the navbar header) automatically cycle through this animation on cursor hover!
+                    </p>
                   </div>
                 </div>
               </Card>
 
-              {/* Logo Sizes Matrix */}
+              {/* Logo Loader Component Preview */}
+              <Card variant="glass" padding="lg">
+                <div className="ds-logo-tester-box">
+                  <span className="ds-type-label">FULL SCREEN / COMPONENT LOADER (LogoLoader)</span>
+                  <div className="ds-loader-demo-frame">
+                    <Logo size="lg" animated={true} animationSpeed={80} linkToHome={false} />
+                    <span className="ds-logo-loader-message">INITIALIZING AUTONOMOUS VEHICLE TELEMETRY...</span>
+                  </div>
+                </div>
+              </Card>
+
+              {/* Logo Sizes Matrix with Hover-to-Animate */}
               <div className="ds-logo-sizes-grid">
                 <Card variant="glass" padding="md">
-                  <span className="ds-type-label">HEADER NAVBAR SIZE (SM / MD)</span>
+                  <span className="ds-type-label">HEADER NAVBAR SIZE (SM / MD) — HOVER TO ANIMATE</span>
                   <div className="ds-logo-sample-row">
-                    <Logo size="sm" punctuation="/" linkToHome={false} />
-                    <Logo size="md" punctuation="/" linkToHome={false} />
+                    <Logo size="sm" punctuation="/" animateOnHover linkToHome={false} />
+                    <Logo size="md" punctuation="/" animateOnHover linkToHome={false} />
                   </div>
                 </Card>
 
                 <Card variant="glass" padding="md">
-                  <span className="ds-type-label">LARGE HERO SIZES (LG / XL)</span>
+                  <span className="ds-type-label">HERO / DISPLAY SIZE (LG / XL)</span>
                   <div className="ds-logo-sample-row">
-                    <Logo size="lg" punctuation="/" linkToHome={false} />
+                    <Logo size="lg" punctuation="/" animateOnHover linkToHome={false} />
                   </div>
                 </Card>
 
                 <Card variant="glass" padding="md">
                   <span className="ds-type-label">WITH SUBTITLE BADGE</span>
                   <div className="ds-logo-sample-row">
-                    <Logo size="md" punctuation="/" showSubtitle linkToHome={false} />
+                    <Logo size="md" punctuation="/" showSubtitle animateOnHover linkToHome={false} />
                   </div>
                 </Card>
               </div>
