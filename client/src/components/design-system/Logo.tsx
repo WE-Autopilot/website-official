@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './Logo.css';
 
-export const DEFAULT_PUNCTUATION_SEQUENCE = ['!', '^', '*', ',', '.', ':', ':', '"', '+', '/', '|', '<'];
+export const DEFAULT_PUNCTUATION_SEQUENCE = ['!', '^', '*', ',', '.', '...', ':', '::', '"', '+', '/', '|', '<'];
 
 export interface LogoProps {
   size?: 'sm' | 'md' | 'lg' | 'xl';
@@ -24,7 +24,7 @@ export const Logo: React.FC<LogoProps> = ({
   animated = false,
   animateOnHover = true,
   isLoading = false,
-  animationSpeed = 100,
+  animationSpeed = 200,
   sequence = DEFAULT_PUNCTUATION_SEQUENCE,
   linkToHome = true,
   className = '',

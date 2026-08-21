@@ -13,7 +13,7 @@ export const LogoLoader: React.FC<LogoLoaderProps> = ({
   size = 'lg',
   message = 'Initializing autonomous systems...',
   className = '',
-  speed = 90,
+  speed = 200,
 }) => {
   return (
     <div className={`ds-logo-loader-container ${className}`}>

@@ -45,9 +45,9 @@
   text-shadow: 0 0 12px var(--cyan-glow);
   transition: transform var(--transition-fast), filter var(--transition-fast);
   margin-left: 2px;
-  text-align: center;
-  /* Fixed width container prevents layout jitter during rapid character cycling */
-  width: 0.65em;
+  text-align: left;
+  min-width: 0.65em;
+  width: max-content;
 }
 
 .ds-logo-punct-active {

@@ -237,7 +237,7 @@ export const DesignSystemShowcase: React.FC = () => {
               badge="BRAND IDENTITY & ANIMATION"
               title="Club Logo with"
               titleGradient="Punctuation Cycling Animation"
-              subtitle="The trailing '/' dynamically cycles through [!^*,.::&quot;+/|<] to indicate loading, active computation, or hover interaction."
+              subtitle="The trailing '/' dynamically cycles through [!^*,. ... : :: &quot;+/|<] at a deliberate pace to indicate loading or hover interaction."
               align="left"
             />
 
@@ -248,7 +248,7 @@ export const DesignSystemShowcase: React.FC = () => {
                   <div className="ds-flex-between">
                     <span className="ds-type-label">LIVE ANIMATION PLAYER</span>
                     <Badge variant="cyan" size="sm" dot pulse>
-                      SEQUENCE: !^*,.::&quot;+/|&lt;
+                      SPEED: 200ms (Slower & Deliberate)
                     </Badge>
                   </div>
 
@@ -256,16 +256,16 @@ export const DesignSystemShowcase: React.FC = () => {
                     <Logo
                       size="xl"
                       animated={true}
-                      animationSpeed={90}
+                      animationSpeed={200}
                       linkToHome={false}
                     />
                   </div>
 
                   <div className="ds-animation-details-box">
                     <div className="ds-anim-info-row">
-                      <span className="ds-mono ds-anim-label">TARGET SEQUENCE:</span>
+                      <span className="ds-mono ds-anim-label">SEQUENCE FRAMES:</span>
                       <div className="ds-anim-chars-flow">
-                        {['!', '^', '*', ',', '.', ':', ':', '"', '+', '/', '|', '<'].map((ch, idx) => (
+                        {['!', '^', '*', ',', '.', '...', ':', '::', '"', '+', '/', '|', '<'].map((ch, idx) => (
                           <span key={idx} className="ds-anim-char-badge">{ch}</span>
                         ))}
                       </div>
@@ -282,7 +282,7 @@ export const DesignSystemShowcase: React.FC = () => {
                 <div className="ds-logo-tester-box">
                   <span className="ds-type-label">FULL SCREEN / COMPONENT LOADER (LogoLoader)</span>
                   <div className="ds-loader-demo-frame">
-                    <Logo size="lg" animated={true} animationSpeed={80} linkToHome={false} />
+                    <Logo size="lg" animated={true} animationSpeed={200} linkToHome={false} />
                     <span className="ds-logo-loader-message">INITIALIZING AUTONOMOUS VEHICLE TELEMETRY...</span>
                   </div>
                 </div>
