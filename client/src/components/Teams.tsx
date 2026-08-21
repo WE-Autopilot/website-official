@@ -44,7 +44,7 @@ export const Teams: React.FC = () => {
       <div className="ds-teams-container">
         <SectionHeading
           title="Our Sub-teams"
-          titleGradient="<3"
+          titleGradient="♥"
           subtitle="Our club is organized into four engineering divisions focused on software, AI, state estimation, and physical fabrication."
         />
 
