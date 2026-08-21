@@ -16,112 +16,129 @@
   gap: 64px;
 }
 
-/* Redesigned Partner Showcase Card */
-.ds-current-sponsors-section {
+/* Traditional Sponsor Section */
+.ds-traditional-sponsors-section {
   display: flex;
   justify-content: center;
   width: 100%;
 }
 
-.ds-partner-showcase-card {
+.ds-sponsor-hero-box {
   width: 100%;
-  display: grid;
-  grid-template-columns: 280px 1fr;
-  gap: 36px;
+  max-width: 960px;
+  display: flex;
+  flex-direction: column;
   align-items: center;
+  gap: 32px;
   background: rgba(13, 16, 28, 0.7);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-xl);
-  padding: 36px;
+  padding: 48px 36px;
   box-shadow: var(--shadow-glass);
   transition: all var(--transition-normal);
 }
 
-.ds-partner-showcase-card:hover {
-  border-color: rgba(139, 92, 246, 0.35);
-  box-shadow: var(--shadow-lg), 0 0 30px -5px rgba(139, 92, 246, 0.2);
+.ds-sponsor-hero-box:hover {
+  border-color: rgba(139, 92, 246, 0.3);
+  box-shadow: var(--shadow-lg), 0 0 35px -8px rgba(139, 92, 246, 0.2);
 }
 
-.ds-partner-logo-container {
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid var(--border-medium);
-  border-radius: var(--radius-lg);
-  padding: 32px 24px;
+/* Sponsor Logo Pedestal */
+.ds-sponsor-logo-pedestal {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 100%;
-  min-height: 140px;
+  background: #ffffff;
+  border-radius: var(--radius-lg);
+  padding: 32px 64px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.35);
+  transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+  text-decoration: none;
 }
 
-.ds-partner-logo-img {
-  max-width: 100%;
-  max-height: 60px;
-  width: auto;
+.ds-sponsor-logo-pedestal:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 12px 35px rgba(255, 255, 255, 0.2);
+}
+
+.ds-qnx-logo-img {
+  max-width: 320px;
+  width: 100%;
   height: auto;
+  max-height: 90px;
   object-fit: contain;
-  filter: brightness(1.15);
-  transition: transform var(--transition-normal);
 }
 
-.ds-partner-showcase-card:hover .ds-partner-logo-img {
-  transform: scale(1.04);
-}
-
-.ds-partner-content {
+/* Personalized Note */
+.ds-sponsor-personalized-note {
+  max-width: 760px;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  text-align: center;
   gap: 14px;
-  align-items: flex-start;
 }
 
-.ds-partner-header-block {
+.ds-sponsor-note-header {
   display: flex;
-  flex-direction: column;
-  gap: 4px;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
 }
 
-.ds-partner-name {
+.ds-sponsor-heart-icon {
+  font-size: 1.25rem;
+}
+
+.ds-sponsor-note-title {
   margin: 0;
   font-family: var(--font-sans);
-  font-size: 1.625rem;
+  font-size: 1.375rem;
   font-weight: 700;
   color: #ffffff;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.01em;
 }
 
-.ds-partner-category {
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  color: var(--purple-300);
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-}
-
-.ds-partner-description {
+.ds-sponsor-note-text {
   margin: 0;
-  font-size: 0.9375rem;
-  line-height: 1.65;
+  font-size: 1rem;
+  line-height: 1.7;
   color: var(--text-secondary);
 }
 
-.ds-partner-link {
+.ds-sponsor-note-text strong {
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.ds-sponsor-action-row {
+  margin-top: 8px;
+}
+
+.ds-sponsor-visit-link {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
+  padding: 10px 22px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border-medium);
+  border-radius: var(--radius-full);
+  color: var(--cyan-400);
+  font-family: var(--font-sans);
   font-size: 0.875rem;
   font-weight: 600;
-  color: var(--cyan-400);
   text-decoration: none;
-  margin-top: 4px;
   transition: all var(--transition-fast);
 }
 
-.ds-partner-link:hover {
+.ds-sponsor-visit-link:hover {
+  background: rgba(56, 189, 248, 0.12);
+  border-color: var(--cyan-400);
   color: #ffffff;
-  transform: translateX(3px);
+  transform: translateY(-2px);
+  box-shadow: 0 0 20px -4px var(--cyan-glow);
 }
 
 /* Benefits Grid */
@@ -241,9 +258,10 @@
 }
 
 @media (max-width: 768px) {
-  .ds-partner-showcase-card {
-    grid-template-columns: 1fr;
-    gap: 20px;
-    padding: 24px;
+  .ds-sponsor-hero-box {
+    padding: 32px 20px;
+  }
+  .ds-sponsor-logo-pedestal {
+    padding: 24px 36px;
   }
 }

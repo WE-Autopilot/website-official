@@ -1,10 +1,10 @@
 import React from "react";
-import { Mail, ArrowUpRight } from "lucide-react";
+import { Mail, ArrowUpRight, Heart } from "lucide-react";
 import SectionHeading from "./design-system/SectionHeading";
 import Card from "./design-system/Card";
 import Button from "./design-system/Button";
 import TechGridBackground from "./design-system/TechGridBackground";
-import BlackberryQNX from "../assets/BlackberryQNXSponsor.png";
+import BlackberryQNX from "../assets/BlackberryQNX.png";
 import "../stylesheets/Sponsors.css";
 
 const benefitItems = [
@@ -55,36 +55,54 @@ export const Sponsors: React.FC = () => {
         <SectionHeading
           title="Our Sponsors &"
           titleGradient="Partners"
-          subtitle="Thank you to the companies and organizations that support undergraduate engineering at Western."
+          subtitle="We're proud to be supported by industry leaders who believe in student engineering."
         />
 
-        {/* Current Sponsors Section */}
-        <div className="ds-current-sponsors-section">
-          <div className="ds-partner-showcase-card">
-            <div className="ds-partner-logo-container">
-              <img src={BlackberryQNX} alt="BlackBerry QNX" className="ds-partner-logo-img" />
-            </div>
+        {/* Traditional Sponsor Showcase with a Personalized Twist */}
+        <div className="ds-traditional-sponsors-section">
+          <div className="ds-sponsor-hero-box">
+            
+            {/* Logo Display Pedestal */}
+            <a
+              href="https://blackberry.qnx.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="ds-sponsor-logo-pedestal"
+              aria-label="Visit BlackBerry QNX"
+            >
+              <img
+                src={BlackberryQNX}
+                alt="BlackBerry QNX"
+                className="ds-qnx-logo-img"
+              />
+            </a>
 
-            <div className="ds-partner-content">
-              <div className="ds-partner-header-block">
-                <h3 className="ds-partner-name">BlackBerry QNX</h3>
-                <span className="ds-partner-category">Real-Time Operating System & Embedded Software</span>
+            {/* Personalized Note */}
+            <div className="ds-sponsor-personalized-note">
+              <div className="ds-sponsor-note-header">
+                <span className="ds-sponsor-heart-icon">❤️</span>
+                <h3 className="ds-sponsor-note-title">A special thank you to BlackBerry QNX</h3>
               </div>
-
-              <p className="ds-partner-description">
-                BlackBerry QNX provides our engineering team with industry-standard RTOS software licenses and embedded development tools to build, test, and run our low-latency vehicle control algorithms and system safety architecture.
+              <p className="ds-sponsor-note-text">
+                A massive thank you to <strong>BlackBerry QNX</strong> for believing in our club and supporting our engineering team! Through their generous support, our students get hands-on access to the same real-time operating system (RTOS) and developer tools used in mission-critical automotive systems worldwide.
               </p>
-
-              <a
-                href="https://blackberry.qnx.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="ds-partner-link"
-              >
-                <span>Learn more about BlackBerry QNX</span>
-                <ArrowUpRight size={15} />
-              </a>
+              <p className="ds-sponsor-note-text">
+                Having access to QNX technology lets our software and control sub-teams learn, build, and test production-grade embedded code right here on campus.
+              </p>
+              
+              <div className="ds-sponsor-action-row">
+                <a
+                  href="https://blackberry.qnx.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="ds-sponsor-visit-link"
+                >
+                  <span>Visit BlackBerry QNX</span>
+                  <ArrowUpRight size={16} />
+                </a>
+              </div>
             </div>
+
           </div>
         </div>
 
