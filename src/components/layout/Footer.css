@@ -1,0 +1,89 @@
+.site-footer {
+  padding-bottom: var(--space-7);
+  background: var(--paper);
+}
+
+/* A single pen line, drawn as a gently uneven stroke (a filter would stair-step on a long thin line). */
+.pen-rule {
+  height: 8px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 8' preserveAspectRatio='none'%3E%3Cpath d='M2 4.2 C160 2.6 320 5.4 480 4 S800 2.9 960 4.3 S1140 4.9 1198 3.6' fill='none' stroke='%23191919' stroke-width='2.5' stroke-linecap='round'/%3E%3C/svg%3E")
+    no-repeat center / 100% 100%;
+}
+
+.site-footer__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-6);
+  padding-top: var(--space-7);
+}
+
+@media (min-width: 720px) {
+  .site-footer__grid {
+    grid-template-columns: 1.6fr 1fr 1fr;
+  }
+}
+
+.site-footer__brand {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-4);
+}
+
+.site-footer__tagline {
+  max-width: 30ch;
+  font-weight: 500;
+}
+
+.site-footer__socials {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1);
+  margin-left: -12px;
+}
+
+.site-footer__heading {
+  margin-bottom: var(--space-3);
+  font-size: var(--fs-body);
+  font-weight: 700;
+}
+
+.site-footer__links {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.site-footer__links a {
+  display: inline-block;
+  padding: 0.3em 0;
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.site-footer__links a:hover {
+  text-decoration: underline;
+  text-decoration-color: var(--purple);
+}
+
+.site-footer__bottom {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  margin-top: var(--space-7);
+  padding-top: var(--space-4);
+  border-top: 1.5px solid var(--lilac);
+}
+
+.site-footer__rss {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
+  min-height: 44px;
+  font-size: var(--fs-small);
+  font-weight: 500;
+}
