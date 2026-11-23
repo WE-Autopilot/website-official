@@ -1,88 +1,36 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import './Logo.css';
-
-export const DEFAULT_PUNCTUATION_SEQUENCE = ['!', '^', '*', ',', '.', ':', '::', '"', '+', '/', '|', '<'];
+import { Link } from "react-router-dom";
+import { site } from "../../content/site";
+import { ui } from "../../content/pages";
 
 export interface LogoProps {
-  size?: 'sm' | 'md' | 'lg' | 'xl';
-  punctuation?: string;
-  animated?: boolean;
-  animateOnHover?: boolean;
-  isLoading?: boolean;
-  animationSpeed?: number;
-  sequence?: string[];
-  linkToHome?: boolean;
+  /** Width in px. The guide's minimum is 60 px on screen. */
+  width?: number;
+  /** "black" on white or lavender; "white" on ink or purple. Never on a busy photo. */
+  color?: "black" | "white";
+  /** Wrap in a link to the home page. */
+  linkHome?: boolean;
   className?: string;
-  showSubtitle?: boolean;
-  subtitleText?: string;
 }
 
-export const Logo: React.FC<LogoProps> = ({
-  size = 'md',
-  punctuation = '/',
-  animated = false,
-  animateOnHover = true,
-  isLoading = false,
-  animationSpeed = 200,
-  sequence = DEFAULT_PUNCTUATION_SEQUENCE,
-  linkToHome = true,
-  className = '',
-  showSubtitle = false,
-  subtitleText = 'Western Engineering AutoPilot',
-}) => {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [isHovered, setIsHovered] = useState(false);
-
-  const shouldAnimate = animated || isLoading || (animateOnHover && isHovered);
-
-  useEffect(() => {
-    if (!shouldAnimate || sequence.length === 0) {
-      return;
-    }
-
-    const interval = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % sequence.length);
-    }, animationSpeed);
-
-    return () => clearInterval(interval);
-  }, [shouldAnimate, animationSpeed, sequence]);
-
-  const displayPunctuation = shouldAnimate ? sequence[currentIndex] : punctuation;
-
-  const content = (
-    <div
-      className={`ds-logo-wrapper ds-logo-${size} ${shouldAnimate ? 'ds-logo-animating' : ''} ${className}`}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-    >
-      <div className="ds-logo-main">
-        <span className="ds-logo-text">autopilot</span>
-        {displayPunctuation && (
-          <span className={`ds-logo-punct ${shouldAnimate ? 'ds-logo-punct-active' : ''}`}>
-            {displayPunctuation}
-          </span>
-        )}
-      </div>
-      {showSubtitle && <span className="ds-logo-subtitle">{subtitleText}</span>}
-    </div>
+/** The hand-cut AUTO PILOT logo. */
+export function Logo({ width = 112, color = "black", linkHome = false, className = "" }: LogoProps) {
+  const w = Math.max(60, width);
+  const img = (
+    <img
+      className={`logo ${linkHome ? "" : className}`}
+      src={`/brand/logo-${color}-480.webp`}
+      width={w}
+      height={Math.round((w * 216) / 480)}
+      alt={linkHome ? ui.homeLink : site.name}
+      decoding="async"
+    />
   );
-
-  if (linkToHome) {
-    return (
-      <Link
-        to="/"
-        className="ds-logo-link"
-        aria-label="AutoPilot Home"
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
-      >
-        {content}
-      </Link>
-    );
-  }
-
-  return content;
-};
+  if (!linkHome) return img;
+  return (
+    <Link to="/" className={`logo-link ${className}`}>
+      {img}
+    </Link>
+  );
+}
 
 export default Logo;

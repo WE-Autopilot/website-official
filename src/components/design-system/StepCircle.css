@@ -1,0 +1,49 @@
+.step-circle {
+  position: relative;
+  display: inline-grid;
+  place-items: center;
+  flex: none;
+  width: 2.75rem;
+  height: 2.75rem;
+}
+
+.step-circle--sm {
+  width: 2.25rem;
+  height: 2.25rem;
+}
+
+.step-circle--lg {
+  width: 3.5rem;
+  height: 3.5rem;
+}
+
+.step-circle svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.step-circle path {
+  fill: var(--paper);
+  stroke: var(--ink);
+  stroke-width: 2.4;
+  stroke-linecap: round;
+}
+
+.step-circle--lavender path {
+  fill: var(--lavender);
+}
+
+.step-circle__n {
+  position: relative;
+  font-weight: 700;
+  font-size: 1.0625rem;
+  line-height: 1;
+  color: var(--ink);
+}
+
+.step-circle--lg .step-circle__n {
+  font-size: 1.375rem;
+}

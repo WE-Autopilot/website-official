@@ -1,326 +1,389 @@
 /* ==========================================================================
-   WEAP SILICON VALLEY MINIMALIST DESIGN SYSTEM
-   Modern Dark Slate & Obsidian with Western Purple & Cyan Accents
+   WEAP design system: white page, black pen, lavender marker, purple notes.
+   Source: docs/design/AutoPilot-Design-Guide.pptx. Tokens mirror tokens.ts.
+
+   Rules worth remembering:
+   - Light theme only. No shadows, gradients, glows, blur or neon.
+   - Montserrat for everything; Kalam only for short purple notes.
+   - Sentence case. No ALL CAPS, no letter-spaced labels.
+   - The wobble goes on outlines only. Text stays crisp.
+   - Small text on lavender is ink. Lilac is never text.
    ========================================================================== */
 
 :root {
-  /* -------------------------------------------------------------------------
-     Surfaces & Backgrounds (Linear / Vercel dark mode palette)
-     ------------------------------------------------------------------------- */
-  --bg-base: #06070a;
-  --bg-primary: #0a0c12;
-  --bg-secondary: #0f121d;
-  --bg-tertiary: #161a29;
-  --bg-elevated: #1e2337;
-  
-  /* Glass Surfaces */
-  --bg-glass-subtle: rgba(255, 255, 255, 0.02);
-  --bg-glass: rgba(16, 20, 34, 0.65);
-  --bg-glass-card: rgba(15, 19, 32, 0.75);
-  --bg-glass-hover: rgba(255, 255, 255, 0.06);
-  --bg-glass-active: rgba(255, 255, 255, 0.09);
+  /* Colour (slide 5) */
+  --ink: #191919;
+  --purple: #7c5cdb;
+  --lavender: #eae4fa;
+  --lilac: #beaeed;
+  --paper: #ffffff;
+  --grey: #5d5a66;
 
-  /* -------------------------------------------------------------------------
-     Brand & Accent Colors
-     ------------------------------------------------------------------------- */
-  /* Western Heritage Purple / Electric Violet */
-  --purple-300: #c4b5fd;
-  --purple-400: #a78bfa;
-  --purple-500: #8b5cf6;
-  --purple-600: #7c3aed;
-  --purple-700: #6d28d9;
-  --purple-900: #3b0764;
-  --purple-glow: rgba(139, 92, 246, 0.25);
-  --purple-glow-strong: rgba(139, 92, 246, 0.5);
+  /* Type (slide 7) */
+  --font-sans: "Montserrat", system-ui, sans-serif;
+  --font-hand: "Kalam", cursive;
+  --fs-small: 0.9375rem;
+  --fs-body: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
+  --fs-lead: clamp(1.125rem, 1.02rem + 0.5vw, 1.375rem);
+  --fs-note: clamp(1.125rem, 1.05rem + 0.4vw, 1.375rem);
+  --fs-h3: clamp(1.1875rem, 1.1rem + 0.45vw, 1.5rem);
+  --fs-h2: clamp(1.75rem, 1.35rem + 1.9vw, 2.75rem);
+  --fs-h1: clamp(2.25rem, 1.5rem + 3.6vw, 4.5rem);
+  --fs-stat: clamp(2.25rem, 1.8rem + 2vw, 3.5rem);
 
-  /* Autonomous Tech Cyan / Electric Sky */
-  --cyan-300: #7dd3fc;
-  --cyan-400: #38bdf8;
-  --cyan-500: #06b6d4;
-  --cyan-600: #0284c7;
-  --cyan-glow: rgba(56, 189, 248, 0.25);
-  --cyan-glow-strong: rgba(56, 189, 248, 0.5);
+  /* Pen */
+  --pen: 2.5px;
+  --pen-frame: 3px;
 
-  /* Sub-team Signature Colors */
-  --team-planning: #a855f7;    /* Planning & Control - Violet */
-  --team-perception: #06b6d4;  /* Perception - Cyan / Lidar */
-  --team-localization: #3b82f6; /* Localization - Electric Blue */
-  --team-build: #10b981;       /* Build & Hardware - Emerald */
+  /* Layout (slide 14: ~6% margins, generous white) */
+  --gutter: max(20px, 6vw);
+  --content-max: 80rem;
+  --reading: 68ch;
+  --section-gap: clamp(4rem, 3rem + 5vw, 7.5rem);
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 4rem;
+  --header-h: 76px;
 
-  /* Status Colors */
-  --status-success: #10b981;
-  --status-success-bg: rgba(16, 185, 129, 0.12);
-  --status-warning: #f59e0b;
-  --status-warning-bg: rgba(245, 158, 11, 0.12);
-  --status-error: #ef4444;
-  --status-error-bg: rgba(239, 68, 68, 0.12);
-  --status-info: #0ea5e9;
-  --status-info-bg: rgba(14, 165, 233, 0.12);
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --t-fast: 150ms;
+  --t-draw: 900ms;
 
-  /* -------------------------------------------------------------------------
-     Text Colors
-     ------------------------------------------------------------------------- */
-  --text-primary: #f8fafc;     /* 98% White - high contrast headings */
-  --text-secondary: #cbd5e1;   /* Slate 300 - clear readable body */
-  --text-muted: #94a3b8;       /* Slate 400 - descriptions, metadata */
-  --text-subtle: #64748b;      /* Slate 500 - captions, timestamps */
-  --text-disabled: #475569;
+  /* The lavender marker stroke (solid fill, uneven edges). */
+  --marker-img: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 40' preserveAspectRatio='none'%3E%3Cpath d='M3 10 C40 5 90 8 140 5 C165 3 186 6 197 8 L198 33 C170 37 120 33 80 36 C50 38 22 35 2 35 Z' fill='%23EAE4FA'/%3E%3C/svg%3E");
 
-  /* -------------------------------------------------------------------------
-     Borders & Dividers
-     ------------------------------------------------------------------------- */
-  --border-subtle: rgba(255, 255, 255, 0.07);
-  --border-medium: rgba(255, 255, 255, 0.12);
-  --border-bright: rgba(255, 255, 255, 0.22);
-  --border-purple: rgba(139, 92, 246, 0.4);
-  --border-cyan: rgba(56, 189, 248, 0.4);
-
-  /* -------------------------------------------------------------------------
-     Typography
-     ------------------------------------------------------------------------- */
-  --font-sans: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --font-display: 'Space Grotesk', 'Plus Jakarta Sans', sans-serif;
-  --font-logo: 'Righteous', sans-serif;
-  --font-heading: 'Righteous', 'Space Grotesk', sans-serif;
-  --font-mono: 'Fira Code', 'JetBrains Mono', 'IBM Plex Mono', monospace;
-
-  /* -------------------------------------------------------------------------
-     Radii
-     ------------------------------------------------------------------------- */
-  --radius-xs: 4px;
-  --radius-sm: 8px;
-  --radius-md: 12px;
-  --radius-lg: 16px;
-  --radius-xl: 24px;
-  --radius-full: 9999px;
-
-  /* -------------------------------------------------------------------------
-     Shadows & Elevation
-     ------------------------------------------------------------------------- */
-  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.4);
-  --shadow-md: 0 4px 12px -2px rgba(0, 0, 0, 0.5), 0 2px 6px -1px rgba(0, 0, 0, 0.4);
-  --shadow-lg: 0 12px 32px -4px rgba(0, 0, 0, 0.6), 0 4px 12px -2px rgba(0, 0, 0, 0.4);
-  --shadow-xl: 0 20px 48px -8px rgba(0, 0, 0, 0.75);
-  --shadow-glass: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
-
-  /* -------------------------------------------------------------------------
-     Gradients
-     ------------------------------------------------------------------------- */
-  --gradient-brand: linear-gradient(135deg, #a78bfa 0%, #7c3aed 50%, #38bdf8 100%);
-  --gradient-brand-subtle: linear-gradient(135deg, rgba(167, 139, 250, 0.15) 0%, rgba(124, 58, 237, 0.15) 50%, rgba(56, 189, 248, 0.15) 100%);
-  --gradient-text: linear-gradient(180deg, #ffffff 0%, #94a3b8 100%);
-  --gradient-accent-text: linear-gradient(135deg, #c4b5fd 0%, #818cf8 50%, #38bdf8 100%);
-  --gradient-border: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.03) 100%);
-  --gradient-border-glow: linear-gradient(135deg, rgba(139, 92, 246, 0.6) 0%, rgba(56, 189, 248, 0.4) 100%);
-  --gradient-surface: linear-gradient(180deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.005) 100%);
-  
-  /* -------------------------------------------------------------------------
-     Transitions
-     ------------------------------------------------------------------------- */
-  --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
-  --transition-normal: 250ms cubic-bezier(0.4, 0, 0.2, 1);
-  --transition-slow: 400ms cubic-bezier(0.4, 0, 0.2, 1);
-  --transition-spring: 500ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  color-scheme: light;
 }
 
-/* ==========================================================================
-   Global Base & Resets
-   ========================================================================== */
-html, body {
-  background-color: var(--bg-base);
-  color: var(--text-primary);
+@media (min-width: 960px) {
+  :root {
+    --header-h: 88px;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Base
+   -------------------------------------------------------------------------- */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  scroll-padding-top: calc(var(--header-h) + 1rem);
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
   font-family: var(--font-sans);
+  font-size: var(--fs-body);
+  font-weight: 400;
+  line-height: 1.6;
+  text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  line-height: 1.6;
+  overflow-x: hidden;
 }
 
-/* Custom Minimalist Scrollbar */
-::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
-}
-::-webkit-scrollbar-track {
-  background: var(--bg-primary);
-}
-::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.15);
-  border-radius: 9999px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.3);
-}
-
-/* Selection Highlight */
-::selection {
-  background: rgba(139, 92, 246, 0.35);
-  color: #ffffff;
-}
-
-/* ==========================================================================
-   Silicon Valley Design System Utility Classes
-   ========================================================================== */
-
-/* Typography Utilities */
-.ds-display {
-  font-family: var(--font-display);
-  font-weight: 700;
-  letter-spacing: -0.03em;
-  line-height: 1.1;
-}
-
-.ds-heading {
+h1,
+h2,
+h3,
+h4 {
+  margin: 0;
   font-family: var(--font-sans);
-  font-weight: 700;
+  color: var(--ink);
+  text-wrap: balance;
+}
+
+h1 {
+  font-size: var(--fs-h1);
+  font-weight: 800;
+  line-height: 1.08;
   letter-spacing: -0.02em;
-  line-height: 1.25;
 }
 
-.ds-mono {
-  font-family: var(--font-mono);
-  letter-spacing: -0.01em;
+h2 {
+  font-size: var(--fs-h2);
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.015em;
 }
 
-.ds-gradient-text {
-  background: var(--gradient-accent-text);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+h3 {
+  font-size: var(--fs-h3);
+  font-weight: 700;
+  line-height: 1.3;
 }
 
-.ds-gradient-text-subtle {
-  background: var(--gradient-text);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+h4 {
+  font-size: var(--fs-body);
+  font-weight: 700;
+  line-height: 1.4;
 }
 
-/* Glassmorphism Panels */
-.ds-glass-panel {
-  background: var(--bg-glass-card);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-glass);
+p {
+  margin: 0;
+  text-wrap: pretty;
 }
 
-.ds-glass-panel-hover {
-  transition: transform var(--transition-normal), border-color var(--transition-normal), box-shadow var(--transition-normal);
-}
-.ds-glass-panel-hover:hover {
-  transform: translateY(-3px);
-  border-color: var(--border-medium);
-  box-shadow: var(--shadow-lg), 0 0 20px -5px var(--purple-glow);
+ul,
+ol {
+  margin: 0;
+  padding: 0;
 }
 
-/* Silicon Valley Tech Grid Background */
-.ds-tech-grid {
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+img {
+  height: auto;
+}
+
+a {
+  color: var(--purple);
+  text-decoration: underline;
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 0.18em;
+}
+
+a:hover {
+  text-decoration-thickness: 2.5px;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+}
+
+strong {
+  font-weight: 700;
+}
+
+code,
+pre {
+  font-family: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+}
+
+::selection {
+  background: var(--lavender);
+  color: var(--ink);
+}
+
+/* Focus: always a visible purple ring (slide 5: purple is for focus rings). */
+:focus-visible {
+  outline: 3px solid var(--purple);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* <main> only receives focus programmatically (after a route change, so
+   screen readers announce the new page); it shouldn't show a ring. */
+main:focus {
+  outline: none;
+}
+
+/* --------------------------------------------------------------------------
+   Layout helpers
+   -------------------------------------------------------------------------- */
+
+.container {
+  width: 100%;
+  max-width: calc(var(--content-max) + 2 * var(--gutter));
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.section {
+  padding-block: calc(var(--section-gap) / 2);
+}
+
+.page {
+  padding-top: clamp(2rem, 1.5rem + 3vw, 4rem);
+  padding-bottom: var(--section-gap);
+}
+
+.page > * + * {
+  margin-top: var(--section-gap);
+}
+
+.lead {
+  font-size: var(--fs-lead);
+  font-weight: 500;
+  line-height: 1.5;
+  max-width: 40ch;
+}
+
+.caption {
+  font-size: var(--fs-small);
+  color: var(--grey);
+  line-height: 1.45;
+}
+
+.hand {
+  font-family: var(--font-hand);
+  color: var(--purple);
+  font-size: var(--fs-note);
+  line-height: 1.3;
+}
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip-link {
   position: absolute;
-  inset: 0;
-  background-image: 
-    linear-gradient(to right, rgba(255, 255, 255, 0.035) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
-  background-size: 32px 32px;
-  mask-image: radial-gradient(ellipse 95% 85% at 50% 35%, black 45%, rgba(0, 0, 0, 0.4) 80%, transparent 100%);
-  -webkit-mask-image: radial-gradient(ellipse 95% 85% at 50% 35%, black 45%, rgba(0, 0, 0, 0.4) 80%, transparent 100%);
-  pointer-events: none;
+  left: var(--gutter);
+  top: 0;
+  z-index: 100;
+  padding: var(--space-3) var(--space-4);
+  background: var(--paper);
+  color: var(--ink);
+  font-weight: 700;
+  border: var(--pen) solid var(--ink);
+  transform: translateY(-120%);
 }
 
-.ds-dot-grid {
-  position: absolute;
-  inset: 0;
-  background-image: radial-gradient(rgba(255, 255, 255, 0.09) 1px, transparent 1px);
-  background-size: 24px 24px;
-  mask-image: radial-gradient(ellipse 90% 80% at 50% 40%, black 40%, rgba(0, 0, 0, 0.3) 75%, transparent 100%);
-  -webkit-mask-image: radial-gradient(ellipse 90% 80% at 50% 40%, black 40%, rgba(0, 0, 0, 0.3) 75%, transparent 100%);
-  pointer-events: none;
+.skip-link:focus {
+  transform: translateY(var(--space-3));
 }
 
-/* Ambient Radial Hero Glows */
-.ds-hero-glow {
-  position: absolute;
-  top: -10%;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 650px;
-  height: 450px;
-  background: radial-gradient(circle, rgba(124, 58, 237, 0.22) 0%, rgba(56, 189, 248, 0.1) 40%, transparent 70%);
-  filter: blur(60px);
-  pointer-events: none;
-  z-index: 0;
-}
+/* --------------------------------------------------------------------------
+   Shared sketch pieces. These are plain classes (not only React components)
+   so Markdown blog posts can use them too.
+   -------------------------------------------------------------------------- */
 
-.ds-ambient-glow-purple {
-  position: absolute;
-  width: 400px;
-  height: 400px;
-  background: radial-gradient(circle, rgba(139, 92, 246, 0.15) 0%, transparent 70%);
-  filter: blur(80px);
-  pointer-events: none;
-}
-
-.ds-ambient-glow-cyan {
-  position: absolute;
-  width: 400px;
-  height: 400px;
-  background: radial-gradient(circle, rgba(56, 189, 248, 0.12) 0%, transparent 70%);
-  filter: blur(80px);
-  pointer-events: none;
-}
-
-/* Pulsing Status Dot */
-@keyframes ds-pulse {
-  0% {
-    transform: scale(0.95);
-    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
-  }
-  70% {
-    transform: scale(1);
-    box-shadow: 0 0 0 6px rgba(16, 185, 129, 0);
-  }
-  100% {
-    transform: scale(0.95);
-    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
-  }
-}
-
-.ds-pulse-dot {
-  display: inline-block;
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background-color: var(--status-success);
-  animation: ds-pulse 2s infinite;
-}
-
-.ds-pulse-dot-cyan {
-  background-color: var(--cyan-400);
-  box-shadow: 0 0 8px var(--cyan-400);
-}
-
-/* Tech Corner Markers */
-.ds-tech-corner {
+/* 1. Pen outline: the border sits on a pseudo-element that gets the wobble
+      filter (defined once in <SketchDefs />), so text inside stays crisp. */
+.sketch {
   position: relative;
+  isolation: isolate;
 }
-.ds-tech-corner::before,
-.ds-tech-corner::after {
-  content: '';
+
+.sketch::before {
+  content: "";
   position: absolute;
-  width: 6px;
-  height: 6px;
-  border-color: rgba(255, 255, 255, 0.25);
+  inset: 0;
+  z-index: -1;
+  border: var(--pen) solid var(--ink);
+  border-radius: 3px 6px 4px 5px;
+  background: var(--sketch-fill, transparent);
+  filter: url(#sketch-a);
+  pointer-events: none;
+  transition: background-color var(--t-fast) var(--ease);
+}
+
+.sketch:nth-child(3n + 2)::before {
+  filter: url(#sketch-b);
+}
+
+.sketch:nth-child(3n)::before {
+  filter: url(#sketch-c);
+}
+
+.sketch--lavender {
+  --sketch-fill: var(--lavender);
+}
+
+.sketch--interactive:hover,
+.sketch--interactive:focus-within {
+  --sketch-fill: var(--lavender);
+}
+
+/* 2. Lavender marker behind key words. A solid, slightly uneven stroke drawn
+      as an SVG (no gradients), repeated per line when the words wrap. */
+.marker {
+  background-image: var(--marker-img);
+  background-repeat: no-repeat;
+  background-size: 100% 72%;
+  background-position: 0 88%;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+  padding-inline: 0.1em;
+  margin-inline: -0.05em;
+}
+
+/* 5. Framed photo: real photo, drawn frame, no filters on the photo itself. */
+.photo-frame {
+  position: relative;
+  isolation: isolate;
+  display: block;
+  padding: 6px;
+}
+
+.photo-frame::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border: var(--pen-frame) solid var(--ink);
+  border-radius: 2px 5px 3px 4px;
+  background: var(--paper);
+  filter: url(#sketch-b);
   pointer-events: none;
 }
-.ds-tech-corner::before {
-  top: -1px;
-  left: -1px;
-  border-top: 1px solid currentColor;
-  border-left: 1px solid currentColor;
+
+.photo-frame img {
+  display: block;
+  width: 100%;
+  height: auto;
+  background: var(--lavender);
 }
-.ds-tech-corner::after {
-  bottom: -1px;
-  right: -1px;
-  border-bottom: 1px solid currentColor;
-  border-right: 1px solid currentColor;
+
+.photo-figure {
+  margin: 0;
+}
+
+.photo-figure figcaption {
+  margin-top: var(--space-3);
+}
+
+/* Draw-in for pen strokes (arrows, lines). Paths opt in with pathLength="1". */
+.draw path,
+.draw line {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 0;
+  transition: stroke-dashoffset var(--t-draw) var(--ease);
+}
+
+.draw.is-pending path,
+.draw.is-pending line {
+  stroke-dashoffset: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .draw.is-pending path,
+  .draw.is-pending line {
+    stroke-dashoffset: 0;
+  }
 }

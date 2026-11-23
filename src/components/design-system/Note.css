@@ -1,0 +1,79 @@
+.note {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35em;
+  margin: 0;
+  font-family: var(--font-hand);
+  font-size: var(--fs-note);
+  font-weight: 400;
+  line-height: 1.3;
+  color: var(--purple);
+  max-width: 22ch;
+}
+
+.note__text {
+  display: block;
+}
+
+.pen-arrow {
+  flex: none;
+  width: 3.25em;
+  height: auto;
+  stroke: var(--purple);
+  stroke-width: 2.4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  overflow: visible;
+}
+
+/* Arrow direction: the base arrow points right. */
+.pen-arrow--left {
+  transform: scaleX(-1);
+}
+
+.pen-arrow--down {
+  transform: rotate(90deg);
+}
+
+.pen-arrow--up {
+  transform: rotate(-90deg) scaleY(-1);
+}
+
+.pen-arrow--down-right {
+  transform: rotate(55deg);
+}
+
+.pen-arrow--down-left {
+  transform: scaleX(-1) rotate(55deg);
+}
+
+.pen-arrow--up-right {
+  transform: rotate(-30deg);
+}
+
+.pen-arrow--up-left {
+  transform: scaleX(-1) rotate(-30deg);
+}
+
+/* Note layout follows the arrow. */
+.note--left,
+.note--up-left,
+.note--down-left {
+  flex-direction: row-reverse;
+}
+
+.note--down,
+.note--up {
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.note--up {
+  flex-direction: column-reverse;
+}
+
+.note--down .pen-arrow,
+.note--up .pen-arrow {
+  width: 2.5em;
+  margin-left: 0.75em;
+}
