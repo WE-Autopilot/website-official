@@ -1,0 +1,242 @@
+.post article {
+  max-width: var(--reading);
+  margin-inline: auto;
+}
+
+.post__header {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-4);
+  margin-bottom: var(--space-7);
+}
+
+.post__back {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
+  min-height: 44px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.post__back:hover {
+  text-decoration: underline;
+}
+
+.post__title {
+  font-size: clamp(2rem, 1.4rem + 3vw, 3.5rem);
+}
+
+.post__summary {
+  max-width: none;
+}
+
+.post__meta {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  padding-top: var(--space-4);
+  border-top: 1.5px solid var(--lilac);
+  width: 100%;
+}
+
+.post__meta a {
+  color: var(--ink);
+}
+
+.post__role {
+  font-weight: 500;
+}
+
+.post__cover {
+  margin-bottom: var(--space-7);
+}
+
+.post__related {
+  max-width: var(--content-max);
+}
+
+/* --------------------------------------------------------------------------
+   Post body
+   -------------------------------------------------------------------------- */
+
+.prose {
+  min-height: 30vh;
+  font-size: var(--fs-body);
+  line-height: 1.7;
+}
+
+.prose > div > * + * {
+  margin-top: 1.25em;
+}
+
+.prose h2 {
+  margin-top: 2.2em;
+  font-size: clamp(1.5rem, 1.3rem + 0.9vw, 2rem);
+  line-height: 1.2;
+}
+
+.prose h3 {
+  margin-top: 1.8em;
+}
+
+.prose h4 {
+  margin-top: 1.6em;
+}
+
+.prose h2 + *,
+.prose h3 + *,
+.prose h4 + * {
+  margin-top: 0.6em;
+}
+
+.prose ul,
+.prose ol {
+  padding-left: 1.4em;
+}
+
+.prose li + li {
+  margin-top: 0.4em;
+}
+
+.prose li::marker {
+  color: var(--purple);
+}
+
+.prose blockquote {
+  margin: 0;
+  padding-left: var(--space-5);
+  border-left: 3px solid var(--lilac);
+  font-weight: 500;
+}
+
+/* "> note: ..." → a purple handwritten aside with an arrow pointing back at the text. */
+.prose .post-note {
+  position: relative;
+  margin-left: auto;
+  margin-right: 0;
+  max-width: 24ch;
+  padding-left: 3.75rem;
+  font-family: var(--font-hand);
+  font-size: var(--fs-note);
+  line-height: 1.35;
+  color: var(--purple);
+}
+
+.prose .post-note::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.1em;
+  width: 3rem;
+  height: 2rem;
+  background: var(--purple);
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 40' fill='none' stroke='black' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M59 30 C48 10 26 5 8 17'/%3E%3Cpath d='M19 9.5 L7 17.5 L19.5 23'/%3E%3C/svg%3E") center / contain no-repeat;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 40' fill='none' stroke='black' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M59 30 C48 10 26 5 8 17'/%3E%3Cpath d='M19 9.5 L7 17.5 L19.5 23'/%3E%3C/svg%3E") center / contain no-repeat;
+}
+
+.prose .post-note p {
+  margin: 0;
+}
+
+.prose .post-figure {
+  margin-block: 2em;
+}
+
+.prose .post-inline-img {
+  display: inline-block;
+  max-height: 1.6em;
+  vertical-align: middle;
+}
+
+.prose code {
+  font-size: 0.9em;
+  padding: 0.1em 0.35em;
+  background: var(--lavender);
+  border-radius: 3px;
+}
+
+/* Code: a plain ink-outlined box on white. */
+.prose .post-code {
+  position: relative;
+  margin-block: 1.75em;
+  padding: var(--space-5);
+  overflow-x: auto;
+  border: var(--pen) solid var(--ink);
+  border-radius: 3px;
+  background: var(--paper);
+  font-size: 0.9375rem;
+  line-height: 1.6;
+}
+
+.prose .post-code code {
+  padding: 0;
+  background: none;
+  font-size: inherit;
+}
+
+/* Light highlighting from the palette only. */
+.hljs-keyword,
+.hljs-built_in,
+.hljs-selector-tag,
+.hljs-literal,
+.hljs-type {
+  color: var(--purple);
+  font-weight: 700;
+}
+
+.hljs-string,
+.hljs-number,
+.hljs-symbol,
+.hljs-attr,
+.hljs-variable {
+  color: var(--ink);
+}
+
+.hljs-title,
+.hljs-title.function_,
+.hljs-section {
+  font-weight: 700;
+}
+
+.hljs-comment,
+.hljs-quote,
+.hljs-meta {
+  color: var(--grey);
+  font-style: italic;
+}
+
+.prose .table-wrap {
+  overflow-x: auto;
+}
+
+.prose table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--fs-small);
+}
+
+.prose th,
+.prose td {
+  padding: 0.6em 0.8em;
+  border-bottom: 1.5px solid var(--lilac);
+  text-align: left;
+  vertical-align: top;
+}
+
+.prose th {
+  border-bottom: var(--pen) solid var(--ink);
+  font-weight: 700;
+}
+
+.prose hr {
+  height: 0;
+  margin-block: 2.5em;
+  border: 0;
+  border-top: 1.5px solid var(--lilac);
+}
+
+.prose img {
+  max-width: 100%;
+}
