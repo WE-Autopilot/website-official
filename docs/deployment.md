@@ -21,7 +21,7 @@ Because this application uses client-side routing via React Router, [`vercel.jso
 }
 ```
 
-> **Note**: This prevents 404 errors when visitors directly refresh or navigate to deep links such as `/join`, `/team`, or `/sponsors`.
+> **Note**: This prevents 404 errors when visitors directly refresh or navigate to deep links such as `/join`, `/team`, `/blog/<post>` or `/sponsors`. Real files in `dist/` (photos, `/rss.xml`) are served before the rewrite applies, so they still work. Unknown paths load the app, which shows its own "took a wrong turn" page.
 
 ## 3. Continuous Deployment (CI/CD)
 

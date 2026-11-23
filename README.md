@@ -1,70 +1,97 @@
-# Western Engineering AutoPilot (WEAP) Website
+# WE AutoPilot website
 
-## Tech Stack
+The site for WE AutoPilot (WEAP), Western Engineering's self-driving car team: [weautopilot.com](https://www.weautopilot.com).
 
-* **Frontend**: React 18, TypeScript, Vite
-* **Routing**: React Router (v7)
-* **Icons**: Lucide Icons
-* **Hosting & Deployment**: Vercel
+The look comes from the club's design guide: **white page, black pen, lavender marker, purple notes, real photos.** The guide is in [`docs/design/`](docs/design/) (`AutoPilot-Design-Guide.pptx`, with every slide as a PNG in `docs/design/slides/`).
 
-## Quickstart
+## Stack
 
-### 1. Install Dependencies
+- React 18, TypeScript, Vite 6, React Router 7
+- Plain CSS with design tokens (`src/styles/design-system.css`, mirrored in `src/styles/tokens.ts`)
+- Montserrat and Kalam, self-hosted with Fontsource
+- Blog: Markdown files, checked and bundled by a small Vite plugin (`plugins/blog.ts`), rendered with `marked` + DOMPurify
+- Hosted on Vercel, with Vercel Analytics
+
+## Scripts
+
+| Command | What it does |
+| --- | --- |
+| `npm install` | Install dependencies (Node 20 or newer). |
+| `npm run dev` | Local dev server at <http://localhost:5173>. Draft blog posts show here. |
+| `npm run build` | Type-checks, then builds the site into `dist/`. Fails with a clear message if a blog post's frontmatter is wrong. Also writes `dist/rss.xml`. |
+| `npm run preview` | Serves the built `dist/` locally, exactly as Vercel will. |
+| `npm run design` | Opens the design system showcase at `/design-system`: every token and component. Never part of a production build. |
+| `npm run images` | Converts photos to WebP. See [Photos](#photos). |
+| `npm run lint` | ESLint. |
+| `npm run typecheck` | TypeScript only. |
+
+## Updating content
+
+All the words, names, links and photos live in [`src/content/`](src/content/). You can change them without touching any layout code. [`src/content/README.md`](src/content/README.md) explains each file:
+
+- `site.ts`: club name, Discord and social links, nav, sponsorship email
+- `team.ts`: the roster (and where headshots go once they're taken)
+- `subteams.ts`: the four sub-team pages
+- `home.ts`: the home page, including the current vehicle (`currentProject`)
+- `join.ts`, `sponsors.ts`, `gallery.ts`, `pages.ts`: everything else
+
+## Writing a blog post
+
+Any lead can post by adding one Markdown file to `src/content/blog/`. No React or CSS needed. The full how-to is in [`src/content/blog/README.md`](src/content/blog/README.md). The short version:
+
+1. Copy `src/content/blog/_template.md` to `src/content/blog/YYYY-MM-DD-short-slug.md`.
+2. Fill in the frontmatter (title, date, author id from `team.ts`, teams, summary).
+3. Put images in `public/blog/<short-slug>/` (WebP, under 300 KB).
+4. Check it with `npm run dev`, then open a PR.
+
+## Photos
+
+Event photos live in `public/photos/events/<event>/` as two WebP sizes (800 and 1600 px wide). To add more:
+
 ```bash
-npm install
+# put JPEGs in weap-photos/events/<event-name>/ (ignored by git), then:
+npm run images
 ```
 
-### 2. Start Development Server
-```bash
-npm run dev
-```
+That writes the WebP files and records each photo's size in `src/content/photo-dimensions.json`. Then add the photos to `src/content/gallery.ts` and delete the JPEGs. Never commit original JPEGs or zip files.
 
-The site will be available at `http://localhost:5173`.
-
-## Available Scripts
-
-| Script | Description |
-| :--- | :--- |
-| `npm run dev` | Starts Vite local development server with hot module reloading for the main website. |
-| `npm run design` | Launches the interactive design system showcase (`/design-system`) to inspect tokens, components, and typography. Excluded from production builds. |
-| `npm run build` | Compiles TypeScript and builds optimized production bundles into `dist/`. |
-| `npm run preview` | Runs a local web server to preview the production build in `dist/`. |
-| `npm run lint` | Runs ESLint to check for code quality and syntax issues. |
-
-### Design System Explorer
-
-To explore and test UI components, color tokens, typography scales, buttons, and telemetry HUD elements in isolation without deploying them to production:
+Other modes:
 
 ```bash
-npm run design
+npm run images -- --headshots --in path/to/headshots     # 600 px, 4:5 crop → public/photos/headshots/
+npm run images -- --blog my-post-slug --in path/to/pics  # → public/blog/my-post-slug/
 ```
 
-> **Note:** The design system showcase route (`/design-system`) is conditionally loaded in `design` mode only and is automatically tree-shaken and excluded during production builds (`npm run build`).
+## Project layout
 
-## Project Structure
-
-```
+```text
 .
-├── public/                 # Static assets (images, logos, favicon)
-├── src/
-│   ├── assets/             # Team portrait WebP images and graphics
-│   ├── components/         # React page and UI components
-│   │   └── design-system/  # Reusable design system components
-│   ├── hooks/              # Custom React hooks
-│   ├── styles/             # Global CSS design tokens and theme variables
-│   ├── stylesheets/        # Component-level stylesheets
-│   ├── types/              # TypeScript interface definitions
-│   ├── utils/              # Utility helpers, animations, and analytics
-│   ├── App.tsx             # Main router and route definitions
-│   └── main.tsx            # React application entry point
 ├── docs/
-│   └── deployment.md       # Vercel deployment and domain guide
-├── index.html              # HTML entry template
-├── vite.config.ts          # Vite build configuration
-└── vercel.json             # Vercel SPA routing rewrite rules
+│   ├── deployment.md          # Vercel setup
+│   └── design/                # design guide, slides, revamp brief, photo manifest
+├── plugins/                   # Vite plugin for the Markdown blog + RSS
+├── public/
+│   ├── brand/                 # logo, cart illustration, doodles
+│   ├── photos/events/         # event photos (WebP, generated)
+│   └── sponsors/              # sponsor logos
+├── scripts/optimize-images.mjs
+├── src/
+│   ├── content/               # ← edit these to change what the site says
+│   ├── components/
+│   │   ├── design-system/     # SketchBox, Marker, Note, StepCircle, PhotoFrame, …
+│   │   └── layout/            # header, footer
+│   ├── pages/                 # one file per page
+│   ├── blog/                  # Markdown rendering
+│   ├── hooks/, lib/           # small helpers
+│   └── styles/                # design tokens
+└── vercel.json                # SPA rewrite (keep it)
 ```
 
-## Deployment
+## Branch → preview → merge
 
-The website is continuously deployed on **Vercel**. For deployment details, SPA rewrite configuration, and custom domain setup, see [`docs/deployment.md`](./docs/deployment.md).
+1. Work on a branch, never directly on `main`.
+2. Push the branch and open a pull request. Vercel builds a **preview URL** for every PR. Check it on your phone too; most visitors are on one.
+3. Every PR needs a review from @alyashour (see `.github/CODEOWNERS`).
+4. Merging into `main` deploys to production automatically.
 
+More in [`docs/deployment.md`](docs/deployment.md).
