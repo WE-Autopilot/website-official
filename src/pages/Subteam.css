@@ -1,0 +1,218 @@
+.subteam__header {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: var(--space-4) var(--space-5);
+  align-items: center;
+}
+
+.subteam__doodle {
+  width: clamp(4rem, 3rem + 4vw, 6rem);
+  height: auto;
+}
+
+.subteam__heading {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2) var(--space-5);
+}
+
+.subteam__lead {
+  grid-column: 1 / -1;
+  max-width: 52ch;
+}
+
+@media (min-width: 720px) {
+  .subteam__lead {
+    grid-column: 2;
+  }
+}
+
+.subteam__h2 {
+  margin-bottom: var(--space-5);
+  font-size: clamp(1.5rem, 1.25rem + 1.1vw, 2.125rem);
+}
+
+.subteam__grid {
+  display: grid;
+  gap: var(--space-7);
+  align-items: start;
+}
+
+@media (min-width: 960px) {
+  .subteam__grid {
+    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+    gap: clamp(2rem, 5vw, 5rem);
+  }
+
+  .subteam__grid--even {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.lead-list {
+  list-style: none;
+  display: grid;
+  gap: var(--space-4);
+}
+
+.lead-list__person {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-4);
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.lead-list__person:hover strong {
+  text-decoration: underline;
+  text-decoration-color: var(--purple);
+}
+
+.lead-list__initials {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 56px;
+  height: 70px;
+  font-weight: 800;
+  font-size: 1.125rem;
+}
+
+.lead-list__photo {
+  flex: none;
+  object-fit: cover;
+}
+
+.lead-list__person strong {
+  display: block;
+  font-size: var(--fs-h3);
+}
+
+.lead-list__role {
+  display: block;
+  font-weight: 500;
+}
+
+.subteam__join {
+  margin-top: var(--space-6);
+}
+
+.subteam__photos {
+  display: grid;
+  gap: var(--space-5);
+}
+
+@media (min-width: 560px) {
+  .subteam__photos:has(> :nth-child(2)) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .subteam__photos:has(> :nth-child(2)) img {
+    aspect-ratio: 3 / 4;
+    object-fit: cover;
+  }
+}
+
+/* Focus areas */
+.focus-list {
+  list-style: none;
+  display: grid;
+  gap: var(--space-4);
+}
+
+@media (min-width: 640px) {
+  .focus-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1100px) {
+  .focus-list {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.focus-list > li {
+  display: flex;
+}
+
+.focus-list__item {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  width: 100%;
+}
+
+/* Milestones: a hand-drawn vertical line through numbered circles. */
+.timeline {
+  list-style: none;
+  display: grid;
+  gap: var(--space-5);
+}
+
+.timeline__item {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-4);
+}
+
+.timeline__item:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  left: calc(1.125rem - 1px);
+  top: calc(2.25rem + 4px);
+  bottom: calc(-1 * var(--space-5) + 4px);
+  border-left: var(--pen) solid var(--ink);
+  filter: url(#sketch-line);
+}
+
+.timeline__item--planned::after,
+.timeline__item--in-progress::after {
+  border-left-style: dashed !important;
+}
+
+.timeline__label {
+  font-weight: 700;
+  padding-top: 0.2rem;
+}
+
+.timeline__item--done .timeline__status::before {
+  content: "✓ ";
+  color: var(--purple);
+  font-weight: 700;
+}
+
+/* Tech stack */
+.tech {
+  display: grid;
+  gap: var(--space-5);
+  margin: 0;
+}
+
+.tech__group dt {
+  margin-bottom: var(--space-2);
+  font-weight: 700;
+}
+
+.tech__group dd {
+  margin: 0;
+}
+
+/* Other teams */
+.subteam-others {
+  list-style: none;
+  display: grid;
+  gap: var(--space-4);
+}
+
+@media (min-width: 720px) {
+  .subteam-others {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.subteam-others > li {
+  display: flex;
+}

@@ -1,0 +1,96 @@
+.person-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(1.5rem, 1rem + 2vw, 2.5rem) clamp(1rem, 0.5rem + 2vw, 2rem);
+  list-style: none;
+}
+
+@media (min-width: 720px) {
+  .person-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1100px) {
+  .person-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+.person-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  scroll-margin-top: calc(var(--header-h) + 1.5rem);
+}
+
+.person-card__frame {
+  margin-bottom: var(--space-3);
+}
+
+.person-card__frame img {
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+}
+
+.person-placeholder {
+  position: relative;
+  display: grid;
+  place-items: center;
+  aspect-ratio: 4 / 5;
+}
+
+.person-placeholder__initials {
+  padding: 0 0.12em;
+  background-image: var(--marker-img);
+  background-repeat: no-repeat;
+  background-size: 100% 62%;
+  background-position: 0 85%;
+  font-size: clamp(2.25rem, 1.6rem + 3vw, 3.75rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+
+.person-placeholder__doodle {
+  position: absolute;
+  right: 8%;
+  bottom: 6%;
+  width: 30%;
+  height: auto;
+  transform: rotate(-8deg);
+}
+
+.person-card__name {
+  font-size: var(--fs-h3);
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+.person-card__role {
+  color: var(--ink);
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.person-card__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1) var(--space-4);
+  margin-top: var(--space-1);
+  font-weight: 500;
+}
+
+.person-card__links a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 32px;
+}
+
+/* Highlight the person someone linked to (/team#their-id). */
+.person-card:target .person-card__name {
+  background-image: var(--marker-img);
+  background-repeat: no-repeat;
+  background-size: 100% 70%;
+  background-position: 0 90%;
+}
