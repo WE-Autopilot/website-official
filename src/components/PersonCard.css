@@ -1,19 +1,15 @@
+/* Cards stay small (about a quarter to a third of the screen height):
+   two per row on phones, then as many ~11rem cards as fit. */
 .person-grid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 9.5rem));
   gap: clamp(1.5rem, 1rem + 2vw, 2.5rem) clamp(1rem, 0.5rem + 2vw, 2rem);
   list-style: none;
 }
 
-@media (min-width: 720px) {
+@media (min-width: 640px) {
   .person-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-}
-
-@media (min-width: 1100px) {
-  .person-grid {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(9rem, 11rem));
   }
 }
 
@@ -38,6 +34,7 @@
   display: grid;
   place-items: center;
   aspect-ratio: 4 / 5;
+  container-type: inline-size;
 }
 
 .person-placeholder__initials {
@@ -46,7 +43,8 @@
   background-repeat: no-repeat;
   background-size: 100% 62%;
   background-position: 0 85%;
-  font-size: clamp(2.25rem, 1.6rem + 3vw, 3.75rem);
+  /* Scales with the card, not the screen. */
+  font-size: clamp(1.75rem, 24cqi, 2.75rem);
   font-weight: 800;
   letter-spacing: -0.02em;
   color: var(--ink);
@@ -62,7 +60,7 @@
 }
 
 .person-card__name {
-  font-size: var(--fs-h3);
+  font-size: clamp(1.0625rem, 1rem + 0.3vw, 1.1875rem);
   font-weight: 700;
   line-height: 1.25;
 }
