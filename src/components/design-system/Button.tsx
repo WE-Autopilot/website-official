@@ -1,85 +1,81 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import './Button.css';
+import type { MouseEventHandler, ReactNode } from "react";
+import { Link } from "react-router-dom";
+import { ArrowRight, ArrowUpRight } from "lucide-react";
+import { isExternal } from "../../lib/text";
+import { ui } from "../../content/pages";
+import "./Button.css";
 
-export type ButtonVariant = 
-  | 'primary' 
-  | 'secondary' 
-  | 'outline' 
-  | 'ghost' 
-  | 'glow'
-  | 'cyan';
-
-export type ButtonSize = 'sm' | 'md' | 'lg' | 'icon';
-
-export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: ButtonVariant;
-  size?: ButtonSize;
-  isLoading?: boolean;
-  leftIcon?: React.ReactNode;
-  rightIcon?: React.ReactNode;
+export interface ButtonProps {
+  children: ReactNode;
+  /** Internal path ("/team") or external URL. Omit for a <button>. */
   to?: string;
-  href?: string;
-  children?: React.ReactNode;
+  onClick?: MouseEventHandler<HTMLElement>;
+  /** primary: pen outline + lavender fill. secondary: pen outline only. */
+  variant?: "primary" | "secondary";
+  size?: "md" | "lg";
+  /** Arrow after the label. External links get an up-right arrow automatically. */
+  arrow?: boolean;
+  icon?: ReactNode;
+  type?: "button" | "submit";
+  className?: string;
+  "aria-pressed"?: boolean;
 }
 
-export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(({
+export function Button({
   children,
-  variant = 'primary',
-  size = 'md',
-  isLoading = false,
-  leftIcon,
-  rightIcon,
   to,
-  href,
-  className = '',
-  disabled,
-  ...props
-}, ref) => {
-  const baseClasses = `ds-button ds-button-${variant} ds-button-${size} ${isLoading ? 'ds-button-loading' : ''} ${className}`;
-
+  onClick,
+  variant = "primary",
+  size = "md",
+  arrow = false,
+  icon,
+  type = "button",
+  className = "",
+  ...aria
+}: ButtonProps) {
+  const mail = to !== undefined && /^(mailto|tel):/.test(to);
+  const external = to !== undefined && !mail && isExternal(to);
+  const classes = `btn sketch btn--${variant} btn--${size} ${className}`;
+  const trailing = external ? (
+    <ArrowUpRight className="btn__icon" size={18} aria-hidden="true" />
+  ) : arrow ? (
+    <ArrowRight className="btn__icon" size={18} aria-hidden="true" />
+  ) : null;
   const content = (
     <>
-      {isLoading && (
-        <span className="ds-button-spinner">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-            <circle cx="12" cy="12" r="10" strokeDasharray="32" strokeDashoffset="12" />
-          </svg>
-        </span>
-      )}
-      {!isLoading && leftIcon && <span className="ds-button-icon-left">{leftIcon}</span>}
-      <span className="ds-button-text">{children}</span>
-      {!isLoading && rightIcon && <span className="ds-button-icon-right">{rightIcon}</span>}
+      {icon}
+      <span>{children}</span>
+      {trailing}
+      {external && <span className="visually-hidden"> {ui.opensInNewTab}</span>}
     </>
   );
 
-  if (to) {
+  if (to === undefined) {
     return (
-      <Link to={to} className={baseClasses}>
+      <button type={type} className={classes} onClick={onClick} {...aria}>
         {content}
-      </Link>
+      </button>
     );
   }
-
-  if (href) {
+  if (mail) {
     return (
-      <a href={href} className={baseClasses} target={href.startsWith('http') ? '_blank' : undefined} rel={href.startsWith('http') ? 'noopener noreferrer' : undefined}>
+      <a className={classes} href={to} onClick={onClick}>
         {content}
       </a>
     );
   }
-
+  if (external) {
+    return (
+      <a className={classes} href={to} target="_blank" rel="noopener noreferrer" onClick={onClick}>
+        {content}
+      </a>
+    );
+  }
   return (
-    <button
-      ref={ref}
-      className={baseClasses}
-      disabled={disabled || isLoading}
-      {...props}
-    >
+    <Link className={classes} to={to} onClick={onClick}>
       {content}
-    </button>
+    </Link>
   );
-});
+}
 
-Button.displayName = 'Button';
 export default Button;

@@ -1,144 +1,70 @@
 /**
- * WEAP Design Tokens - Silicon Valley Minimalist Theme
- * Modern Dark Slate & Obsidian with Western Electric Purple & Autonomous Cyan Accents
+ * WEAP design tokens: white page, black pen, lavender marker, purple notes.
+ * From docs/design/AutoPilot-Design-Guide.pptx (slides 5–7).
+ *
+ * Keep in sync with the custom properties at the top of design-system.css.
  */
 
 export const colors = {
-  // Background surfaces
-  bg: {
-    base: '#06070a',
-    primary: '#0a0c12',
-    secondary: '#0f121d',
-    tertiary: '#161a29',
-    elevated: '#1e2337',
-    glass: 'rgba(16, 20, 34, 0.65)',
-    glassCard: 'rgba(15, 19, 32, 0.75)',
-    glassHover: 'rgba(255, 255, 255, 0.06)',
-  },
+  /** Text, pen lines, the logo. ~25% of a design. */
+  ink: "#191919",
+  /** The only accent: links, notes, labels, arrows, focus rings. ~5%. */
+  purple: "#7C5CDB",
+  /** The marker: fills, highlights, details boxes. The only fill. ~10%. */
+  lavender: "#EAE4FA",
+  /** Quiet lines and dividers. Never text. */
+  lilac: "#BEAEED",
+  /** The page. ~60%. */
+  paper: "#FFFFFF",
+  /** Small captions only. */
+  grey: "#5D5A66",
+} as const;
 
-  // Western Heritage Purple / Electric Violet
-  purple: {
-    50: '#faf5ff',
-    100: '#f3e8ff',
-    200: '#e9d5ff',
-    300: '#c4b5fd',
-    400: '#a78bfa',
-    500: '#8b5cf6', // Primary Accent
-    600: '#7c3aed', // Western Electric Purple
-    700: '#6d28d9',
-    800: '#5b21b6',
-    900: '#3b0764',
-    glow: 'rgba(139, 92, 246, 0.35)',
-  },
+/**
+ * Contrast pairs from slide 6 (WCAG ratio). "large" means 24 px, or 19 px bold.
+ */
+export const contrastPairs = [
+  { fg: "ink", bg: "paper", ratio: 17.6, use: "any text" },
+  { fg: "purple", bg: "paper", ratio: 4.8, use: "any text" },
+  { fg: "paper", bg: "purple", ratio: 4.8, use: "any text" },
+  { fg: "ink", bg: "lavender", ratio: 14.2, use: "any text" },
+  { fg: "grey", bg: "paper", ratio: 6.7, use: "any text" },
+  { fg: "purple", bg: "lavender", ratio: 3.9, use: "large text only" },
+  { fg: "purple", bg: "ink", ratio: 3.7, use: "large text only" },
+  { fg: "lilac", bg: "paper", ratio: 2.0, use: "never text" },
+] as const;
 
-  // Autonomous Tech Cyan / Electric Sky
-  cyan: {
-    50: '#f0fdfa',
-    100: '#ccfbf1',
-    200: '#99f6e4',
-    300: '#7dd3fc',
-    400: '#38bdf8', // Lidar Cyan
-    500: '#06b6d4',
-    600: '#0284c7',
-    700: '#0369a1',
-    800: '#075985',
-    900: '#0c4a6e',
-    glow: 'rgba(56, 189, 248, 0.35)',
-  },
+export const fonts = {
+  /** Titles (ExtraBold 800, sentence case), body (400/500), labels (700). */
+  sans: "'Montserrat', system-ui, sans-serif",
+  /** Short purple notes only: 12 words or fewer, never paragraphs, dates, prices or buttons. */
+  hand: "'Kalam', cursive",
+  weights: { regular: 400, medium: 500, bold: 700, extrabold: 800 },
+} as const;
 
-  // Engineering Sub-team Signatures
-  teams: {
-    planning: '#a855f7',    // Planning & Control - Purple
-    perception: '#06b6d4',  // Perception - Cyan
-    localization: '#3b82f6',// Localization - Blue
-    build: '#10b981',       // Build - Emerald
-  },
+/** Fluid type sizes. Body text never drops below 16 px. */
+export const fontSizes = {
+  small: "0.9375rem",
+  body: "clamp(1rem, 0.95rem + 0.25vw, 1.125rem)",
+  lead: "clamp(1.125rem, 1.02rem + 0.5vw, 1.375rem)",
+  note: "clamp(1.125rem, 1.05rem + 0.4vw, 1.375rem)",
+  h3: "clamp(1.1875rem, 1.1rem + 0.45vw, 1.5rem)",
+  h2: "clamp(1.75rem, 1.35rem + 1.9vw, 2.75rem)",
+  h1: "clamp(2.25rem, 1.5rem + 3.6vw, 4.5rem)",
+  stat: "clamp(2.25rem, 1.8rem + 2vw, 3.5rem)",
+} as const;
 
-  // Text Hierarchy
-  text: {
-    primary: '#f8fafc',
-    secondary: '#cbd5e1',
-    muted: '#94a3b8',
-    subtle: '#64748b',
-    disabled: '#475569',
-  },
+export const pen = {
+  /** Outline width for boxes, cards and buttons (guide: 2–3 px). */
+  line: "2.5px",
+  /** Photo frames. */
+  frame: "3px",
+} as const;
 
-  // Borders
-  border: {
-    subtle: 'rgba(255, 255, 255, 0.07)',
-    medium: 'rgba(255, 255, 255, 0.12)',
-    bright: 'rgba(255, 255, 255, 0.22)',
-    purple: 'rgba(139, 92, 246, 0.4)',
-    cyan: 'rgba(56, 189, 248, 0.4)',
-  },
-
-  // Telemetry & Status
-  status: {
-    success: '#10b981',
-    warning: '#f59e0b',
-    error: '#ef4444',
-    info: '#0ea5e9',
-  }
-};
-
-export const typography = {
-  fontFamily: {
-    sans: "'Plus Jakarta Sans', 'Inter', sans-serif",
-    display: "'Space Grotesk', 'Plus Jakarta Sans', sans-serif",
-    heading: "'Jura', 'Space Grotesk', sans-serif",
-    mono: "'JetBrains Mono', 'IBM Plex Mono', monospace",
-  },
-  fontSize: {
-    xs: '0.75rem',    // 12px
-    sm: '0.875rem',   // 14px
-    base: '1rem',      // 16px
-    lg: '1.125rem',   // 18px
-    xl: '1.25rem',    // 20px
-    '2xl': '1.5rem',  // 24px
-    '3xl': '1.875rem',// 30px
-    '4xl': '2.25rem', // 36px
-    '5xl': '3rem',    // 48px
-    '6xl': '3.75rem', // 60px
-    '7xl': '4.5rem',  // 72px
-  },
-  fontWeight: {
-    normal: 400,
-    medium: 500,
-    semibold: 600,
-    bold: 700,
-    extrabold: 800,
-  },
-  letterSpacing: {
-    tightest: '-0.03em',
-    tight: '-0.02em',
-    normal: '0',
-    wide: '0.05em',
-    widest: '0.1em',
-  }
-};
-
-export const radii = {
-  xs: '4px',
-  sm: '8px',
-  md: '12px',
-  lg: '16px',
-  xl: '24px',
-  full: '9999px',
-};
-
-export const shadows = {
-  sm: '0 1px 2px 0 rgba(0, 0, 0, 0.4)',
-  md: '0 4px 12px -2px rgba(0, 0, 0, 0.5), 0 2px 6px -1px rgba(0, 0, 0, 0.4)',
-  lg: '0 12px 32px -4px rgba(0, 0, 0, 0.6), 0 4px 12px -2px rgba(0, 0, 0, 0.4)',
-  xl: '0 20px 48px -8px rgba(0, 0, 0, 0.75)',
-  glass: '0 8px 32px 0 rgba(0, 0, 0, 0.5)',
-  glowPurple: '0 0 25px -5px rgba(139, 92, 246, 0.45)',
-  glowCyan: '0 0 25px -5px rgba(56, 189, 248, 0.45)',
-};
-
-export const transitions = {
-  fast: '150ms cubic-bezier(0.4, 0, 0.2, 1)',
-  normal: '250ms cubic-bezier(0.4, 0, 0.2, 1)',
-  slow: '400ms cubic-bezier(0.4, 0, 0.2, 1)',
-  spring: '500ms cubic-bezier(0.175, 0.885, 0.32, 1.275)',
-};
+export const layout = {
+  /** ~6% clear margin on each side (slide 14). */
+  gutter: "max(20px, 6vw)",
+  contentMax: "80rem",
+  readingWidth: "68ch",
+  sectionGap: "clamp(4rem, 3rem + 5vw, 7.5rem)",
+} as const;
